@@ -12,11 +12,21 @@ export const Login = () => {
         
    <AppBar   style={{ backgroundColor: 'white', boxShadow: 'none',height: '120px' }}>
             <Typography  style={{display: 'flex', justifyContent: 'center'}}>
-              <Link className="navbar-brand" to={"/"}>
-                      <span className='HLStyle1'  >e</span>
-                      <span className='HLStyle2'>atcost</span>
+              <Link  to={"/"}>
+                      <span sx={{
+                            color: '#0e0588',
+                            padding: '0px',
+                            fontSize: '35px',
+                        fontWeight: '650',
+  
+                      }} >e</span>
+                        <span sx={{
+                            color: '#69BFB9',
+                            padding: '0px',
+                            fontSize: '35px',
+                        fontWeight: '650' }}>atcost</span>
                 <Typography style={{ fontFamily: 'Outfit', fontWeight: 400, textAlign: 'center', letterSpacing: 2
-            , fontSize: 12, marginTop: -14, color: '#223B7B'  }} > 
+            , fontSize: 12, marginTop: 14, color: '#223B7B'  }} > 
                     CATERER APP
                 </Typography>
               </Link>
@@ -77,7 +87,7 @@ export const Login = () => {
                                   
                                   </form>
                                             <Typography sx={{display: 'flex', justifyContent: 'center', mt:3}} >
-                                <Link to={'/cat-regis'} >
+                                <Link to={'/stepper'} >
                                         <span style={{ color: '#1A1824', fontFamily: 'Outfit' }}>Don't have an account ?</span>{' '}
                                         <span style={{ color: '#2B817B', fontFamily: 'Outfit', textDecorationLine: 'underline' }}>
                                         Register </span></Link>
