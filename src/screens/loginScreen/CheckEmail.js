@@ -25,7 +25,7 @@ export const CheckEmail = () => {
                 >
                 <Grid item xs={12} sx={{ marginTop: '80px' }} >
                     <Box textAlign='center' >
-                        <img style={{width: '112px', height: '112px'}} src='../images/chekEmail1083.png' />
+                        <img alt="" style={{width: '112px', height: '112px'}} src='../images/chekEmail1083.png' />
                     </Box>
 
                     <Typography variant='body2' textAlign='center' component={'div'} 

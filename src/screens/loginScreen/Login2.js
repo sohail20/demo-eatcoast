@@ -1,7 +1,7 @@
-import { Box, Button, Card, CardActions, CardContent, CardMedia, Grid, Typography } from '@mui/material'
+import { Box, Button, Card, CardContent, CardMedia, Grid, Typography } from '@mui/material'
 import { Container } from '@mui/system'
 import React from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 export const Login2 = () => {
 const navigation = useNavigate();
   const gotoLoginPin=()=>{

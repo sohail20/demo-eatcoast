@@ -6,7 +6,7 @@ export const WaitingSvg = ({ handleStepperPrev }) => {
   return (
      <Container maxWidth='xs' sx={{ backgroundColor: '', height: '50vh' }}>
           <Box textAlign={'center'}>
-        <img src='../../images/waiting.png'/>
+        <img src='../../images/waiting.png' alt="" />
           </Box>
 
       <Typography sx={{marginTop: '20px', color: '#1A1824', fontFamily: 'Outfit', fontSize: '16px', fontWeight: '400' }}
