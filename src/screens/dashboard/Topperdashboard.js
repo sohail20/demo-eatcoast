@@ -1,4 +1,4 @@
-import { AppBar, Box, IconButton, Toolbar, Typography } from '@mui/material'
+import { AppBar, Box,Toolbar, Typography } from '@mui/material'
 import React from 'react'
 import { ThemeProvider, createTheme } from '@mui/material/styles'
 
@@ -21,19 +21,23 @@ const dashAppbar = {
   borderBottom: '1px solid #E1E1E6',
 }
 
-export const Topperdashboard = ({ handleDrawerOpen, open }) => {
+const todayDate=()=>{
+  let currentDate='';
   const daysName = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   const monthName = ["Jan", "Feb", "March", "April", "May", "June", "July", "Aug", "Sep", "Oct","Nov" ,"Dec"];
-  let currentDate= new Date();
+  let setTodatDate='';
+   currentDate= new Date();
 let now = currentDate.getDay();
 let nameofDay = daysName[now];
 let todayDate = currentDate.getDate();
 let currentMonth = currentDate.getMonth();
 let Month = monthName[currentMonth];
 let fullYear =currentDate.getFullYear();
- let setTodatDate = nameofDay + ',' + todayDate + " " + Month + "," + " " + fullYear; 
+ return setTodatDate = (nameofDay + ',' + todayDate + " " + Month + "," + " " + fullYear); 
 
-  console.log(setTodatDate)
+
+}
+export const Topperdashboard = ({ handleDrawerOpen, open }) => {
   return (
     <ThemeProvider theme={theme}>
       <AppBar sx={dashAppbar} color={'appbar'} position="fixed" open={open}>
@@ -50,13 +54,13 @@ let fullYear =currentDate.getFullYear();
             </Box>
             <Box>
             <Box>
-              Today: <Typography variant='span'>{setTodatDate}</Typography>
+                Today: <Typography variant='span'>{todayDate()}</Typography>
             </Box>
             <Box>
-              Today: <Typography variant='span'></Typography>
+              <Typography variant='span'></Typography>
             </Box>
             <Box>
-              Today: <Typography variant='span'></Typography>
+               <Typography variant='span'></Typography>
             </Box>
 
             </Box>

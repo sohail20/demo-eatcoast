@@ -7,9 +7,7 @@ import Toolbar from '@mui/material/Toolbar';
 import List from '@mui/material/List';
 import CssBaseline from '@mui/material/CssBaseline';
 import Typography from '@mui/material/Typography';
-import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ListItem from '@mui/material/ListItem';
@@ -23,7 +21,8 @@ import { Financials } from './Financials';
 import { Employee } from './Employee';
 import { Settings } from './Settings';
 import { Topperdashboard } from './Topperdashboard';
-
+import { TbLayoutDashboard } from 'react-icons/tb'
+import { DashHome } from './DashHome';
 const drawerWidth = 200;
 const openedMixin = (theme) => ({
     width: drawerWidth,
@@ -220,7 +219,7 @@ const handledroptoggle=()=>{
                                         justifyContent: 'center',
                                     }}
                                 >
-                                <img src='../../images/12.png' alt='' />
+                                <TbLayoutDashboard size={'26px'} />
                                 </ListItemIcon>
                                 <ListItemText primary={"Dashboard"} sx={{ opacity: open ? 1 : 0 }} />
                             </ListItemButton>
@@ -241,7 +240,7 @@ const handledroptoggle=()=>{
                                         justifyContent: 'center',
                                     }}
                                 >
-                                <img src='../../images/12.png' alt='' />
+                                
                                 </ListItemIcon>
                                 <ListItemText primary={"Order"} sx={{ opacity: open ? 1 : 0 }} />
                             </ListItemButton>
@@ -357,8 +356,7 @@ const handledroptoggle=()=>{
             <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
                 <DrawerHeader />
                 {
-                    dashboardPage ? <Box><h1>Hello 1</h1>
-                    </Box> : ordPage ? <Order /> : subsPage ? <Subscription /> : menuPage ?
+                    dashboardPage ? <DashHome /> : ordPage ? <Order /> : subsPage ? <Subscription /> : menuPage ?
                     <Menu /> : finanPage ? <Financials /> : empPage ? <Employee /> : settPage ? <Settings /> :''
                 }
 
