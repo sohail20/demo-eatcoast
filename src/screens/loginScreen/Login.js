@@ -1,12 +1,34 @@
-import { AppBar, Button, Card, CardActions, CardContent, CardMedia, Container,  Grid, TextField,  Typography } from '@mui/material'
-import { Box } from '@mui/system'
 import React, { useState } from 'react'
+import { AppBar, Button,  Grid, TextField,  Typography } from '@mui/material'
+import { Box } from '@mui/system'
 import { Link } from 'react-router-dom'
+import { ThemeProvider , createTheme } from '@mui/material/styles'
+
+ const theme = createTheme({
+    palette: {
+        loginField: {
+            main: '#E1E1E',
+        },
+        loginField2: {
+            main: '#F6F6F6',
+        },
+
+    },
+
+});
+
+const stylestf ={
+    marginBottom: 3,
+    width: '100%', background: '#F6F6F6', height: '40px',
+    border: '1px solid #E1E1E6', borderRadius: '6px',
+    textColor: 'black',
+};
+
 
 
 export const Login = () => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');    
+    const [ setEmail] = useState('');
+    const [ setPassword] = useState('');    
     return (
         <>
         
@@ -46,26 +68,16 @@ export const Login = () => {
                               <Box sx={{ py: 3, px: 5 }}>
                                   
                                   <form >
-                                        
-
-                                    <TextField
-                                        sx={{
-                                            marginBottom: 3,
-                                                width: '100%', background: '#F6F6F6' , height: '40px', 
-                                            border: '1px solid #E1E1E6', borderRadius: '6px'
-                                        }}
+                 <ThemeProvider theme={theme}>                       
+                                <TextField id="outlined-basic"
+                                    sx={stylestf} color={'loginField'}
                                         label="Email"
                                         defaultValue=""
-                                        size="small"
+                                        size="small" 
                                         type="email" autoFocus={true} onChange={(e) => setEmail(e.target.value)}
                                     />                 
-                                    
-                                    <TextField  
-                                        sx={{
-                                            marginBottom: 3,
-                                            width: '100%', background: '#F6F6F6', height: '40px', padding: '',
-                                            border: '1px solid #E1E1E6', borderRadius: '6px'
-                                        }}
+                                <TextField  
+                                    sx={stylestf} color={'loginField2'}
                                             label="password" id="outlined-size-small"
                                         size="small"
                                         type="password"  onChange={(e) => setPassword(e.target.value)}
@@ -77,14 +89,14 @@ export const Login = () => {
                                             </Typography>                                  
                                     
                                     
-                                    <Button disableRipple={true}
+                                    <Button 
                                     style={{ border: 2, textTransform: 'none' ,background: '#2B817B', width: '100%', color: 'white' }}
                                           type="submit">
-                                          <Link to={'/signIn'}>
+                                        <Link to={'/dashboard'}>
                                           <span style={{color: '#FFFFFF', fontFamily: 'Outfit'}}>Login</span>
                                           </Link>  
                                           </Button>
-                                  
+                                </ThemeProvider>
                                   </form>
                                             <Typography sx={{display: 'flex', justifyContent: 'center', mt:3}} >
                                 <Link to={'/stepper'} >
@@ -92,9 +104,6 @@ export const Login = () => {
                                         <span style={{ color: '#2B817B', fontFamily: 'Outfit', textDecorationLine: 'underline' }}>
                                         Register </span></Link>
                                         </Typography>
-                             
-
-                                  
                               </Box>
                           </Box>
                       </Grid>

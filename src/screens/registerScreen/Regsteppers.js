@@ -5,18 +5,14 @@ import Stack from '@mui/material/Stack';
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
-import Check from '@mui/icons-material/Check';
 import StepConnector, { stepConnectorClasses } from '@mui/material/StepConnector';
-import { MerchantRegSvg } from '../../Assets/Svg/MerchantRegSvg';
-
-import { Box, Button, Container, TextField, Typography } from '@mui/material';
-import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
-import { MerchantRegis } from '../../components/MerchantRegis'
+import { MerchantRegSvg } from '../../assets/Svg/MerchantRegSvg'
+import { Box, Button, Container } from '@mui/material';
 import { Finsh } from '../../components/Finsh';
 import { useFormik } from 'formik';
 import { Ownerinfo } from '../../components/OwnerInfo';
 import { WaitingSvg } from '../../components/WaitingSvg';
-import { useEffect } from 'react';
+import { MerchantRegis } from '../../components/MerchantRegis'
 
 const ColorlibConnector = styled(StepConnector)(({ theme }) => ({
     [`&.${stepConnectorClasses.alternativeLabel}`]: {
@@ -40,7 +36,7 @@ const ColorlibConnector = styled(StepConnector)(({ theme }) => ({
         borderRadius: 7,
     },
 }));
-const valauesa = [1, 2, 3, 4, 5, 6, 7, 8]
+
 const ColorlibStepIconRoot = styled('div')(({ theme, ownerState }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? theme.palette.grey[700] : '#ccc',
     zIndex: 1,
@@ -99,7 +95,7 @@ ColorlibStepIcon.propTypes = {
 const steps = [`Merchant Registration`, `Owner Info`, `waiting`, `Finsh`];
 
 
-export default function Regsteppers() {
+export const Regsteppers=() =>{
     const [activeStep, setActiveStep] = React.useState(0);
     const handleStepper = () => {
         if (activeStep < 3) {
@@ -112,15 +108,7 @@ export default function Regsteppers() {
         }
     }
 
-    // useEffect(() => {
-
-    //     setActiveStep(0)
-
-    // }, [])
-
-
-    {/* -- form ----*/ }
-
+   
 
     const formik = useFormik({
         initialValues: {

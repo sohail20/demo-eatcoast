@@ -5,7 +5,7 @@ export const Finsh = () => {
   return (
     <Container maxWidth='xs' sx={{ backgroundColor: '', height: '50vh' }}>
       <Box textAlign={'center'}>
-        <img src='../../images/finshReg.png' width={'400px'} />
+        <img src='../../images/finshReg.png' alt="" width={'400px'} />
       </Box>
 
       <Typography sx={{ marginTop: '20px', color: '#1A1824', fontFamily: 'Outfit', fontSize: '16px', fontWeight: '400' }}

@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react'
-import { Box, Button, Card, CardContent, Container, Grid, TextField, Typography } from '@mui/material'
+import React, { useState} from 'react'
+import { Box, Button, Container, Grid, TextField, Typography } from '@mui/material'
 import { styled } from "@mui/material/styles";
 import { Link } from 'react-router-dom';
 const DecreaaseonMobile = styled('div')(({ theme }) => ({
@@ -14,10 +14,10 @@ const DecreaaseonMobile = styled('div')(({ theme }) => ({
 export const Login3 = () => {
     const [pinOne, setPinOne] = useState([])
 
-    const pinsubmitHandler = (e) => {
-        e.preventDefault();
-        console.log('submit handler')
-    }
+    // const pinsubmitHandler = (e) => {
+    //     e.preventDefault();
+    //     console.log('submit handler')
+    // }
     const pincHandler = (value) => {
         setPinOne([...pinOne, value])
     }
