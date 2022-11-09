@@ -5,6 +5,8 @@ import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import { createTheme } from '@mui/system';
+import { ThemeProvider } from '@mui/material';
+import { Da_manager } from '../../components/dashboard/Da_manager';
 
 
 const theme = createTheme({
@@ -14,8 +16,9 @@ const theme = createTheme({
         },
       
     }});
-function TabPanel(props) {
-const {children, value, index, ...other } = props;
+
+    function TabPanel(props) {
+      const {children, value, index, ...other } = props;
 
 return (
 <div
@@ -41,7 +44,7 @@ value: PropTypes.number.isRequired,
 };
 
 function a11yProps(index) {
-return {
+    return {
     id: `simple-tab-${index}`,
 'aria-controls': `simple-tabpanel-${index}`,
 };
@@ -53,6 +56,17 @@ export const DashHome = () => {
     const handleChange = (event, newValue) => {
       setValue(newValue);
     };
+  const todayDate = () => {
+    let currentDate = '';
+    let setToDate = '';
+    const monthName = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October",
+      "Novomber", "December"];
+    currentDate = new Date();
+    let currentMonth = currentDate.getMonth();
+    let Month = monthName[currentMonth];
+    let fullYear = currentDate.getFullYear();
+    return setToDate = `${Month}, ${fullYear}`;
+  }
   return (
 <>
 
@@ -62,18 +76,27 @@ export const DashHome = () => {
     <Box sx={{ width: '100%' }}>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                   <Tabs value={value} onChange={handleChange} 
-                  aria-label="basic tabs example" 
+               aria-label="basic tabs example" 
+               TabIndicatorProps={{
+                 sx: { backgroundColor: '#2B817B'}
+               }}
+            sx={{ '& button.Mui-selected': { color: '#1A1b24' }, }}
                   >
-                      <Tab disableRipple={true} label="Manager" {...a11yProps(0)} sx={{ marginBottom: '-20px', fontFamily: 'Outfit', fontSize: '14px', 
-                      color: '#1A1b24', lineHeight: '30px', fontWeight: '600' }} />
-                      <Tab disableRipple={true} label="Staff" {...a11yProps(1)} />
+                      <Tab disableRipple={true} label="Manager" {...a11yProps(0)} 
+                      sx={{ marginBottom: '-20px', fontFamily: 'Outfit', fontSize: '14px', 
+                        color: '#9EA3AE',  lineHeight: '30px', fontWeight: '600' }} />
+                      <Tab disableRipple={true} label="Staff" {...a11yProps(1)}
+              sx={{
+                marginBottom: '-20px', fontFamily: 'Outfit', fontSize: '14px',
+                color: '#9EA3AE', lineHeight: '30px', fontWeight: '600'
+              }} />
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
-        Manager
+          <Da_manager todayDate={todayDate} />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        Staff
+          
       </TabPanel>
       
     </Box>
