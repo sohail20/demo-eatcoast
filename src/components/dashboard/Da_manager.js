@@ -63,7 +63,7 @@ export const Da_manager = ({ todayDate }) => {
                     </Box>
 
                     {/* section 3 */}
-                    <Box component={'div'}>
+                    <Box component={'div'} >
                         <Grid container spacing={1}>
                             <Grid item xs={12} sm={6} md={4} lg={3}  >
                                 <Box component={'div'} sx={{
@@ -194,75 +194,79 @@ export const Da_manager = ({ todayDate }) => {
                         </Grid>
                     </Box>
 
-
                     {/* section 4 */}
-                    <Grid container>
-                        <Grid item xs={9} >
-                            <SalesChart />
-                        </Grid>
-
-                        <Grid item xs={3} >
-                            <Box component={'div'} sx={{
-                                width: '100%', height: '202px', border: '1px solid #E1E1E6',
-                                borderRadius: '4px', padding: '20px'
-                            }}>
-                                <Typography component={'div'}
-                                    sx={{
-                                        fontFamily: 'Outfit', fontSize: '18px', width: '100%', height: '26px'
-                                        , color: '#1A1B24', lineHeight: '26px', fontWeight: '600'
-
-                                    }}>
-                                    Top selling Meal Plan</Typography>
-                                <Box component={'div'}  >
-                                    {[1, 2, 3, 4].map((item, i) => {
-                                        return (
-                                            <Box component={'div'}
-                                                key={item}>
-                                                <Box component={'div'} display={'flex'} justifyContent={'space-between'}
-                                                >
-                                                    <Typography sx={{
-                                                        marginTop: '10px',
-                                                        fontFamily: 'Outfit', fontSize: '16px', width: '100%', height: '24px'
-                                                        , color: '#545359', lineHeight: '24px', fontWeight: '400'
-                                                    }}>
-                                                        {1 + i}. <span style={{ paddingLeft: '15px', }}>Salmon with chili</span>
-                                                    </Typography>
-
-                                                    <Typography sx={{
-                                                        marginTop: '10px',
-                                                        fontFamily: 'Outfit', fontSize: '16px', height: '24px'
-                                                        , color: '#545359', lineHeight: '24x', fontWeight: '600'
-                                                    }}>
-                                                        00
-                                                    </Typography>
-                                                </Box>
-                                            </Box>)
-                                    })}
-
+                    <Box>
+                        <Grid container spacing={1} mt={1}>
+                            <Grid item xs={12} sm={8}  >
+                                <Box sx={{ borderRadius: '6px', border: '1px solid #E1E1E6',height: '100%' }}>
+                                    <SalesChart />
                                 </Box>
-                            </Box>
-                            <Box component={'div'} sx={{
-                                marginTop: "10px",
-                                width: '100%', height: '202px', border: '1px solid #E1E1E6',
-                                borderRadius: '4px', padding: '20px'
-                            }}>
-                                <Typography component={'div'}
-                                    sx={{
-                                        fontFamily: 'Outfit', fontSize: '18px', width: '100%', height: '26px'
-                                        , color: '#1A1B24', lineHeight: '26px', fontWeight: '600'
+                            </Grid>
+                            <Grid item xs={12} sm={4}>
+                                
+                                <Grid item xs={12} sx={{ borderRadius: '6px', marginBottom: '15px'}}>
+                            <Box sx={{padding: '5px 20px',borderRadius: '6px',}}>
+                                 <Typography component={'div'}
+                    sx={{
+                        fontFamily: 'Outfit', fontSize: '18px', width: '100%', height: '26px'
+                        , color: '#1A1B24', lineHeight: '26px', fontWeight: '600'
+
+                    }}>
+                    Top selling Meal Plan</Typography>
+                <Box component={'div'}  >
+                    {[1, 2, 3, 4].map((item, i) => {
+                        return (
+                            <Box component={'div'}
+                                key={item}>
+                                <Box component={'div'} display={'flex'} justifyContent={'space-between'}
+                                >
+                                    <Typography sx={{
+                                        marginTop: '10px',
+                                        fontFamily: 'Outfit', fontSize: '16px', width: '100%', height: '24px'
+                                        , color: '#545359', lineHeight: '24px', fontWeight: '400'
                                     }}>
-                                    All Subscription
-                                </Typography>
-                                <Box component={'div'}>
-                                <DonutChart  />    
-                                </Box>        
+                                        {1 + i}. <span style={{ paddingLeft: '15px', }}>Salmon with chili</span>
+                                    </Typography>
+
+                                    <Typography sx={{
+                                        marginTop: '10px',
+                                        fontFamily: 'Outfit', fontSize: '16px', height: '24px'
+                                        , color: '#545359', lineHeight: '24x', fontWeight: '600'
+                                    }}>
+                                        00
+                                    </Typography>
+                                </Box>
+                            </Box>)
+                    })}
+
+                </Box>
 
 
                             </Box>
-                        </Grid>
 
-
-                    </Grid>
+                                </Grid>
+                                <Grid item xs={12} sx={{ borderRadius: '6px'}}>
+                                    <Box component={'div'} sx={{
+                                        marginTop: "10px",
+                                        width: '100%', height: '202px', border: '1px solid #E1E1E6', height: '100%',
+                                        borderRadius: '4px', padding: '20px'
+                                    }}>
+                                        <Typography component={'div'}
+                                            sx={{
+                                                fontFamily: 'Outfit', fontSize: '18px', width: '100%', height: '26px'
+                                                , color: '#1A1B24', lineHeight: '26px', fontWeight: '600'
+                                            }}>
+                                            All Subscription
+                                        </Typography>
+                                        <Box component={'div'} >
+                                            <DonutChart />
+                                        </Box>
+                                    </Box>
+                                </Grid>
+                            </Grid>
+                            
+                            </Grid>
+                    </Box>
 
                     {/* section 4 end*/}
                 </Box>
@@ -270,3 +274,73 @@ export const Da_manager = ({ todayDate }) => {
         </Box>
     )
 }
+
+
+
+// <Grid item xs={12} sm={4}  >
+//     <Box sx={{
+//         width: '100%', border: '1px solid #E1E1E6',
+//         borderRadius: '4px', padding: '20px', borderRadius: '6px', height: '100%'
+//     }}>
+//         <Grid container>
+//             <Grid item xs={12} sx={{ border: '1px solid #E1E1E6' }}>
+//                 <Typography component={'div'}
+//                     sx={{
+//                         fontFamily: 'Outfit', fontSize: '18px', width: '100%', height: '26px'
+//                         , color: '#1A1B24', lineHeight: '26px', fontWeight: '600'
+
+//                     }}>
+//                     Top selling Meal Plan</Typography>
+//                 <Box component={'div'}  >
+//                     {[1, 2, 3, 4].map((item, i) => {
+//                         return (
+//                             <Box component={'div'}
+//                                 key={item}>
+//                                 <Box component={'div'} display={'flex'} justifyContent={'space-between'}
+//                                 >
+//                                     <Typography sx={{
+//                                         marginTop: '10px',
+//                                         fontFamily: 'Outfit', fontSize: '16px', width: '100%', height: '24px'
+//                                         , color: '#545359', lineHeight: '24px', fontWeight: '400'
+//                                     }}>
+//                                         {1 + i}. <span style={{ paddingLeft: '15px', }}>Salmon with chili</span>
+//                                     </Typography>
+
+//                                     <Typography sx={{
+//                                         marginTop: '10px',
+//                                         fontFamily: 'Outfit', fontSize: '16px', height: '24px'
+//                                         , color: '#545359', lineHeight: '24x', fontWeight: '600'
+//                                     }}>
+//                                         00
+//                                     </Typography>
+//                                 </Box>
+//                             </Box>)
+//                     })}
+
+//                 </Box>
+
+
+
+//             </Grid>
+
+//             <Grid item >
+                // <Box component={'div'} sx={{
+                //     marginTop: "10px",
+                //     width: '100%', height: '202px', border: '1px solid #E1E1E6', height: '100%',
+                //     borderRadius: '4px', padding: '20px'
+                // }}>
+                //     <Typography component={'div'}
+                //         sx={{
+                //             fontFamily: 'Outfit', fontSize: '18px', width: '100%', height: '26px'
+                //             , color: '#1A1B24', lineHeight: '26px', fontWeight: '600'
+                //         }}>
+                //         All Subscription
+                //     </Typography>
+                //     <Box component={'div'} >
+                //         <DonutChart />
+                //     </Box>
+                // </Box>
+//             </Grid>
+//         </Grid>
+//     </Box>
+// </Grid>
