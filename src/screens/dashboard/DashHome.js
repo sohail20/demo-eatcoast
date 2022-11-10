@@ -7,6 +7,7 @@ import Box from '@mui/material/Box';
 import { createTheme } from '@mui/system';
 import { ThemeProvider } from '@mui/material';
 import { Da_manager } from '../../components/dashboard/Da_manager';
+import { Da_staff } from '../../components/dashboard/Da_staff';
 
 
 const theme = createTheme({
@@ -96,7 +97,8 @@ export const DashHome = () => {
           <Da_manager todayDate={todayDate} />
       </TabPanel>
       <TabPanel value={value} index={1}>
-          
+          <Da_staff />
+
       </TabPanel>
       
     </Box>

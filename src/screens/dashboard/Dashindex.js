@@ -23,6 +23,13 @@ import { Settings } from './Settings';
 import { Topperdashboard } from './Topperdashboard';
 import { TbLayoutDashboard } from 'react-icons/tb'
 import { DashHome } from './DashHome';
+import { IoCubeOutline } from 'react-icons/io5'
+import { HiOutlineDocumentText } from 'react-icons/hi'
+import { BsBook } from 'react-icons/bs'
+import { MdPeople } from 'react-icons/md'
+import { IoSettingsOutline  } from 'react-icons/io5'
+import { MdOutlineAccountTree } from 'react-icons/md'
+
 const drawerWidth = 200;
 const openedMixin = (theme) => ({
     width: drawerWidth,
@@ -240,7 +247,8 @@ const handledroptoggle=()=>{
                                         justifyContent: 'center',
                                     }}
                                 >
-                                
+
+                                <IoCubeOutline />
                                 </ListItemIcon>
                                 <ListItemText primary={"Order"} sx={{ opacity: open ? 1 : 0 }} />
                             </ListItemButton>
@@ -261,7 +269,7 @@ const handledroptoggle=()=>{
                                         justifyContent: 'center',
                                     }}
                                 >
-                                <img src='../../images/12.png' alt='' />
+                                <HiOutlineDocumentText />
                                 </ListItemIcon>
                                 <ListItemText primary={"Subscription"} sx={{ opacity: open ? 1 : 0 }} />
                             </ListItemButton>
@@ -282,7 +290,7 @@ const handledroptoggle=()=>{
                                         justifyContent: 'center',
                                     }}
                                 >
-                                <img src='../../images/12.png' alt='' />
+                                <BsBook />
                                 </ListItemIcon>
                                 <ListItemText primary={"Menu"} sx={{ opacity: open ? 1 : 0 }} />
                             </ListItemButton>
@@ -303,7 +311,7 @@ const handledroptoggle=()=>{
                                         justifyContent: 'center',
                                     }}
                                 >
-                                <img src='../../images/12.png' alt='' />
+                                <MdOutlineAccountTree/>
                                 </ListItemIcon>
                                 <ListItemText primary={"Financials"} sx={{ opacity: open ? 1 : 0 }} />
                             </ListItemButton>
@@ -324,7 +332,7 @@ const handledroptoggle=()=>{
                                         justifyContent: 'center',
                                     }}
                                 >
-                                <img src='../../images/12.png' alt='' />
+                                <MdPeople />
                                 </ListItemIcon>
                                 <ListItemText primary={"Employee"} sx={{ opacity: open ? 1 : 0 }} />
                             </ListItemButton>
@@ -345,7 +353,7 @@ const handledroptoggle=()=>{
                                         justifyContent: 'center',
                                     }}
                                 >
-                                <img src='../../images/12.png' alt='' />
+                                <IoSettingsOutline/>
                                 </ListItemIcon>
                                 <ListItemText primary={"Settings"} sx={{ opacity: open ? 1 : 0 }} />
                             </ListItemButton>

@@ -2,35 +2,48 @@ import React from 'react'
 import Charts from 'react-apexcharts'
 export const DonutChart = () => {
 
-    const series = [90, 8, 22, 55, 77, 99, 11];
+    const series = [90, 8, 22, 55, 77, 99];
     const options = {
-        title: {
-            text: 'abc',
+        series: [45, 52, 22, 51, 30, 48],
+        chart: {
             type: 'donut',
-            style: {
-                fontSyle: '9px',
-                overflowY: 'hidden',
-            },
+            width: '300px'
         },
-        labels: ["Dietary subscription", "Multiple subscription", "Personal subscription", "Single order", "Bussines subscription"],
-         plotOptions: {
-            bar:{
-                dataLabels:{
-                    position:'right'
+        labels: ['Dietary subscription', 'Multiple subscription', 'Personal subscription', 'Single order', 'Business subscription', 'Team F'],
+        colors: ['#FF8D85', '#158FAD', '#7B49E5', '#7ECC49', '#FF9933', '#000000'], // add this part to modify colours
+        responsive: [
+            {
+                breakpoint: 480,
+                options: {
+                    chart: {
+                        width: 100,
+                    },
                 }
-            },
-             dataLabels: {
-                 enabled: false
-             },
-            
-            offsetY: 30            
-         },           
-    }
+            }
+        ],
+        legend: {
+            show: true,
+            position: 'right',
+            horizontalAlign: 'center',
+            style: {
+                fontSize: '12px'
+            }
+        },
+        dataLabels: { // add this part to remove %
+            enabled: false,
+         
+        }
+    };
+    
+
+
+
+
     return (
         <div>
 
             <Charts options={options}
-                series={series} type="donut" />
+                series={series} type="donut" width={'100%'} />
         </div>
     )
 }

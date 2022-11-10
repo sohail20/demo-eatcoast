@@ -1,54 +1,55 @@
-import { AppBar,Menu, Box,Button,MenuItem,Toolbar, Typography, Badge } from '@mui/material'
+import { AppBar, Menu, Box, Button, MenuItem, Toolbar, Typography, Badge } from '@mui/material'
 import React from 'react'
 import { ThemeProvider, createTheme } from '@mui/material/styles'
 import { BsFillBellFill, BsCheckCircleFill } from 'react-icons/bs'
 import { CiLocationOn } from 'react-icons/ci'
-import { styled, alpha } from '@mui/material/styles'; 
+import { styled, alpha } from '@mui/material/styles';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import Notification from '../../components/dashboard/Notification'
 
 const theme = createTheme({
-palette: {
-appbar: {
-main: '#fff',
-},
-loginField2: {
-main: '#F6F6F6',
-},
-loginOption:{
-  main: '#fff'
-}
-},
+  palette: {
+    appbar: {
+      main: '#fff',
+    },
+    loginField2: {
+      main: '#F6F6F6',
+    },
+    loginOption: {
+      main: '#fff'
+    }
+  },
 });
 const dashAppbar = {
-boxShadow: 'none', height: '70px',
-borderBottom: '1px solid #E1E1E6',
-paddingLeft: '90px', paddingRight: '30px',
-paddingTop:'20px', paddingBottom: '20px'
-, display: 'flex', justifyContent: 'space-between', flexDirection: 'row' 
+  boxShadow: 'none', height: '70px',
+  borderBottom: '1px solid #E1E1E6',
+  paddingLeft: '90px', paddingRight: '30px',
+  paddingTop: '20px', paddingBottom: '20px'
+  , display: 'flex', justifyContent: 'space-between', flexDirection: 'row'
 }
 
-const typo14px={
+const typo14px = {
   fontFamily: 'Outfit',
-fontStyle: 'normal',
-fontWeight: '500',
-fontSize: '14px',
-lineHeight: '20px',
-color: '#545359',
+  fontStyle: 'normal',
+  fontWeight: '500',
+  fontSize: '14px',
+  lineHeight: '20px',
+  color: '#545359',
 }
-const ctypo12px={
-fontFamily: 'Outfit',
-fontStyle: 'normal',
-fontWeight: '500',
-fontSize: '12px',
-color: '#545359',
+const ctypo12px = {
+  fontFamily: 'Outfit',
+  fontStyle: 'normal',
+  fontWeight: '500',
+  fontSize: '12px',
+  color: '#545359',
 }
-const typo12px={
-fontFamily: 'Outfit',
-fontStyle: 'normal',
-fontWeight: '500',
-fontSize: '12px',
-color: '#2B817B',
+const typo12px = {
+  fontFamily: 'Outfit',
+  fontStyle: 'normal',
+  fontWeight: '500',
+  fontSize: '12px',
+  color: '#2B817B',
 }
 
 // -------login button 
@@ -91,23 +92,24 @@ const StyledMenu = styled((props) => (
 }));
 
 
-const todayDate=()=>{
-let currentDate='';
-  let setTodatDate='';
-const daysName = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-const monthName = ["Jan", "Feb", "March", "April", "May", "June", "July", "Aug", "Sep", "Oct","Nov" ,"Dec"];
-currentDate= new Date();
-let now = currentDate.getDay();
-let nameofDay = daysName[now];
-let todayDate = currentDate.getDate();
-let currentMonth = currentDate.getMonth();
-let Month = monthName[currentMonth];
-let fullYear =currentDate.getFullYear();
-return setTodatDate = `${nameofDay},${todayDate} ${Month},${fullYear}`; 
+const todayDate = () => {
+  let currentDate = '';
+  let setTodatDate = '';
+  const daysName = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  const monthName = ["Jan", "Feb", "March", "April", "May", "June", "July", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  currentDate = new Date();
+  let now = currentDate.getDay();
+  let nameofDay = daysName[now];
+  let todayDate = currentDate.getDate();
+  let currentMonth = currentDate.getMonth();
+  let Month = monthName[currentMonth];
+  let fullYear = currentDate.getFullYear();
+  return setTodatDate = `${nameofDay},${todayDate} ${Month},${fullYear}`;
 }
-export const Topperdashboard = ({ handleDrawerOpen, open }) => {
+export const Topperdashboard = (props) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [open1, setOpen1] = React.useState(false);
+  const [isDrawerOpen, setIsDrawerOpen] = React.useState(false)
   const openBtn = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -125,141 +127,130 @@ export const Topperdashboard = ({ handleDrawerOpen, open }) => {
   const handleCloseBell = () => {
     setAnchorElnot(null);
   };
-return (
-<ThemeProvider theme={theme}>
-   <AppBar sx={dashAppbar} color={'appbar'} position="fixed" open={open}>
-      <Box display={'flex'} >
-        <Box sx={{ width: '40px', height: '40px' ,borderRadius: '4px', zIndex: '111', 
-          background: 'linear-gradient(136.11deg, #FFFFFF - 18.81%, #F3F3F3 70.88%, #F3F3F3 115.09%)'}}>
-          <img sx={{ marginTop: '5px'}} src='../../images/ML.png' alt=''></img>
-         </Box>
-         <Box sx={{ ml: 2 }}>
-         <Typography variant='body2' sx={{
-            color: '#1A1B24', fontWeight: '500', fontFamily: 'Outfit', fontSize: '18px',
-         }} >Mazahr Lebanese Kitchen </Typography>
-          <Typography variant='caption' sx={{
-            color: '#9EA3AE', fontWeight: '400', fontFamily: 'Outfit', fontSize: '12px',
+  return (
+    <ThemeProvider theme={theme}>
+      <AppBar sx={dashAppbar} color={'appbar'} position="fixed" >
+        <Box display={'flex'} >
+          <Box sx={{
+            width: '40px', height: '40px', borderRadius: '4px', zIndex: '111',
+            background: 'linear-gradient(136.11deg, #FFFFFF - 18.81%, #F3F3F3 70.88%, #F3F3F3 115.09%)'
           }}>
-            <CiLocationOn size={17}  />
-            1488 W 11th Ave, Vancouver
-         </Typography>
-      </Box>
-      </Box>
-      <Box display={'flex'} alignItems={'center'} >
-        <Box>
-          <Typography variant='p' sx={{ color: '#9EA3AE', fontFamily: 'Outfit',fontSize:'14px', mr:1}}>Today:</Typography> 
-          <Typography variant='span'style={{border: '1px solid gray', padding: 5, borderRadius: 3}} sx={typo14px}>{todayDate()}</Typography>
-
+            <img sx={{ marginTop: '5px' }} src='../../images/ML.png' alt=''></img>
+          </Box>
+          <Box sx={{ ml: 2 }}>
+            <Typography variant='body2' sx={{
+              color: '#1A1B24', fontWeight: '500', fontFamily: 'Outfit', fontSize: '18px',
+            }} >Mazahr Lebanese Kitchen </Typography>
+            <Typography variant='caption' sx={{
+              color: '#9EA3AE', fontWeight: '400', fontFamily: 'Outfit', fontSize: '12px',
+            }}>
+              <CiLocationOn size={17} />
+              1488 W 11th Ave, Vancouver
+            </Typography>
+          </Box>
         </Box>
-        <Box sx={{ marginLeft: '10px' }}>
-          <Badge color="secondary" variant="dot"
-            id="demo-positioned-button"
-            aria-controls={openBell ? 'demo-positioned-menu' : undefined}
-            aria-haspopup="true"
-            aria-expanded={openBell ? 'true' : undefined}
-            onClick={handleClickBell}
-          >
-            <BsFillBellFill />
-          </Badge>
-          <Menu
-            id="demo-positioned-menu"
-            aria-labelledby="demo-positioned-button"
-            anchorElnot={anchorElnot}
-            open={openBell}
-            onClose={handleCloseBell}
-            anchorOrigin={{
-              horizontal: 'right',
-            }}
-             
-           
-            sx={{marginTop: '60px', marginLeft: '-160px' }}
-          >
-            <MenuItem onClick={handleCloseBell} 
-              disableRipple={true} sx={{ width: '240px', marginBottom: '-07px' }}>
-              <Box component={'div'} sx={{display: 'flex', justifyContent: 'space-between', width: '100%', }}>
-                <Box component={'div'}  sx={typo14px} style={{fontWeight: '600'}}>
+        <Box display={'flex'} alignItems={'center'} >
+          <Box>
+            <Typography variant='p' sx={{ color: '#9EA3AE', fontFamily: 'Outfit', fontSize: '14px', mr: 1 }}>Today:</Typography>
+            <Typography variant='span' style={{ border: '1px solid gray', padding: 5, borderRadius: 3 }} sx={typo14px}>{todayDate()}</Typography>
+
+          </Box>
+          <Box sx={{ marginLeft: '10px' }}>
+            <Badge color="secondary" variant="dot"
+              id="demo-positioned-button"
+              aria-controls={openBell ? 'demo-positioned-menu' : undefined}
+              aria-haspopup="true"
+              aria-expanded={openBell ? 'true' : undefined}
+              onClick={handleClickBell}
+            >
+              <BsFillBellFill />
+            </Badge>
+            <Menu
+              id="demo-positioned-menu"
+              aria-labelledby="demo-positioned-button"
+              anchorElnot={anchorElnot}
+              open={openBell}
+              onClose={handleCloseBell}
+              anchorOrigin={{
+                horizontal: 'right',
+              }}
+
+
+              sx={{ marginTop: '60px', marginLeft: '-160px' }}
+            >
+              <MenuItem onClick={handleCloseBell}
+                disableRipple={true} sx={{ width: '240px', marginBottom: '-07px' }}>
+                <Box component={'div'} sx={{ display: 'flex', justifyContent: 'space-between', width: '100%', }}>
+                  <Box component={'div'} sx={typo14px} style={{ fontWeight: '600' }}>
                     Notification
-                    </Box>  
-                <Box component={'div'} sx={typo12px} style={{
-                 textDecoration: 'underline'}}>
-                    View All 
-                    </Box>  
-              </Box>
-            </MenuItem>
-            <MenuItem onClick={handleCloseBell} disableRipple={true}
-              sx={{marginBottom: '-7px', paddingLeft: '2.9px', paddingRight: '2.9px', marginY: '6px'}}>
-              <Box component={'div'} sx={{ display: 'flex',  justifyContent: 'space-between', width: '100%' 
-            }}>
-                <Box component={'div'} 
-                  display={'flex'} sx={typo14px} style={{ fontWeight: '600', marginLeft:'7px' }}>
-                 <img src="../../images/bellDishes.png" alt="" width={'27px'} />
-               
-                <Box component={'div'} sx={{marginLeft: '10px'}} >
-                    <Box component={'div'} sx={
-                      { fontSize: '14px', fontFamily: 'Outfit', fontWeight: '500'}  
-                      }>Shawarma Plate
-                      </Box>
-                    <Box component={'div'} sx={
-                      { fontSize: '11px ', fontFamily: 'Outfit', fontWeight: '300'}
-                    }>Has been Verified <BsCheckCircleFill color='#42C677' size={9} />
+                  </Box>
+                  <Box component={'div'} sx={typo12px} style={{
+                    textDecoration: 'underline'
+                  }}>
+                    View All
+                  </Box>
                 </Box>
-                </Box>
-                </Box>
-               
-                <Box component={'div'} sx={typo12px} style={{ 
-                }}>
-                  2 minutes ago
-                </Box>
-              </Box>
               </MenuItem>
-            <MenuItem onClick={handleCloseBell} disableRipple={true}
-              sx={{marginBottom: '-7px', paddingLeft: '2.9px', paddingRight: '2.9px', marginY: '6px'}}>
-              <Box component={'div'} sx={{ display: 'flex',  justifyContent: 'space-between', width: '100%' 
-            }}>
-                <Box component={'div'} 
-                  display={'flex'} sx={typo14px} style={{ fontWeight: '600', marginLeft:'7px' }}>
-                 <img src="../../images/bellDishes.png" alt="" width={'27px'} />
-               
-                <Box component={'div'} sx={{marginLeft: '10px'}} >
-                    <Box component={'div'} sx={
-                      { fontSize: '14px', fontFamily: 'Outfit', fontWeight: '500'}  
-                      }>Shawarma Plate
-                      </Box>
-                    <Box component={'div'} sx={
-                      { fontSize: '11px ', fontFamily: 'Outfit', fontWeight: '300'}
-                    }>Has been Verified <BsCheckCircleFill color='#42C677' size={9} />
-                </Box>
-                </Box>
-                </Box>
-               
-                <Box component={'div'} sx={typo12px} style={{ 
-                }}>
-                  2 minutes ago
-                </Box>
-              </Box>
-              </MenuItem>
-            <MenuItem onClick={handleCloseBell} disableRipple={true}
-              style={{ background: '#F6F6F6', marginTop: '10px' }}  
-               sx={ctypo12px}> 12 notification more</MenuItem>
-          </Menu>
 
-        </Box>
-        <Box sx={{marginLeft: '13px', marginTop: '5px'}}>
-          <img src='../../images/ML.png' alt='' width={30}></img>
-          <Button sx={{ textTransform: 'none', minWidth: '120px', margin: '0px', padding: '0px' }}
+              {[1,2,3].map((item=>{
+                return(
+                  <MenuItem onClick={handleCloseBell} disableRipple={true} key={item}
+                    sx={{ marginBottom: '-7px', paddingLeft: '2.9px', paddingRight: '2.9px', marginY: '6px' }}>
+                    <Box component={'div'} sx={{
+                      display: 'flex', justifyContent: 'space-between', width: '100%'
+                    }}>
+                      <Box component={'div'}
+                        display={'flex'} sx={typo14px} style={{ fontWeight: '600', marginLeft: '7px' }}>
+                        <img src="../../images/bellDishes.png" alt="" width={'27px'} />
+
+                        <Box component={'div'} sx={{ marginLeft: '10px' }} >
+                          <Box component={'div'} sx={
+                            { fontSize: '14px', fontFamily: 'Outfit', fontWeight: '500' }
+                          }>Shawarma Plate
+                          </Box>
+                          <Box component={'div'} sx={
+                            { fontSize: '11px ', fontFamily: 'Outfit', fontWeight: '300' }
+                          }>Has been Verified <BsCheckCircleFill color='#42C677' size={9} />
+                          </Box>
+                        </Box>
+                      </Box>
+
+                      <Box component={'div'} sx={typo12px} style={{
+                      }}>
+                        2 minutes ago
+                      </Box>
+                    </Box>
+                  </MenuItem>
+                )
+              }))}
+             
+              <Notification isOpen={isDrawerOpen} />
+              {/* ---------Notification drawer */}
+
+              <MenuItem onClick={() => { setIsDrawerOpen(!isDrawerOpen); handleCloseBell(); }} disableRipple={true}
+                style={{ background: '#F6F6F6', marginTop: '10px' }}
+                sx={ctypo12px}> 12 notification more</MenuItem>
+            </Menu>
+
+
+
+          </Box>
+          <Box sx={{ marginLeft: '13px', marginTop: '5px' }}>
+            <img src='../../images/ML.png' alt='' width={30}></img>
+            <Button sx={{ textTransform: 'none', minWidth: '120px', margin: '0px', padding: '0px' }}
               id="demo-customized-button" disableRipple={true}
               aria-controls={openBtn ? 'demo-customized-menu' : undefined}
               aria-haspopup="true"
               aria-expanded={openBtn ? 'true' : undefined}
               variant="contained"
-            disableElevation color={'loginOption'}
+              disableElevation color={'loginOption'}
               onClick={handleClick}
-            endIcon={open1 ? <KeyboardArrowDownIcon /> : <KeyboardArrowUpIcon />}
+              endIcon={open1 ? <KeyboardArrowDownIcon /> : <KeyboardArrowUpIcon />}
             >
-            <Typography variant='span' sx={{   color: '#545359', fontFamily: 'OutFit', fontSize: '12px',fontWeight: '500'}}>
-              Illham Sayf <br />
-            <Typography variant='span' sx={{ color: '#545359', fontFamily: 'OutFit', fontSize: '10px ', }}>Manger</Typography>
-            </Typography>
+              <Typography variant='span' sx={{ color: '#545359', fontFamily: 'OutFit', fontSize: '12px', fontWeight: '500' }}>
+                Illham Sayf <br />
+                <Typography variant='span' sx={{ color: '#545359', fontFamily: 'OutFit', fontSize: '10px ', }}>Manger</Typography>
+              </Typography>
             </Button>
             <StyledMenu
               id="demo-customized-menu"
@@ -267,27 +258,26 @@ return (
                 'aria-labelledby': 'demo-customized-button',
               }}
               anchorEl={anchorEl}
-            open={openBtn}
+              open={openBtn}
               onClose={handleClose}
             >
               <MenuItem onClick={handleClose} disableRipple={true}
-              sx={{ background: '#fff', color: '#545359', fontFamily: 'OutFit', fontSize: '12px', }}>
+                sx={{ background: '#fff', color: '#545359', fontFamily: 'OutFit', fontSize: '12px', }}>
                 Profile
               </MenuItem>
               <MenuItem onClick={handleClose} disableRipple
-              sx={{ background: '#fff', color: '#545359', fontFamily: 'OutFit', fontSize: '12px', }}>
+                sx={{ background: '#fff', color: '#545359', fontFamily: 'OutFit', fontSize: '12px', }}>
                 Switch Account
               </MenuItem>
               <MenuItem onClick={handleClose} disableRipple
-              sx={{ background: '#fff', color: '#DD7474', fontFamily: 'OutFit', fontSize: '12px', }} >
+                sx={{ background: '#fff', color: '#DD7474', fontFamily: 'OutFit', fontSize: '12px', }} >
                 Logout
               </MenuItem>
             </StyledMenu>
-          
+          </Box>
         </Box>
-      </Box>
-   </AppBar>
-</ThemeProvider>
-)
+      </AppBar>
+    </ThemeProvider>
+  )
 }
 
