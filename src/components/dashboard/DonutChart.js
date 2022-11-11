@@ -9,8 +9,9 @@ export const DonutChart = () => {
             type: 'donut',
             width: '300px'
         },
-        labels: ['Dietary subscription', 'Multiple subscription', 'Personal subscription', 'Single order', 'Business subscription', 'Team F'],
-        colors: ['#FF8D85', '#158FAD', '#7B49E5', '#7ECC49', '#FF9933', '#000000'], // add this part to modify colours
+        labels: ['Dietary subscription', 'Multiple subscription', 'Personal subscription', 'Single order', 
+        'Business subscription'],
+        colors: ['#FF8D85', '#158FAD', '#7B49E5', '#7ECC49', '#FF9933'], // add this part to modify colours
         responsive: [
             {
                 breakpoint: 480,
@@ -23,10 +24,10 @@ export const DonutChart = () => {
         ],
         legend: {
             show: true,
-            position: 'right',
+            position: 'bottom',
             horizontalAlign: 'center',
             style: {
-                fontSize: '12px'
+                fontSize: '8px'
             }
         },
         dataLabels: { // add this part to remove %
