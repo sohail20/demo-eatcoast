@@ -207,16 +207,15 @@ const handledroptoggle=()=>{
                     </IconButton>)}
                
                 <List>
-            {/* {[{ name: 'Dashboard', icon: <img src='../../images/12.png' alt='' /> }, { name: 'Order', icon: <InboxIcon /> }, { name: 'Subscription', icon: <InboxIcon />}, 
-              { name: 'Menu', icon: <InboxIcon />}, 
-              { name: 'Financials', icon: <InboxIcon /> }, { name: 'Employee', icon: <InboxIcon /> }, { name: 'Settings', icon: <InboxIcon />}].map((text, index) => ( */}
                         <ListItem  disablePadding sx={{ display: 'block' }}>
-                            
                         <ListItemButton disableRipple={true} onClick={handleFirstPage}
                                 sx={{
                                     minHeight: 48,
                                     justifyContent: open ? 'initial' : 'center',
-                                    px: 2.5,
+                                    px: 2.5, '&:focus': {
+                                        color: '#fff',
+                                        background: '#2B817B'
+                                    }
                                 }}
                             >
                                 <ListItemIcon
@@ -226,7 +225,12 @@ const handledroptoggle=()=>{
                                         justifyContent: 'center',
                                     }}
                                 >
-                                <TbLayoutDashboard size={'26px'} />
+                                <TbLayoutDashboard size={'20px'} sx={{
+                                    color: '#FFF',
+                                    '&:focus': {
+                                        color: '#fff'
+                                    }
+                                }} />
                                 </ListItemIcon>
                                 <ListItemText primary={"Dashboard"} sx={{ opacity: open ? 1 : 0 }} />
                             </ListItemButton>
@@ -237,7 +241,10 @@ const handledroptoggle=()=>{
                                 sx={{
                                     minHeight: 48,
                                     justifyContent: open ? 'initial' : 'center',
-                                    px: 2.5,
+                                    px: 2.5, '&:focus': {
+                                        color: '#fff',
+                                        background: '#2B817B'
+                                    }
                                 }}
                             >
                                 <ListItemIcon
@@ -248,7 +255,7 @@ const handledroptoggle=()=>{
                                     }}
                                 >
 
-                                <IoCubeOutline />
+                                <IoCubeOutline size={'20px'}/>
                                 </ListItemIcon>
                                 <ListItemText primary={"Order"} sx={{ opacity: open ? 1 : 0 }} />
                             </ListItemButton>
@@ -259,7 +266,10 @@ const handledroptoggle=()=>{
                                 sx={{
                                     minHeight: 48,
                                     justifyContent: open ? 'initial' : 'center',
-                                    px: 2.5,
+                                    px: 2.5, '&:focus': {
+                                        color: '#fff',
+                                        background: '#2B817B'
+                                    }
                                 }}
                             >
                                 <ListItemIcon
@@ -269,7 +279,7 @@ const handledroptoggle=()=>{
                                         justifyContent: 'center',
                                     }}
                                 >
-                                <HiOutlineDocumentText />
+                                <HiOutlineDocumentText size={'20px'}/>
                                 </ListItemIcon>
                                 <ListItemText primary={"Subscription"} sx={{ opacity: open ? 1 : 0 }} />
                             </ListItemButton>
@@ -280,7 +290,10 @@ const handledroptoggle=()=>{
                                 sx={{
                                     minHeight: 48,
                                     justifyContent: open ? 'initial' : 'center',
-                                    px: 2.5,
+                                    px: 2.5, '&:focus': {
+                                        color: '#fff',
+                                        background: '#2B817B'
+                                    }
                                 }}
                             >
                                 <ListItemIcon
@@ -290,10 +303,10 @@ const handledroptoggle=()=>{
                                         justifyContent: 'center',
                                     }}
                                 >
-                                <BsBook />
-                                </ListItemIcon>
+                                <BsBook size={'20px'}/>
+                                </ListItemIcon >
                                 <ListItemText primary={"Menu"} sx={{ opacity: open ? 1 : 0 }} />
-                            </ListItemButton>
+                            </ListItemButton >
                         </ListItem>
                         <ListItem  disablePadding sx={{ display: 'block' }}>
                             
@@ -301,7 +314,10 @@ const handledroptoggle=()=>{
                                 sx={{
                                     minHeight: 48,
                                     justifyContent: open ? 'initial' : 'center',
-                                    px: 2.5,
+                                    px: 2.5, '&:focus': {
+                                        color: '#fff',
+                                        background: '#2B817B'
+                                    }
                                 }}
                             >
                                 <ListItemIcon
@@ -311,7 +327,7 @@ const handledroptoggle=()=>{
                                         justifyContent: 'center',
                                     }}
                                 >
-                                <MdOutlineAccountTree/>
+                                <MdOutlineAccountTree size={'20px'}/>
                                 </ListItemIcon>
                                 <ListItemText primary={"Financials"} sx={{ opacity: open ? 1 : 0 }} />
                             </ListItemButton>
@@ -322,7 +338,10 @@ const handledroptoggle=()=>{
                                 sx={{
                                     minHeight: 48,
                                     justifyContent: open ? 'initial' : 'center',
-                                    px: 2.5,
+                                    px: 2.5, '&:focus': {
+                                        color: '#fff',
+                                        background: '#2B817B'
+                                    }
                                 }}
                             >
                                 <ListItemIcon
@@ -332,7 +351,7 @@ const handledroptoggle=()=>{
                                         justifyContent: 'center',
                                     }}
                                 >
-                                <MdPeople />
+                                <MdPeople size={'20px'}/>
                                 </ListItemIcon>
                                 <ListItemText primary={"Employee"} sx={{ opacity: open ? 1 : 0 }} />
                             </ListItemButton>
@@ -343,7 +362,10 @@ const handledroptoggle=()=>{
                                 sx={{
                                     minHeight: 48,
                                     justifyContent: open ? 'initial' : 'center',
-                                    px: 2.5,
+                                    px: 2.5, '&:focus': {
+                                        color: '#fff',
+                                        background: '#2B817B'
+                                    }
                                 }}
                             >
                                 <ListItemIcon
@@ -353,7 +375,7 @@ const handledroptoggle=()=>{
                                         justifyContent: 'center',
                                     }}
                                 >
-                                <IoSettingsOutline/>
+                                <IoSettingsOutline size={'20px'}/>
                                 </ListItemIcon>
                                 <ListItemText primary={"Settings"} sx={{ opacity: open ? 1 : 0 }} />
                             </ListItemButton>

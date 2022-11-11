@@ -1,4 +1,4 @@
-import { AppBar, Menu, Box, Button, MenuItem, Toolbar, Typography, Badge } from '@mui/material'
+import { AppBar, Menu, Box, Button, MenuItem, Toolbar, Typography, Badge, Drawer } from '@mui/material'
 import React from 'react'
 import { ThemeProvider, createTheme } from '@mui/material/styles'
 import { BsFillBellFill, BsCheckCircleFill } from 'react-icons/bs'
@@ -6,7 +6,6 @@ import { CiLocationOn } from 'react-icons/ci'
 import { styled, alpha } from '@mui/material/styles';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-import Notification from '../../components/dashboard/Notification'
 
 const theme = createTheme({
   palette: {
@@ -106,10 +105,10 @@ const todayDate = () => {
   let fullYear = currentDate.getFullYear();
   return setTodatDate = `${nameofDay},${todayDate} ${Month},${fullYear}`;
 }
-export const Topperdashboard = (props) => {
+export const Topperdashboard = () => {
+  const [isDrawerOpen, setIsDrawerOpen] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const [open1, setOpen1] = React.useState(false);
-  const [isDrawerOpen, setIsDrawerOpen] = React.useState(false)
+  const [open1, setOpen1] = React.useState(true);
   const openBtn = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -117,6 +116,7 @@ export const Topperdashboard = (props) => {
   };
   const handleClose = () => {
     setAnchorEl(null);
+    setOpen1(true);
   };
   //---- bell iIon
   const [anchorElnot, setAnchorElnot] = React.useState(null);
@@ -127,6 +127,8 @@ export const Topperdashboard = (props) => {
   const handleCloseBell = () => {
     setAnchorElnot(null);
   };
+
+ 
   return (
     <ThemeProvider theme={theme}>
       <AppBar sx={dashAppbar} color={'appbar'} position="fixed" >
@@ -178,7 +180,7 @@ export const Topperdashboard = (props) => {
 
               sx={{ marginTop: '60px', marginLeft: '-160px' }}
             >
-              <MenuItem onClick={handleCloseBell}
+              <MenuItem onClick={() => { handleCloseBell(); setIsDrawerOpen(true);}}
                 disableRipple={true} sx={{ width: '240px', marginBottom: '-07px' }}>
                 <Box component={'div'} sx={{ display: 'flex', justifyContent: 'space-between', width: '100%', }}>
                   <Box component={'div'} sx={typo14px} style={{ fontWeight: '600' }}>
@@ -223,11 +225,8 @@ export const Topperdashboard = (props) => {
                   </MenuItem>
                 )
               }))}
-             
-              <Notification isOpen={isDrawerOpen} />
-              {/* ---------Notification drawer */}
 
-              <MenuItem onClick={() => { setIsDrawerOpen(!isDrawerOpen); handleCloseBell(); }} disableRipple={true}
+              <MenuItem onClick={handleCloseBell} disableRipple={true}
                 style={{ background: '#F6F6F6', marginTop: '10px' }}
                 sx={ctypo12px}> 12 notification more</MenuItem>
             </Menu>
@@ -276,7 +275,20 @@ export const Topperdashboard = (props) => {
             </StyledMenu>
           </Box>
         </Box>
+        {/* <Notification isDrawerOpen={isDrawerOpen} setIsDrawerOpen={setIsDrawerOpen(false)}/> */}
+
+        <Drawer anchor='right' open={isDrawerOpen}
+          onClose={()=> setIsDrawerOpen(false)}>
+          <Box p={2} width="250px" textAlign={'center'}
+            role='presentation'>
+            <Typography variant='h6' component='div' onClick={() => setIsDrawerOpen(false)}>
+              side panel
+            </Typography>
+
+          </Box>
+        </Drawer>
       </AppBar>
+   
     </ThemeProvider>
   )
 }
