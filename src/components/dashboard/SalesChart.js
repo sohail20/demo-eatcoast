@@ -9,53 +9,45 @@ export const SalesChart = () => {
         data: [11, 22, 32, 45, 67, 79, 81,9,58,67]
     }];
     var options = {
+       
         chart: {
             height: 380,
             width: "100%",
             type: "scatter",
-            zoom: false,
+            zoom: false, 
             toolbar: {
                 tools:{
-                    download: false
+                    download: false  //disable burgerMenu
                 }
             }
         },
-        series: [
-            {
-                name: "Series 1",
-                data: [
-                    {
-                        x: 100,
-                        y: 50,
-                                            },
-                    {
-                        x: 150,
-                        y: 55,
-                        
-                    },
-                    {
-                        x: 130,
-                        y: 44,
-                        
+        points:[
+                {
+                    label:{
+                        bordrerColor: 'red',
+                        style:{
+                            color: "#fff",
+                            background: 'red'
+                        }
                     }
-                ]
-            }
+                }
         ],
-        xaxis: {
-            type: "numeric"
-        },
+        fillSeriesColor: true,
+        series:[{
+            name: 'Orders',
+            data: [11, 22, 32, 45, 67, 79, 81, 9, 58, 67]
+        }],
         tooltip: {
-            custom: function ({ series, seriesIndex, dataPointIndex, w }) {
+            custom: function ({ series, seriesIndex, dataPointIndex, w }){
                 var data = w.globals.initialSeries[seriesIndex].data[dataPointIndex];
-
                 return '<ul>' +
-                    '<li style={{background: #2F549D;}}>' + data.x + ' <b>Order</b> </li>' +
+                    '<li > ' + data + ' <b>Order </b> </li>' +
                     '</ul>';
             }
         }
     };
-    const [dmonthly, setDmonthly] = React.useState('');
 
+    const [dmonthly, setDmonthly] = React.useState('');
     const handleChange = (event) => {
         setDmonthly(event.target.value);
     };

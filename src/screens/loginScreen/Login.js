@@ -33,25 +33,23 @@ export const Login = () => {
         <>
         
    <AppBar   style={{ backgroundColor: 'white', boxShadow: 'none',height: '120px' }}>
-            <Typography  style={{display: 'flex', justifyContent: 'center'}}>
-              <Link  to={"/"}>
-                      <span sx={{
+                <Box textAlign={'center'}>
+                      <Typography variant='p'  sx={{
                             color: '#0e0588',
                             padding: '0px',
                             fontSize: '35px',
-                        fontWeight: '650',
+                            fontWeight: '650',
   
-                      }} >e</span>
-                        <span sx={{
+                      }} >e</Typography>
+                    <Typography variant='p'  sx={{
                             color: '#69BFB9',
                             padding: '0px',
                             fontSize: '35px',
-                        fontWeight: '650' }}>atcost</span>
+                        fontWeight: '650' }}>atcost</Typography>
+                </Box> 
                 <Typography style={{ fontFamily: 'Outfit', fontWeight: 400, textAlign: 'center', letterSpacing: 2
-            , fontSize: 12, marginTop: 14, color: '#223B7B'  }} > 
+            , fontSize: 12, marginTop: -8, color: '#223B7B'  }} > 
                     CATERER APP
-                </Typography>
-              </Link>
                 </Typography>
                 
                    </AppBar>

@@ -21,11 +21,12 @@ const theme = createTheme({
   },
 });
 const dashAppbar = {
-  boxShadow: 'none', height: '70px',
+  boxShadow: 'none', height:{xs: '170px', md: '70px'},
   borderBottom: '1px solid #E1E1E6',
   paddingLeft: '90px', paddingRight: '30px',
-  paddingTop: '20px', paddingBottom: '20px'
-  , display: 'flex', justifyContent: 'space-between', flexDirection: 'row'
+  paddingTop: { xs: '15px', md: '20px',  lg:'20px'},
+   paddingBottom: '20px', alignItems:{ xs: 'center', md: 'none'}
+  , display: 'flex', justifyContent: 'space-between', flexDirection: {xs:'column', md:'row'}
 }
 
 const typo14px = {
@@ -132,12 +133,15 @@ export const Topperdashboard = () => {
   return (
     <ThemeProvider theme={theme}>
       <AppBar sx={dashAppbar} color={'appbar'} position="fixed" >
-        <Box display={'flex'} >
+        <Box display={'flex'} sx={{
+        
+        }} >
           <Box sx={{
             width: '40px', height: '40px', borderRadius: '4px', zIndex: '111',
-            background: 'linear-gradient(136.11deg, #FFFFFF - 18.81%, #F3F3F3 70.88%, #F3F3F3 115.09%)'
+            background: 'linear-gradient(136.11deg, #FFFFFF  18.81%, #F3F3F3 70.88%, #F3F3F3 115.09%)'
+            ,paddingTop: '8px', paddingLeft: '3px'
           }}>
-            <img sx={{ marginTop: '5px' }} src='../../images/ML.png' alt=''></img>
+            <img sx={{  marginTop: '30px'}} src='../../images/ML.png' alt=''></img>
           </Box>
           <Box sx={{ ml: 2 }}>
             <Typography variant='body2' sx={{
@@ -151,8 +155,15 @@ export const Topperdashboard = () => {
             </Typography>
           </Box>
         </Box>
-        <Box display={'flex'} alignItems={'center'} >
-          <Box>
+        <Box display={'flex'} alignItems={'center'} 
+        sx={{flexDirection: { xs:'column',sm: 'row' }
+      , marginTop:{ xs: '8px', sm: '-10px'}
+      }}
+        >
+          <Box display={'flex'}
+        // sx={{flexDirection: { xs:'column', },}}
+        >
+          <Box sx={{marginBottom: '10px'}}>
             <Typography variant='p' sx={{ color: '#9EA3AE', fontFamily: 'Outfit', fontSize: '14px', mr: 1 }}>Today:</Typography>
             <Typography variant='span' style={{ border: '1px solid gray', padding: 5, borderRadius: 3 }} sx={typo14px}>{todayDate()}</Typography>
 
@@ -176,8 +187,6 @@ export const Topperdashboard = () => {
               anchorOrigin={{
                 horizontal: 'right',
               }}
-
-
               sx={{ marginTop: '60px', marginLeft: '-160px' }}
             >
               <MenuItem onClick={() => { handleCloseBell(); setIsDrawerOpen(true);}}
@@ -230,10 +239,10 @@ export const Topperdashboard = () => {
                 style={{ background: '#F6F6F6', marginTop: '10px' }}
                 sx={ctypo12px}> 12 notification more</MenuItem>
             </Menu>
-
-
-
           </Box>
+          </Box>
+
+
           <Box sx={{ marginLeft: '13px', marginTop: '5px' }}>
             <img src='../../images/ML.png' alt='' width={30}></img>
             <Button sx={{ textTransform: 'none', minWidth: '120px', margin: '0px', padding: '0px' }}
