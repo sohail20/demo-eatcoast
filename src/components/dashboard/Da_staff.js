@@ -17,7 +17,8 @@ const rowsDishes = [
     { id: 1, col1: "1", col2: "Kabasa", col3: "Main Course", col4: "Salmon with chilli sauce", col5: '1' },
     { id: 2, col1: "2", col2: "Bella", col3: "Main Course", col4: "Salmon with chilli sauce", col5: '4' },
     { id: 3, col1: "3", col2: "Kabasa", col3: "Main Course", col4: "Salmon with chilli sauce", col5: '7' },
-    { id: 4, col1: "4", col2: "Kabasa Rice", col3: "Main Course", col4: "Salmon with chilli sauce", col5: '8' },
+    { id: 4, col1: "4", col2: "Kabasa Rice", col3: "Main Course",
+     col4: "Salmon with chilli sauce", col5: '8' },
    
 ];
 const rowsAddson = [
@@ -30,19 +31,19 @@ const rowsAddson = [
 
 const columnsAddson = [
     { field: "#", hide: true },
-    { field: "col1", headerName: "#", width: 194 },
-    { field: "col2", headerName: "Dishes Name", width: 194 },
-    { field: "col3", headerName: "Meal Courses", width: 194 },
-    { field: "col4", headerName: "Meal Plan", width: 194 },
-    { field: "col5", headerName: "Qty", width: 194 },
+    { field: "col1", headerName: "#", flex: 1 },
+    { field: "col2", headerName: "Dishes Name", flex: 1 },
+    { field: "col3", headerName: "Meal Courses", flex: 1 },
+    { field: "col4", headerName: "Meal Plan", flex: 1 },
+    { field: "col5", headerName: "Qty", flex: 1 },
 ];
 const columnsDishes = [
     { field: "#", hide: true },
-    { field: "col1", headerName: "#", width: 194 },
-    { field: "col2", headerName: "Dishes Name", width: 194 },
-    { field: "col3", headerName: "Meal Courses", width: 194 },
-    { field: "col4", headerName: "Meal Plan", width: 194 },
-    { field: "col5", headerName: "Qty", width: 194 },
+    { field: "col1", headerName: "#", flex: 1 },
+    { field: "col2", headerName: "Dishes Name", flex: 1  },
+    { field: "col3", headerName: "Meal Courses", flex: 1  },
+    { field: "col4", headerName: "Meal Plan", flex: 1  },
+    { field: "col5", headerName: "Qty", flex: 1 },
 ];
 
 function createData(meal, plan, qty) {
@@ -63,11 +64,11 @@ function createDataOrder(idOrder, menu, time, qty, subs_type) {
 
 const rowsOrder = [
     createDataOrder('EC-123', 'Salmon with chilli sauce', "04:00-06:00pm", "1", 'Ps'),
-    createDataOrder('EC-123', 'Salmon with chilli sauce', "04:00-06:00pm", "1", `So`),
-    createDataOrder('EC-123', 'Salmon with chilli sauce', "04:00-06:00pm", "1", `Fs`),
-    createDataOrder('EC-123', 'Salmon with chilli sauce', "04:00-06:00pm", "1", `Bs`),
-    createDataOrder('EC-123', 'Salmon with chilli sauce', "04:00-06:00pm", "1", `So`),
-    createDataOrder('EC-123', 'Salmon with chilli sauce', "04:00-06:00pm", "1", `Ms`),
+    createDataOrder('EC-193', 'Salmon with chilli sauce', "04:00-06:00pm", "1", `So`),
+    createDataOrder('EC-125', 'Salmon with chilli sauce', "04:00-06:00pm", "1", `Fs`),
+    createDataOrder('EC-122', 'Salmon with chilli sauce', "04:00-06:00pm", "1", `Bs`),
+    createDataOrder('EC-128', 'Salmon with chilli sauce', "04:00-06:00pm", "1", `So`),
+    createDataOrder('EC-122', 'Salmon with chilli sauce', "04:00-06:00pm", "1", `Ms`),
 
 ];
 
@@ -137,57 +138,45 @@ export const Da_staff = () => {
     return (
         <>
             <Box component={'div'} >
-                <Grid contaainer>
-                    <Grid item  height={"116px"} >
-                        <Box display={'flex'} justifyContent={'space-between'} alignItems={'center'} sx={{
-                            padding: '20px', background: '#F0FAF9', border: '2px dashed #D5E6E5',
-                            borderRadius: '6px'
-                        }}>
-                            <Box display={'flex'}>
-                                <Box sx={{ padding: { lg: '20px', md: '18px', sm: '16px' } }}>
-                                    <CiLocationOn size={'10px'} sx={{ border: '1.5px solid #2B817B' }} />
-                                </Box>
-                                <Typography>
-                                    <span style={{
-                                        fontFamily: 'Outfit', fontSize: { lg: '20px', md: '20px', sm: '18px' },
-                                        color: '#1A1B24', lineHeight: '26px', fontWeight: '600',
-                                    }}>You have 3 order !!</span>  <br />
-                                    <span style={{
-                                        fontFamily: 'Outfit', fontSize: { lg: '12px', md: '12px', sm: '10px' },
-                                        color: '#80B3B0', lineHeight: '20px', fontWeight: '400',
-
-                                    }}>Touch to see more deatils</span>
-                                </Typography>    
-
+                <Grid container sx={{  }} alignItems={'center'} >
+                    <Grid item xs={12} sm={6} justifyContent={{ xs: 'center' }}  >
+                        <Box display={'flex'} alignItems={'center'}>
+                            <Box sx={{ padding: { lg: '20px', md: '18px', sm: '16px' } }}>
+                                <CiLocationOn size={'13px'} sx={{ border: '1.5px solid #2B817B' }} />
                             </Box>
-                            <Box display={'flex'}>
-                               <Box >
-                                    <Button size='small'
-                                    sx={{width: '100px',
-                                border: '1px solid #80B3B0' , background: '#fff',textTransform: 'none',
+                            <Typography>
+                                <span style={{
+                                    fontFamily: 'Outfit', fontSize: { lg: '20px', md: '20px', sm: '18px' },
+                                    color: '#1A1B24', lineHeight: '26px', fontWeight: '600',
+                                }}>You have 3 order !!</span>  <br />
+                                <span style={{
+                                    fontFamily: 'Outfit', fontSize: { lg: '12px', md: '12px', sm: '10px' },
+                                    color: '#80B3B0', lineHeight: '20px', fontWeight: '400',
+                                }}>Touch to see more deatils</span>
+                            </Typography>
+                        </Box>
+                  </Grid>
+                    <Grid item sx={12} sm={6}  >
+                        <Box sx={{ display: 'flex', width: '270px' , justifyContent: {xs: 'center', sm: 'flex-end'} }} >
+                                <Button size='small'
+                                    sx={{
+                                        width: '100px',
+                                        border: '1px solid #80B3B0', background: '#fff', textTransform: 'none',
                                         color: '#80B3B0', marginRight: '20px',
-                                        '&:hover': { border: '1px solid #80B3B0', background: '#fff'
-}
+                                        '&:hover': { border: '1px solid #80B3B0', background: '#fff' }
                                     }}
                                     variant="outlined" disableElevation>See all detail</Button>
-                               </Box>
-                               <Box >
-                                    <Button sx={{
-                                        width: '140px',
-                                        border: '1px solid #80B3B0', background: '#2B817B', textTransform: 'none',
-                                        color: '#fff', 
-                                        '&:hover': { border: '1px solid #80B3B0', background: '#2B817B' }
-                                    }}  size='small'
-                                     variant="contained" disableElevation>Accept all request</Button>
-                               </Box>
-
-                            </Box>
-                            
-                            
-                            </Box>    
-                        
-                    </Grid>
-                </Grid>
+                                <Button sx={{
+                                    width: '140px',
+                                    border: '1px solid #80B3B0', background: '#2B817B', textTransform: 'none',
+                                    color: '#fff',
+                                    '&:hover': { border: '1px solid #80B3B0', background: '#2B817B' }
+                                }} size='small'
+                                    variant="contained" disableElevation>Accept all request</Button>
+                        </Box>
+                  </Grid>
+              </Grid>
+                    
                 
                 <Grid container spacing={1}>
 
@@ -435,19 +424,22 @@ export const Da_staff = () => {
                                         All Dishes
                                     </Typography>
 
-                    <div style={{ height: 300, width: '100%' }}>
+                    <div style={{ height: 400, width: '100%' }}>
                         <DataGrid sx={{
                             boxShadow: 'none',
                             border: 'none',
-                            borderColor: '#fff',
+                            borderColor: 'green',
                             '& .MuiDataGrid-cell:focus': {
-                                color: '#9EA3AE',
+                                outline: 'none',
+                                color: '#1A1824', 
+                                border: '1px solid transparent !important'
                             },
                             '& .MuiDataGrid-iconButtonContainer': {
                                 marginLeft: '2px',
                                 visibility: 'visible !important',
                                 width: 'auto !important',
                             },
+                            
                         }} rows={rowsDishes} columns={columnsDishes}
                             disableColumnMenu
                         />
@@ -462,13 +454,15 @@ export const Da_staff = () => {
                                     </Typography>
 
 
-                                <div style={{ height: 300, width: '100%' }}>
+                                <div style={{ height: 400, width: '100%' }}>
                                     <DataGrid sx={{
                                         boxShadow: 'none',
                                         border: 'none',
                                         borderColor: '#fff',
                                         '& .MuiDataGrid-cell:focus': {
-                                            color: '#9EA3AE',
+                                            color: '#9EA3AE', outline: 'none',
+                                            color: '#1A1824',
+                                            border: '1px solid transparent !important'
                                         },
                                         '& .MuiDataGrid-iconButtonContainer': {
                                             marginLeft: '2px',
@@ -563,3 +557,56 @@ export const Da_staff = () => {
 
     )
 }
+
+
+{/* <Grid item height={"116px"} xs={12} sx={{ background: 'red' }} flexDirection={
+    { lg: 'row', md: 'row', sm: 'column', xs: 'column' }}>
+    <Box display={'flex'} justifyContent={'space-between'} alignItems={'center'} sx={{
+        padding: '20px', background: '#F0FAF9', border: '2px dashed #D5E6E5',
+        borderRadius: '6px'
+    }}>
+        <Box display={'flex'}>
+            <Box sx={{ padding: { lg: '20px', md: '18px', sm: '16px' } }}>
+                <CiLocationOn size={'10px'} sx={{ border: '1.5px solid #2B817B' }} />
+            </Box>
+            <Typography>
+                <span style={{
+                    fontFamily: 'Outfit', fontSize: { lg: '20px', md: '20px', sm: '18px' },
+                    color: '#1A1B24', lineHeight: '26px', fontWeight: '600',
+                }}>You have 3 order !!</span>  <br />
+                <span style={{
+                    fontFamily: 'Outfit', fontSize: { lg: '12px', md: '12px', sm: '10px' },
+                    color: '#80B3B0', lineHeight: '20px', fontWeight: '400',
+
+                }}>Touch to see more deatils</span>
+            </Typography>
+
+        </Box>
+        <Box display={'flex'}>
+            <Box >
+                <Button size='small'
+                    sx={{
+                        width: '100px',
+                        border: '1px solid #80B3B0', background: '#fff', textTransform: 'none',
+                        color: '#80B3B0', marginRight: '20px',
+                        '&:hover': { border: '1px solid #80B3B0', background: '#fff' }
+                    }}
+                    variant="outlined" disableElevation>See all detail</Button>
+            </Box>
+            <Box >
+                <Button sx={{
+                    width: '140px',
+                    border: '1px solid #80B3B0', background: '#2B817B', textTransform: 'none',
+                    color: '#fff',
+                    '&:hover': { border: '1px solid #80B3B0', background: '#2B817B' }
+                }} size='small'
+                    variant="contained" disableElevation>Accept all request</Button>
+            </Box>
+
+        </Box>
+
+
+    </Box>
+
+</Grid>
+                </Grid > */}

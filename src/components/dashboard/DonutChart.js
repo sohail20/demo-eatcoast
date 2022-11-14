@@ -4,11 +4,17 @@ export const DonutChart = () => {
 
     const series = [90, 8, 22, 55, 77, 99];
     const options = {
-        series: [45, 52, 22, 51, 30, 48],
+        series: [45, 52, 22, 51, 30],
         chart: {
             type: 'donut',
-            width: '300px'
+            width: '300px',
+            foreColor: {
+                colors: '#FF8D85',
+            },
         },
+    //     markers:{
+    //         style:{colors: ['#FF8D85', '#158FAD', '#7B49E5', '#7ECC49', '#FF9933'], // add this part to modify colours
+    //   }  },
         labels: ['Dietary subscription', 'Multiple subscription', 'Personal subscription', 'Single order', 
         'Business subscription'],
         colors: ['#FF8D85', '#158FAD', '#7B49E5', '#7ECC49', '#FF9933'], // add this part to modify colours
@@ -17,18 +23,22 @@ export const DonutChart = () => {
                 breakpoint: 480,
                 options: {
                     chart: {
-                        width: 100,
+                        // width: 100,
                     },
+                    legend: {
+                        show: true,
+                        position: 'bottom',
+                        horizontalAlign: 'center',
+                        fontSize: '12px'
+                    }, 
                 }
             }
         ],
         legend: {
             show: true,
-            position: 'bottom',
+            position: 'right',
             horizontalAlign: 'center',
-            style: {
-                fontSize: '8px'
-            }
+            fontSize: '12px'
         },
         dataLabels: { // add this part to remove %
             enabled: false,
@@ -36,6 +46,7 @@ export const DonutChart = () => {
         }
     };
     
+    console.log(options)
 
 
 
