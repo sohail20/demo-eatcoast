@@ -1,7 +1,9 @@
-import React, { useState} from 'react'
-import { Box, Button, Container, Grid, TextField, Typography } from '@mui/material'
+import React, { useState } from 'react'
+import { Box, Button, Container, FormControl,  Grid, Input, InputLabel, TextField, Typography } from '@mui/material'
 import { styled } from "@mui/material/styles";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate} from 'react-router-dom';
+import { BsBook } from 'react-icons/bs'
+
 const DecreaaseonMobile = styled('div')(({ theme }) => ({
     [theme.breakpoints.up('dm')]: {
         fontSize: '20px'
@@ -12,32 +14,45 @@ const DecreaaseonMobile = styled('div')(({ theme }) => ({
 }));
 
 export const Login3 = () => {
-    const [pinOne, setPinOne] = useState([])
+    const navigate = useNavigate();
 
-    // const pinsubmitHandler = (e) => {
-    //     e.preventDefault();
-    //     console.log('submit handler')
-    // }
-    const pincHandler = (value) => {
-        setPinOne([...pinOne, value])
-    }
-    const handleCropArray = ()=>{
-       
-        // setPinOne(pincHandler(null))
-    }
+    const [clicked, setClicked] = React.useState(false);
+    const [dataArray, setDataArray] = useState([])
+    const numberArray = ["check", 0, "BsBook", {no: 9}, 8, 7, 6, 5, 4, 3, 2, 1].reverse();
 
+    const handleClick = (value) => {
+        if (value === "<BsBook />") {
+            const tmpArray = dataArray
+            tmpArray.pop()
+            setDataArray([...tmpArray])
+            setClicked(false);
+        }
+         else if (value === "check") {
+            if (dataArray.length === 4){
+                alert("Form Submited")
+            navigate('/next');}
+            else
+                alert("Warning No Valid Input")
+        }
+         else if (dataArray.length < 4){
+            setDataArray([...dataArray, value]);
+           setClicked(true);
+         }
+     }
 
-
+   
+    
+    console.log(dataArray)
     return (
         <>
-            <Grid container spacing={0} sx={{}}>
+            <Grid container spacing={0} mt={2}>
                 <Grid item xs={12} sx={{ padding: 2 }} >
                     <Box sx={{ display: 'flex', justifyContent: 'center', position: 'relative' }}>
                         <Box >
                             <Typography variant='h4' component='div' sx={{
                                 marginLeft: 9, color: "#1A1824", fontWeight: '600', fontFamily: 'Outfit', fontSize: '24px'
                             }} >
-                                Enter Pin
+                                Enter Pin 
                             </Typography>
                             <DecreaaseonMobile>
                                 <Typography variant='body2' component='div' sx={{ color: "#9EA3AE", fontFamily: 'Outfit', fontWeight: '400', fontSize: '20px' }} >
@@ -47,86 +62,177 @@ export const Login3 = () => {
                         </Box>
                     </Box>
                     <Box>
-                        <Button sx={{ position: 'absolute', content: '""', marginTop: '-40px', maxWidth: 3 }}>
-                            <i className="fa-solid fa-angle-left" style={{ fontSize: '20px', color: '#1A1824' }}></i>
-                        </Button>
+                        <Link to={'/operators'}>
+                            <Button sx={{ position: 'absolute', content: '""', marginTop: '-40px', maxWidth: 3 }}>
+                                <i className="fa-solid fa-angle-left" style={{ fontSize: '20px', color: '#1A1824' }}></i>
+                            </Button>
+                        </Link>
                     </Box>
                 </Grid>
-                <Container maxWidth='md'>
+                <Container maxWidth='sm'>
                     <Box sx={{
                         padding: 2, height: '92px', display: 'flex', justifyContent: 'center'
-                        , '& .MuiTextField-root': {
-
-                        },
-
                     }}>
-                        <TextField sx={{ width: '82px', height: '100px', paddingLeft: '0px' }}
-                            id="outlined-basic" label="" value={pinOne[0]} variant="outlined"  type="password"  />
+                        <Box sx={{
+                            position: 'relative',
+                            width: '70px',
+                            height: '70px',
+                            left: '0px',
+                            top: '0px',
+                            background:' #FFFFFF',
+                            border: '1px solid #E1E1E6',
+                            borderRadius: "6px",
+                        }}>        
+                        <FormControl sx={{ margin: '0px auto' }}>
+                            <InputLabel htmlFor="my-input" ></InputLabel>
+                                <Input id="my-input" aria-describedby="my-helper-text" type='password' sx={{
+                                    color: '#2B817B', position: 'absoliute', content: '""', width: '12px', fontSize: '22px', marginLeft: '24px', marginBottom: '-20px', 
+                                    // '&:focus': { borderBottom: '1px solid #fff', background: '#fff', outlineColor: 'red'},
+                           }} value={dataArray[0] || ''} />
+                            </FormControl>
+
+                        <Box sx={{
+                            position: 'absolute', content: '""', width: '60px',  border: clicked ? '1px solid #2B817B' : '1px solid #E1E1E6', 
+                                marginTop: '18px', marginLeft: '2px', marginRight: '2px' }}>
+                                </Box>
+                            </Box>
+                        
                         <Box sx={{ position: 'relative', width: '30px', height: '55px' }}>
 
-                            <Box sx={{ position: 'absolute', content: '""', width: '25px', border: '2px solid #E1E1E6', marginTop: '27.5px', marginLeft: '2px' }}>
+                            <Box sx={{ position: 'absolute', content: '""', width: '25px', border: '1px solid #E1E1E6', marginTop: '27.5px', marginLeft: '2px' }}>
                             </Box>
                         </Box>
-                        <TextField sx={{ width: '82px', height: '100px', paddingLeft: '0px' }}
-                            id="outlined-basic" label="" value={pinOne[1]} variant="outlined" type="number" />
+                        <Box sx={{
+                            position: 'relative',
+                            width: '70px',
+                            height: '70px',
+                            left: '0px',
+                            top: '0px',
+                            background: ' #FFFFFF',
+                            border: '1px solid #E1E1E6',
+                            borderRadius: "6px",
+                        }}>
+                            <FormControl sx={{ margin: '0px auto' }}>
+                                <InputLabel htmlFor="my-input" ></InputLabel>
+                                <Input id="my-input" aria-describedby="my-helper-text" type='password' sx={{
+                                    color: '#2B817B', position: 'absoliute', content: '""', width: '12px', fontSize: '22px', marginLeft: '24px', marginBottom: '-20px',
+                                    // '&:focus': { borderBottom: '1px solid #fff', background: '#fff', outlineColor: 'red'},
+                                }} value={dataArray[1] || ''} />
+                            </FormControl>
+
+                            <Box sx={{
+                                position: 'absolute', content: '""', width: '60px', border: clicked ? '1px solid #2B817B' : '1px solid #E1E1E6',
+                                marginTop: '18px', marginLeft: '2px', marginRight: '2px'
+                            }}>
+                            </Box>
+                        </Box>
                         <Box sx={{ position: 'relative', width: '30px', height: '55px' }}>
-                            <Box sx={{ position: 'absolute', content: '""', width: '25px', border: '2px solid #E1E1E6', marginTop: '27.5px', marginLeft: '2px' }}>
+                            <Box sx={{ position: 'absolute', content: '""', width: '25px', border: '1px solid #E1E1E6', marginTop: '27.5px', marginLeft: '2px' }}>
                             </Box>
                         </Box>
-                        <TextField sx={{ width: '82px', height: '100px', paddingLeft: '0px' }}
-                            id="outlined-basic" label="" value={pinOne[2]} variant="outlined" />
+                        <Box sx={{
+                            position: 'relative',
+                            width: '70px',
+                            height: '70px',
+                            left: '0px',
+                            top: '0px',
+                            background: ' #FFFFFF',
+                            border: '1px solid #E1E1E6',
+                            borderRadius: "6px",
+                        }}>
+                            <FormControl sx={{ margin: '0px auto' }}>
+                                <InputLabel htmlFor="my-input" ></InputLabel>
+                                <Input id="my-input" aria-describedby="my-helper-text" type='password' sx={{
+                                    color: '#2B817B', position: 'absoliute', content: '""', width: '12px', fontSize: '22px', marginLeft: '24px', marginBottom: '-20px',
+                                    // '&:focus': { borderBottom: '1px solid #fff', background: '#fff', outlineColor: 'red'},
+                                }} value={dataArray[2] || ''} />
+                            </FormControl>
+
+                            <Box sx={{
+                                position: 'absolute', content: '""', width: '60px', border: clicked ? '1px solid #2B817B' : '1px solid #E1E1E6',
+                                marginTop: '18px', marginLeft: '2px', marginRight: '2px'
+                            }}>
+                            </Box>
+                        </Box>
                         <Box sx={{ position: 'relative', width: '30px', height: '55px' }}>
-                            <Box sx={{ position: 'absolute', content: '""', width: '25px', border: '2px solid #E1E1E6', marginTop: '27.5px', marginLeft: '2px' }}>
+                            <Box sx={{ position: 'absolute', content: '""', width: '25px', border: '1px solid #E1E1E6', marginTop: '27.5px', marginLeft: '2px' }}>
                             </Box>
                         </Box>
-                        <TextField sx={{ width: '82px', height: '100px', paddingLeft: '0px' }}
-                            id="outlined-basic" label="" value={pinOne[3]} variant="outlined" />
-                    </Box>
+                        <Box sx={{
+                            position: 'relative',
+                            width: '70px',
+                            height: '70px',
+                            left: '0px',
+                            top: '0px',
+                            background: ' #FFFFFF',
+                            border: '1px solid #E1E1E6',
+                            borderRadius: "6px",
+                        }}>
+                            <FormControl sx={{ margin: '0px auto' }}>
+                                <InputLabel htmlFor="my-input" ></InputLabel>
+                                <Input id="my-input" aria-describedby="my-helper-text" type='password' sx={{
+                                    color: '#2B817B', position: 'absoliute', content: '""', width: '12px', fontSize: '22px', marginLeft: '24px', marginBottom: '-20px',
+                                    // '&:focus': { borderBottom: '1px solid #fff', background: '#fff', outlineColor: 'red'},
+                                }} value={dataArray[3] || ''} />
+                            </FormControl>
+
+                            <Box sx={{
+                                position: 'absolute', content: '""', width: '60px', border: clicked ? '1px solid #2B817B' : '1px solid #E1E1E6',
+                                marginTop: '18px', marginLeft: '2px', marginRight: '2px'
+                            }}>
+                            </Box>
+                        </Box>
+                    </Box> 
                     <Typography sx={{ display: 'flex', justifyContent: 'center', mt: 3 }} >
-                        <Link to={'#'} >
-                            <span style={{ color: '#2B817B', fontFamily: 'Outfit', textDecorationLine: 'underline', fontSize: '16px', }}> Forgot Pin ?</span>{' '}
+                        <Link to={'/forgotpin'} >
+                            <span style={{
+                                color: '#2B817B', fontFamily: 'Outfit',
+                                textDecorationLine: 'underline', fontSize: '16px',
+                            }}>
+                                Forgot Pin ?</span>{' '}
                         </Link>
                     </Typography>
+                    {/* -------------button ------ */}
+                       <Container maxWidth='sm' >
+                        <Grid container rowSpacing={3}  mt={2} ml={3}>
+                            {numberArray.map((e, index)=>{
+                             return(
+                            <Grid item xs={4}>
+                                     <Button onClick={() => { handleClick(e)}} 
+                                         sx={{ width: {xs:'90px', sm: '110px', md: '130px' }, height: '90px', border: '2px solid #D5E6E5' }} 
+                                          disableRipple={true}
+                                >{e}</Button>
+                            </Grid>
+                             )
+                         })}
+                        </Grid> 
+                    </Container> 
 
-
-                    {/* <Box sx={{ display: 'flex', justifyContent: 'center' }}>  */}
-                    <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: 6 }}>
-                        <Button onClick={(e) => pincHandler(e.target.value)} value='1' name="pin1"
-                            sx={{ width: '130px', height: '90px', marginRight: 2, marginBottom: 1 }} variant="outlined" disableRipple={true}>
-                            1   </Button>
-
-                        <Button onClick={(e) => pincHandler(e.target.value)} value='2' sx={{ width: '130px', height: '90px', marginRight: 2 }} variant="outlined" disableRipple={true}>2</Button>
-                        <Button onClick={(e) => pincHandler(e.target.value)} value='3' sx={{ width: '130px', height: '90px', marginRight: 2 }} variant="outlined" disableRipple={true}>3</Button>
-
-                    </Box>
-                    <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-                        <Button variant="outlined" onClick={(e) => pincHandler(e.target.value)} value='4' sx={{ width: '130px', height: '90px', marginRight: 2, marginBottom: 1 }} disableRipple={true}>4</Button>
-                        <Button variant="outlined" onClick={(e) => pincHandler(e.target.value)} value='5' sx={{ width: '130px', height: '90px', marginRight: 2 }} disableRipple={true}>5</Button>
-                        <Button variant="outlined" onClick={(e) => pincHandler(e.target.value)} value='6' sx={{ width: '130px', height: '90px', marginRight: 2 }} disableRipple={true}>6</Button>
-
-                    </Box>
-                    <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-                        <Button variant="outlined" onClick={(e) => pincHandler(e.target.value)} value='7' sx={{ width: '130px', height: '90px', marginRight: 2, marginBottom: 1 }} disableRipple={true}>7</Button>
-                        <Button variant="outlined" onClick={(e) => pincHandler(e.target.value)} value='8' sx={{ width: '130px', height: '90px', marginRight: 2 }} disableRipple={true}>8</Button>
-                        <Button variant="outlined" onClick={(e) => pincHandler(e.target.value)} value='9' sx={{ width: '130px', height: '90px', marginRight: 2 }} disableRipple={true}>9</Button>
-
-                    </Box>
-                    <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-                        <Button onClick={()=>{handleCropArray(pinOne)}} variant="outlined" sx={{ width: '130px', height: '90px', marginRight: 2, marginBottom: 1 }} disableRipple={true}>
-                            <i className="fa-solid fa-delete-left" style={{ color: '#9EA3AE', fontSize: '20px' }}></i>
-                        </Button>
-                        <Button variant="outlined" onClick={(e) => pincHandler(e.target.value)} value='0' sx={{ width: '130px', height: '90px', marginRight: 2 }} disableRipple={true}>0</Button>
-                            <Link to={'/forgotpass'}>
-                        <Button variant="outlined" sx={{ width: '130px', height: '90px', marginRight: 2 }} disableRipple={true}>
-
-                            <i className="fa-solid fa-circle-check" style={{ color: '#42C677', fontSize: '20px' }} ></i>
-                        </Button>
-                            </Link>
-
-                    </Box>
-                    {/* </Box> */}
                 </Container>
             </Grid>
         </>
     )
 }
+
+// <TextField sx={{ width: '82px', height: '100px', fontSize: '16px', paddingLeft: '0px' }}
+//                             id="outlined-basic"  value={pinDataArr.pin1}  onChange={handlePinChange}
+//                             type="text" />
+//                         <Box sx={{ position: 'relative', width: '30px', height: '55px' }}>
+
+//                             <Box sx={{ position: 'absolute', content: '""', width: '25px', border: '1px solid #E1E1E6', marginTop: '27.5px', marginLeft: '2px' }}>
+//                             </Box>
+//                         </Box>
+//                         <TextField sx={{ width: '82px', height: '100px', paddingLeft: '0px' }}
+//                             id="outlined-basic" value={pinDataArr.pin2} type="text" onChange={handlePinChange} />
+//                         <Box sx={{ position: 'relative', width: '30px', height: '55px' }}>
+//                             <Box sx={{ position: 'absolute', content: '""', width: '25px', border: '1px solid #E1E1E6', marginTop: '27.5px', marginLeft: '2px' }}>
+//                             </Box>
+//                         </Box>
+//                         <TextField sx={{ width: '82px', height: '100px', paddingLeft: '0px' }}
+//                             id="outlined-basic" value={pinDataArr.pin3} type='text' onChange={handlePinChange} />
+//                         <Box sx={{ position: 'relative', width: '30px', height: '55px' }}>
+//                             <Box sx={{ position: 'absolute', content: '""', width: '25px', border: '1px solid #E1E1E6', marginTop: '27.5px', marginLeft: '2px' }}>
+//                             </Box>
+//                         </Box>
+//                         <TextField sx={{ width: '82px', height: '100px', paddingLeft: '0px' }}
+//                             id="outlined-basic" value={pinDataArr.pin4} type='text' onChange={handlePinChange} />

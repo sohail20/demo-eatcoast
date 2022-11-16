@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Button, Chip, Grid, InputLabel, MenuItem, Select, Typography } from '@mui/material'
+import { Box, Button, Chip, Grid,  Typography } from '@mui/material'
 import { Revenue } from '../../assets/Svg/Revenue';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -10,8 +10,9 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { DonutChart } from './DonutChart';
 import { SalesChart } from './SalesChart';
-import { DataGrid, GridRowsProp, GridColDef } from "@mui/x-data-grid";
+import { DataGrid } from "@mui/x-data-grid";
 import { CiLocationOn } from 'react-icons/ci'
+import { Dash_staff_SideSilder } from './Dash_staff_SideSilder';
 
 const rowsDishes = [
     { id: 1, col1: "1", col2: "Kabasa", col3: "Main Course", col4: "Salmon with chilli sauce", col5: '1' },
@@ -72,7 +73,7 @@ const rowsOrder = [
 
 ];
 
-export const Da_staff = () => {
+export const Da_staff = (props) => {
     const [allOrders, setAllOrders] = React.useState(false);
     const [mealcourse, setmealCourse] = React.useState(false);
     const [dishes, setDishes] = React.useState(false);
@@ -135,10 +136,32 @@ export const Da_staff = () => {
         setClicked3(true);
     } 
 
+// --------------------------------- start right drawer
+    const [isDrawerOpenStaff, setIsDrawerOpenStaff] = React.useState(false);
+const handleDrawer=()=>{
+    setIsDrawerOpenStaff(true)
+}
+    const [isDrawerOpenStaff1, setIsDrawerOpenStaff1] = React.useState(false);
+    const [isDrawerOpenStaff2, setIsDrawerOpenStaff2] = React.useState(false);
+    const handleSideSliderStaff = () => {
+        setIsDrawerOpenStaff1(true);
+        setIsDrawerOpenStaff(false);
+    }
+    const handleSideSliderStaff1 = () => {
+        setIsDrawerOpenStaff1(false);
+        setIsDrawerOpenStaff(false);
+        setIsDrawerOpenStaff2(true);
+    }
+
+//-=-==-=---=======================================
+
     return (
         <>
             <Box component={'div'} >
-                <Grid container sx={{  }} alignItems={'center'} >
+                <Grid container sx={{}} alignItems={'center'} sx={{
+                    padding: '20px', background: '#F0FAF9', border: '4px dashed #D5E6E5',
+                    borderRadius: '6px', marginBottom: '10px'
+                }}>
                     <Grid item xs={12} sm={6} justifyContent={{ xs: 'center' }}  >
                         <Box display={'flex'} alignItems={'center'}>
                             <Box sx={{ padding: { lg: '20px', md: '18px', sm: '16px' } }}>
@@ -156,24 +179,25 @@ export const Da_staff = () => {
                             </Typography>
                         </Box>
                   </Grid>
-                    <Grid item sx={12} sm={6}  >
-                        <Box sx={{ display: 'flex', width: '270px' , justifyContent: {xs: 'center', sm: 'flex-end'} }} >
-                                <Button size='small'
+                    <Grid item sx={12} sm={6}  sx={{ display: 'flex', justifyContent: {xs: "center",md:'flex-end'} }}>
+                                <Box sx={{display: 'flex'}}>
+                            <Button size='small' onClick={handleDrawer}
                                     sx={{
-                                        width: '100px',
+                                        width: {xs: '150px', md: '180px'},
                                         border: '1px solid #80B3B0', background: '#fff', textTransform: 'none',
                                         color: '#80B3B0', marginRight: '20px',
                                         '&:hover': { border: '1px solid #80B3B0', background: '#fff' }
                                     }}
-                                    variant="outlined" disableElevation>See all detail</Button>
+                                    variant="outlined" disableElevation >See all detail</Button>
                                 <Button sx={{
-                                    width: '140px',
+                                    width: '180px',
                                     border: '1px solid #80B3B0', background: '#2B817B', textTransform: 'none',
                                     color: '#fff',
                                     '&:hover': { border: '1px solid #80B3B0', background: '#2B817B' }
                                 }} size='small'
-                                    variant="contained" disableElevation>Accept all request</Button>
-                        </Box>
+                                    variant="contained" disableElevation>Accept all request
+                                    </Button>
+                            </Box>
                   </Grid>
               </Grid>
                     
@@ -482,12 +506,12 @@ export const Da_staff = () => {
 
 
                 <Grid container spacing={1} mt={1}>
-                    <Grid item xs={12} sm={8}  >
+                    <Grid item xs={12} md={8} lg={8} >
                         <Box sx={{ borderRadius: '6px', border: '1px solid #E1E1E6', height: '100%' }}>
                             <SalesChart />
                         </Box>
                     </Grid>
-                    <Grid item xs={12} sm={4}>
+                    <Grid item xs={12} md={4} lg={4}>
 
                         <Grid item xs={12} sx={{ borderRadius: '6px', marginBottom: '15px' }}>
                             <Box sx={{ padding: '5px 20px', borderRadius: '6px', }}>
@@ -530,7 +554,7 @@ export const Da_staff = () => {
                             </Box>
 
                         </Grid>
-                        <Grid item xs={12} sx={{ borderRadius: '6px' }}>
+                        <Grid item xs={12} md={12} sx={{ borderRadius: '6px' }}>
                             <Box component={'div'} sx={{
                                 marginTop: "10px",
                                 width: '100%', height: '202px', border: '1px solid #E1E1E6', height: '100%',
@@ -549,6 +573,9 @@ export const Da_staff = () => {
                             </Box>
                         </Grid>
                     </Grid>
+                    <Dash_staff_SideSilder isDrawerOpenStaff={isDrawerOpenStaff} setIsDrawerOpenStaff={setIsDrawerOpenStaff} 
+                        isDrawerOpenStaff1={isDrawerOpenStaff1} setIsDrawerOpenStaff1={setIsDrawerOpenStaff1} handleSideSliderStaff={handleSideSliderStaff} 
+                        isDrawerOpenStaff2={isDrawerOpenStaff2} setIsDrawerOpenStaff2={setIsDrawerOpenStaff2} handleSideSliderStaff1={handleSideSliderStaff1} />
                 </Grid>
             </Box>
 
@@ -558,55 +585,3 @@ export const Da_staff = () => {
     )
 }
 
-
-{/* <Grid item height={"116px"} xs={12} sx={{ background: 'red' }} flexDirection={
-    { lg: 'row', md: 'row', sm: 'column', xs: 'column' }}>
-    <Box display={'flex'} justifyContent={'space-between'} alignItems={'center'} sx={{
-        padding: '20px', background: '#F0FAF9', border: '2px dashed #D5E6E5',
-        borderRadius: '6px'
-    }}>
-        <Box display={'flex'}>
-            <Box sx={{ padding: { lg: '20px', md: '18px', sm: '16px' } }}>
-                <CiLocationOn size={'10px'} sx={{ border: '1.5px solid #2B817B' }} />
-            </Box>
-            <Typography>
-                <span style={{
-                    fontFamily: 'Outfit', fontSize: { lg: '20px', md: '20px', sm: '18px' },
-                    color: '#1A1B24', lineHeight: '26px', fontWeight: '600',
-                }}>You have 3 order !!</span>  <br />
-                <span style={{
-                    fontFamily: 'Outfit', fontSize: { lg: '12px', md: '12px', sm: '10px' },
-                    color: '#80B3B0', lineHeight: '20px', fontWeight: '400',
-
-                }}>Touch to see more deatils</span>
-            </Typography>
-
-        </Box>
-        <Box display={'flex'}>
-            <Box >
-                <Button size='small'
-                    sx={{
-                        width: '100px',
-                        border: '1px solid #80B3B0', background: '#fff', textTransform: 'none',
-                        color: '#80B3B0', marginRight: '20px',
-                        '&:hover': { border: '1px solid #80B3B0', background: '#fff' }
-                    }}
-                    variant="outlined" disableElevation>See all detail</Button>
-            </Box>
-            <Box >
-                <Button sx={{
-                    width: '140px',
-                    border: '1px solid #80B3B0', background: '#2B817B', textTransform: 'none',
-                    color: '#fff',
-                    '&:hover': { border: '1px solid #80B3B0', background: '#2B817B' }
-                }} size='small'
-                    variant="contained" disableElevation>Accept all request</Button>
-            </Box>
-
-        </Box>
-
-
-    </Box>
-
-</Grid>
-                </Grid > */}

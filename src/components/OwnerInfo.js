@@ -21,43 +21,58 @@ export const Ownerinfo = ({ formik, handleStepper }) => {
         <Container maxWidth='xs' sx={{ backgroundColor: '', height: '50vh' }}>
 
             <br />
-            <Box >
+            <Box mt={4}>
+                <label style={{
+                    fontSize: '14px',
+                    fontFamily: 'Outfit', fontWeight: '600', color: '#1A1824'
+                }}>ID Card Number</label>
                 <TextField sx={{
-                    marginBottom: 3,
+                    mt: 1, mb: 2,
+                    '&:focus': { borderRadius: '6px', border: '1px solid #E1E1E6' },
                     background: '#F6F6F6', height: '40px',
                     border: '1px solid #E1E1E6', borderRadius: '6px'
                 }}
                     fullWidth size='small'
                     id="IDCardNum"
                     name="IDCardNum"
-                    label="ID Card Num"
+                    placeholder="id Card Number"
                     value={formik.values.IDCardNum}
                     onChange={formik.handleChange}
 
                 />
+                <label style={{
+                    fontSize: '14px',
+                    fontFamily: 'Outfit', fontWeight: '600', color: '#1A1824'
+                }}>Owner Name</label>
                 <TextField sx={{
-                    marginBottom: 3,
+                    mt: 1, mb: 2,
+                    '&:focus': { borderRadius: '6px', border: '1px solid #E1E1E6' },
                     background: '#F6F6F6', height: '40px',
                     border: '1px solid #E1E1E6', borderRadius: '6px'
                 }}
                     fullWidth size='small'
                     id="OwnerName"
                     name="OwnerName"
-                    label="Owner Name"
+                    placeholder='Owner Name'
                     type="text"
                     value={formik.values.OwnerName}
                     onChange={formik.handleChange}
 
                 />
+                <label style={{
+                    fontSize: '14px',
+                    fontFamily: 'Outfit', fontWeight: '600', color: '#1A1824'
+                }}>Email Address</label>
                 <TextField sx={{
-                    marginBottom: 3,
+                    mt: 1, mb: 2,
+                    '&:focus': { borderRadius: '6px', border: '1px solid #E1E1E6' },
                     background: '#F6F6F6', height: '40px',
                     border: '1px solid #E1E1E6', borderRadius: '6px'
                 }}
                     fullWidth size='small'
                     id="EmailAddress"
                     name="EmailAddress"
-                    label="Email Address"
+                    placeholder="Email Address"
                     type="text"
                     value={formik.values.EmailAddress}
                     onChange={formik.handleChange}
@@ -65,48 +80,64 @@ export const Ownerinfo = ({ formik, handleStepper }) => {
                 <Box >
                    <Grid container spacing={1}>
                        <Grid item xs={3}>
+                            <label style={{
+                                fontSize: '14px',
+                                fontFamily: 'Outfit', fontWeight: '600', color: '#1A1824'
+                            }}>Phone Number</label>
+                           
                             <FormControl size='small' sx={{
-                                marginBottom: 3, width: '100%',
+                                mt: 1, mb: 2, '&:focus': { borderRadius: '6px', border: '1px solid #E1E1E6' },
+                                 width: '100%',
                                 background: '#F6F6F6', height: '40px',
                                 border: '1px solid #E1E1E6', borderRadius: '6px' }}>
-                                <InputLabel id="demo-controlled-open-select-label">Phone </InputLabel>
+                                <InputLabel id="demo-controlled-open-select-label"></InputLabel>
                                 <Select
                                     labelId="demo-controlled-open-select-label"
                                     id="demo-controlled-open-select"
                                     open={open}
                                     onClose={handleClose}
                                     onOpen={handleOpen}
+                                    placeholder='+1'
                                     value={code}
-                                    label="Phone"
                                     onChange={handleChange}
                                 >
                                     <MenuItem selected value="+1">
                                                 +1
                                     </MenuItem>
                                     <MenuItem value={+2}>+2</MenuItem>
-                                    <MenuItem value={20}>Twenty</MenuItem>
-                                    <MenuItem value={30}>Thirty</MenuItem>
+                                    <MenuItem value={+3}>+3</MenuItem>
+                                    <MenuItem value={+4}>+4</MenuItem>
                                 </Select>
                             </FormControl>
 
 
                        </Grid>
                        <Grid item xs={5}>
+                            <label style={{
+                                fontSize: '14px',
+                              color: '#fff', fontFamily: 'Outfit', fontWeight: '600',
+                            }}>hidden</label>
                             <TextField sx={{
-                                marginBottom: 3,
+                                mt: 1, mb: 2,
                                 background: '#F6F6F6', height: '40px',
                                 border: '1px solid #E1E1E6', borderRadius: '6px'
                             }}
                                 fullWidth size='small'
                                 id="phoneCode"
                                 name="phoneCode"
-                                label="Phone Number"
+                                placeholder="xxxx-xxxx-xxxx"
                                 value={formik.values.phoneCode}
                                 onChange={formik.handleChange}
                             />
                        </Grid>
                        <Grid item xs={4}>
+                            <label style={{
+                                fontSize: '14px',
+                                fontFamily: 'Outfit', fontWeight: '600', color: '#1A1824'
+                            }}>Set Pin</label>
                             <TextField sx={{
+                                mt: 1, mb: 2,
+                                '&:focus': { borderRadius: '6px', border: '1px solid #E1E1E6' },
                                 marginBottom: 3,
                                 background: '#F6F6F6', height: '40px',
                                 border: '1px solid #E1E1E6', borderRadius: '6px'
@@ -114,7 +145,7 @@ export const Ownerinfo = ({ formik, handleStepper }) => {
                                 fullWidth size='small'
                                 id="setPin"
                                 name="setPin"
-                                label="setPin"
+                                placeholder="xxxxx"
                                 value={formik.values.setPin}
                                 onChange={formik.handleChange}
 

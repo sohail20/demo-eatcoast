@@ -4,8 +4,8 @@ import React from 'react'
 
 export const WaitingSvg = ({ handleStepperPrev }) => {
   return (
-     <Container maxWidth='xs' sx={{ backgroundColor: '', height: '50vh' }}>
-          <Box textAlign={'center'}>
+    <Container maxWidth='xs' sx={{ backgroundColor: '', height: '50vh' }} >
+      <Box textAlign={'center'} mt={4}>
         <img src='../../images/waiting.png' alt="" />
           </Box>
 

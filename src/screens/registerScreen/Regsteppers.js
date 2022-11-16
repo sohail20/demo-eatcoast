@@ -69,7 +69,7 @@ function ColorlibStepIcon(props) {
 
     return (
         <ColorlibStepIconRoot ownerState={{ completed, active }} className={className}>
-            {icons[String(props.icon)]}
+            { icons[String(props.icon)] }
         </ColorlibStepIconRoot>
     );
 }
@@ -92,7 +92,7 @@ ColorlibStepIcon.propTypes = {
     icon: PropTypes.node,
 }
 
-const steps = [`Merchant Registration`, `Owner Info`, `waiting`, `Finsh`];
+const steps = [`Merchant Registration`, `Owner Information`, `Waiting`, `Finish`];
 
 
 export const Regsteppers=() =>{
