@@ -390,10 +390,10 @@ const handleDrawer=()=>{
                                             }} />) : row.subs_type === 'Bs' ? (<Chip label="Business Subscription" variant="outlined" sx={{
                                                 background: '#FF9933',
                                                 borderRadius: '6px', color: '#fff'
-                                            }} />) : row.subs_type === 'Ms' ? (<Chip label="Business Subscription" variant="outlined" sx={{
+                                            }} />) : row.subs_type === 'Ms' ? (<Chip label="Multiple Subscription" variant="outlined" sx={{
                                                 background: '#158FAD',
                                                 borderRadius: '6px', color: '#fff'
-                                            }} />) : row.subs_type === 'So' ? (<Chip label="Business Subscription" variant="outlined" sx={{
+                                            }} />) : row.subs_type === 'So' ? (<Chip label="Single order" variant="outlined" sx={{
                                                 background: '#7ECC49',
                                                 borderRadius: '6px', color: '#fff'
                                             }} />) : ''}

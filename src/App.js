@@ -7,7 +7,7 @@ import { ForgotPassword } from './screens/loginScreen/ForgotPassword'
 import { ForgotPin } from './screens/loginScreen/ForgotPin'
 import { CheckEmail } from './screens/loginScreen/CheckEmail'
 import { Regsteppers }from './screens/registerScreen/Regsteppers';
-import { Dashindex } from './screens/dashboard/Dashindex';
+import { Dashindex } from './screens/dashboard/Dashindex'; 
 
 function App() {
   return (

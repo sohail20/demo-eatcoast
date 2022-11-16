@@ -18,16 +18,16 @@ export const Login3 = () => {
 
     const [clicked, setClicked] = React.useState(false);
     const [dataArray, setDataArray] = useState([])
-    const numberArray = ["check", 0, "BsBook", {no: 9}, 8, 7, 6, 5, 4, 3, 2, 1].reverse();
+    const numberArray = ["c", 0, "d", 9, 8, 7, 6, 5, 4, 3, 2, 1].reverse();
 
     const handleClick = (value) => {
-        if (value === "<BsBook />") {
+        if (value === "d") {
             const tmpArray = dataArray
             tmpArray.pop()
             setDataArray([...tmpArray])
             setClicked(false);
         }
-         else if (value === "check") {
+         else if (value === "c") {
             if (dataArray.length === 4){
                 alert("Form Submited")
             navigate('/next');}
@@ -199,7 +199,7 @@ export const Login3 = () => {
                              return(
                             <Grid item xs={4}>
                                      <Button onClick={() => { handleClick(e)}} 
-                                         sx={{ width: {xs:'90px', sm: '110px', md: '130px' }, height: '90px', border: '2px solid #D5E6E5' }} 
+                                         sx={{ width: {xs:'90px', sm: '110px', md: '130px' }, height: '90px', border: '2px solid #D5E6E5', textTransform: 'none' }} 
                                           disableRipple={true}
                                 >{e}</Button>
                             </Grid>
@@ -213,26 +213,3 @@ export const Login3 = () => {
         </>
     )
 }
-
-// <TextField sx={{ width: '82px', height: '100px', fontSize: '16px', paddingLeft: '0px' }}
-//                             id="outlined-basic"  value={pinDataArr.pin1}  onChange={handlePinChange}
-//                             type="text" />
-//                         <Box sx={{ position: 'relative', width: '30px', height: '55px' }}>
-
-//                             <Box sx={{ position: 'absolute', content: '""', width: '25px', border: '1px solid #E1E1E6', marginTop: '27.5px', marginLeft: '2px' }}>
-//                             </Box>
-//                         </Box>
-//                         <TextField sx={{ width: '82px', height: '100px', paddingLeft: '0px' }}
-//                             id="outlined-basic" value={pinDataArr.pin2} type="text" onChange={handlePinChange} />
-//                         <Box sx={{ position: 'relative', width: '30px', height: '55px' }}>
-//                             <Box sx={{ position: 'absolute', content: '""', width: '25px', border: '1px solid #E1E1E6', marginTop: '27.5px', marginLeft: '2px' }}>
-//                             </Box>
-//                         </Box>
-//                         <TextField sx={{ width: '82px', height: '100px', paddingLeft: '0px' }}
-//                             id="outlined-basic" value={pinDataArr.pin3} type='text' onChange={handlePinChange} />
-//                         <Box sx={{ position: 'relative', width: '30px', height: '55px' }}>
-//                             <Box sx={{ position: 'absolute', content: '""', width: '25px', border: '1px solid #E1E1E6', marginTop: '27.5px', marginLeft: '2px' }}>
-//                             </Box>
-//                         </Box>
-//                         <TextField sx={{ width: '82px', height: '100px', paddingLeft: '0px' }}
-//                             id="outlined-basic" value={pinDataArr.pin4} type='text' onChange={handlePinChange} />
