@@ -1,7 +1,8 @@
+import { Box } from '@mui/material'
 import React from 'react'
 
 export const Financials = () => {
   return (
-    <div>Financials</div>
+    <Box sx={{ marginTop: { xs: '100px', sm: '100px', md: '0px' } }}>Financials</Box>
   )
 }

@@ -6,39 +6,55 @@ import { Link } from 'react-router-dom';
 export const MerchantRegis = ({ formik, handleStepper }) => {
   console.log(formik.values)
   return (
-    <Container maxWidth='xs' sx={{ backgroundColor: '', height: '50vh' }}>
+    <Container maxWidth='xs' sx={{ backgroundColor: '', height: '50vh' }} >
 
       <br />
-      <Box >
-        <TextField sx={{marginBottom: 3,
-        background: '#F6F6F6', height: '40px',
-        border: '1px solid #E1E1E6', borderRadius: '6px'}}
+      <Box mt={4}>
+        <label style={{ fontSize: '14px',
+          fontFamily: 'Outfit', fontWeight: '600', color: '#1A1824'}}>Merchant Name</label>
+        <TextField sx={{ mt: 1, mb: 2,
+          background: '#F6F6F6', height: '40px', 
+          '&:focus': { borderRadius: '6px', border: '1px solid #E1E1E6' },
+           border: '1px solid #E1E1E6', borderRadius: '6px'
+         }}
           fullWidth size='small'
           id="MerchantName"
           name="merchantName"
-          label="merchant Name"
+          placeholder="Merchant Name"
           value={formik.values.merchantName}
           onChange={formik.handleChange}
-
         />
+
+        <label style={{
+          fontSize: '14px', fontFamily: 'Outfit',
+          fontWeight: '600', color: '#1A1824', '&:focus': { borderRadius: '6px', border: '1px solid #E1E1E6', background: 'red' }
+        }}> Address </label>
+
         <TextField sx={{
-          marginBottom: 3,
+          mt: 1, mb: 2,
           background: '#F6F6F6', height: '40px',
           border: '1px solid #E1E1E6', borderRadius: '6px'
         }}
           fullWidth size='small'
           id="address"
           name="address"
-          label="address"
           type="text"
+          placeholder='Address'
           value={formik.values.address}
           onChange={formik.handleChange}
-
         />
 
-        <Box sx={{
+        <label style={{
+          fontSize: '14px',
+          fontFamily: 'Outfit', fontWeight: '600', color: '#1A1824'
+        }}>Certification</label>
+        <label style={{
+          fontSize: '14px', marginLeft: '130px' ,
+          fontFamily: 'Outfit', fontWeight: '600', color: '#1A1824'
+        }}>Bussiness Licence</label>
+
+        <Box sx={{ mt: 1,
           display: 'flex',
-          
         }}>
           <IconButton disableRipple={true} sx={{
           marginRight: 1, width: '47%', background: '#F6F6F6', height: '40px',
@@ -61,6 +77,7 @@ export const MerchantRegis = ({ formik, handleStepper }) => {
                     <FolderIcon sx={{fontSize: '20px', marginTop: '4.5px'}} />
         </Box>
           </IconButton>
+         
           <IconButton  disableRipple={true} sx={{
             width: '50%', background: '#F6F6F6', height: '40px',
             border: '1px solid #E1E1E6', borderRadius: '6px'

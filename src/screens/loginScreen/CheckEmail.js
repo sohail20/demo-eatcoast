@@ -32,7 +32,6 @@ export const CheckEmail = () => {
                         sx={{ color: "545359", marginTop:'24px' , fontFamily: 'Outfit', fontWeight: '400', fontSize: '16px' }}>
                             We have sent a password recover instruction <br/>to your email 
                         </Typography>
-
                     <Button  disableRipple={true}
                         style={{ border: 2, background: '#2B817B', width: '100%', color: 'white', marginTop: '20px' }}
                     >

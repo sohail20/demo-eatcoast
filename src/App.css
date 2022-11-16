@@ -10,6 +10,9 @@
 .apexcharts-tooltip {
     background:#2B817B!important;
     color: #fff;
-    height: '30px' !important;
     border: 1px solid transparent !important;
   }
+.spin-button-none::-webkit-outer-spin-button,
+.spin-button-none::-webkit-inner-spin-button:hover{
+ appearance: none !important;
+}

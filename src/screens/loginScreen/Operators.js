@@ -1,9 +1,9 @@
 import { Box, Button, Card, CardContent, CardMedia, Grid, Typography } from '@mui/material'
 import { Container } from '@mui/system'
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 export const Login2 = () => {
-const navigation = useNavigate();
+  const navigation = useNavigate();
   const gotoLoginPin=()=>{
     navigation('/signinPin')
   }
@@ -25,7 +25,7 @@ const navigation = useNavigate();
             {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((index) => {
               return (
                 <Grid scpacing={2} item xs={12} sm={6} md={4} lg={3} key={index} >
-                  <Card sx={{ display: 'flex', height: 106, padding: 1 }} >
+                  <Card sx={{ display: 'flex', height: 106, padding: 1, cursor: 'pointer' }} onClick={gotoLoginPin}>
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
                       <CardMedia
                         component="img"
@@ -49,7 +49,7 @@ const navigation = useNavigate();
             }
           </Grid>
           <Box sx={{ padding: 7, display: 'flex', justifyContent: 'center' }}>
-            <Button disableRipple={true} onClick={gotoLoginPin}
+            <Button disableRipple={true} 
               style={{ background: '#FFFFFF', border: '1px solid #FFF1F1', borderRadius: 4, width: 180 }}
             >
               <span style={{ color: '#E75C62', fontFamily: 'Outfit', fontSize: 16, textTransform: 'lowercase' }}>
