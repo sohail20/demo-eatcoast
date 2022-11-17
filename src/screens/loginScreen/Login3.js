@@ -30,7 +30,7 @@ export const Login3 = () => {
          else if (value === "c") {
             if (dataArray.length === 4){
                 alert("Form Submited")
-            navigate('/next');}
+                navigate('/forgotpass');}
             else
                 alert("Warning No Valid Input")
         }
