@@ -47,9 +47,8 @@ export const ForgotPassword = () => {
                                 />
                                 <Link to={'/checkemail'}>
                                 <Button disableRipple={true}
-                                    style={{ border: 2, background: '#2B817B', width: '100%', color: 'white' }}
+                                    style={{ border: 2, background: '#2B817B', width: '100%', color: 'white', textTransform: 'none' }}
                                     >
-
                                         <span style={{ color: '#FFFFFF', fontFamily: 'Outfit', fontSize: '16px'}}>Send Email</span>
                                 </Button>
                                     </Link>

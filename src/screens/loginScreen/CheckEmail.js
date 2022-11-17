@@ -15,7 +15,7 @@ export const CheckEmail = () => {
                 </Typography>
             </Box>
 
-            <Button sx={{ position: 'absolute', content: '""', marginTop: '40px', }} disableRipple={true}>
+            <Button sx={{ position: 'absolute', content: '""', marginTop: '40px' }} disableRipple={true}>
                 <i className="fa-solid fa-angle-left" style={{ fontSize: '20px', color: '#1A1824' }}></i>
             </Button>
 
@@ -33,7 +33,7 @@ export const CheckEmail = () => {
                             We have sent a password recover instruction <br/>to your email 
                         </Typography>
                     <Button  disableRipple={true}
-                        style={{ border: 2, background: '#2B817B', width: '100%', color: 'white', marginTop: '20px' }}
+                            style={{ border: 2, background: '#2B817B', width: '100%', color: 'white', marginTop: '20px', textTransform: 'none' }}
                     >
                         <Link to={'#'} sx={{borderBottom: '0px solid transparent'}}>
 

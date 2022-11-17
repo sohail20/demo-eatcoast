@@ -1,9 +1,8 @@
-import { Box, Button, Chip, Drawer, Typography } from '@mui/material';
+import { Box, Button, Chip, Divider, Drawer, Radio, TextareaAutosize, TextField, Typography } from '@mui/material';
 import React from 'react';
 import { BsCalendar4Week } from 'react-icons/bs';
 import { RiTimerLine } from 'react-icons/ri';
 import { AiOutlineLeft } from 'react-icons/ai'
-
 
 
 
@@ -60,6 +59,22 @@ export const Dash_staff_SideSilder = ({ isDrawerOpenStaff, setIsDrawerOpenStaff,
         }
     ]
 
+    const [selectedValue, setSelectedValue] = React.useState('');
+    const handleChange = (event) => {
+        setSelectedValue(event.target.value);
+        // console.log({...selectedValue, [event.target.name]: event.target.value });
+    };
+    console.log({selectedValue})
+    const controlProps = (item) => ({
+        checked: selectedValue === item,
+        onChange: handleChange,
+        value: item,
+        name: 'size-radio-button-demo',
+        inputProps: { 'aria-label': item },
+    });
+    const handleCount=(e)=>{
+            console.log(e.target.value)
+    }
 
     return (
         <>
@@ -195,7 +210,8 @@ export const Dash_staff_SideSilder = ({ isDrawerOpenStaff, setIsDrawerOpenStaff,
                                                         background: '#FFFFFF',
                                                         border: ' 1px solid #80B3B0', fontWeight: '600',
                                                         borderRadius: '4px',
-                                                        color: '#2B817B', fontFamily: 'Outfit', fontSize: '14px'
+                                                        color: '#2B817B', fontFamily: 'Outfit', fontSize: '14px',
+                                                        '&:hover': { color: '#2B817B', background: '#fff' }
                                                     }}>
                                                     Deatil
                                                 </Button>
@@ -206,7 +222,8 @@ export const Dash_staff_SideSilder = ({ isDrawerOpenStaff, setIsDrawerOpenStaff,
                                                     background: '#2B817B',
                                                     fontWeight: '600',
                                                     borderRadius: '4px',
-                                                    color: '#fff', fontFamily: 'Outfit', fontSize: '14px'
+                                                    color: '#fff', fontFamily: 'Outfit', fontSize: '14px',
+                                                    '&:hover': { color: '#fff', background: '#2B817B' }
 
                                                 }}>
                                                     Accept
@@ -238,28 +255,21 @@ export const Dash_staff_SideSilder = ({ isDrawerOpenStaff, setIsDrawerOpenStaff,
 
             <Drawer anchor='right' open={isDrawerOpenStaff1}
                 onClose={() => setIsDrawerOpenStaff1(false)}>
-                <Box p={2} width="352px" textAlign={'center'}
+                <Box p={2} width="352px" textAlign={'center'} sx={{overflow: 'hidden'}}
                     role='presentation'>
-                    <Typography variant='h6' component='div' textAlign={'start'} sx={{ color: '#1A1824', cursor: 'pointer', fontSize: '16px' }}
+                    <Typography variant='h6' component='div' textAlign={'start'} sx={{ color: '#1A1824', cursor: 'pointer',
+                     fontSize: '16px' }}
                         onClick={() => { setIsDrawerOpenStaff1(false); setIsDrawerOpenStaff(true); }}>
                         <AiOutlineLeft />
                     </Typography>
                     <Typography variant='h6' textAlign={'center'} component='div' sx={{ marginTop: '-29px' }} >
                         Detail Request
                     </Typography>
-                    <Box component={'div'}>
+                    <Box component={'div'} >
                         {/* <Box onClick={handleSideSliderStaff1}> Link 2</Box> */}
                         <Box component={'div'} sx={{ marginTop: '20px' }}>
                             {
-                                [{
-                                    id: 'UEC-12345',
-                                    button: 'Bussiness subscription',
-                                    title: 'Salmon with chili sauce',
-                                    order: 1,
-                                    time: '10.00 am - 01.00 pm',
-                                    totalPaid: '200.00',
-                                    colr: '#FF9933',
-                                },
+                                [
                                     {
                                         id: 'UEC-12345',
                                         button: 'Bussiness subscription',
@@ -273,7 +283,6 @@ export const Dash_staff_SideSilder = ({ isDrawerOpenStaff, setIsDrawerOpenStaff,
                                         <>
                                             <Box sx={{
                                                 width: '335px', padding: '15px', height: '75vh',
-                                                background: 'red', 
                                                 borderRadius: '6px', marginBottom: '13px'
                                             }} >
 
@@ -361,8 +370,57 @@ export const Dash_staff_SideSilder = ({ isDrawerOpenStaff, setIsDrawerOpenStaff,
 
                                                     
                                                 </Box>
+                                                <Box sx={{ borderRadius: '4px',marginTop: '13px', border: '1px solid #9EA3AE', width: '100%', height: 'auto',}}>
+                                                 
+                                                    <Box display={'flex'} justifyContent={'space-between'} mt={2} sx={{ marginTop: '8px', marginBottom: '8px', marginRight: '7px', marginLeft: '7px'}}>
+                                                        <Box>
+                                                            <Typography textAlign={'start'} sx={{ fontSize: '16px',
+                                                             fontFamily: 'Outfit', fontWeight: '600', color: '#1A1824' }}>
+                                                                Main Course
+                                                            </Typography>
+                                                            <Typography textAlign={'start'} sx={{
+                                                                fontFamily: 'Outfit', fontSize: '14px'
+                                                                , color: '#9EA3AE',
+                                                                fontWeight: '400', marginTop: '-5px'
+                                                            }}>
+                                                                All dishes
+                                                            </Typography>
+                                                        </Box>
+                                                        <Typography sx={{
+                                                            height: '32px', fontFamily: 'Outfit',
+                                                            color: '#1A1824',
+                                                            fontWeight: '600'
+                                                        }}>
+                                                            $ 80.00
+                                                        </Typography>
+                                                    </Box>
+                                                    <Box display={'flex'} justifyContent={'space-between'} mt={2} sx={{ marginTop: '8px', marginBottom: '8px', marginRight: '7px', marginLeft: '7px'}}>
+                                                        <Box>
 
-                                                <Box>
+                                                            <Typography textAlign={'start'} sx={{ fontSize: '16px',
+                                                             fontFamily: 'Outfit', fontWeight: '600', color: '#1A1824' }}>
+                                                                Salad Dishes
+                                                            </Typography>
+                                                            <Typography textAlign={'start'} sx={{
+                                                                fontFamily: 'Outfit', fontSize: '14px'
+                                                                , color: '#9EA3AE',
+                                                             fontWeight: '400', marginTop: '-5px'
+                                                            }}>
+                                                                20 dishes are selected
+                                                            </Typography>
+                                                        </Box>
+                                                        <Typography sx={{
+                                                            height: '32px', fontFamily: 'Outfit',
+                                                            color: '#1A1824',
+                                                            fontWeight: '600'
+                                                        }}>
+                                                            $ 80.00
+                                                        </Typography>
+                                                    </Box>
+                                                       
+                                                       </Box>         
+                                                <Box sx={{display: 'flex', justifyContent: 'flex-end', marginTop: '15px' }}>
+                                                <Box >
                                                     <Box display={'flex'}>
                                                         <Typography sx={{
                                                             fontSize: '14px', fontFamily: 'Outfit', fontWeight: '400',
@@ -396,23 +454,19 @@ export const Dash_staff_SideSilder = ({ isDrawerOpenStaff, setIsDrawerOpenStaff,
                                                     <Box display={'flex'}>
                                                         <Typography sx={{
                                                             fontSize: '14px', fontFamily: 'Outfit', fontWeight: '400',
-                                                            color: '#9EA3AE', mb: 2
+                                                            color: '#545359', mb: 2
                                                         }}>
                                                             Total <span style={{marginLeft: '30px'}}>:</span>
                                                         </Typography>
                                                         <Typography sx={{
-                                                            fontFamily: 'Outfit', fontSize: '16px'
-                                                            , color: ' #9EA3AE',
-                                                            fontWeight: '400', marginLeft: '5px'
+                                                            fontFamily: 'Outfit', fontSize: '18px'
+                                                            , color: ' #1A1824',
+                                                            fontWeight: '600', marginLeft: '5px'
                                                         }}>
                                                             ${item.totalPaid}
                                                         </Typography>
                                                     </Box>             
-
-                                                        
-
-
-
+                                                </Box>
                                                 </Box>
                                               
                                             </Box>
@@ -424,14 +478,17 @@ export const Dash_staff_SideSilder = ({ isDrawerOpenStaff, setIsDrawerOpenStaff,
                         </Box>
 
                         {/* here */}
-                        <Box justifyContent={'flex-end'} paddingRight={0}>
+                        <Divider  />
+                        <Box justifyContent={'flex-end'} paddingRight={0} mt={5}>
                             <Button size='small'
                                 sx={{
                                     width: { xs: '100px', md: '130px' },
                                     border: '1px solid #80B3B0', background: '#fff', textTransform: 'none',
                                     color: '#80B3B0', marginRight: '20px', border: ' 1px solid #80B3B0', fontWeight: '600',
                                     borderRadius: '4px',
-                                    color: '#2B817B', fontFamily: 'Outfit', fontSize: '14px', '&:hover': { border: '1px solid #80B3B0', background: '#fff' }
+                                    color: '#2B817B', fontFamily: 'Outfit', fontSize: '14px', 
+                                    '&:hover': { border: '1px solid #80B3B0', background: '#fff'
+}
                                 }}
                                 variant="outlined" disableElevation >Decline request</Button>
                             <Button sx={{
@@ -442,7 +499,7 @@ export const Dash_staff_SideSilder = ({ isDrawerOpenStaff, setIsDrawerOpenStaff,
                                 borderRadius: '4px',
                                 color: '#fff', fontFamily: 'Outfit', fontSize: '14px',
                                 '&:hover': { color: '#fff', background: '#2B817B' }
-                            }} size='small'
+                            }} size='small' onClick={handleSideSliderStaff1}
                                 variant="contained" disableElevation>Accept request
                             </Button>
 
@@ -457,16 +514,218 @@ export const Dash_staff_SideSilder = ({ isDrawerOpenStaff, setIsDrawerOpenStaff,
 
             <Drawer anchor='right' open={isDrawerOpenStaff2}
                 onClose={() => setIsDrawerOpenStaff2(false)}>
-                <Box p={2} width="352px" textAlign={'center'}
+                <Box p={2} width="352px" textAlign={'center'} sx={{
+                    overflow: 'hidden'
+                }}
                     role='presentation'>
-                    <Typography variant='h6' component='div' onClick={() => setIsDrawerOpenStaff2(false)}>
-                        side panel 2
+                    <Typography variant='h6' component='div' textAlign={'start'} sx={{ color: '#1A1824', cursor: 'pointer', fontSize: '16px' }}
+                        onClick={() => { setIsDrawerOpenStaff2(false); setIsDrawerOpenStaff1(true); }}>
+                        <AiOutlineLeft />
                     </Typography>
-                    <Box component={'div'}>
-                        <Box> Link 1</Box>
-                        <Box> Link 2</Box>
-                        <Box> Link 3</Box>
-                        <Box> Link 4</Box>
+                    <Typography variant='h6' textAlign={'center'} component='div' sx={{ marginTop: '-29px' }} >
+                        Cancel Request
+                    </Typography>
+                    <Box component={'div'} mt={3}>
+                        <form>
+                        <Box sx={{marginRight: '10px', }}>
+                            <Box mb={2}>
+                                    <Box sx={{
+                                    borderRadius: '6px', border: '1px solid  #E1E1E6', width: '320px', height: '40px', background: '#F6F6F6'
+                                    }}>
+                                <Box display={'flex'} justifyContent={'space-between'} alignItems={'center'} sx={{padding: '0px 15px'}}>
+                                    <Typography sx={{
+                                        fontFamily: 'Outfit', fontSize: '14px' 
+                                        , color: '#1A1B24', 
+                                        fontWeight: '400',}}>
+                                            Out of an item
+                                   </Typography>
+                                        <Radio {...controlProps('OutItem')} size="small" sx={{
+                                        '&, &.Mui-checked': {
+                                            color: '#2B817B',
+                                        },
+                                    }} />
+
+                                </Box>
+                                    </Box>
+                            </Box>
+                        </Box>
+                        <Box sx={{marginRight: '10px'}}>
+                            <Box mb={2}>
+                                    <Box sx={{
+                                    borderRadius: '6px', border: '1px solid  #E1E1E6', width: '320px', height: '40px', background: '#F6F6F6'
+                                    }}>
+                                <Box display={'flex'} justifyContent={'space-between'} alignItems={'center'} sx={{padding: '0px 15px'}}>
+                                    <Typography sx={{
+                                        fontFamily: 'Outfit', fontSize: '14px' 
+                                        , color: '#1A1B24', 
+                                        fontWeight: '400',}}>
+                                           There is a restaurant problem
+                                   </Typography>
+                                    <Radio {...controlProps('restuarantProblem')} size="small" sx={{
+                                        '&, &.Mui-checked': {
+                                            color: '#2B817B',
+                                        },
+                                    }} />
+
+                                </Box>
+                                    </Box>
+                            </Box>
+                        </Box>
+                        <Box sx={{marginRight: '10px'}}>
+                            <Box mb={2}>
+                                    <Box sx={{
+                                    borderRadius: '6px', border: '1px solid  #E1E1E6', width: '320px', height: '40px', background: '#F6F6F6'
+                                    }}>
+                                <Box display={'flex'} justifyContent={'space-between'} alignItems={'center'} sx={{padding: '0px 15px'}}>
+                                    <Typography sx={{
+                                        fontFamily: 'Outfit', fontSize: '14px' 
+                                        , color: '#1A1B24', 
+                                        fontWeight: '400',}}>
+                                            Restaurant closed
+                                   </Typography>
+                                    <Radio {...controlProps('restuarantClose')} size="small" sx={{
+                                        '&, &.Mui-checked': {
+                                            color: '#2B817B',
+                                        },
+                                    }} />
+
+                                </Box>
+                                    </Box>
+                            </Box>
+                        </Box>
+                        <Box sx={{marginRight: '10px'}}>
+                            <Box mb={2}>
+                                    <Box sx={{
+                                    borderRadius: '6px', border: '1px solid  #E1E1E6', width: '320px', height: '40px', background: '#F6F6F6'
+                                    }}>
+                                <Box display={'flex'} justifyContent={'space-between'} alignItems={'center'} sx={{padding: '0px 15px'}}>
+                                    <Typography sx={{
+                                        fontFamily: 'Outfit', fontSize: '14px' 
+                                        , color: '#1A1B24', 
+                                        fontWeight: '400',}}>
+                                            Unable to fulfill order
+                                   </Typography>
+                                    <Radio {...controlProps('unabaleFulfil')} size="small" sx={{
+                                        '&, &.Mui-checked': {
+                                            color: '#2B817B',
+                                        },
+                                    }} />
+
+                                </Box>
+                                    </Box>
+                            </Box>
+                        </Box>
+                        <Box sx={{marginRight: '10px'}}>
+                            <Box mb={2}>
+                                    <Box sx={{
+                                    borderRadius: '6px', border: '1px solid  #E1E1E6', width: '320px', height: '40px', background: '#F6F6F6'
+                                    }}>
+                                <Box display={'flex'} justifyContent={'space-between'} alignItems={'center'} sx={{padding: '0px 15px'}}>
+                                    <Typography sx={{
+                                        fontFamily: 'Outfit', fontSize: '14px' 
+                                        , color: '#1A1B24', 
+                                        fontWeight: '400',}}>
+                                            The desired order is not available
+                                   </Typography>
+                                    <Radio {...controlProps('notAvailable')} size="small" sx={{
+                                        '&, &.Mui-checked': {
+                                            color: '#2B817B',
+                                        },
+                                    }} />
+
+                                </Box>
+                                    </Box>
+                            </Box>
+                        </Box>
+                        <Box sx={{marginRight: '10px'}}>
+                            <Box mb={2}>
+                                    <Box sx={{
+                                    borderRadius: '6px', border: '1px solid  #E1E1E6', width: '320px', height: '40px', background: '#F6F6F6'
+                                    }}>
+                                <Box display={'flex'} justifyContent={'space-between'} alignItems={'center'} sx={{padding: '0px 15px'}}>
+                                    <Typography sx={{
+                                        fontFamily: 'Outfit', fontSize: '14px' 
+                                        , color: '#1A1B24', 
+                                        fontWeight: '400',}}>
+                                            Restaurant refuse order
+                                   </Typography>
+                                    <Radio {...controlProps('refuse')} size="small" sx={{
+                                        '&, &.Mui-checked': {
+                                            color: '#2B817B',
+                                        },
+                                    }} />
+
+                                </Box>
+                                    </Box>
+                            </Box>
+                        </Box>
+                        <Box sx={{marginRight: '10px'}}>
+                            <Box mb={2} sx={{ width: '320px'}}>
+                                    <Box sx={{ display: 'flex', justifyContent: 'space-between' }} >
+
+                                        <label style={{
+                                            fontFamily: 'Outfit', fontSize: '14px', fontWeight: '500'
+                                            , color: '#1A1B24'}} textAlign={'start'}>Reason Detail</label>
+                                       
+                                       
+                                        <label style={{
+                                            fontFamily: 'Outfit', fontSize: '14px'
+                                            , color: '#1A1B24'
+                                        }} textAlign={'end'}>0/80</label>
+
+                                </Box>
+                                <br />
+                                    <TextField 
+                                    onChange={handleCount}
+                                        id="outlined-multiline-static"
+                                        fullWidth
+                                        placeholder='Type your reason'
+                                        multiline 
+                                        rows={4}
+                                        maxLength="80"
+                                        // value={value}
+                                        sx={{
+                                             color: '#1A1B24',
+                                            borderRadius: '6px', border: '1px solid  #E1E1E6', 
+                                             background: '#F6F6F6', 
+                                            '&:hover': {
+                                                color: '#E1E1E6' }
+                                            
+
+
+                                        }}
+                                     
+                                    />
+
+                            </Box>
+                        </Box>
+                    </form>
+                        <Divider />
+                        <Box justifyContent={'flex-end'} paddingRight={0} mt={5}>
+                            <Button size='small'
+                                sx={{
+                                    width: { xs: '100px', md: '130px' },
+                                    border: '1px solid #80B3B0', background: '#fff', textTransform: 'none',
+                                    color: '#80B3B0', marginRight: '20px', border: ' 1px solid #80B3B0', fontWeight: '600',
+                                    borderRadius: '4px',
+                                    color: '#2B817B', fontFamily: 'Outfit', fontSize: '14px', 
+                                    '&:hover': { border: '1px solid #80B3B0', background: '#fff' }
+                                }}
+                                variant="outlined" disableElevation >Cancel</Button>
+                            <Button sx={{
+                                width: '130px',
+                                border: '1px solid #80B3B0', background: '#2B817B', textTransform: 'none',
+                                background: '#2B817B',
+                                fontWeight: '600',
+                                borderRadius: '4px',
+                                color: '#fff', fontFamily: 'Outfit', fontSize: '14px',
+                                '&:hover': { color: '#fff', background: '#2B817B' }
+                            }} size='small' onClick={handleSideSliderStaff1}
+                                variant="contained" disableElevation>Submit
+                            </Button>
+
+
+                        </Box>
                     </Box>
                 </Box>
             </Drawer>

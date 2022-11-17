@@ -20,20 +20,23 @@ const ColorlibConnector = styled(StepConnector)(({ theme }) => ({
     },
     [`&.${stepConnectorClasses.active}`]: {
         [`& .${stepConnectorClasses.line}`]: {
-            backgroundImage: 'linear-gradient(to left, #2B817B 0%, #2B817B 100%)',
+            // backgroundImage: 'linear-gradient(to left, #2B817B 0%, #2B817B 100%)',
+            backgroundColor:' #2B817B', 
         },
     },
     [`&.${stepConnectorClasses.completed}`]: {
         [`& .${stepConnectorClasses.line}`]: {
-            backgroundImage: 'linear-gradient(to left, #2B817B 0%, #2B817B 100%)',
+            // backgroundImage: 'linear-gradient(to left, #2B817B 0%, #2B817B 100%)',
+            backgroundColor:' #2B817B',
         },
     },
     [`& .${stepConnectorClasses.line}`]: {
         height: 3,
-        border: 0,
-        backgroundColor:
-            theme.palette.mode === 'dark' ? theme.palette.grey[300] : '#eaeaf0',
-        borderRadius: 7,
+        border: '1.5px dashed gray',
+        // backgroundColor:
+        //     theme.palette.mode === 'darh' ? theme.palette.grey[300] : '#eaeaf0',
+        // borderRadius: 7,
+        
     },
 }));
 
@@ -50,10 +53,11 @@ const ColorlibStepIconRoot = styled('div')(({ theme, ownerState }) => ({
     ...(ownerState.active && {
         backgroundImage:
             'linear-gradient(to left, #2B817B 0%, #2B817B 100%)',
-    }),
-    ...(ownerState.completed && {
-        backgroundImage:
-            'linear-gradient(to left, #2B817B 0%, #2B817B 100%)',
+        }),
+        ...(ownerState.completed && {
+            // backgroundImage:
+            // 'linear-gradient(to left, #2B817B 0%, #2B817B 100%)',
+            backgroundColor: '#2B817B'
     }),
 }));
 
@@ -62,7 +66,7 @@ function ColorlibStepIcon(props) {
 
     const icons = {
         1: <MerchantRegSvg />,
-        2: <i class="fa-solid fa-user-pen" />,
+        2: <i class="fa-solid fa-user-pen" style={{ color:'background: #FFFFFF;'}}/>,
         3: <i class="fa-solid fa-rotate" />,
         4: <i class="fa-regular fa-circle-check" />,
     };
@@ -156,7 +160,7 @@ export const Regsteppers=() =>{
 
     return (
         <Container maxWidth='md'>
-            <Stack sx={{ width: '100%', marginTop: '20px' }} spacing={1} >
+            <Stack sx={{ width: '100%', marginTop: '40px' }} spacing={1} >
                 <Stepper alternativeLabel activeStep={activeStep} connector={<ColorlibConnector />}>
                     {steps.map((label1, index) => (
                         <Step key={index}>
@@ -172,18 +176,36 @@ export const Regsteppers=() =>{
                 {moveFormCompo(steps)}
 
             </form>
-            <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+            <Box sx={{ display: 'flex', justifyContent: 'flex-end', marginTop: '170px' }}>
                 {activeStep === 0 ? (null) : activeStep === 1 ?
-                    (<><Button disableRipple={true} sx={{ textTransform: 'none' }}
-
-                        onClick={handleStepper}>
-                        Submit
+                    (<Box >
+                        <Button disableRipple={true}  sx={{ textTransform: 'none',
+                        width: '110px',
+                         marginRight: '15px',
+                        background: '#FFFFFF',
+                        border: ' 1px solid #80B3B0', fontWeight: '600',
+                        borderRadius: '4px',
+                        color: '#2B817B', fontFamily: 'Outfit', fontSize: '14px',
+                        '&:hover': { color: '#2B817B', background: '#fff' }
+                }}
+                            onClick={handleStepperPrev}
+                        >
+                        Back
                     </Button>
-                        <Button disableRipple={true} sx={{ textTransform: 'none' }} onClick={handleStepperPrev}>
-                            Back
+                        <Button disableRipple={true}  sx={{ textTransform: 'none',
+                            width: '110px',
+                            
+                            background: '#2B817B',
+                            border: ' 1px solid #80B3B0', fontWeight: '600',
+                            borderRadius: '4px',
+                            color: '#fff', fontFamily: 'Outfit', fontSize: '14px',
+                            '&:hover': { color: '#fff', background: '#2B817B' }
+                     }} 
+                            onClick={handleStepper}>
+                            Submit
                         </Button>
 
-                    </>) : null
+                    </Box>) : null
                 }
 
             </Box>
