@@ -13,6 +13,7 @@ import { useFormik } from 'formik';
 import { Ownerinfo } from '../../components/OwnerInfo';
 import { WaitingSvg } from '../../components/WaitingSvg';
 import { MerchantRegis } from '../../components/MerchantRegis'
+import { BiStore } from 'react-icons/bi'
 
 const ColorlibConnector = styled(StepConnector)(({ theme }) => ({
     [`&.${stepConnectorClasses.alternativeLabel}`]: {
@@ -20,30 +21,28 @@ const ColorlibConnector = styled(StepConnector)(({ theme }) => ({
     },
     [`&.${stepConnectorClasses.active}`]: {
         [`& .${stepConnectorClasses.line}`]: {
-            // backgroundImage: 'linear-gradient(to left, #2B817B 0%, #2B817B 100%)',
-            backgroundColor:' #2B817B', 
+            backgroundColor: '#2B817B', 
+            
         },
     },
     [`&.${stepConnectorClasses.completed}`]: {
         [`& .${stepConnectorClasses.line}`]: {
-            // backgroundImage: 'linear-gradient(to left, #2B817B 0%, #2B817B 100%)',
-            backgroundColor:' #2B817B',
+            backgroundColor:  '#2B817B',
         },
     },
     [`& .${stepConnectorClasses.line}`]: {
         height: 3,
-        border: '1.5px dashed gray',
-        // backgroundColor:
-        //     theme.palette.mode === 'darh' ? theme.palette.grey[300] : '#eaeaf0',
-        // borderRadius: 7,
-        
+        border: '2px dashed gray',
     },
 }));
+
 
 const ColorlibStepIconRoot = styled('div')(({ theme, ownerState }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? theme.palette.grey[700] : '#ccc',
     zIndex: 1,
-    color: '#fff',
+    color: '#D5E6E5',
+    backgroundColor: '#fff',
+    
     width: 50,
     height: 50,
     display: 'flex',
@@ -51,13 +50,16 @@ const ColorlibStepIconRoot = styled('div')(({ theme, ownerState }) => ({
     justifyContent: 'center',
     alignItems: 'center',
     ...(ownerState.active && {
-        backgroundImage:
-            'linear-gradient(to left, #2B817B 0%, #2B817B 100%)',
+        backgroundColor: '#2B817B',
+        // border: '2px solid #2B817B'
+        border: '2px solid #20615C',
+      
         }),
         ...(ownerState.completed && {
-            // backgroundImage:
-            // 'linear-gradient(to left, #2B817B 0%, #2B817B 100%)',
-            backgroundColor: '#2B817B'
+            // border: '2px solid #2B817B',
+            backgroundColor: '#2B817B',
+            border: '2px solid #20615C',
+
     }),
 }));
 
@@ -65,10 +67,10 @@ function ColorlibStepIcon(props) {
     const { active, completed, className } = props;
 
     const icons = {
-        1: <MerchantRegSvg />,
-        2: <i class="fa-solid fa-user-pen" style={{ color:'background: #FFFFFF;'}}/>,
-        3: <i class="fa-solid fa-rotate" />,
-        4: <i class="fa-regular fa-circle-check" />,
+        1: <BiStore />,
+        2: <i className="fa-solid fa-user-pen" />,
+        3: <i className="fa-solid fa-rotate" />,
+        4: <i className="fa-regular fa-circle-check" />,
     };
 
     return (

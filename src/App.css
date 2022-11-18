@@ -2,20 +2,22 @@
   padding: 0px;
   margin: 0px;
   box-sizing: border-box;
+  font-family: 'Outfit', sans-serif;
 }
-.font-link {
-  font-family: 'Outfit';
-}
+
+
 /* for sales charts custom tooltip color */
 .apexcharts-tooltip {
     background:#2B817B!important;
     color: #fff;
     border: 1px solid transparent !important;
   }
+
 .spin-button-none::-webkit-outer-spin-button,
 .spin-button-none::-webkit-inner-spin-button:hover{
  appearance: none !important;
 }
+
 
 /* .css-8ewcdo-MuiInputBase-root-MuiOutlinedInput-root {
     font-family: "Roboto","Helvetica","Arial",sans-serif;

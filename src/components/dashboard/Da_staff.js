@@ -180,17 +180,17 @@ const handleDrawer=()=>{
                         </Box>
                   </Grid>
                     <Grid item sx={12} sm={6}  sx={{ display: 'flex', justifyContent: {xs: "center",md:'flex-end'} }}>
-                                <Box sx={{display: 'flex'}}>
+                                <Box sx={{display: 'flex', marginTop: {xs: '10px', sm: '0px'} }} >
                             <Button size='small' onClick={handleDrawer}
                                     sx={{
-                                        width: {xs: '150px', md: '180px'},
+                                        width: {xs: '150px', md: '160px'},
                                         border: '1px solid #80B3B0', background: '#fff', textTransform: 'none',
                                         color: '#80B3B0', marginRight: '20px',
                                         '&:hover': { border: '1px solid #80B3B0', background: '#fff' }
                                     }}
                                     variant="outlined" disableElevation >See all detail</Button>
                                 <Button sx={{
-                                    width: '180px',
+                                width: { xs: '150px', md: '160px' },
                                     border: '1px solid #80B3B0', background: '#2B817B', textTransform: 'none',
                                     color: '#fff',
                                     '&:hover': { border: '1px solid #80B3B0', background: '#2B817B' }

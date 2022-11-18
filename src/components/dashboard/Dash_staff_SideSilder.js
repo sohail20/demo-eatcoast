@@ -72,10 +72,19 @@ export const Dash_staff_SideSilder = ({ isDrawerOpenStaff, setIsDrawerOpenStaff,
         name: 'size-radio-button-demo',
         inputProps: { 'aria-label': item },
     });
-    const handleCount=(e)=>{
-            console.log(e.target.value)
-    }
 
+
+    // -=-=-===================
+    //                    textarea count function -=-==========-=
+    const [wordCount, setwordCount]=React.useState(0)
+    const handleCount=(value)=>{
+        console.log(value)
+            if(value.length <= 80){
+                setwordCount(value);
+            }
+    }
+    // console.log({ wordCount+ selectedValue
+// });
     return (
         <>
             {/* ------------Drawer 1 */}
@@ -482,7 +491,7 @@ export const Dash_staff_SideSilder = ({ isDrawerOpenStaff, setIsDrawerOpenStaff,
                         <Box justifyContent={'flex-end'} paddingRight={0} mt={5}>
                             <Button size='small'
                                 sx={{
-                                    width: { xs: '100px', md: '130px' },
+                                    width:  '130px',
                                     border: '1px solid #80B3B0', background: '#fff', textTransform: 'none',
                                     color: '#80B3B0', marginRight: '20px', border: ' 1px solid #80B3B0', fontWeight: '600',
                                     borderRadius: '4px',
@@ -510,6 +519,12 @@ export const Dash_staff_SideSilder = ({ isDrawerOpenStaff, setIsDrawerOpenStaff,
                        
                 </Box>
             </Drawer>
+
+
+            {/* ------------Drawer 3 */}
+            {/* ------------Drawer 3 */}
+            {/* ------------Drawer 3 */}
+            {/* ------------Drawer 3 */}
             {/* ------------Drawer 3 */}
 
             <Drawer anchor='right' open={isDrawerOpenStaff2}
@@ -671,12 +686,12 @@ export const Dash_staff_SideSilder = ({ isDrawerOpenStaff, setIsDrawerOpenStaff,
                                         <label style={{
                                             fontFamily: 'Outfit', fontSize: '14px'
                                             , color: '#1A1B24'
-                                        }} textAlign={'end'}>0/80</label>
+                                        }} textAlign={'end'}> {wordCount?.length || 0}/80</label>
 
                                 </Box>
                                 <br />
                                     <TextField 
-                                    onChange={handleCount}
+                                    onChange={(e)=>handleCount(e.target.value)}
                                         id="outlined-multiline-static"
                                         fullWidth
                                         placeholder='Type your reason'
@@ -704,7 +719,7 @@ export const Dash_staff_SideSilder = ({ isDrawerOpenStaff, setIsDrawerOpenStaff,
                         <Box justifyContent={'flex-end'} paddingRight={0} mt={5}>
                             <Button size='small'
                                 sx={{
-                                    width: { xs: '100px', md: '130px' },
+                                    width: '130px',
                                     border: '1px solid #80B3B0', background: '#fff', textTransform: 'none',
                                     color: '#80B3B0', marginRight: '20px', border: ' 1px solid #80B3B0', fontWeight: '600',
                                     borderRadius: '4px',

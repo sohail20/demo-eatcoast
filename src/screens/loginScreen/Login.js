@@ -10,7 +10,7 @@ const theme = createTheme({
             main: '#E1E1E',
         },
         loginField2: {
-            main: '#F6F6F6',
+            main: '#E1E1E',
         },
 
     },
@@ -21,7 +21,7 @@ const stylestf = {
     marginBottom: 3,
     width: '100%', background: '#F6F6F6', height: '40px',
     border: '1px solid #E1E1E6', borderRadius: '6px',
-    textColor: 'black',
+    textColor: 'black','&:hover': {color: '#F6F6F6'}
 };
 
 
@@ -102,8 +102,8 @@ export const Login = () => {
                                 </ThemeProvider>
                             </form>
                             <Typography sx={{ display: 'flex', justifyContent: 'center', mt: 3 }} >
+                                    <span style={{ color: '#2B817B', fontFamily: 'Outfit' }}>Don't have an account ?</span>{' '}
                                 <Link to={'/stepper'} >
-                                    <span style={{ color: '#1A1824', fontFamily: 'Outfit' }}>Don't have an account ?</span>{' '}
                                     <span style={{ color: '#2B817B', fontFamily: 'Outfit', textDecorationLine: 'underline' }}>
                                         Register </span></Link>
                             </Typography>
