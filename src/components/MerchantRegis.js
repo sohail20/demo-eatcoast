@@ -1,10 +1,12 @@
-import { Box, Button, Container, IconButton,  TextField, Typography } from '@mui/material'
+import { Box, Button, Container, FormControl, IconButton,    TextField, Typography } from '@mui/material'
 import React from 'react'
 import FolderIcon from '@mui/icons-material/Folder';
 import { Link } from 'react-router-dom';
 
 export const MerchantRegis = ({ formik, handleStepper }) => {
-  console.log(formik.values)
+ 
+
+
   return (
     <Container maxWidth='xs' sx={{ backgroundColor: '', height: '50vh' }} >
 
@@ -43,16 +45,30 @@ export const MerchantRegis = ({ formik, handleStepper }) => {
           value={formik.values.address}
           onChange={formik.handleChange}
         />
-
-        <label style={{
-          fontSize: '14px',
-          fontFamily: 'Outfit', fontWeight: '600', color: '#1A1824'
-        }}>Certification</label>
-        <label style={{
-          fontSize: '14px', marginLeft: '130px' ,
-          fontFamily: 'Outfit', fontWeight: '600', color: '#1A1824'
-        }}>Bussiness Licence</label>
-
+      
+        <Box sx={{
+          width:'100%',
+          display:'flex',
+          flexDirection:'row',
+          // justifyContent:'space-between',
+          alignItems:'center'
+        }}>
+            <Box sx={{width:'50%'}}>
+            <label style={{
+              fontSize: '14px',
+              fontFamily: 'Outfit', fontWeight: '600', color: '#1A1824'
+            }}>Certification</label>
+            </Box>
+            <Box sx={{width:'50%'}}>
+            <label style={{
+              fontSize: '14px', 
+              fontFamily: 'Outfit', fontWeight: '600', color: '#1A1824'
+            }}>Bussiness Licence</label>
+            </Box>
+        </Box>
+       
+       
+        {/* </Root> */}
         <Box sx={{ mt: 1,
           display: 'flex',
         }}>
@@ -70,11 +86,21 @@ export const MerchantRegis = ({ formik, handleStepper }) => {
               value={formik.values.certification}
               onChange={formik.handleChange}
             />
-        <Box sx={{display: 'flex'}}>
-              <Typography sx={{ marginRight: '80px', fontSize: '12px', paddingTop: '4.5px'}}> 
-                    Add File
-                        </Typography>  
-                    <FolderIcon sx={{fontSize: '20px', marginTop: '4.5px'}} />
+        <Box sx={{
+          width:'100%',
+          display:'flex',
+          flexDirection:'row',
+          alignItems:'center',
+          justifyContent:'space-between'
+        }} >
+             <Box>
+                <Typography sx={{ fontSize: '12px', paddingTop: '4.5px' }}>
+                  Add File
+                </Typography>  
+             </Box>
+            <Box>
+                <FolderIcon sx={{ fontSize: '20px', marginTop: '4.5px' }} />
+            </Box>
         </Box>
           </IconButton>
          
@@ -94,12 +120,23 @@ export const MerchantRegis = ({ formik, handleStepper }) => {
               value={formik.values.BusinessLisence}
               onChange={formik.handleChange}
             />
-            <Box sx={{ display: 'flex' }}>
-              <Typography sx={{ marginRight: '80px', fontSize: '12px', paddingTop: '4.5px' }}>
-                Add File
-              </Typography>
-              <FolderIcon sx={{fontSize: '20px', marginTop: '4.5px'}}/>
+            <Box sx={{
+              width: '100%',
+              display: 'flex',
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'space-between'
+            }} >
+              <Box>
+                <Typography sx={{ fontSize: '12px', paddingTop: '4.5px' }}>
+                  Add File
+                </Typography>
+              </Box>
+              <Box>
+                <FolderIcon sx={{ fontSize: '20px', marginTop: '4.5px' }} />
+              </Box>
             </Box>
+            
           </IconButton>
         </Box>
         <Typography sx={{ marginBottom: 2, marginTop: 3, paddingLeft: 1 , fontWeight: '700' }}>
@@ -113,10 +150,10 @@ export const MerchantRegis = ({ formik, handleStepper }) => {
             <span style={{ color: '#FFFFFF', fontFamily: 'Outfit', fontSize: '16px' }}>Next</span>
         </Button>
         <Typography sx={{ display: 'flex', justifyContent: 'center', mt: 3 }} >
+            <span style={{ color: '#1A1824', fontFamily: 'Outfit', fontSize: '14px' }}>Already have an account ?{" "}  </span>{' '}
           <Link to={'/'} >
-            <span style={{ color: '#1A1824', fontFamily: 'Outfit', fontSize: '14px' }}>Already have an account ?</span>{' '}
             <span style={{ color: '#2B817B', fontFamily: 'Outfit',fontSize: '14px', fontWeight:'700', textDecorationLine: 'underline' }}>
-              login </span></Link>
+            {' '}  login </span></Link>
         </Typography>
      
       </Box>
