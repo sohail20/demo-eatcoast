@@ -48,7 +48,18 @@ export const Da_manager = ({ todayDate }) => {
     // const handleColor=(color)=>{
         
     // }
+    const [checked, setChecked] = React.useState(true);
+    const [checked1, setChecked1] = React.useState(false);
 
+   
+    const handleChecked = () => {
+        setChecked(true)
+        setChecked1(false)
+    }
+    const handleChecked1 = () => {
+        setChecked1(true)
+        setChecked(false)
+    }
     return (
         <Box component={'div'} >
             <Box component={'div'} >
@@ -68,19 +79,36 @@ export const Da_manager = ({ todayDate }) => {
                                 fontFamily: 'Outfit', fontSize: '14px',
                                 color: '#9EA3AE', lineHeight: '30px', fontWeight: '400'
                             }}>Showing: </span>
-                            <FormControl sx={{ width: '160px', marginTop: '-16px' }}>
-                                <InputLabel id="demo-simple-select-label"
+                            <FormControl sx={{ width: '160px', marginTop: '-16px' }} hiddenLabel>
+                            <InputLabel  disableAnimation={true}
                                 ></InputLabel>
-                                <Select sx={{ boxShadow: 'none', margin: '10px', lineHeight: '35px', height: '40px', padding: '0px' }}
+                                <Select
+                                    sx={{
+                                        boxShadow: 'none', margin: '10px', lineHeight: '25px', height: '30px', padding: '0px',
+                                        '& .MuiSelect-select': {
+                                           color: '#2B817B'
+                                        },
+                                       ".MuiOutlinedInput-notchedOutline": {
+                                            border: "none !important"
+                                        },
+                                        '& .MuiSelect-icon':{
+                                               fill: '#2B817B'
+                                           }
+                                    }}
                                     labelId="demo-simple-select-label"
                                     id="demo-simple-select"
                                     value={dmonthly}
-                                    label="Monthly"
+                                    placeholder={"This Month"}
                                     onChange={handleChange}
                                 >
-                                    <MenuItem sx={{ marginRight: '0px', background: '#fff' }} disableRiple={true} value={'monthly'}>Monthly
-                                        <BiCheckCircle sx={{ marginTop: '8px', marginLeft: '8px' }} color='#42C677' /> </MenuItem>
-                                    <MenuItem disableRiple={true} value={'daily'}>Daily</MenuItem>
+                                    <MenuItem selected onClick={handleChecked} sx={{ marginRight: '0px', background: '#fff' }} disableRiple={true} value={'monthly'}>Monthly{" "}{" "}
+                                        {checked && <BiCheckCircle sx={{ marginTop: '9px', marginLeft: '8px' }} color='#42C677' />}
+                                    </MenuItem>
+                                    <MenuItem selected onClick={handleChecked} sx={{ marginRight: '0px', background: '#fff' }} disableRiple={true} value={'monthly'}>Monthly{" "}{" "}
+                                        {checked && <BiCheckCircle sx={{ marginTop: '9px', marginLeft: '8px' }} color='#42C677' />}
+                                    </MenuItem>
+                                    <MenuItem disableRiple={true} onClick={handleChecked1} value={'daily'}>Daily {" "}{" "}
+                                        {checked1 && <BiCheckCircle sx={{ marginTop: '9px', marginLeft: '8px' }} color='#42C677' />}</MenuItem>
                                 </Select>
                             </FormControl>
 

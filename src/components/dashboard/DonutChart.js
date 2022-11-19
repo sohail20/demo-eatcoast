@@ -5,6 +5,7 @@ export const DonutChart = () => {
     const series = [90, 8, 22, 55, 77, 99];
     const options = {
         series: [45, 52, 22, 51, 30],
+        colors: '#FF8D85',
         chart: {
             type: 'donut',
             width: '300px',

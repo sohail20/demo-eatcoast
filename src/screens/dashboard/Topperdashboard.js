@@ -6,6 +6,7 @@ import { CiLocationOn } from 'react-icons/ci'
 import { styled, alpha } from '@mui/material/styles';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import { AiOutlineLeft } from 'react-icons/ai'
 
 const theme = createTheme({
   palette: {
@@ -288,12 +289,49 @@ export const Topperdashboard = () => {
 
         <Drawer anchor='right' open={isDrawerOpen}
           onClose={()=> setIsDrawerOpen(false)}>
-          <Box p={2} width="250px" textAlign={'center'}
+          <Box p={2} width="350px" textAlign={'center'}
             role='presentation'>
-            <Typography variant='h6' component='div' onClick={() => setIsDrawerOpen(false)}>
-              side panel
+            <Typography onClick={() => setIsDrawerOpen(false)} variant='h6' component='div' textAlign={'start'} sx={{
+              color: '#E75C62', cursor: 'pointer',
+              fontSize: '16px'
+            }}
+              >
+              X
             </Typography>
+            <Typography variant='h6' textAlign={'center'} onClick={() => setIsDrawerOpen(false)} component='div' 
+              sx={{ marginTop: '-29px', fontSize: '20px', fontWeight: '600', cursor: 'pointer',fontFamily: 'Outfit' }} >
+              Notification 
+            </Typography>
+            
+            {[1,2,3,4,5,6,7].map(item=>{
+              return (
 
+            <Box component={'div'} sx={{marginTop: '20px',
+              display: 'flex', justifyContent: 'space-between', width: '100%'
+            }}>
+              <Box component={'div'}
+                display={'flex'} sx={typo14px} style={{ fontWeight: '600', marginLeft: '7px' }}>
+                <img src="../../images/bellDishes.png" alt="" width={'27px'} />
+
+                <Box component={'div'} sx={{ marginLeft: '10px' }} >
+                  <Box component={'div'} sx={
+                    { fontSize: '14px', fontFamily: 'Outfit', fontWeight: '500' }
+                  }>Shawarma Plate
+                  </Box>
+                  <Box component={'div'} sx={
+                    { fontSize: '11px ', fontFamily: 'Outfit', fontWeight: '300' }
+                  }>Has been Verified <BsCheckCircleFill color='#42C677' size={9} />
+                  </Box>
+                </Box>
+              </Box>
+
+              <Box component={'div'} sx={typo12px} style={{
+              }}>
+                Thu, Sep 20, 2021
+              </Box>
+            </Box>
+              )
+            })}
           </Box>
         </Drawer>
       </AppBar>
