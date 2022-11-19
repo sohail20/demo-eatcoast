@@ -107,6 +107,14 @@ export const Login = () => {
                                     <span style={{ color: '#2B817B', fontFamily: 'Outfit', textDecorationLine: 'underline' }}>
                                         Register </span></Link>
                             </Typography>
+                            
+                            <Typography sx={{ display: 'flex', justifyContent: 'center', mt: 3 }} >
+                                    <span style={{ color: '#2B817B', fontFamily: 'Outfit' }}>Rough work only</span>{' '}
+                                <Link to={'/dashboard'} >
+                                    <span style={{ color: '#2B817B', fontFamily: 'Outfit', textDecorationLine: 'underline' }}>
+                                        Dashboard </span></Link>
+                            </Typography>
+
                         </Box>
                     </Box>
                 </Grid>
