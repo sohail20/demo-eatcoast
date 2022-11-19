@@ -1,4 +1,4 @@
-import { Box, Button, Chip, Divider, Drawer, Radio, TextareaAutosize, TextField, Typography } from '@mui/material';
+import { Box, Button, Chip, Divider, Drawer, Radio, RadioGroup, TextareaAutosize, TextField, Typography } from '@mui/material';
 import React from 'react';
 import { BsCalendar4Week } from 'react-icons/bs';
 import { RiTimerLine } from 'react-icons/ri';
@@ -188,7 +188,7 @@ export const Dash_staff_SideSilder = ({ isDrawerOpenStaff, setIsDrawerOpenStaff,
                                                     <Box sx={{
                                                         fontFamily: 'Outfit',
                                                         borderRadius: '4px', fontSize: '14px', fontweight: '400',
-                                                        border: '1px solid #9EA3AE', width: '130px', height: '29px', lineHeight: '29px'
+                                                        border: '1px solid #9EA3AE', width: '140px', padding: '0px 3px' ,height: '29px', lineHeight: '29px'
                                                     }}>
                                                         {item.time}
                                                     </Box>
@@ -284,7 +284,7 @@ export const Dash_staff_SideSilder = ({ isDrawerOpenStaff, setIsDrawerOpenStaff,
                                         button: 'Bussiness subscription',
                                         title: 'Salmon with chili sauce',
                                         order: 1,
-                                        time: '10.00 am - 01.00 pm',
+                                        time: '10.00 am-01.00 pm',
                                         totalPaid: '200.00',
                                         colr: '#FF9933',
                                     }].map(item => {
@@ -371,7 +371,7 @@ export const Dash_staff_SideSilder = ({ isDrawerOpenStaff, setIsDrawerOpenStaff,
                                                         <Box sx={{
                                                             fontFamily: 'Outfit',
                                                             borderRadius: '4px', fontSize: '14px', fontweight: '400',
-                                                            border: '1px solid #9EA3AE', width: '130px', height: '29px', lineHeight: '29px'
+                                                            border: '1px solid #9EA3AE', width: '140px', padding: '0px 3px', height: '29px', lineHeight: '29px'
                                                         }}>
                                                             {item.time}
                                                         </Box>
@@ -554,11 +554,13 @@ export const Dash_staff_SideSilder = ({ isDrawerOpenStaff, setIsDrawerOpenStaff,
                                         fontWeight: '400',}}>
                                             Out of an item
                                    </Typography>
-                                        <Radio {...controlProps('OutItem')} size="small" sx={{
-                                        '&, &.Mui-checked': {
-                                            color: '#2B817B',
-                                        },
-                                    }} />
+                                            
+                                            <Radio {...controlProps('OutItem')} defaultValue="Out of an item" size="small" sx={{
+                                                '&, &.Mui-checked': {
+                                                    color: '#2B817B',
+                                                },
+                                            }} />
+                                                               
 
                                 </Box>
                                     </Box>
@@ -697,18 +699,14 @@ export const Dash_staff_SideSilder = ({ isDrawerOpenStaff, setIsDrawerOpenStaff,
                                         placeholder='Type your reason'
                                         multiline 
                                         rows={4}
-                                        maxLength="80"
-                                        // value={value}
+                                        inputProps={{ maxLength: 80 }}                                        // value={value}
                                         sx={{
                                              color: '#1A1B24',
                                             borderRadius: '6px', border: '1px solid  #E1E1E6', 
                                              background: '#F6F6F6', 
                                             '&:hover': {
                                                 color: '#E1E1E6' }
-                                            
-
-
-                                        }}
+                                             }}
                                      
                                     />
 
