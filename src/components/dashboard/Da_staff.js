@@ -213,7 +213,7 @@ const handleDrawer=()=>{
                         
                         }} >
                             <Box component={'div'} display={'flex'} alignItems={'center'} justifyContent={'start'} >
-                                <Revenue />
+                                <img src='../../images/allOrder.svg' alt="" />
                             </Box>
                             <Box componet={"div"} display={'flex'} alignItems={'center'} justifyContent={'space-between'}>
                                 <Typography variant='p' sx={{
@@ -249,7 +249,8 @@ const handleDrawer=()=>{
                             
                         }} >
                             <Box component={'div'} display={'flex'} alignItems={'center'} justifyContent={'start'} >
-                                <Revenue />
+                                <img src='../../images/Book.svg' alt="" />
+
                             </Box>
                             <Box componet={"div"} display={'flex'} alignItems={'center'} justifyContent={'space-between'}>
                                 <Typography variant='p' sx={{
@@ -282,7 +283,8 @@ const handleDrawer=()=>{
                             backgroundColor: clicked2 ? '#F0FAF9' : 'white' 
                         }} >
                             <Box component={'div'} display={'flex'} alignItems={'center'} justifyContent={'start'} >
-                                <Revenue />
+                                <img src='../../images/Bell.svg' alt="" />
+
                             </Box>
                             <Box componet={"div"} display={'flex'} alignItems={'center'} justifyContent={'space-between'}>
                                 <Typography variant='p' sx={{
@@ -315,7 +317,8 @@ const handleDrawer=()=>{
                             
                         }} >
                             <Box component={'div'} display={'flex'} alignItems={'center'} justifyContent={'start'} >
-                                <Revenue />
+                                <img src='../../images/milk.svg' alt="" />
+
                             </Box>
                             <Box componet={"div"} display={'flex'} alignItems={'center'} justifyContent={'space-between'}>
                                 <Typography variant='p' sx={{

@@ -2,6 +2,9 @@ import { Box, FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 import React from 'react'
 import Charts from 'react-apexcharts'
 import { BiCheckCircle } from 'react-icons/bi'
+import './SalesChartCss.css'
+
+
 export const SalesChart = () => {
 
 
