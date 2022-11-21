@@ -15,27 +15,30 @@ export const Da_manager = ({ todayDate }) => {
             name: 'Revenue',
             price: 2000,
             value: 41,
-            indi: 'Revenue',
+            image: '../../images/Revenue.svg',
         },
             {
-            name: 'Revenue',
+            name: 'Active Subscription',
             price: 2000,
             value: -41,
-                indi: 'BsArrowDown',
+                image: '../../images/Play.svg',
+
 
         },
             {
-            name: 'Revenue',
+            name: 'Paused Subscription',
             price: 2000,
             value: -41,
-                indi: 'BsArrowDown',
+                image: '../../images/Pause.svg',
+
 
         },
             {
-            name: 'Revenue',
+            name: 'Single Order',
             price: 2000,
             value: 1,
-                indi: 'BsArrowDown',
+                image: '../../images/Single.svg',
+
 
         }
     ]
@@ -136,9 +139,9 @@ export const Da_manager = ({ todayDate }) => {
                                             flexDirection: 'column', justifyContent: 'space-between'
                                         }} >
                                             <Box component={'div'} display={'flex'} alignItems={'center'} justifyContent={'start'} >
-                                                <Revenue />
+                                                <img src={item.image} alt="" />
                                                 <Typography sx={{ paddingLeft: '15px' }}>
-                                                    Revenue
+                                                   {item.name}
                                                 </Typography>
                                             </Box>
                                             <Box componet={"div"} display={'flex'} alignItems={'center'} justifyContent={'space-between'}>

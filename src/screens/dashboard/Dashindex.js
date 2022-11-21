@@ -187,7 +187,12 @@ const handledroptoggle=()=>{
     return (
         <Box sx={{ display: 'flex' }}>
             <CssBaseline />
-            <Topperdashboard handleDrawerOpen={handleDrawerOpen} open={open} />
+{      
+                ((dashboardPage || finanPage || empPage ) && (<Topperdashboard handleDrawerOpen={handleDrawerOpen} open={open} />) ) 
+
+}
+
+            
 
             <Drawer variant="permanent" open={open} >
                 <DrawerHeader sx={{display: 'flex', justifyContent: 'center'}}>

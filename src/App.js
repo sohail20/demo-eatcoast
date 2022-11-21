@@ -1,4 +1,5 @@
 import './App.css';
+
 import { Route, Routes } from 'react-router-dom';
 import { Login } from './screens/loginScreen/Login'
 import { Login2 } from './screens/loginScreen/Operators'
@@ -8,6 +9,7 @@ import { ForgotPin } from './screens/loginScreen/ForgotPin'
 import { CheckEmail } from './screens/loginScreen/CheckEmail'
 import { Regsteppers }from './screens/registerScreen/Regsteppers';
 import { Dashindex } from './screens/dashboard/Dashindex'; 
+import { Utility } from './screens/Utility';
 
 function App() {
   return (
@@ -22,6 +24,7 @@ function App() {
           <Route path={'/forgotpin'} element={<ForgotPin />} />
           <Route path={'/checkemail'} element={<CheckEmail />} />
           <Route path={'/stepper'} element={<Regsteppers />} />
+          <Route path={'/utility'} element={<Utility />} />
         </Routes>
       {/* </ThemeProvider> */}
    </>
