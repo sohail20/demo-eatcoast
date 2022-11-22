@@ -1,8 +1,15 @@
-import { Box } from '@mui/material'
 import React from 'react'
+import { Box } from '@mui/material'
+import DashboardLayout from '../DashboardLayout/DashboardLayout'
 
-export const Settings = () => {
+const Settings = () => {
   return (
-    <Box sx={{ marginTop: { xs: '100px', sm: '100px', md: '0px' } }}>Settings</Box>
+    <>
+      <DashboardLayout>
+        Settings
+      </DashboardLayout>
+    </>
   )
 }
+
+export default Settings

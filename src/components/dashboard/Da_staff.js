@@ -1,6 +1,5 @@
 import React from 'react'
 import { Box, Button, Chip, Grid,  Typography } from '@mui/material'
-import { Revenue } from '../../assets/Svg/Revenue';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -358,8 +357,8 @@ const handleDrawer=()=>{
                         }}>
                            Subscription list
                         </Typography>
-                  <TableContainer component={Paper}>
-                        <Table sx={{ minWidth: 650, height: '400px' }} aria-label="simple table">
+                  <TableContainer component="div">
+                        <Table sx={{ minWidth: 650, height: '400px'}} aria-label="simple table">
                             <TableHead>
                                 <TableRow>
                                     <TableCell>#</TableCell>
@@ -415,7 +414,7 @@ const handleDrawer=()=>{
                             }}>
                                 All Meal Courses
                             </Typography>
-                    <TableContainer component={Paper}>
+                    <TableContainer component="div">
                         <Table sx={{ minWidth: 650 }} aria-label="simple table">
                             <TableHead>
                                 <TableRow>

@@ -1,8 +1,14 @@
-import { Box } from '@mui/material'
 import React from 'react'
+import DashboardLayout from '../DashboardLayout/DashboardLayout'
 
-export const Financials = () => {
+const Financials = () => {
   return (
-    <Box sx={{ marginTop: { xs: '100px', sm: '100px', md: '0px' } }}>Financials</Box>
+    <>
+      <DashboardLayout>
+        Financials
+      </DashboardLayout>
+    </>
   )
 }
+
+export default Financials

@@ -1,8 +1,14 @@
-import { Box } from '@mui/material'
 import React from 'react'
+import DashboardLayout from '../DashboardLayout/DashboardLayout'
 
-export const Subscription = () => {
+const Subscription = () => {
   return (
-    <Box sx={{ marginTop: { xs: '100px', sm: '100px', md: '0px' } }}>Subscription</Box>
+    <>
+      <DashboardLayout>
+        Subscription
+      </DashboardLayout>
+    </>
   )
 }
+
+export default Subscription

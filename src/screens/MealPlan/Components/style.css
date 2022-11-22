@@ -1,0 +1,39 @@
+.bgContainer{
+    position: absolute;
+    left: 50%;
+    top: 40%;
+    transform: translate(-50%);
+}
+.hiddenbox{
+    display: none;
+}
+/* #bgimage{
+    position: relative;
+    top: 80px !important;
+} */
+
+@media only screen and (max-width:425px){
+    #bgimage{
+        width: 250px;
+        height: 250px;
+        margin: 0 auto 0 auto !important;
+    }
+    #dish{
+        display: none;
+    }
+    .dishbox{
+        display: flex !important;
+        flex-wrap: wrap !important;
+    }
+    .bgContainer{
+        position: relative;
+        top: 5%;
+        
+    }
+    .sidebox{
+        display:none !important;
+    }
+    .hiddenbox{
+        display: block !important;
+    }
+}
