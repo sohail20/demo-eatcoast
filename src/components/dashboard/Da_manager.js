@@ -2,10 +2,6 @@ import React from 'react'
 import { Box, FormControl, Grid, InputLabel, MenuItem, Select, Typography } from '@mui/material'
 import { BiCheckCircle } from 'react-icons/bi'
 import { BsArrowDown, BsArrowUp } from 'react-icons/bs'
-import { Revenue } from '../../assets/Svg/Revenue';
-import { ActiveSubsc } from '../../assets/Svg/ActiveSubsc';
-import { PaidSubs } from '../../assets/Svg/PaidSubs';
-import { SingleOrder } from '../../assets/Svg/SingleOrder';
 import { DonutChart } from './DonutChart';
 import { SalesChart } from './SalesChart';
 
@@ -15,13 +11,13 @@ export const Da_manager = ({ todayDate }) => {
             name: 'Revenue',
             price: 2000,
             value: 41,
-            image: '../../images/Revenue.svg',
+            image: 'images/Revenue.svg',
         },
             {
             name: 'Active Subscription',
             price: 2000,
             value: -41,
-                image: '../../images/Play.svg',
+                image: 'images/Play.svg',
 
 
         },
@@ -29,7 +25,7 @@ export const Da_manager = ({ todayDate }) => {
             name: 'Paused Subscription',
             price: 2000,
             value: -41,
-                image: '../../images/Pause.svg',
+                image: 'images/Pause.svg',
 
 
         },
@@ -37,7 +33,7 @@ export const Da_manager = ({ todayDate }) => {
             name: 'Single Order',
             price: 2000,
             value: 1,
-                image: '../../images/Single.svg',
+                image: 'images/Single.svg',
 
 
         }

@@ -14,15 +14,15 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import { Menu } from './Menu';
-import { Order } from './Order';
-import { Subscription } from './Subscription';
-import { Financials } from './Financials';
-import { Employee } from './Employee';
-import { Settings } from './Settings';
-import { Topperdashboard } from './Topperdashboard';
+import Menu from './Menu';
+import Order from './Order';
+import Subscription from './Subscription';
+import Financials from './Financials';
+import Employee from './Employee';
+import Settings from './Settings';
+import Topperdashboard from './Topperdashboard';
 import { TbLayoutDashboard } from 'react-icons/tb'
-import { DashHome } from './DashHome';
+import DashHome from './DashHome';
 import { IoCubeOutline } from 'react-icons/io5'
 import { HiOutlineDocumentText } from 'react-icons/hi'
 import { BsBook } from 'react-icons/bs'
@@ -187,12 +187,10 @@ const handledroptoggle=()=>{
     return (
         <Box sx={{ display: 'flex' }}>
             <CssBaseline />
-{      
+            {      
                 ((dashboardPage || finanPage || empPage ) && (<Topperdashboard handleDrawerOpen={handleDrawerOpen} open={open} />) ) 
 
-}
-
-            
+            }
 
             <Drawer variant="permanent" open={open} >
                 <DrawerHeader sx={{display: 'flex', justifyContent: 'center'}}>

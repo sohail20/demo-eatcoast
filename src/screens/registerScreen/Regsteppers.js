@@ -6,7 +6,7 @@ import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import StepConnector, { stepConnectorClasses } from '@mui/material/StepConnector';
-import { MerchantRegSvg } from '../../assets/Svg/MerchantRegSvg'
+// import { MerchantRegSvg } from '../../assets/Svg/MerchantRegSvg'
 import { Box, Button, Container } from '@mui/material';
 import { Finsh } from '../../components/Finsh';
 import { useFormik } from 'formik';

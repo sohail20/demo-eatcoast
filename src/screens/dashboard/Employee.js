@@ -1,8 +1,15 @@
-import { Box } from '@mui/material'
 import React from 'react'
+import DashboardLayout from '../DashboardLayout/DashboardLayout'
+import MealPlan2 from '../MealPlan2'
 
-export const Employee = () => {
+const Employee = () => {
   return (
-    <Box sx={{ marginTop: { xs: '100px', sm: '100px', md: '0px' } }}>Employee Render</Box>
+    <>
+      <DashboardLayout>
+        <MealPlan2 />
+      </DashboardLayout>
+    </>
   )
 }
+
+export default Employee

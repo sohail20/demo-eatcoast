@@ -1,11 +1,15 @@
-import { Box } from '@mui/material'
 import React from 'react'
+import { Box } from '@mui/material'
+import DashboardLayout from '../DashboardLayout/DashboardLayout'
 
-export const Order = () => {
+const Order = () => {
   return (
-    <Box sx={{ marginTop: { xs: '100px', sm: '100px', md: '0px' } }}>
-    Order
-    
-    </Box>
+    <>
+      <DashboardLayout>
+        Order
+      </DashboardLayout>   
+    </>
   )
 }
+
+export default Order

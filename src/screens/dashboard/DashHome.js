@@ -7,7 +7,7 @@ import Box from '@mui/material/Box';
 import { createTheme } from '@mui/system';
 import { ThemeProvider } from '@mui/material';
 import { Da_manager } from '../../components/dashboard/Da_manager';
-import { Da_staff } from '../../components/dashboard/Da_staff';
+import { Da_staff } from "../../components/dashboard/Da_staff";
 
 
 const theme = createTheme({
@@ -51,12 +51,13 @@ function a11yProps(index) {
 };
 }
 
-export const DashHome = () => {
+const DashHome = () => {
     const [value, setValue] = React.useState(0);
     
     const handleChange = (event, newValue) => {
       setValue(newValue);
     };
+
   const todayDate = () => {
     let currentDate = '';
     let setToDate = '';
@@ -107,3 +108,5 @@ export const DashHome = () => {
 
 
 }
+
+export default DashHome
