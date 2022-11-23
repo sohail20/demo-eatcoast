@@ -1,4 +1,4 @@
 import FlexBoxContainer from "./FlexBoxContainer";
 import BorderContainer from "./BorderContainer";
-
-export {BorderContainer,FlexBoxContainer}
+import CenteredBoxContainer from "./CenteredBox";
+export { BorderContainer, FlexBoxContainer, CenteredBoxContainer };

@@ -18,7 +18,9 @@ import AddIcon from "@mui/icons-material/Add";
 import ClearIcon from "@mui/icons-material/Clear";
 import CustomizedModal from "../../Modal/CustomModal";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
-
+import ScheduledDishes from "./ScheduledDishes";
+import CustomTabs from "./Tabs";
+import StatusMealPlan from "./StatusMealPlan";
 const TopConainer = styled(Box)(({ theme }) => ({
   display: "flex",
   flexDirection: "column",
@@ -100,6 +102,7 @@ const AddMealPlan = () => {
       <Box>
         <Box display={"flex"} alignItems="center">
           <BackButton
+            label="Back"
             icon={<ArrowBackIosIcon style={{ color: "#2B817B" }} />}
           />
           <Box style={{ width: "100%", textAlign: "center" }}>
@@ -107,7 +110,7 @@ const AddMealPlan = () => {
           </Box>
         </Box>
 
-        <Box mt={5}>
+        {/* <Box mt={5}>
           <TopConainer>
             <SmallInfoCard
               borderLess
@@ -119,8 +122,6 @@ const AddMealPlan = () => {
               }}
               hasAddButton
             />
-
-            {/* <TabsMealPlan/> */}
 
             <FlexBoxContainer style={{ width: "100%" }}>
               <H1Typo>Meal Courses</H1Typo>
@@ -146,7 +147,13 @@ const AddMealPlan = () => {
               <LightTitle>No Add-ons added</LightTitle>
             </CustomPaper>
           </TopConainer>
-        </Box>
+        </Box> */}
+
+        {/* <CustomTabs/> */}
+
+        {/* <StatusMealPlan /> */}
+
+        <ScheduledDishes/>
       </Box>
 
       <CustomizedModal isOpened={true}>

@@ -19,8 +19,8 @@ const CustomIconButton = ({ label = "Back", variant, icon, onClick }) => {
       startIcon={icon ? icon : undefined}
       variant={variant}
       style={{
-        borderColor: "#2B817B",
-        backgroundColor: "#2B817B",
+        borderColor: variant === "outlined" ? "#2B817B" : undefined,
+        backgroundColor: variant === "contained" ? "#2B817B" : undefined,
       }}
     >
       <Typo variant={variant}>{label}</Typo>

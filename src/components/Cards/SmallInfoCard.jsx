@@ -2,8 +2,14 @@ import { Box, styled, Typography, Button } from "@mui/material";
 import UnderlineButton from "../Button/UnderlineButton";
 import AddIcon from "@mui/icons-material/Add";
 import FlexBoxContainer from "../Containers/FlexBoxContainer";
+import SimpleChips from "../Chips/SimpleChips";
+import { BorderContainer, CenteredBoxContainer } from "../Containers";
+import { H3Typo } from "../Typography";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
+
 const BoxContainer = styled(Box)(({ theme, borderLess }) => ({
-  display: "flex",
+  display: "block",
   flexDirection: "row",
   alignItems: "flex-start",
   padding: "12px",
@@ -39,48 +45,100 @@ const LightTitle = styled(Typography)(({ theme }) => ({
 const SmallInfoCard = ({
   data,
   borderLess = false,
+  status,
+  statusColor,
   hasEditButton,
+  rightSideTitle,
+  hasPoints,
   hasAddButton,
+  ...rest
 }) => {
   return (
     <>
-      <BoxContainer borderLess={borderLess}>
-        <Box style={{ display: "flex" }}>
-          <Box>
-            <img
-              src={data.img}
-              alt={"some title"}
-              loading="lazy"
-              height="100%"
-              style={{
-                height: borderLess ? "88px" : "72px",
-                borderRadius: "4px",
-              }}
-            />
+      <BoxContainer borderLess={borderLess} {...rest} mt={2}>
+        <CenteredBoxContainer style={{ width: "100%" }}>
+          <Box style={{ display: "flex" }}>
+            <Box>
+              <img
+                src={data.img}
+                alt={"some title"}
+                loading="lazy"
+                height="100%"
+                style={{
+                  height: borderLess ? "88px" : "72px",
+                  borderRadius: "4px",
+                }}
+              />
+            </Box>
           </Box>
-        </Box>
-        <Box style={{ width: "100%" }}>
-          <FlexBoxContainer>
-            <HeadingTypo>{data.heading}</HeadingTypo>
-            {hasAddButton && (
-              <Button
-                variant="contained"
-                style={{ background: "#2B817B" }}
-                startIcon={<AddIcon />}
-              >
-                Add Menu
-              </Button>
-            )}
-          </FlexBoxContainer>
-          <Box
-            display="flex"
-            justifyContent={"space-between"}
-            alignItems="center"
+          <Box style={{ width: "100%" }} ml={2}>
+            <FlexBoxContainer>
+              <HeadingTypo>{data.heading}</HeadingTypo>
+              {hasAddButton && (
+                <Button
+                  variant="contained"
+                  style={{ background: "#2B817B" }}
+                  startIcon={<AddIcon />}
+                >
+                  Add Menu
+                </Button>
+              )}
+              {data.status && (
+                <SimpleChips
+                  label={data.status}
+                  chipColor={
+                    data.status === "Rejected"
+                      ? "#E75C62"
+                      : data.status === "Need to Submit"
+                      ? "#42C677"
+                      : "#FAA641"
+                  }
+                />
+              )}
+              {rightSideTitle && (
+                <Box
+                  display="flex"
+                  alignItems="center"
+                  justifyContent={"center"}
+                >
+                  <LightTitle>{rightSideTitle}</LightTitle>
+                  <ArrowForwardIosIcon style={{ color: " #9EA3AE" }} />
+                </Box>
+              )}
+            </FlexBoxContainer>
+            <Box
+              display="flex"
+              justifyContent={"space-between"}
+              alignItems="center"
+            >
+              {data.address && <LightTitle>{data.address}</LightTitle>}
+              {hasEditButton && <UnderlineButton>Edit</UnderlineButton>}
+            </Box>
+          </Box>
+        </CenteredBoxContainer>
+        {hasPoints && (
+          <BorderContainer
+            style={{
+              borderRadius: "4px",
+              background: "#F6F6F6",
+              display: "block",
+              border: "none",
+            }}
+            mt={2}
           >
-            <LightTitle>{data.address}</LightTitle>
-            {hasEditButton && <UnderlineButton>Edit</UnderlineButton>}
-          </Box>
-        </Box>
+            {hasPoints.map((item) => (
+              <>
+                <H3Typo>
+                  <FiberManualRecordIcon
+                    style={{ fontSize: "8px", marginRight: "5px" }}
+                  />
+                  {item}
+                </H3Typo>
+                <br />
+              </>
+            ))}
+          </BorderContainer>
+        )}
       </BoxContainer>
     </>
   );
