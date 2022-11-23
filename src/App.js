@@ -19,6 +19,7 @@ import Menu from './screens/dashboard/Menu';
 import Financials from './screens/dashboard/Financials';
 import Employee from './screens/dashboard/Employee';
 import Settings from './screens/dashboard/Settings';
+import AddDishes from './components/Dishes/AddDishes/AddDishes';
 
 function App() {
   return (
@@ -39,6 +40,8 @@ function App() {
           <Route path="/financials" element={<Financials />} />
           <Route path="/employee" element={<Employee />} />
           <Route path="/setting" element={<Settings />} />
+          <Route path="/dishes" element={<AddDishes />} />
+
         </Routes>
       </ThemeProvider>
    </>

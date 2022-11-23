@@ -5,14 +5,14 @@ import { Typography } from "@mui/material";
 import { styled, alpha } from "@mui/material/styles";
 import Button from '@mui/material/Button'
 import AddDishesSubHeader from "./AddDishesSubHeader";
-import AddDishesMainBox from "./AddDishesMainBox";
+import { AddDishesFieldBox } from "./AddDishesFieldBox";
 
 export default function AddDishes() {
   return <>
   
   <Box>
     <Box mb="28px"><AddDishesSubHeader/></Box>
-    <Box><AddDishesMainBox/></Box>
+    <Box><AddDishesFieldBox/></Box>
   </Box>
   
   </>;

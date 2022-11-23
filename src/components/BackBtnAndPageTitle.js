@@ -16,7 +16,7 @@ const BackBtnAndPageTitle = ({title,btnTitle,linkPath}) => {
             </Button> 
         </Box>
     {
-        title && <Typography color="customclr.darkblacks" fontSize="20px" fontWeight="600" mx="auto" py="3px">{title}</Typography>
+        title && <Typography color="#fff3" fontSize="20px" fontWeight="600" mx="auto" py="3px">"Hello</Typography>
     }
     </Box>
   )
