@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Box, styled, Typography } from "@mui/material";
 import Calendar from "react-calendar";
 import "./Calendar.css";
+import CustomInput from "../Inputs/CustomInput";
 
 const StartDate = styled(Box)({
   display: "flex",
@@ -27,19 +28,18 @@ const CustomPlaceHolder = styled(Typography)({
   color: "#9EA3AE",
 });
 
-function CustomCalendar({ hasTopInput }) {
+function CustomCalendar({ hasTopInput, handleOnSelect }) {
   const [value, onChange] = useState(new Date());
 
   return (
     <div>
       {hasTopInput && (
-        <StartDate mb={2}>
-          <CustomPlaceHolder>Start Date</CustomPlaceHolder>
-          <i className="fa fa-calendar" style={{ color: "#9EA3AE" }}></i>
-        </StartDate>
+        <Box style={{marginBottom:20}}>
+          <CustomInput label="Date" value="Tuesday 22/22/22"/>
+        </Box>
       )}
       <Calendar
-        onChange={onChange}
+        onChange={handleOnSelect}
         nextLabel={
           <i class="fa fa-chevron-right" style={{ color: "#2B817B" }}></i>
         }

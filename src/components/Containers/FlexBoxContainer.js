@@ -6,8 +6,8 @@ const FlexBox = styled(Box)(({ theme }) => ({
   justifyContent: "space-between",
 }));
 
-const FlexBoxContainer = ({ children }) => {
-  return <FlexBox>{children}</FlexBox>;
+const FlexBoxContainer = ({ children, ...rest }) => {
+  return <FlexBox {...rest}>{children}</FlexBox>;
 };
 
 export default FlexBoxContainer;

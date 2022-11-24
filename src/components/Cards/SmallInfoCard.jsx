@@ -51,6 +51,7 @@ const SmallInfoCard = ({
   rightSideTitle,
   hasPoints,
   hasAddButton,
+  imgWidth,
   ...rest
 }) => {
   return (
@@ -63,9 +64,14 @@ const SmallInfoCard = ({
                 src={data.img}
                 alt={"some title"}
                 loading="lazy"
-                height="100%"
+                width={imgWidth ? "40px" : undefined}
                 style={{
-                  height: borderLess ? "88px" : "72px",
+                  height:
+                    imgWidth && borderLess
+                      ? "40px"
+                      : borderLess
+                      ? "88px "
+                      : "72px",
                   borderRadius: "4px",
                 }}
               />
