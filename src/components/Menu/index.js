@@ -15,9 +15,10 @@ import AddCuisine from "./AddCuisine";
 // import CuisineCategoryCard from "../../components/Menu/CuisineMenu/CuisineCategoryCard";
 // import { Data2 } from "../../components/Menu/CuisineMenu/config";
 import { Data2 } from "./CuisineMenu/config";
+import AddMealPlan from "./AddMealPlan/AddMealPlan";
 export const MenuComponent = () => {
   const [isShownCuisine, setIsShownCuisine] = useState(false);
-  const [isShown, setIsShown] = useState(false);
+  const [isShown, setIsShown] = useState(true);
   const [isShownButtonBox, setIsShownButtonBox] = useState(false);
   const [showAllCuisine, setShowAllCuisine] = React.useState(false);
 
@@ -100,66 +101,82 @@ export const MenuComponent = () => {
   return (
     <>
       <Box component="container">
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "space-between",
-            marginTop: { lg: "0px", md: "0px", sm: "150px", xs: "150px" },
-          }}
-        >
-          <Box>
-            <Box>
-              <Typography sx={Typo1}>Meal Plans</Typography>
+        {false ? (
+          <>
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "space-between",
+                marginTop: { lg: "0px", md: "0px", sm: "150px", xs: "150px" },
+              }}
+            >
+              <Box>
+                <Box>
+                  <Typography sx={Typo1}>Meal Plans</Typography>
+                </Box>
+
+                {isShownButtonBox ? (
+                  <CustomSelectMenu setShowAllCuisineFunc={setShowAllCuisine} />
+                ) : (
+                  <Box>
+                    <Link
+                      component="button"
+                      sx={Link1}
+                      onClick={() => setIsShown((current) => !current)}
+                    >
+                      <Typography sx={Typo2}>Add Cuisine +</Typography>
+                    </Link>
+                  </Box>
+                )}
+              </Box>
+
+              <Box
+                sx={{
+                  pr: {
+                    xl: "329px",
+                    lg: "329px",
+                    md: "150px",
+                    sm: "150px",
+                    xs: "0px",
+                  },
+                }}
+              >
+                <Button
+                  variant="contained"
+                  startIcon={<AddIcon sx={IconBtn} />}
+                  sx={Btn1}
+                  onClick={handleClickBtn}
+                >
+                  Add Dishes
+                </Button>
+              </Box>
             </Box>
 
-            {isShownButtonBox ? (
-              <CustomSelectMenu setShowAllCuisineFunc={setShowAllCuisine} />
-            ) : (
-              <Box>
-                <Link
-                  component="button"
-                  sx={Link1}
-                  onClick={() => setIsShown((current) => !current)}
-                >
-                  <Typography sx={Typo2}>Add Cuisine +</Typography>
-                </Link>
-              </Box>
-            )}
-          </Box>
+            <Box>
+              {isShown ? (
+                <AddCuisine setIsShownButtonBoxFunc={setIsShownButtonBox} />
+              ) : (
+                <ImageSection />
+              )}
+            </Box>
 
-          <Box sx={{ pr: {xl: "329px", lg: "329px", md: "150px", sm: "150px", xs: "0px"} }}>
-            <Button
-              variant="contained"
-              startIcon={<AddIcon sx={IconBtn} />}
-              sx={Btn1}
-              onClick={handleClickBtn}
-            >
-              Add Dishes
-            </Button>
-          </Box>
-        </Box>
-
-        <Box>
-          {isShown ? (
-            <AddCuisine setIsShownButtonBoxFunc={setIsShownButtonBox} />
-          ) : (
-            <ImageSection />
-          )}
-        </Box>
-
-        {/* <Box>{showAllCuisine ? <AllCuisineMenu /> : ""}</Box> */}
-        <Box>
-          {showAllCuisine ? (
-            <CuisineCategoryCard
-              Data={Data2}
-              title={"American Cuisine"}
-              subTitle={"6 Sub-cuisine"}
-            />
-          ) : (
-            ""
-          )}
-        </Box>
+            {/* <Box>{showAllCuisine ? <AllCuisineMenu /> : ""}</Box> */}
+            <Box>
+              {showAllCuisine ? (
+                <CuisineCategoryCard
+                  Data={Data2}
+                  title={"American Cuisine"}
+                  subTitle={"6 Sub-cuisine"}
+                />
+              ) : (
+                ""
+              )}
+            </Box>
+          </>
+        ) : (
+          <AddMealPlan/>
+        )}
       </Box>
     </>
   );
