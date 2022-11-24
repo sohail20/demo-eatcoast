@@ -74,7 +74,7 @@ export default function SwitchButton() {
     <FormGroup>
       
       <FormControlLabel
-        control={<IOSSwitch sx={{ m: 1 }} defaultChecked />}
+        control={<IOSSwitch sx={{ m: 1 }}  />}
       />
       
     </FormGroup>
