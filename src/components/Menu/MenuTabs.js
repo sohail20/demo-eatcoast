@@ -6,6 +6,7 @@ import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 import  Menu  from '../../screens/dashboard/Menu';
 import { MenuComponent } from '.';
+import Draft from './AddMealPlan/Draft/Draft';
 
 export default function MenuTabs() {
   const [value, setValue] = React.useState('1');
@@ -33,7 +34,7 @@ export default function MenuTabs() {
         </Box>
         <TabPanel value="1"><MenuComponent/></TabPanel>
         <TabPanel value="2">Item Two</TabPanel>
-        <TabPanel value="3">Item Three</TabPanel>
+        <TabPanel value="3"><Draft/></TabPanel>
       </TabContext>
     </Box>
   );

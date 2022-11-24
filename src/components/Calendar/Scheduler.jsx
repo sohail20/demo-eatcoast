@@ -53,7 +53,7 @@ function getArrayOfDays(currentYear, currentMonth) {
       arrayDays.unshift(previousMonthNumberOfDays + 1 - i);
     }
   if (nextDay)
-    for (let i = 1; i <= nextDay -1; i++) {
+    for (let i = 1; i <= nextDay - 1; i++) {
       arrayDays.push(i);
     }
   return arrayDays;

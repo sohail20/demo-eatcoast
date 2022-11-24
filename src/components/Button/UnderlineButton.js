@@ -8,6 +8,7 @@ const CustomButton = styled(Button)(({ theme }) => ({
   lineHeight: "24px",
   textDecorationLine: "underline",
   color: "#2B817B",
+  textTransform:"none"
 }));
 
 const UnderlineButton = ({ children }) => {

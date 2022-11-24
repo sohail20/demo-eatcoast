@@ -11,7 +11,6 @@ import {
 } from "@mui/material";
 import CustomIconButton from "../../Button/CustomIconButton";
 import BackButton from "../../Button/CustomIconButton";
-import SmallInfoCard from "../../Cards/SmallInfoCard";
 import { FlexBoxContainer, BorderContainer } from "../../Containers";
 import { H1Typo, H3Typo } from "../../Typography";
 import AddIcon from "@mui/icons-material/Add";
@@ -21,31 +20,7 @@ import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ScheduledDishes from "./ScheduledDishes";
 import CustomTabs from "./Tabs";
 import StatusMealPlan from "./StatusMealPlan";
-const TopConainer = styled(Box)(({ theme }) => ({
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "flex-start",
-  padding: "32px",
-  gap: "24px",
-  width: "100%",
-  height: "auto",
-  background: "#FFFFFF",
-  border: "1px solid #E1E1E6",
-  borderRadius: "8px",
-}));
-
-const CustomPaper = styled(Box)(() => ({
-  display: "flex",
-  flexDirection: "row",
-  justifyContent: "center",
-  alignItems: "center",
-  padding: "20px",
-  width: "100%",
-  height: "96px",
-  background: " #FFFFFF",
-  border: "1px solid #E1E1E6",
-  borderRadius: "8px",
-}));
+import TabsMealPlan from "./Tabs/TabsMealPlan";
 
 const LightTitle = styled(Typography)(({ theme }) => ({
   fontFamily: theme.typography.fontFamily,
@@ -110,53 +85,16 @@ const AddMealPlan = () => {
           </Box>
         </Box>
 
-        {/* <Box mt={5}>
-          <TopConainer>
-            <SmallInfoCard
-              borderLess
-              data={{
-                img: "https://picsum.photos/200",
-                heading: "Mesopotamian cuisine",
-                address:
-                  "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
-              }}
-              hasAddButton
-            />
-
-            <FlexBoxContainer style={{ width: "100%" }}>
-              <H1Typo>Meal Courses</H1Typo>
-              <CustomIconButton
-                label="hello"
-                variant={"outlined"}
-                icon={<AddIcon style={{ color: "#2B817B" }} />}
-              />
-            </FlexBoxContainer>
-            <CustomPaper>
-              <LightTitle>No Meal Courses added</LightTitle>
-            </CustomPaper>
-
-            <FlexBoxContainer style={{ width: "100%" }}>
-              <H1Typo>Add-ons</H1Typo>
-              <CustomIconButton
-                label="hello"
-                variant={"outlined"}
-                icon={<AddIcon style={{ color: "#2B817B" }} />}
-              />
-            </FlexBoxContainer>
-            <CustomPaper>
-              <LightTitle>No Add-ons added</LightTitle>
-            </CustomPaper>
-          </TopConainer>
-        </Box> */}
+        <TabsMealPlan hasTabs/>
 
         {/* <CustomTabs/> */}
 
         {/* <StatusMealPlan /> */}
 
-        <ScheduledDishes/>
+        {/* <ScheduledDishes/> */}
       </Box>
 
-      <CustomizedModal isOpened={true}>
+      <CustomizedModal isOpened={false}>
         <FlexBoxContainer>
           <IconButton>
             <ClearIcon />

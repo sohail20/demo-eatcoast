@@ -2,10 +2,12 @@ import { Grid, Box } from "@mui/material";
 import CustomScheduler from "../../Calendar/Scheduler";
 import SimpleChips from "../../Chips/SimpleChips";
 import { BorderContainer } from "../../Containers";
+import CustomDrawer from "../../Modal/CustomDrawer";
 import { H1Typo } from "../../Typography";
 import LightTitle from "../../Typography/LightTitle";
 const ScheduledDishes = () => {
   return (
+    <>
     <Grid container spacing={2}>
       <Grid item xs={3} md={3}>
         <Box
@@ -55,6 +57,10 @@ const ScheduledDishes = () => {
         <CustomScheduler/>
       </Grid>
     </Grid>
+    {/* <CustomDrawer>
+      asdasdasd
+      </CustomDrawer> */}
+    </>
   );
 };
 
