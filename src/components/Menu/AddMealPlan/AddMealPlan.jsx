@@ -87,11 +87,11 @@ const AddMealPlan = () => {
 
         {/* <TabsMealPlan hasTabs/> */}
 
-        {/* <CustomTabs/> */}
+        <CustomTabs/>
 
         {/* <StatusMealPlan /> */}
 
-        <ScheduledDishes/>
+        {/* <ScheduledDishes/> */}
       </Box>
 
       <CustomizedModal isOpened={false}>

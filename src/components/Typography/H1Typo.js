@@ -1,16 +1,16 @@
 import { styled, Typography } from "@mui/material";
 
-const Title = styled(Typography)(({ theme }) => ({
+const Title = styled(Typography)(({ color = "#1A1824", theme }) => ({
   fontFamily: theme.typography.fontFamily,
   fontStyle: "normal",
   fontWeight: 600,
   fontSize: "20px",
   letterSpacing: "0.015em",
-  color: "#1A1824",
+  color,
 }));
 
-const H1Typo = ({ children }) => {
-  return <Title>{children}</Title>;
+const H1Typo = ({ color, children }) => {
+  return <Title color={color}>{children}</Title>;
 };
 
 export default H1Typo;
