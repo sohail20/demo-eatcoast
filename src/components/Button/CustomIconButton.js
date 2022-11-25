@@ -12,7 +12,7 @@ const Typo = styled(Typography)(({ theme, variant }) => ({
   color: variant === "contained" ? "#fff" : "#2B817B",
 }));
 
-const CustomIconButton = ({ label = "Back", variant, icon, onClick }) => {
+const CustomIconButton = ({ label, variant, icon, onClick }) => {
   return (
     <Button
       onClick={onClick}

@@ -6,7 +6,7 @@ import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 
 const HistoryCard = () => {
   return (
-    <BorderContainer gap={2} style={{ width: "160px" }}>
+    <BorderContainer gap={2} sx={{ width: { xs: "100%", md: "160px" } }}>
       <BorderContainer
         style={{ background: "#E1E1E6", width: "32px", height: "32px" }}
       >

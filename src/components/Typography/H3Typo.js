@@ -6,7 +6,7 @@ const Title = styled(Typography)(({ theme, color = "#1A1824" }) => ({
   fontWeight: 500,
   fontSize: "16px",
   letterSpacing: "0.015em",
-  color,
+  color:color,
 }));
 
 const H3Typo = ({ color, children }) => {

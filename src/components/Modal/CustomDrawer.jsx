@@ -4,7 +4,7 @@ import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 import Button from "@mui/material/Button";
 import { FlexBoxContainer } from "../Containers";
 import CustomIconButton from "../Button/CustomIconButton";
-import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import { H1Typo } from "../Typography";
 export default function CustomDrawer({
   topTitle,
@@ -36,7 +36,6 @@ export default function CustomDrawer({
           open={state[anchor]}
           onClose={toggleDrawer(anchor, false)}
           onOpen={toggleDrawer(anchor, true)}
-          
         >
           <FlexBoxContainer p={2}>
             <CustomIconButton
@@ -45,7 +44,11 @@ export default function CustomDrawer({
               label=""
             />
             <H1Typo>{topTitle}</H1Typo>
-            <CustomIconButton variant={"contained"} onClick={handleOnSave} label="Save"/>
+            <CustomIconButton
+              variant={"contained"}
+              onClick={handleOnSave}
+              label="Save"
+            />
           </FlexBoxContainer>
           {children}
         </SwipeableDrawer>

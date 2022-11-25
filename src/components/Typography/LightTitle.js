@@ -9,7 +9,7 @@ const LightTitleTypo = styled(Typography)(({ color = "#9EA3AE", theme }) => ({
   color,
 }));
 
-const LightTitle = ({ color, children }) => {
-  return <LightTitleTypo color={color}>{children}</LightTitleTypo>;
+const LightTitle = ({ color, children, ...rest }) => {
+  return <LightTitleTypo color={color} {...rest}>{children}</LightTitleTypo>;
 };
 export default LightTitle;
