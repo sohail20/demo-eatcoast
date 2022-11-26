@@ -4,7 +4,7 @@ import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 import Button from "@mui/material/Button";
 import { FlexBoxContainer } from "../Containers";
 import CustomIconButton from "../Button/CustomIconButton";
-import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
+import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import { H1Typo } from "../Typography";
 export default function CustomDrawer({
   topTitle,
@@ -29,23 +29,26 @@ export default function CustomDrawer({
   };
 
   return (
-    <div style={{ width:"400px" }}>
+    <div>
       <React.Fragment>
         <SwipeableDrawer
           anchor={anchor}
           open={state[anchor]}
           onClose={toggleDrawer(anchor, false)}
           onOpen={toggleDrawer(anchor, true)}
-          
         >
-          <FlexBoxContainer>
+          <FlexBoxContainer p={2}>
             <CustomIconButton
               onClick={handleOnBack}
-              icon={<ChevronLeftIcon style={{ color: "#2B817B" }} />}
+              icon={<ArrowBackIosNewIcon style={{ color: "#2B817B" }} />}
               label=""
             />
             <H1Typo>{topTitle}</H1Typo>
-            <CustomIconButton variant={"contained"} onClick={handleOnSave}>Save</CustomIconButton>
+            <CustomIconButton
+              variant={"contained"}
+              onClick={handleOnSave}
+              label="Save"
+            />
           </FlexBoxContainer>
           {children}
         </SwipeableDrawer>

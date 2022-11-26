@@ -85,9 +85,9 @@ const AddMealPlan = () => {
           </Box>
         </Box>
 
-        <TabsMealPlan hasTabs/>
+        {/* <TabsMealPlan hasTabs/> */}
 
-        {/* <CustomTabs/> */}
+        <CustomTabs/>
 
         {/* <StatusMealPlan /> */}
 

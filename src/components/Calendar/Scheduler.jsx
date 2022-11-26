@@ -58,7 +58,7 @@ function getArrayOfDays(currentYear, currentMonth) {
     }
   return arrayDays;
 }
-const CustomScheduler = () => {
+const CustomScheduler = ({ handleAddClick, handleEditClick }) => {
   const [currentMonth, setCurrentMonth] = useState(new Date().getMonth() + 1);
   const [currentMonthName, setCurrentMonthName] = useState(
     toMonthName(new Date().getMonth() + 1)
@@ -129,16 +129,20 @@ const CustomScheduler = () => {
           <DateBox>
             <Box textAlign="end">
               {index === 19 ? (
-                <BorderColorOutlinedIcon
-                  style={{ color: "#FAA641", fontSize: "22px" }}
-                />
+                <Box onClick={handleEditClick} style={{ cursor: "pointer" }}>
+                  <BorderColorOutlinedIcon
+                    style={{ color: "#FAA641", fontSize: "22px" }}
+                  />
+                </Box>
               ) : (
-                <AddIcon
-                  style={{
-                    fontSize: "22px",
-                    color: "#42C677",
-                  }}
-                />
+                <Box onClick={handleAddClick} style={{ cursor: "pointer" }}>
+                  <AddIcon
+                    style={{
+                      fontSize: "22px",
+                      color: "#42C677",
+                    }}
+                  />
+                </Box>
               )}
             </Box>
             <Box textAlign="center">

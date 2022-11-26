@@ -6,6 +6,9 @@ import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
+import CustomIconButton from "../Button/CustomIconButton";
+import ClearRoundedIcon from "@mui/icons-material/ClearRounded";
+import { H1Typo } from "../Typography";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   ".MuiPaper-root": {
@@ -20,7 +23,13 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   },
 }));
 
-export default function CustomizedModal({ isOpened, children }) {
+export default function CustomizedModal({
+  isOpened,
+  hasTopHeader,
+  handleOnClose,
+  title,
+  children,
+}) {
   const [open, setOpen] = React.useState(isOpened);
 
   const handleClickOpen = () => {
@@ -39,6 +48,21 @@ export default function CustomizedModal({ isOpened, children }) {
         style={{ width: "100%" }}
       >
         <DialogContent dividers>
+          {hasTopHeader && (
+            <Box
+              display={"flex"}
+              alignItems="center"
+              style={{ marginBottom: "20px" }}
+            >
+              <CustomIconButton
+                onClick={handleOnClose}
+                icon={<ClearRoundedIcon style={{ color: "#E75C62" }} />}
+              />
+              <Box style={{ width: "100%", textAlign: "center" }}>
+                <H1Typo>{title}</H1Typo>
+              </Box>
+            </Box>
+          )}
           <Box gutterBottom>{children}</Box>
         </DialogContent>
       </BootstrapDialog>

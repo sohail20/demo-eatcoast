@@ -11,6 +11,7 @@ import FileCopyIcon from "@mui/icons-material/FileCopy";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUp from "@mui/icons-material/KeyboardArrowUp";
+import LightTitle from "../Typography/LightTitle";
 
 const StyledMenu = styled((props) => (
   <Menu
@@ -65,7 +66,12 @@ const CustomMenu = styled(MenuItem)({
   letterSpacing: "0.015em",
   color: "#1A1824",
 });
-export default function CustomizedDrop({ items = [], onClick }) {
+export default function CustomizedDrop({
+  title,
+  label = "Action",
+  items = [],
+  onClick,
+}) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -76,53 +82,58 @@ export default function CustomizedDrop({ items = [], onClick }) {
   };
 
   return (
-    <div>
-      <Button
-        id="demo-customized-button"
-        aria-controls={open ? "demo-customized-menu" : undefined}
-        aria-haspopup="true"
-        aria-expanded={open ? "true" : undefined}
-        variant="outlined"
-        disableElevation
-        onClick={handleClick}
-        endIcon={open?<KeyboardArrowUp />:<KeyboardArrowDownIcon />}
-        sx={{
-          border: "1px solid #559A95",
-          fontFamily: "Outfit",
-          fontStyle: "normal",
-          fontWeight: 600,
-          fontSize: "16px",
-          lineHeight: "160%",
-          letterSpacing: "0.015em",
-          color:open?"#ffffff": "#2B817B",
-          textTransform:"none",
-          backgroundColor:open?" #559A95":undefined
-        }}
-      >
-        Action
-      </Button>
-      <StyledMenu
-        id="demo-customized-menu"
-        MenuListProps={{
-          "aria-labelledby": "demo-customized-button",
-        }}
-        anchorEl={anchorEl}
-        open={open}
-        onClose={handleClose}
-      >
-        {items.map((item) => (
-          <CustomMenu
-            onClick={()=>{onClick(item.id)}}
-            style={{ color: item.color }}
-            disableRipple
-          >
-            <Box style={{ paddingRight: "10px" }}>
-              <i class={item.icon}></i>
-            </Box>
-            {item.label}
-          </CustomMenu>
-        ))}
-      </StyledMenu>
-    </div>
+    <Box display="flex" alignItems="center" justifyContent={"start"} gap={2}>
+      {title && <LightTitle>{title}:</LightTitle>}
+      <div>
+        <Button
+          id="demo-customized-button"
+          aria-controls={open ? "demo-customized-menu" : undefined}
+          aria-haspopup="true"
+          aria-expanded={open ? "true" : undefined}
+          variant="outlined"
+          disableElevation
+          onClick={handleClick}
+          endIcon={open ? <KeyboardArrowUp /> : <KeyboardArrowDownIcon />}
+          sx={{
+            border: "1px solid #559A95",
+            fontFamily: "Outfit",
+            fontStyle: "normal",
+            fontWeight: 600,
+            fontSize: "16px",
+            lineHeight: "160%",
+            letterSpacing: "0.015em",
+            color: open ? "#ffffff" : "#2B817B",
+            textTransform: "none",
+            backgroundColor: open ? " #559A95" : undefined,
+          }}
+        >
+          {label}
+        </Button>
+        <StyledMenu
+          id="demo-customized-menu"
+          MenuListProps={{
+            "aria-labelledby": "demo-customized-button",
+          }}
+          anchorEl={anchorEl}
+          open={open}
+          onClose={handleClose}
+        >
+          {items.map((item) => (
+            <CustomMenu
+              onClick={() => {
+                onClick(item.id);
+              }}
+              style={{ color: item.color }}
+              disableRipple
+            >
+              <Box style={{ paddingRight: "10px" }}>
+                <i class={item.icon}></i>
+              </Box>
+              {item.label}
+            </CustomMenu>
+          ))}
+        </StyledMenu>
+      </div>
+    </Box>
   );
 }
