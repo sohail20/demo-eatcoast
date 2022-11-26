@@ -12,7 +12,9 @@ import InputAdornment from "@mui/material/InputAdornment";
 import Input from "@mui/material/Input";
 import AddIcon from "@mui/icons-material/Add";
 
-export const AddIngridient = ({ Data,  }) => {
+export const AddNutritionalInfo = ({ Data }) => {
+
+
   const Btn = styled(Button)(({ theme }) => ({
     fontFamily: "Outfit",
     fontWeight: "600",
@@ -74,7 +76,7 @@ export const AddIngridient = ({ Data,  }) => {
       }}
     >
       <Box>
-        <IngridientCard mealPlan={ingridient} Data={Data} />
+        <IngridientCard mealPlan={ingridient} Data={Data}/>
 
         <Btn
           onClick={showBox2}

@@ -9,19 +9,16 @@ import IconButton from "@mui/material/IconButton";
 import CustomSearchBar from "./CustomSearchBar";
 import Input from "@mui/material/Input";
 
-export const IngridientMenuButton = () => {
+export const IngridientMenuButton2 = () => {
   const Data = [
     {
       button: "Pcs",
-      display: "flex"
     },
     {
       button: "%",
-      display: "flex"
     },
     {
       button: "gr",
-      display: "none"
     },
   ];
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -61,15 +58,7 @@ export const IngridientMenuButton = () => {
           }}
         >
           <PieceTypo> {menuVal}</PieceTypo>
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              pl: "10px",
-            }}
-          >
-            <img src="./images/arrow-down.svg" alt="" />
-          </Box>
+         
         </Button>
       {/* </Box> */}
 

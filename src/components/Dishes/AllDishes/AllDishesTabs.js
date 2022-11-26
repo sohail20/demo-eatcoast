@@ -5,6 +5,7 @@ import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import NoDishesAdded from "./NoDishesAdded";
+import { AllDishesCard } from "./AllDishesCard";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -48,14 +49,14 @@ export default function AllDishesTabs() {
 
   return (
     <Box sx={{ width: "100%" }}>
-      <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+      <Box sx={{borderBottom: "1px solid #E1E1E6", borderBottom: 1, borderColor: "divider" }}>
         <Tabs
           value={value}
           onChange={handleChange}
           aria-label="basic tabs example"
           textColor="#1A1824"
-          
-          indicatorColor="primary"
+          // textColor="secondary"
+          indicatorColor="#2B817B"
           TabIndicatorProps={{
             style: {
               backgroundColor: "#2B817B",
@@ -110,12 +111,13 @@ export default function AllDishesTabs() {
       </Box>
       <TabPanel value={value} index={0}>
         <NoDishesAdded />
+        
       </TabPanel>
       <TabPanel value={value} index={1}>
         Item Two
       </TabPanel>
       <TabPanel value={value} index={2}>
-        Item Three
+      <AllDishesCard />
       </TabPanel>
       <TabPanel value={value} index={3}>
         Item Value

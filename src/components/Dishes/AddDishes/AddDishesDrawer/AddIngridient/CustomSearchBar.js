@@ -9,6 +9,7 @@ import {
   Typography,
   useMediaQuery,
   useTheme,
+  IconButton
 } from "@mui/material";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
@@ -19,7 +20,7 @@ import Input from "@mui/material/Input";
 import { styled, alpha } from '@mui/material/styles';
 
 
-export default function CustomSearchBar({icon, placeholder, bgColor, color, border, height, filterNames}) {
+export default function CustomSearchBar({title, icon, placeholder, color, border, height, filterNames, onChangeProp, onClickIconBtn, borderColor, bgColor}) {
 
   // const Data = [
   //   {
@@ -43,38 +44,58 @@ export default function CustomSearchBar({icon, placeholder, bgColor, color, bord
   //   setTitl(filteredTitle)
   // }
 
+  const Title = styled(Typography)(({ theme }) => ({
+    fontFamily: "Outfit",
+    fontSize: "14px",
+    fontWeight: "500",
+    lineHeight: "20px",
+    color: "#1A1824",
+    display: "flex",
+    alignItems: "center",
+    paddingBottom: "8px",
+  }));
+
 
   return (
 
     <>
     <Box sx={{ 
-      // paddingLeft: "16.43px"
        }}>
+        <Title>{title}</Title>
               <Input
-                fullWidth
+                width="476px"
                 disableUnderline="true"
                 placeholder={placeholder}
-                onChange = {(e) => filterNames(e)}
+                onChange = {onChangeProp}
                 endAdornment={
                   <InputAdornment position="start">
-                    <img
-                      src={icon}
-                      sx={{
-                        width: "17.75px",
-                        height: "20.5px",
-                      }}
-                    />
+                    <IconButton onClick={onClickIconBtn}>
+                  <img
+                    src={icon}
+                    sx={{
+                      width: "16px",
+                      height: "16px",
+                    }}
+                  />
+                </IconButton>
                   </InputAdornment>
                 }
                 sx={{
-                  borderColor: "#E1E1E6",
+                  borderColor: {borderColor},
                   border: {border},
-                
+                  width: {
+                    xl: "478px",
+                    lg: "478px",
+                    md: "478px",
+                    sm: "478px",
+                    xs: "100%",
+                  },
                   height: {height},
                   borderRadius: "6px",
                   padding: "15px, 24px, 15px, 24px",
                   gap: { lg: "16px", md: "16px", sm: "0px", xs: "0px" },
-                  backgroundColor: {bgColor} ,
+                  // backgroundColor: {bgColor} ,
+                  backgroundColor: `${bgColor}`,     
                   color: {color} ,
                   paddingLeft: "16px",
                   paddingRight: "18px"

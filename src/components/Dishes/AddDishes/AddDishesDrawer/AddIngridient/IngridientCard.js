@@ -7,24 +7,30 @@ import IconButton from "@mui/material/IconButton";
 import CustomSearchBar from "./CustomSearchBar";
 import Input from "@mui/material/Input";
 import { IngridientMenuButton } from "./IngridientMenuButton";
+import { CustomCloseIcon } from "./CustomCloseIcon";
+import { IngridientMenuButton2 } from "./IngridientMenuButton2";
 
-export default function IngridientCard({ mealPlan }) {
-  const Data = [
-    {
-      id: 1,
-      title: "Beef",
-      digit: "*10",
-      // btnName: "Pcs",
-      image: "./images/Beef.svg",
-    },
-    // {
-    //   id: 2,
-    //   title: "Onion",
-    //   digit: "*10",
-    //   // btnName: "%",
-    //   image: "./images/onion.svg",
-    // },
-  ];
+export default function IngridientCard({ mealPlan, Data }) {
+  // const Data = [
+  //   {
+  //     id: 1,
+  //     title: "Beef",
+  //     digit: "*10",
+  //     // btnName: "Pcs",
+  //     btnComp: <IngridientMenuButton />,
+  //     closeIconComp: <CustomCloseIcon />,
+  //     image: "./images/Beef.svg",
+  //   },
+  //   // {
+  //   //   id: 2,
+  //   //   title: "Onion",
+  //   //   digit: "*10",
+  //   //   // btnComp: <IngridientMenuButton2 />,
+  //   //   // btnName: "%",
+
+  //   //   image: "./images/onion.svg",
+  //   // },
+  // ];
   const MainBox = styled("div")(({ theme }) => ({
     // padding: theme.spacing(0, 2),
     height: "56px",
@@ -57,10 +63,14 @@ export default function IngridientCard({ mealPlan }) {
     fontSize: "14px",
     fontWeight: "500",
     lineHeight: "20px",
-    color: "#000000",
+    color: "#1A1824",
     paddingLeft: "16px",
     display: "flex",
     alignItems: "center",
+
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "10px",
+    },
   }));
 
   const DigitBox = styled(Input)(({ theme }) => ({
@@ -121,7 +131,7 @@ export default function IngridientCard({ mealPlan }) {
                       lg: "476px",
                       md: "476px",
                       sm: "476px",
-                      xs: "100%",
+                      xs: "300px",
                     },
                   }}
                   key={v.id}
@@ -135,8 +145,28 @@ export default function IngridientCard({ mealPlan }) {
                     }}
                   >
                     <Box sx={{ display: "flex", flexDirection: "row" }}>
-                      <ImgBox sx={{ display: "flex", alignItems: "center" }}>
-                        <img src={v.image} alt="" width="24px" height="24px" />
+                      <ImgBox
+                        sx={{
+                          marginTop: {xs: "5px"},
+                          display: "flex",
+                          alignItems: "center",
+                          width: {
+                            xl: "40px",
+                            lg: "40px",
+                            md: "40px",
+                            sm: "40px",
+                            xs: "30px",
+                          },
+                          height: {
+                            xl: "40px",
+                            lg: "40px",
+                            md: "40px",
+                            sm: "40px",
+                            xs: "30px",
+                          },
+                        }}
+                      >
+                        <img src={v.image} alt="" width="100%" height="auto" />
                       </ImgBox>
 
                       <Title>{v.title}</Title>
@@ -145,17 +175,17 @@ export default function IngridientCard({ mealPlan }) {
                     <Box sx={{ display: "flex", flexDirection: "row" }}>
                       <Box
                         sx={{
-                          display: "flex",
-                          alignItems: "center",
+                          // display: "flex",
+                          // alignItems: "center",
                           // paddingLeft: { xs: "10px"},
                           width: {
                             xl: "83px",
                             lg: "83px",
                             md: "83px",
                             sm: "83px",
-                            xs: "50px",
+                            xs: "60px",
                           },
-                          
+                          marginLeft: { xs: "10px" },
                         }}
                       >
                         <TextField
@@ -167,36 +197,38 @@ export default function IngridientCard({ mealPlan }) {
                             padding: "0px",
                             style: {
                               height: "40px",
-                              padding: 0,
-                              
+                              paddingLeft: {
+                                lg: "20px",
+                                md: "20px",
+                                sm: "20px",
+                                xs: "0px",
+                              },
+                              paddingBottom: "15px",
+                              borderRadius: "6px",
+                              border: "1.5px solid #E1E1E6",
+                              backgroundColor: "#F6F6F6",
+                              // textAlign: "center"
                             },
                           }}
                           sx={{
-                            border: "1.5px solid #E1E1E6",
                             padding: "0px",
                             margin: "0px",
-                            // verticalAlign: "middle",
-                            // textAlign: "center",
-                            
-                            // width: {
-                            //   xl: "83px",
-                            //   lg: "83px",
-                            //   md: "83px",
-                            //   sm: "83px",
-                            //   xs: "50px",
-                            // },
-                            borderRadius: "6px",
-                            // "& .MuiInput-root": {
-                            //   display: "flex",
-                              // textAlign: "center",
-                              // alignItems: "center",
-                            //   justifyContent: "center", ml: "20px"
-                            // }
+                            width: { xs: "60px" },
                           }}
                         >
                           <Box
                             sx={{
-                              // verticalAlign: "middle"
+                              fontFamily: "Outfit",
+                              fontSize: {
+                                lg: "16px",
+                                md: "16px",
+                                sm: "16px",
+                                xs: "10px",
+                              },
+                              fontWeight: "600",
+                              lineHeight: "24px",
+                              color: "#1A1824",
+                              variant: "text",
                             }}
                           >
                             {v.digit}
@@ -208,29 +240,18 @@ export default function IngridientCard({ mealPlan }) {
                         sx={{
                           display: "flex",
                           alignItems: "center",
-                          pl: "10px",
+                          // pl: "10px",
+                          pl: { lg: "26px", md: "26px", sm: "26px", xs: "0px" },
                         }}
                       >
-                        <IngridientMenuButton
+                        {/* <IngridientMenuButton
                         // mapData={v.btnName}
-                        />
+                        /> */}
+                        {v.btnComp}
                       </Box>
-                      <Box
-                        sx={{
-                          pl: "20px",
-                          display: "flex",
-                          alignItems: "center",
-                        }}
-                      >
-                        <IconButton>
-                          <CloseIcon
-                            sx={{
-                              fill: "#E75C62",
-                              width: "16px",
-                              height: "16px",
-                            }}
-                          />
-                        </IconButton>
+
+                      <Box sx={{ display: "flex", alignItems: "center" }}>
+                        {v.closeIconComp}
                       </Box>
                     </Box>
                   </Box>
