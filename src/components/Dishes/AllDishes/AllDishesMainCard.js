@@ -11,6 +11,7 @@ export default function AllDishesMainCard({
   BtnName,
   icon,
   hasToInput,
+  onHandleClick
 }) {
   // const Data = [
   //   {
@@ -75,16 +76,14 @@ export default function AllDishesMainCard({
     display: "flex",
     alignItems: "center",
     textTransform: "capitalize",
-    [theme.breakpoints.down('lg')]:{
+    [theme.breakpoints.down("lg")]: {
       fontSize: "12px",
-  },
-  [theme.breakpoints.down('sm')]:{
-    fontSize: "10px",
-    lineHeight: "10px",
-
-}
+    },
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "10px",
+      lineHeight: "10px",
+    },
   }));
-
 
   const Button2 = styled(Button)(({ theme }) => ({
     // padding: theme.spacing(0, 2),
@@ -97,11 +96,7 @@ export default function AllDishesMainCard({
     alignItems: "center",
     textTransform: "capitalize",
     textDecoration: "underline",
-    
   }));
-
-
-  
 
   return (
     <>
@@ -141,11 +136,21 @@ export default function AllDishesMainCard({
                 <Box sx={{ display: "flex" }}>
                   {hasToInput && (
                     <Box>
-                      <Button2 variant="text">Edit</Button2>
+                      <Button2 variant="text" onClick={onHandleClick}>Edit</Button2>
                     </Box>
                   )}
 
-                  <Box sx={{pl: {xl: "28px", lg: "28px", md: "28px", sm: "28px", xs: "0px"}}}>
+                  <Box
+                    sx={{
+                      pl: {
+                        xl: "28px",
+                        lg: "28px",
+                        md: "28px",
+                        sm: "28px",
+                        xs: "0px",
+                      },
+                    }}
+                  >
                     <Button1 variant="contained" startIcon={icon}>
                       {BtnName}
                     </Button1>

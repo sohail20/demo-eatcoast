@@ -4,21 +4,7 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
-import FormGroup from "@mui/material/FormGroup";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import TabList from "@mui/lab/TabList";
-import TabContext from "@mui/lab/TabContext";
-import MealCoursesCard from "./MealCoursesCard";
-import AddOnCards from "./AddOnCards";
-// import { createTheme} from '@mui/material/styles'
-// import { ThemeProvider } from "@mui/material/styles";
-
-// const theme = createTheme({
-//         primary: {
-//             main: "#2b817b",
-//           },
-
-// });
+import { DetailDishesIngridientCard } from "./DetailDishesIngridientCard";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -32,8 +18,8 @@ function TabPanel(props) {
       {...other}
     >
       {value === index && (
-        <Box sx={{ pt: "24px" }}>
-          <Typography sx={{ fontFamily: "outfit" }}>{children}</Typography>
+        <Box sx={{ p: 3 }}>
+          <Typography>{children}</Typography>
         </Box>
       )}
     </div>
@@ -53,7 +39,7 @@ function a11yProps(index) {
   };
 }
 
-export default function DishesMealPlanTabs() {
+export default function DetailDishesTabs() {
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
@@ -67,19 +53,19 @@ export default function DishesMealPlanTabs() {
           value={value}
           onChange={handleChange}
           aria-label="basic tabs example"
-          textColor="#1A1824"
-          indicatorColor="primary"
-          TabIndicatorProps={{
-            style: {
-              backgroundColor: "#2B817B",
-            },
-          }}
+          // textColor="#1A1824"
+          // indicatorColor="#2B817B"
+          // TabIndicatorProps={{
+          //   style: {
+          //     backgroundColor: "#2B817B",
+          //   },
+          // }}
           sx={{'& .MuiTabs-indicator': { backgroundColor: "#2B817B" },
           '& .MuiTab-root': { color: "#9EA3AE" },
           '& .Mui-selected': { color: "#1A1824" },}}
         >
           <Tab
-            label="Food Plan"
+            label="Ingridient"
             {...a11yProps(0)}
             sx={{
               textTransform: "capitalize",
@@ -90,7 +76,7 @@ export default function DishesMealPlanTabs() {
             }}
           />
           <Tab
-            label="Scheduled dishes"
+            label="Nutritional Info"
             {...a11yProps(1)}
             sx={{
               textTransform: "capitalize",
@@ -100,16 +86,10 @@ export default function DishesMealPlanTabs() {
               fontFamily: "outfit",
             }}
           />
-          {/* <Tab label="Item Three" {...a11yProps(2)} /> */}
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
-        <Box>
-          <MealCoursesCard />
-        </Box>
-        <Box>
-          <AddOnCards />
-        </Box>
+        <DetailDishesIngridientCard />
       </TabPanel>
       <TabPanel value={value} index={1}>
         Item Two

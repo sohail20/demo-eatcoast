@@ -6,10 +6,11 @@ import { styled, alpha } from "@mui/material/styles";
 import Button from "@mui/material/Button";
 import { CustomChip } from "./CustomChip";
 
-export const AllDishesCustomCard = ({ chip, data }) => {
+export const AllDishesCustomCard = ({ chip, data, onHandleClick }) => {
   const MainBox = styled("div")(({ theme }) => ({
     marginBottom: "24px",
-    width: "476px",
+    // width: "476px",
+    width: "100%",
     height: "90px",
     border: "1px solid #E1E1E6",
     borderRadius: "6px",
@@ -129,7 +130,7 @@ export const AllDishesCustomCard = ({ chip, data }) => {
                 <Typo2>{data.subTitle}</Typo2>
               </Box>
               <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
-                <Button1 variant="text">Edit</Button1>
+                <Button1 variant="text" onClick={onHandleClick}>Edit</Button1>
               </Box>
             </Box>
           </Box>

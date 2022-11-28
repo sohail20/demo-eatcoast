@@ -41,7 +41,7 @@ function a11yProps(index) {
   };
 }
 
-export default function AllDishesTabs() {
+export default function AllDishesTabs({onHandleClick}) {
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
@@ -56,13 +56,16 @@ export default function AllDishesTabs() {
           onChange={handleChange}
           aria-label="basic tabs example"
           textColor="#1A1824"
-          // textColor="secondary"
-          indicatorColor="#2B817B"
-          TabIndicatorProps={{
-            style: {
-              backgroundColor: "#2B817B",
-            },
-          }}
+          // // textColor="secondary"
+          // indicatorColor="#2B817B"
+          // TabIndicatorProps={{
+          //   style: {
+          //     backgroundColor: "#2B817B",
+          //   },
+          // }}
+          sx={{'& .MuiTabs-indicator': { backgroundColor: "#2B817B" },
+          '& .MuiTab-root': { color: "#9EA3AE" },
+          '& .Mui-selected': { color: "#1A1824" },}}
         >
           <Tab
             label="Active"
@@ -121,7 +124,7 @@ export default function AllDishesTabs() {
         
       </TabPanel>
       <TabPanel value={value} index={1}>
-      <AllDishesCard AllDishesData={AllDishesData2} />
+      <AllDishesCard AllDishesData={AllDishesData2} onHandleClick={onHandleClick}/>
       </TabPanel>
       <TabPanel value={value} index={2}>
       <AllDishesCard AllDishesData={AllDishesData} />

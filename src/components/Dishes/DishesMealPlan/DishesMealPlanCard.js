@@ -22,6 +22,11 @@ export default function DishesMealPlanCard() {
         lineHeight: "16px",
         maxWidth: "460px",
         color: "#545359",
+        [theme.breakpoints.down('md')]:{
+          width: "100%",
+          maxWidth: "100%",
+          textAlign: "justify"
+      }
       }));
 
       const Typo3 = styled("div")(({ theme }) => ({
@@ -32,15 +37,16 @@ export default function DishesMealPlanCard() {
         lineHeight: "24px",
         color: "#2B817B",
         textDecoration: "underline",
-        textTransform: "capitalize"
+        textTransform: "capitalize",
+       
       }));
       
   return (
     <>
       <Box>
         <Box sx={{display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
-        <Box sx={{display: "flex", flexDirection: "row"}}>
-          <Box sx={{width: "72px", height: "72px"}}>
+        <Box sx={{display: "flex", flexDirection: {xl: "row", lg: "row", md: "row", sm: "column", xs: "column"},}}>
+          <Box sx={{width: {xl: "72px", lg: "72px", md: "72px", sm: "72px", xs: "100%"}, height: {xl: "72px", lg: "72px", md: "72px", sm: "auto", xs: "auto"}}}>
             <img src="./images/CardImage.png" alt="" width="100%" height="auto" />
           </Box>
           <Box pl="16px" pt="8px">

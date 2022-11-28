@@ -11,10 +11,14 @@ import {
 import { styled } from "@mui/material";
 import { useState, useRef } from "react";
 import Drawer from "@mui/material/Drawer";
-import { AddIngridient } from "./AddIngridient/AddIngridient";
 import CloseIcon from "@mui/icons-material/Close";
 
-export const AddDishesDrawer = ({ setOpenDrawer, openDrawer, Component, title,  }) => {
+export const DetailDishesDrawer = ({
+  setOpenDrawer,
+  openDrawer,
+  Component,
+  title,
+}) => {
   const Heading = styled(Typography)(({ theme }) => ({
     fontFamily: "Outfit",
     fontWeight: "600",
@@ -33,14 +37,11 @@ export const AddDishesDrawer = ({ setOpenDrawer, openDrawer, Component, title,  
   }));
 
   const [anchorEl, setAnchorEl] = React.useState(null);
-  
   const open = Boolean(anchorEl);
-
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
     setOpenDrawer(true);
   };
-
   const handleCloseDrawer = () => {
     setAnchorEl(null);
     setOpenDrawer(false);
@@ -57,7 +58,7 @@ export const AddDishesDrawer = ({ setOpenDrawer, openDrawer, Component, title,  
       >
         <Container
           sx={{
-            width: { lg: "540px", md: "540px", sm: "540px", xs: "100%" },
+            width: { lg: "508px", md: "508px", sm: "508px", xs: "100%" },
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
@@ -87,8 +88,8 @@ export const AddDishesDrawer = ({ setOpenDrawer, openDrawer, Component, title,  
                 color: "white",
                 borderRadius: "4px",
                 "&:hover": {
-                  backgroundColor: "#2B817B"
-                }
+                  backgroundColor: "#2B817B",
+                },
               }}
             >
               Save
@@ -96,22 +97,8 @@ export const AddDishesDrawer = ({ setOpenDrawer, openDrawer, Component, title,  
           </Box>
         </Container>
 
-        <Box>
-          {Component}
-        </Box>
+        <Box>{Component}</Box>
       </Drawer>
     </>
   );
 };
-
-
-
-
-
-
-
-
-
-
-
-
