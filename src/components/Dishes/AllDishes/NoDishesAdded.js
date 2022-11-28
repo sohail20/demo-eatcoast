@@ -32,7 +32,7 @@ export default function NoDishesAdded() {
     <Box>
         <SubBox 
         sx={{
-          width:{xl: "1140px", lg: "973px", md: "100%", sm: "100%", xs: "100%"}
+          width:{xl: "100%", lg: "973px", md: "100%", sm: "100%", xs: "100%"}
         }}
         >
         <Typo1>

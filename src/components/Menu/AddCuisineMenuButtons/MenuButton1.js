@@ -130,7 +130,7 @@ export default function MenuButton1({ setIsShownButtonBoxFunc, setDisableFunc })
             sx={{
               textTransform: "capitalize",
               fontSize: {
-                xl: "20px",
+                xl: "18px",
                 lg: "14px",
                 md: "14px",
                 sm: "14px",
@@ -176,7 +176,8 @@ export default function MenuButton1({ setIsShownButtonBoxFunc, setDisableFunc })
             <MenuItem
               sx={{
                 color: "#1A1824",
-                width: "450px",
+                width: {xl: "550px", lg: "450px", md: "450px", sm: "450px", xs: "100%",},
+                
                 fontSize: "14px",
                 fontWeight: "600",
               }}

@@ -77,7 +77,12 @@ export default function AllDishesMainCard({
     textTransform: "capitalize",
     [theme.breakpoints.down('lg')]:{
       fontSize: "12px",
-  }
+  },
+  [theme.breakpoints.down('sm')]:{
+    fontSize: "10px",
+    lineHeight: "10px",
+
+}
   }));
 
 
@@ -94,6 +99,9 @@ export default function AllDishesMainCard({
     textDecoration: "underline",
     
   }));
+
+
+  
 
   return (
     <>
@@ -137,7 +145,7 @@ export default function AllDishesMainCard({
                     </Box>
                   )}
 
-                  <Box pl="28px">
+                  <Box sx={{pl: {xl: "28px", lg: "28px", md: "28px", sm: "28px", xs: "0px"}}}>
                     <Button1 variant="contained" startIcon={icon}>
                       {BtnName}
                     </Button1>

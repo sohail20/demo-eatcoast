@@ -23,6 +23,7 @@ import AddDishes from './components/Dishes/AddDishes/AddDishes';
 import AddMealPlan from './components/Menu/AddMealPlan/AddMealPlan';
 import { BackToDishes } from './components/Dishes/AddDishes/BackToDishes/BackToDishes';
 import AllDishes from './components/Dishes/AllDishes/AllDishes';
+import { EditDishes } from './components/Dishes/EditDishes/EditDishes';
 
 function App() {
   return (
@@ -47,6 +48,8 @@ function App() {
           <Route path="/alldishes" element={<AllDishes />} />
           <Route path="/mealPlan" element={<AddMealPlan />} />
           <Route path="/backToDishes" element={<BackToDishes />} />
+          <Route path="/editdishes" element={<EditDishes />} />
+
         
         </Routes>
       </ThemeProvider>

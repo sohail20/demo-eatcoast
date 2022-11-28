@@ -17,8 +17,9 @@ import AddCuisine from "./AddCuisine";
 import { Data2 } from "./CuisineMenu/config";
 import AddMealPlan from "./AddMealPlan/AddMealPlan";
 export const MenuComponent = () => {
+  // const [isShownCuisine, setIsShownCuisine] = useState(false);
   const [isShownCuisine, setIsShownCuisine] = useState(false);
-  const [isShown, setIsShown] = useState(true);
+  const [isShown, setIsShown] = useState(false);
   const [isShownButtonBox, setIsShownButtonBox] = useState(false);
   const [showAllCuisine, setShowAllCuisine] = React.useState(false);
 
@@ -43,7 +44,7 @@ export const MenuComponent = () => {
     fontFamily: "Outfit",
     fontStyle: "normal",
     fontWeight: "600",
-    fontSize: { xl: "40px", lg: "20px", md: "20px", sm: "20px", xs: "20px" },
+    fontSize: { xl: "30px", lg: "20px", md: "20px", sm: "20px", xs: "20px" },
     lineHeight: "28px",
     display: "flex",
     alignItems: "center",
@@ -54,7 +55,7 @@ export const MenuComponent = () => {
     fontFamily: "Outfit",
     fontStyle: "normal",
     fontWeight: "400",
-    fontSize: { xl: "26px", lg: "16px", md: "16px", sm: "16px", xs: "16px" },
+    fontSize: { xl: "20px", lg: "16px", md: "16px", sm: "16px", xs: "16px" },
     lineHeight: "24px",
     textDecoration: "none",
     color: "#2B817B",
@@ -77,14 +78,14 @@ export const MenuComponent = () => {
     "&:hover": {
       backgroundColor: "#2B817B",
     },
-    fontSize: { xl: "26px", lg: "16px", md: "16px", sm: "14px", xs: "8px" },
+    fontSize: { xl: "20px", lg: "16px", md: "16px", sm: "14px", xs: "8px" },
   };
 
   const Typo3 = {
     fontFamily: "Outfit",
     fontStyle: "normal",
     fontWeight: "400",
-    fontSize: { xl: "30px", lg: "18px", md: "18px", sm: "18px", xs: "18px" },
+    fontSize: { xl: "22px", lg: "18px", md: "18px", sm: "18px", xs: "18px" },
     lineHeight: "26px",
     display: "flex",
     alignItems: "center",
@@ -94,7 +95,7 @@ export const MenuComponent = () => {
   };
 
   const IconBtn = {
-    width: { xl: "26px", lg: "16px", md: "16px", sm: "16px", xs: "12px" },
+    width: { xl: "20px", lg: "16px", md: "16px", sm: "16px", xs: "12px" },
     height: "auto",
   };
 

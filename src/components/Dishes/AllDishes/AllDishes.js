@@ -24,11 +24,11 @@ export default function AllDishes() {
       <SubBox
         sx={{
           width: {
-            xl: "1200px",
+            xl: "100%",
             lg: "1036px",
-            md: "610px",
-            sm: "500px",
-            xs: "500px",
+            md: "100%",
+            sm: "100%",
+            xs: "100%",
           },
 
           height: "auto",
@@ -39,7 +39,7 @@ export default function AllDishes() {
           title={"Main Course"}
           subTitle={"No dishes added"}
           image={"./images/MainCourse.svg"}
-          icon={<AddIcon />}
+          icon={<AddIcon sx={{width: "16px", height: "16px"}}/>}
           BtnName={"Add Dishes"}
           hasToInput = {true}
 

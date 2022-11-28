@@ -5,7 +5,7 @@ import Button from '@mui/material/Button';
 import { styled, alpha } from "@mui/material/styles";
 
 
-export const CustomChip = ({label, color}) => {
+export const CustomChip = ({label, color, ...other}) => {
     
   const CustomChip = styled(Chip)(({ theme }) => ({
     // padding: theme.spacing(0, 2),
@@ -19,6 +19,8 @@ export const CustomChip = ({label, color}) => {
     borderRadius: "6px",
     height: "22px",
     backgroundColor: `${color}`,
+    ...other
+    
     // [theme.breakpoints.up('lg')]:{
     //     fontSize: "18px",
     //     paddingTop: "15px",
@@ -30,7 +32,7 @@ export const CustomChip = ({label, color}) => {
   return (
 
     <>
-    <Box><CustomChip label={label}  /></Box>
+    <Box><CustomChip label={label}   /></Box>
     </>
 
     )

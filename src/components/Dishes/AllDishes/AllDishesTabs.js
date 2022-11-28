@@ -6,7 +6,8 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import NoDishesAdded from "./NoDishesAdded";
 import { AllDishesCard } from "./AllDishesCard";
-
+import { AllDishesData } from "./Config";
+import { AllDishesData2 } from "./Config";
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -110,17 +111,23 @@ export default function AllDishesTabs() {
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
-        <NoDishesAdded />
+        {
+          false? (<NoDishesAdded />)
+          : 
+          (
+            <AllDishesCard AllDishesData={AllDishesData2} />
+          )
+        }
         
       </TabPanel>
       <TabPanel value={value} index={1}>
-        Item Two
+      <AllDishesCard AllDishesData={AllDishesData2} />
       </TabPanel>
       <TabPanel value={value} index={2}>
-      <AllDishesCard />
+      <AllDishesCard AllDishesData={AllDishesData} />
       </TabPanel>
       <TabPanel value={value} index={3}>
-        Item Value
+      <AllDishesCard AllDishesData={AllDishesData2} />
       </TabPanel>
     </Box>
   );

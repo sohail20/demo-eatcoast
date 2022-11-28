@@ -79,7 +79,7 @@ export default function AddCuisine({ setIsShownButtonBoxFunc }) {
     lineHeight: "32px",
     color: "#1A1824",
     [theme.breakpoints.down("md")]: {
-      fontSize: "26px",
+      fontSize: "18px",
     },
   }));
 
@@ -163,7 +163,7 @@ export default function AddCuisine({ setIsShownButtonBoxFunc }) {
               "& .MuiPaper-root": {
                 width: "100%",
                 maxWidth: {
-                  xl: "800px",
+                  xl: "600px",
                   lg: "500px",
                   md: "500px",
                   sm: "500px",
@@ -202,7 +202,7 @@ export default function AddCuisine({ setIsShownButtonBoxFunc }) {
             <Box
               sx={{
                 pl: {
-                  xl: "280px",
+                  xl: "180px",
                   lg: "120px",
                   md: "120px",
                   sm: "120px",
@@ -220,7 +220,7 @@ export default function AddCuisine({ setIsShownButtonBoxFunc }) {
                 <Typo1
                   sx={{
                     fontSize: {
-                      xl: "20px",
+                      xl: "18px",
                       lg: "14px",
                       md: "14px",
                       sm: "14px",
@@ -242,7 +242,7 @@ export default function AddCuisine({ setIsShownButtonBoxFunc }) {
                 <Typo1
                   sx={{
                     fontSize: {
-                      xl: "20px",
+                      xl: "18px",
                       lg: "14px",
                       md: "14px",
                       sm: "14px",

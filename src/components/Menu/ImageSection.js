@@ -8,7 +8,7 @@ export default function ImageSection() {
         fontFamily: "Outfit",
         fontStyle: "normal",
         fontWeight: "400",
-        fontSize: { xl: "30px", lg: "18px", md: "18px", sm: "18px", xs: "18px" },
+        fontSize: { xl: "22px", lg: "18px", md: "18px", sm: "18px", xs: "18px" },
         lineHeight: "26px",
         /* or 144% */
     

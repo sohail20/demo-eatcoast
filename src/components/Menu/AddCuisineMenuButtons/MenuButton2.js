@@ -126,7 +126,7 @@ export default function MenuButton2({ setIsShownButtonBoxFunc }) {
           endIcon={<KeyboardArrowRightIcon />}
           sx={{
             textTransform: "capitalize",
-            fontSize: {xl: "20px", lg: "14px", md: "14px", sm: "14px", xs: "14px"},
+            fontSize: {xl: "18px", lg: "14px", md: "14px", sm: "14px", xs: "14px"},
             fontWeight: "400",
             fontFamily: "outfit",
             pl: "0px",
@@ -169,7 +169,7 @@ export default function MenuButton2({ setIsShownButtonBoxFunc }) {
           <MenuItem
             sx={{
               color: "#1A1824",
-              width: {xl: "450px", lg: "450px", md: "450px", sm: "450px", xs: "100%", },
+              width: {xl: "550px", lg: "450px", md: "450px", sm: "450px", xs: "100%", },
               fontSize: "14px",
             }}
             onClick={(e) => {

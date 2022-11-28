@@ -5,9 +5,9 @@ import { Typography } from "@mui/material";
 import { styled, alpha } from "@mui/material/styles";
 import Button from "@mui/material/Button";
 import { AllDishesCustomCard } from "./AllDishesCustomCard";
-import { AllDishesData } from "./Config";
+// import { AllDishesData } from "./Config";
 
-export const AllDishesCard = () => {
+export const AllDishesCard = ({AllDishesData}) => {
 
     const Title = styled(Typography)(({ theme }) => ({
         // padding: theme.spacing(0, 2),
@@ -59,11 +59,11 @@ export const AllDishesCard = () => {
           }}
         >
             
-          {AllDishesData.map((v, i) => {
+          {AllDishesData.map((item, i) => {
             return (
               <>
                 <Grid xl={6} item lg={6} md={6} sm={12} xs={12}>
-                  <AllDishesCustomCard title={v.title} subTitle={v.subTitle} image={v.image} chip={v.chip}/>
+                  <AllDishesCustomCard data = {item} />
                 </Grid>
               </>
             );

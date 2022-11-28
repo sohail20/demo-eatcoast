@@ -65,7 +65,7 @@ export default function CuisineCategoryCard({ title, Data, subTitle }) {
           <Typo3 sx={{ pb: "16px" }}>{title}</Typo3>
         </Box>
         <Box>
-          <Typo4 sx={{marginRight: {xl: "190px", lg: "70px", md: "0px",sm : "0px", xs: "0px"}}}>{subTitle}</Typo4>
+          <Typo4 sx={{marginRight: {xl: "0px", lg: "0px", md: "0px",sm : "0px", xs: "0px"}}}>{subTitle}</Typo4>
         </Box>
         </Box>
         <Grid container>

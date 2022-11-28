@@ -47,7 +47,7 @@ const SmallInfoCard = ({
   borderLess = false,
   status,
   statusColor,
-  hasEditButton,
+  hasEditButton = false,
   rightSideTitle,
   hasPoints,
   hasAddButton,
@@ -55,7 +55,7 @@ const SmallInfoCard = ({
 }) => {
   return (
     <>
-      <BoxContainer borderLess={borderLess} {...rest} mt={2}>
+      <BoxContainer borderLess={borderLess} {...rest} mt={2} hasEditButton={hasEditButton}>
         <CenteredBoxContainer style={{ width: "100%" }}>
           <Box style={{ display: "flex" }}>
             <Box>

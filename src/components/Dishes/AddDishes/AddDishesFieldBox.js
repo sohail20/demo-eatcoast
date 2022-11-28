@@ -172,6 +172,9 @@ export const AddDishesFieldBox = ({ props, disabled, setDisabled }) => {
           display: "flex",
           flexDirection: { lg: "row", md: "row", sm: "row", xs: "column" },
           justifyContent: "space-between",
+          border: "1px solid #E1E1E6",
+          borderRadius: "8px",
+          padding: "32px",
         }}
       >
         <Box
