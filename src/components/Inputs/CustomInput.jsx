@@ -1,8 +1,8 @@
-import { TextField } from "@mui/material";
+import { TextField, Box } from "@mui/material";
 import { H3Typo } from "../Typography";
 const CustomInput = ({ label, ...rest }) => {
   return (
-    <>
+    <Box>
       <H3Typo>{label}</H3Typo>
       <TextField
         {...rest}
@@ -14,7 +14,7 @@ const CustomInput = ({ label, ...rest }) => {
           background: "#F6F6F6",
         }}
       />
-    </>
+    </Box>
   );
 };
 export default CustomInput;

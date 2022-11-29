@@ -69,6 +69,7 @@ const CustomMenu = styled(MenuItem)({
 export default function CustomizedDrop({
   title,
   label = "Action",
+  height,
   items = [],
   onClick,
 }) {
@@ -98,9 +99,10 @@ export default function CustomizedDrop({
             border: "1px solid #559A95",
             fontFamily: "Outfit",
             fontStyle: "normal",
-            fontWeight: 600,
+            fontWeight: height<=24?400:600,
             fontSize: "16px",
             lineHeight: "160%",
+            height:`${height}px`,
             letterSpacing: "0.015em",
             color: open ? "#ffffff" : "#2B817B",
             textTransform: "none",

@@ -32,9 +32,9 @@ export default function CustomizedModal({
 }) {
   const [open, setOpen] = React.useState(isOpened);
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
+  // const handleClickOpen = () => {
+  //   setOpen(true);
+  // };
   const handleClose = () => {
     setOpen(false);
   };
