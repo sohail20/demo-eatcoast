@@ -235,7 +235,10 @@ const FeedBackCard = ({ item }) => (
             <CustomStarIcon style={{ color: "#FAA641" }} />
           ))}
         </Box>
-        <SimpleChips label={item.subscriptionType} chipColor="#FF8D85" />
+        {subscriptionType.map((e) => {
+          if (item.subscriptionType === e.id)
+           return <SimpleChips label={e.label} chipColor="#FF8D85" />;
+        })}
       </FlexBoxContainer>
 
       <Box mt={2} style={{ borderBottom: "1px solid #F6F6F6" }} pb={2}>
