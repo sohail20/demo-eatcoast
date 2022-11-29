@@ -14,19 +14,49 @@ import add from "./Images/add.png";
 import Switch from "@mui/material/Switch";
 import { useState, useRef } from "react";
 import OutlinedInput from "@mui/material/OutlinedInput";
-import Checkbox from "@mui/material/Checkbox/Checkbox";
-import Drawer from "@mui/material/Drawer";
-import arrowLeft from "./Images/arrow-left.png";
-import add_icon from "./Images/add_icon.png";
-import Link from "@mui/material/Link";
-import { ArrowBack, Add, PropaneSharp } from "@mui/icons-material";
-import InputAdornment from "@mui/material/InputAdornment";
 import arrowRight from "./Images/arrow-right.svg";
 import { CustomSelectInputField } from "./CustomSelectInputField";
 import SwitchButton from "./SwitchButton";
 import { AddDishesDrawer } from "./AddDishesDrawer/AddDishesDrawer";
+import { AddIngridient } from "./AddDishesDrawer/AddIngridient/AddIngridient";
+import { Data } from "../Config";
+import { Data2 } from "../Config";
+import { ScheduledDishes } from "./AddDishesDrawer/ScheduledDishes/ScheduledDishes";
 
-export const AddDishesFieldBox = ({ porops, setDisabled }) => {
+export const AddDishesFieldBox = ({ props, disabled, setDisabled }) => {
+  const [placeholderSched, setPlaceholderSched] = useState(false);
+  const [placeholderIngri, setPlaceholderIngri] = useState(false);
+  const [placeholderNutri, setPlaceholderNutri] = useState(false);
+
+  const weekday = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+
+  const [value, onChange] = useState(new Date());
+  console.log("value", value);
+
+  let day = weekday[value.getDay()];
+  console.log("day", day);
+
+  let newdate = value.getDate();
+  console.log("date", newdate);
+
+  let fullyear = value.getFullYear();
+  console.log("fullyear", fullyear);
+
+  let month = value.getMonth();
+  console.log("month", month + 1);
+
+  const allData = day + " " + newdate + "/" + month + "/" + fullyear;
+  console.log("alldata", allData);
+  console.log("value", value.allData);
+
   // const [disabled, setDisabled] = useState("disabled");
 
   const Heading = styled(Typography)(({ theme }) => ({
@@ -70,13 +100,30 @@ export const AddDishesFieldBox = ({ porops, setDisabled }) => {
     }
   };
   const [openDrawer, setOpenDrawer] = useState(false);
+  const [openDrawer2, setOpenDrawer2] = useState(false);
+  const [openDrawer3, setOpenDrawer3] = useState(false);
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
     setOpenDrawer(true);
+    setPlaceholderIngri(true);
   };
+
+  const handleClickNutritionDrawer = (event) => {
+    setAnchorEl(event.currentTarget);
+    setOpenDrawer2(true);
+    setPlaceholderNutri(true);
+  };
+
+  const handleClickScheduledDrawer = (event) => {
+    setAnchorEl(event.currentTarget);
+    setOpenDrawer3(true);
+    setPlaceholderSched(true);
+  };
+
   const handleCloseDrawer = () => {
     setAnchorEl(null);
     setOpenDrawer(false);
@@ -86,11 +133,11 @@ export const AddDishesFieldBox = ({ porops, setDisabled }) => {
     setHidden("none");
   };
   let [mealPlan, setMealPlan] = useState([
-    "Main Course",
-    "Salad dishes",
-    "Sweet dishes",
-    "Sweet dishes",
-    "Sweet dishes",
+    // "Main Course",
+    // "Salad dishes",
+    // "Sweet dishes",
+    // "Sweet dishes",
+    // "Sweet dishes",
   ]);
   let [newPlan, setNewPlan] = useState("");
 
@@ -125,6 +172,9 @@ export const AddDishesFieldBox = ({ porops, setDisabled }) => {
           display: "flex",
           flexDirection: { lg: "row", md: "row", sm: "row", xs: "column" },
           justifyContent: "space-between",
+          border: "1px solid #E1E1E6",
+          borderRadius: "8px",
+          padding: "32px",
         }}
       >
         <Box
@@ -268,43 +318,96 @@ export const AddDishesFieldBox = ({ porops, setDisabled }) => {
             </Box>
           </Box>
           <Box>
-            <CustomSelectInputField
-              handleClick={handleClick}
-              title={"Ingridients "}
-              subTitle={"( Optional )"}
-              className={"mealInput mealCourses"}
-              placeholder={"Select ingridients"}
-              disabled={true}
-              icon={arrowRight}
-            />
+            {Data.map((item) => {
+              return (
+                <CustomSelectInputField
+                  handleClick={handleClick}
+                  title={"Ingridients "}
+                  subTitle={"( Optional )"}
+                  className={"mealInput mealCourses"}
+                  placeholder={
+                    placeholderIngri ? `${item.title}` : "Select ingridients"
+                  }
+                  // placeholder={item.title}
+                  disabled={true}
+                  icon={arrowRight}
+                />
+              );
+            })}
+          </Box>
+          <Box sx={{ mt: "8px" }}>
+            {Data.map((item) => {
+              return (
+                <CustomSelectInputField
+                  mt="9px"
+                  handleClick={handleClickNutritionDrawer}
+                  title={"Nutritional information "}
+                  subTitle={"( Optional )"}
+                  className={"mealInput mealCourses"}
+                  // placeholder={"Select nutritional info"}
+                  placeholder={
+                    placeholderNutri
+                      ? `${item.title}`
+                      : "Select scheduled dishes"
+                  }
+                  disabled={true}
+                  icon={arrowRight}
+                />
+              );
+            })}
           </Box>
           <Box sx={{ mt: "8px" }}>
             <CustomSelectInputField
-              mt="9px"
-              handleClick={handleClick}
-              title={"Nutritional information "}
-              subTitle={"( Optional )"}
-              className={"mealInput mealCourses"}
-              placeholder={"Select nutritional info"}
-              disabled={true}
-              icon={arrowRight}
-            />
-          </Box>
-          <Box sx={{ mt: "8px" }}>
-            <CustomSelectInputField
-              handleClick={handleClick}
+              handleClick={handleClickScheduledDrawer}
               title={"Scheduled dishes "}
               subTitle={"( Optional )"}
               className={"mealInput mealCourses"}
-              placeholder={"Select scheduled dishes"}
+              // placeholder={"Select scheduled dishes"}
+              // placeholder={allData}
+              placeholder={
+                placeholderSched ? allData : "Select scheduled dishes"
+              }
               disabled={true}
               icon={arrowRight}
+              // onChange={allData}
+              // primary={allData}
             />
           </Box>
         </Box>
       </Box>
+      {/* create state, then use ternary operator, then deal it with on open drawer onclick where it will be true */}
 
-      <Box><AddDishesDrawer setOpenDrawer={setOpenDrawer} openDrawer={openDrawer}/></Box>
+      <Box>
+        <AddDishesDrawer
+          setOpenDrawer={setOpenDrawer}
+          // setPlaceholderSched={setPlaceholderSched}
+          openDrawer={openDrawer}
+          Component={<AddIngridient Data={Data} />}
+          title={"Add Ingridient"}
+        />
+      </Box>
+      <Box>
+        <AddDishesDrawer
+          setOpenDrawer={setOpenDrawer2}
+          openDrawer={openDrawer2}
+          Component={<AddIngridient Data={Data2} />}
+          title={"Add Nutritional Info"}
+        />
+      </Box>
+      <Box>
+        <AddDishesDrawer
+          setOpenDrawer={setOpenDrawer3}
+          openDrawer={openDrawer3}
+          Component={
+            <ScheduledDishes
+              onChange={onChange}
+              value={value}
+              allData={allData}
+            />
+          }
+          title={"Dish Schedule"}
+        />
+      </Box>
     </>
   );
 };

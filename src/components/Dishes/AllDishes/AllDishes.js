@@ -1,34 +1,80 @@
-import React from 'react'
-import AllDishesSubHeader from './AllDishesSubHeader'
+import React from "react";
+import AllDishesSubHeader from "./AllDishesSubHeader";
 import { styled, alpha } from "@mui/material/styles";
 import Box from "@mui/material/Box";
-import AllDishesCard from './AllDishesCard';
-import AllDishesTabs from './AllDishesTabs';
+import AllDishesMainCard from "./AllDishesMainCard";
+import AllDishesTabs from "./AllDishesTabs";
+import AddIcon from "@mui/icons-material/Add";
+import { DetailDishesDrawer } from "./DetailDishes/DetailDishesDrawer";
+import { useState, useRef } from "react";
+import { DetailDishesMainCard } from "./DetailDishes/DetailDishesMainCard";
 
 export default function AllDishes() {
-    const SubBox = styled("div")(({ theme }) => ({
-        // padding: theme.spacing(0, 2),
-        padding: "32px",
-        // gap: "20px",
-        // width: {xl: "1036px", lg: "1036px", md: "610px" , },
-        
-        border: "1px solid #E1E1E6",
-        borderRadius: "8px",
-      }));
+
+  const SubBox = styled("div")(({ theme }) => ({
+    padding: "32px",
+    width: "100%",
+    border: "1px solid #E1E1E6",
+    borderRadius: "8px",
+  }));
+
+  const [openDrawer, setOpenDrawer] = useState(false);
+  const [openDrawer2, setOpenDrawer2] = useState(false);
+  const [openDrawer3, setOpenDrawer3] = useState(false);
+
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+    setOpenDrawer(true);
+  };
 
   return (
     <>
-    <AllDishesSubHeader/>
-    <SubBox sx={{
-           width: {xl: "1200px", lg: "1036px", md: "610px" , sm: "500px", xs: "500px" },
-           height: {xl: "344px", lg: "344px", md: "344px", sm: "700px", xs: "750px"}
-          }}>
-            <AllDishesCard/>
-            <Box>
-            <AllDishesTabs/>
+     <Box sx={{paddingLeft: "32px", paddingRight: "32px"}}>
+     <Box mb="16px"><AllDishesSubHeader /></Box>
+      <SubBox
+      
+        sx={{
+          width: {
+            xl: "100%",
+            // lg: "1036px",
+            lg: "100%",
+            md: "100%",
+            sm: "100%",
+            xs: "100%",
+          },
+
+          height: "auto",
+          padding: "32px"
+        }}
+      >
+        <AllDishesMainCard
+          title={"Main Course"}
+          subTitle={"No dishes added"}
+          image={"./images/MainCourse.svg"}
+          icon={<AddIcon sx={{width: "16px", height: "16px"}}/>}
+          BtnName={"Add Dishes"}
+          hasToInput = {true}
+          onHandleClick={handleClick}
+
+        />
+        <Box>
+          <AllDishesTabs onHandleClick={handleClick} />
         </Box>
-          </SubBox>
-        
+
+        <Box>
+        <DetailDishesDrawer
+          setOpenDrawer={setOpenDrawer}
+          // setPlaceholderSched={setPlaceholderSched}
+          openDrawer={openDrawer}
+          Component={<DetailDishesMainCard  />}
+          title={"Detail dishes"}
+        />
+      </Box>
+      </SubBox>
+     </Box>
     </>
-    )
+  );
 }

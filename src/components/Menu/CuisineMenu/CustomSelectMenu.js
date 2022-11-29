@@ -65,7 +65,7 @@ export default function CustomSelectMenu({ setShowAllCuisineFunc }) {
             color: "#2B817B",
             textTransform: "capitalize",
             fontSize: {
-              xl: "26px",
+              xl: "20px",
               lg: "16px",
               md: "16px",
               sm: "16px",

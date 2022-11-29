@@ -13,12 +13,15 @@ export const IngridientMenuButton = () => {
   const Data = [
     {
       button: "Pcs",
+      display: "flex"
     },
     {
       button: "%",
+      display: "flex"
     },
     {
       button: "gr",
+      display: "none"
     },
   ];
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -51,6 +54,11 @@ export const IngridientMenuButton = () => {
           aria-haspopup="true"
           aria-expanded={open ? "true" : undefined}
           onClick={handleClick}
+          sx={{
+            // padding:0,
+            // minHeight: 0,
+            // minWidth: 0,
+          }}
         >
           <PieceTypo> {menuVal}</PieceTypo>
           <Box
@@ -63,7 +71,7 @@ export const IngridientMenuButton = () => {
             <img src="./images/arrow-down.svg" alt="" />
           </Box>
         </Button>
-      </Box>
+      {/* </Box> */}
 
       <Menu
         id="basic-menu"
@@ -87,6 +95,8 @@ export const IngridientMenuButton = () => {
           );
         })}
       </Menu>
+      </Box>
+
     </div>
   );
 };

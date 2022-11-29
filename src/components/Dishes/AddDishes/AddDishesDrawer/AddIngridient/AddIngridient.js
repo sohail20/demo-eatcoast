@@ -12,24 +12,7 @@ import InputAdornment from "@mui/material/InputAdornment";
 import Input from "@mui/material/Input";
 import AddIcon from "@mui/icons-material/Add";
 
-export const AddIngridient = () => {
-  const Data = [
-    {
-      id: 1,
-      title: "Beef",
-      digit: "*10",
-      btnName: "Pcs",
-      image: "./images/Beef.svg",
-    },
-    {
-      id: 2,
-      title: "Onion",
-      digit: "*10",
-      btnName: "Pcs",
-      image: "./images/Beef.svg",
-    },
-  ];
-
+export const AddIngridient = ({ Data,  }) => {
   const Btn = styled(Button)(({ theme }) => ({
     fontFamily: "Outfit",
     fontWeight: "600",
@@ -47,13 +30,7 @@ export const AddIngridient = () => {
     paddingBottom: "8px",
   }));
 
-  let [ingridient, setIngridient] = useState([
-    // "Main Course",
-    // "Salad dishes",
-    // "Sweet dishes",
-    // "Sweet dishes",
-    // "Sweet dishes",
-  ]);
+  let [ingridient, setIngridient] = useState([]);
 
   const addMenu = () => {
     setIngridient([...ingridient, newIngridient]);
@@ -97,13 +74,7 @@ export const AddIngridient = () => {
       }}
     >
       <Box>
-        {/* {mealPlan.map((item, index) => {
-          return (
-            <Typography>{item}</Typography> 
-          )
-        })} */}
-
-        <IngridientCard mealPlan={ingridient} />
+        <IngridientCard mealPlan={ingridient} Data={Data} />
 
         <Btn
           onClick={showBox2}
@@ -139,50 +110,18 @@ export const AddIngridient = () => {
           display: hidden,
         }}
       >
-        <Box sx={{ display: "flex", flexDirection: "column" }}>
-          <Title>Search</Title>
-
-          <Input
-            // fullWidth
-            width="476px"
-            onChange={(e) => setNewIngridient(e.target.value)}
-            disableUnderline="true"
-            placeholder="Search your Ingridient"
-            // onChange = {(e) => filterNames(e)}
-            endAdornment={
-              <InputAdornment position="start">
-                <IconButton onClick={handleButtonClick}>
-                  <img
-                    src={"./images/search-normal.svg"}
-                    sx={{
-                      width: "17.75px",
-                      height: "20.5px",
-                    }}
-                  />
-                </IconButton>
-              </InputAdornment>
-            }
-            sx={{
-              // borderColor: "#E1E1E6",
-              border: "2px solid #80B3B0",
-              width: {
-                xl: "478px",
-                lg: "478px",
-                md: "478px",
-                sm: "478px",
-                xs: "100%",
-              },
-              height: "48px",
-              borderRadius: "6px",
-              padding: "15px, 24px, 15px, 24px",
-              gap: { lg: "16px", md: "16px", sm: "0px", xs: "0px" },
-              backgroundColor: "#F6F6F6",
-              color: "#9EA3AE",
-              paddingLeft: "16px",
-              // paddingRight: "18px",
-            }}
-          ></Input>
-        </Box>
+        <CustomSearchBar
+          onChangeProp={(e) => setNewIngridient(e.target.value)}
+          placeholder={"Search your Ingridient"}
+          icon={"./images/search-normal.svg"}
+          bgColor={"#F6F6F6"}
+          color={"#9EA3AE"}
+          border={"2px solid #80B3B0"}
+          height={"48px"}
+          onClickIconBtn={handleButtonClick}
+          borderColor={"#E1E1E6"}
+          title={"Search"}
+        />
       </Box>
     </Box>
   );

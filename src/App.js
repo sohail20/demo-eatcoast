@@ -20,6 +20,11 @@ import Financials from './screens/dashboard/Financials';
 import Employee from './screens/dashboard/Employee';
 import Settings from './screens/dashboard/Settings';
 import AddDishes from './components/Dishes/AddDishes/AddDishes';
+import AddMealPlan from './components/Menu/AddMealPlan/AddMealPlan';
+import { BackToDishes } from './components/Dishes/AddDishes/BackToDishes/BackToDishes';
+import AllDishes from './components/Dishes/AllDishes/AllDishes';
+import { EditDishes } from './components/Dishes/EditDishes/EditDishes';
+import { DetailDishes } from './components/Dishes/AllDishes/DetailDishes/DetailDishes';
 
 function App() {
   return (
@@ -40,8 +45,14 @@ function App() {
           <Route path="/financials" element={<Financials />} />
           <Route path="/employee" element={<Employee />} />
           <Route path="/setting" element={<Settings />} />
-          <Route path="/dishes" element={<AddDishes />} />
+          <Route path="/dish" element={<AddDishes />} />
+          <Route path="/alldishes" element={<AllDishes />} />
+          <Route path="/mealPlan" element={<AddMealPlan />} />
+          <Route path="/backToDishes" element={<BackToDishes />} />
+          <Route path="/editdishes" element={<EditDishes />} />
+          <Route path="/detaildishes" element={<DetailDishes />} />
 
+        
         </Routes>
       </ThemeProvider>
    </>

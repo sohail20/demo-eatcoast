@@ -5,7 +5,9 @@ import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import NoDishesAdded from "./NoDishesAdded";
-
+import { AllDishesCard } from "./AllDishesCard";
+import { AllDishesData } from "./Config";
+import { AllDishesData2 } from "./Config";
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -39,7 +41,7 @@ function a11yProps(index) {
   };
 }
 
-export default function AllDishesTabs() {
+export default function AllDishesTabs({onHandleClick}) {
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
@@ -48,19 +50,22 @@ export default function AllDishesTabs() {
 
   return (
     <Box sx={{ width: "100%" }}>
-      <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+      <Box sx={{borderBottom: "1px solid #E1E1E6", borderBottom: 1, borderColor: "divider" }}>
         <Tabs
           value={value}
           onChange={handleChange}
           aria-label="basic tabs example"
           textColor="#1A1824"
-          
-          indicatorColor="primary"
-          TabIndicatorProps={{
-            style: {
-              backgroundColor: "#2B817B",
-            },
-          }}
+          // // textColor="secondary"
+          // indicatorColor="#2B817B"
+          // TabIndicatorProps={{
+          //   style: {
+          //     backgroundColor: "#2B817B",
+          //   },
+          // }}
+          sx={{'& .MuiTabs-indicator': { backgroundColor: "#2B817B" },
+          '& .MuiTab-root': { color: "#9EA3AE" },
+          '& .Mui-selected': { color: "#1A1824" },}}
         >
           <Tab
             label="Active"
@@ -109,16 +114,23 @@ export default function AllDishesTabs() {
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
-        <NoDishesAdded />
+        {
+          false? (<NoDishesAdded />)
+          : 
+          (
+            <AllDishesCard AllDishesData={AllDishesData2} />
+          )
+        }
+        
       </TabPanel>
       <TabPanel value={value} index={1}>
-        Item Two
+      <AllDishesCard AllDishesData={AllDishesData2} onHandleClick={onHandleClick}/>
       </TabPanel>
       <TabPanel value={value} index={2}>
-        Item Three
+      <AllDishesCard AllDishesData={AllDishesData} />
       </TabPanel>
       <TabPanel value={value} index={3}>
-        Item Value
+      <AllDishesCard AllDishesData={AllDishesData2} />
       </TabPanel>
     </Box>
   );

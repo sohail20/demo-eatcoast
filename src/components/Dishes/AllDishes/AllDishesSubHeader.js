@@ -23,13 +23,16 @@ export default function AllDishesSubHeader() {
         fontWeight: "600",
         lineHeight: "28px",
         textTransform: "capitalize",
+        [theme.breakpoints.down('lg')]:{
+          fontSize: "20px",
+      }
       }));
 
 
   return (
 <>
       <Box sx={{ display: "flex" }}>
-        <Box width="20%">          
+        <Box sx={{width:{lg: "20%", md: "20%", sm: "20%", xs: "30%"}}}>          
             <Box >
             <Button width="20%">
               <Box sx={{ display: "flex",
@@ -50,7 +53,7 @@ export default function AllDishesSubHeader() {
         </Box>
 
 
-        <Box width="50%" sx={{ display: "flex", justifyContent: "center" }}>
+        <Box  sx={{ display: "flex", justifyContent: "center", width:{lg: "50%", md: "50%", sm: "50%", xs: "50%"} }}>
           <Typo1 variant="body1" color="initial">
             All Dishes
           </Typo1>

@@ -21,6 +21,7 @@ export const CustomSelectInputField = ({
   placeholder,
   disabled,
   icon,
+  onChange
 }) => {
   const Para = styled(Typography)(({ theme }) => ({
     fontFamily: "Outfit",
@@ -42,6 +43,7 @@ export const CustomSelectInputField = ({
       <OutlinedInput
         fullWidth
         onClick={handleClick}
+        // onChange={onChange}
         disabled={disabled}
         className={className}
         placeholder={placeholder}

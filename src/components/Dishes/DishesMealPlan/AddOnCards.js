@@ -30,6 +30,9 @@ export default function AddOnCards() {
     fontSize: "16px",
     fontWeight: "600",
     lineHeight: "24px",
+    [theme.breakpoints.down('sm')]:{
+      fontSize: "12px",
+  }
   }));
 
   const Typo2 = styled("div")(({ theme }) => ({
@@ -38,6 +41,9 @@ export default function AddOnCards() {
     fontWeight: "400",
     lineHeight: "24px",
     color: "#9EA3AE",
+    [theme.breakpoints.down('sm')]:{
+      fontSize: "12px",
+  }
     // display: "flex",
     // alignItems: "center",
   }));
