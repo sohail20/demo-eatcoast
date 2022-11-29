@@ -18,7 +18,7 @@ import Subscription from './screens/dashboard/Subscription';
 import Menu from './screens/dashboard/Menu';
 import Financials from './screens/dashboard/Financials';
 import Employee from './screens/dashboard/Employee';
-import Settings from './screens/dashboard/Settings';
+import Settings from './screens/dashboard/Settings/index';
 import AddDishes from './components/Dishes/AddDishes/AddDishes';
 
 function App() {

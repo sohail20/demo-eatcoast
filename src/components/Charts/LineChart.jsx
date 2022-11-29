@@ -1,6 +1,6 @@
 import * as React from "react";
 import { styled } from "@mui/material/styles";
-import {Box,Stack} from "@mui/material";
+import { Box, Stack } from "@mui/material";
 import CircularProgress, {
   circularProgressClasses,
 } from "@mui/material/CircularProgress";
@@ -23,15 +23,15 @@ const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
   },
 }));
 
-export default function CustomizedLineChart() {
+export default function CustomizedLineChart({ stars, value }) {
   return (
     <Box display="flex" alignItems="center" justifyContent="center">
-      <LightTitle>5</LightTitle>
-      <StarIcon style={{ color: "#FAA641" }} />
-      <Box sx={{ flexGrow: 1 }}>
-        <BorderLinearProgress variant="determinate" value={50} />
+      <LightTitle>{stars}</LightTitle>
+      <StarIcon style={{ color: "#FAA641", fontSize: "18px" }} />
+      <Box sx={{ flexGrow: 1 }} mr={2}>
+        <BorderLinearProgress variant="determinate" value={value} />
       </Box>
-      <LightTitle>50%</LightTitle>
+      <LightTitle>{value}%</LightTitle>
     </Box>
   );
 }
