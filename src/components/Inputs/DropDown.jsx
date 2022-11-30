@@ -12,6 +12,7 @@ import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUp from "@mui/icons-material/KeyboardArrowUp";
 import LightTitle from "../Typography/LightTitle";
+import { Checkbox } from "@mui/material";
 
 const StyledMenu = styled((props) => (
   <Menu
@@ -71,6 +72,7 @@ export default function CustomizedDrop({
   label = "Action",
   height,
   items = [],
+  hasCheckbox,
   onClick,
 }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -99,10 +101,10 @@ export default function CustomizedDrop({
             border: "1px solid #559A95",
             fontFamily: "Outfit",
             fontStyle: "normal",
-            fontWeight: height<=24?400:600,
+            fontWeight: height <= 24 ? 400 : 600,
             fontSize: "16px",
             lineHeight: "160%",
-            height:`${height}px`,
+            height: `${height}px`,
             letterSpacing: "0.015em",
             color: open ? "#ffffff" : "#2B817B",
             textTransform: "none",
@@ -120,20 +122,62 @@ export default function CustomizedDrop({
           open={open}
           onClose={handleClose}
         >
-          {items.map((item) => (
-            <CustomMenu
-              onClick={() => {
-                onClick(item.id);
-              }}
-              style={{ color: item.color }}
-              disableRipple
-            >
-              <Box style={{ paddingRight: "10px" }}>
-                <i class={item.icon}></i>
-              </Box>
-              {item.label}
-            </CustomMenu>
-          ))}
+          {Array.isArray(items) ? (
+            items.map((item) => {
+              <CustomMenu
+                onClick={() => {
+                  onClick(item.id);
+                }}
+                style={{ color: item.color }}
+                disableRipple
+              >
+                {hasCheckbox && (
+                  <Box>
+                    <Checkbox />
+                  </Box>
+                )}
+
+                {item.icon && (
+                  <Box style={{ paddingRight: "10px" }}>
+                    <i class={item.icon}></i>
+                  </Box>
+                )}
+                {item.label}
+              </CustomMenu>;
+            })
+          ) : (
+            <>
+              {Object.keys(items).map((item, index) => (
+                <React.Fragment key={index}>
+                  <Box style={{ padding: "5px 30px 5px 30px" }}>
+                    <LightTitle>{item}</LightTitle>
+                  </Box>
+                  {items[item].map((item) => (
+                    <CustomMenu
+                      onClick={() => {
+                        onClick(item.id);
+                      }}
+                      style={{ color: item.color }}
+                      disableRipple
+                    >
+                      {hasCheckbox && (
+                        <Box>
+                          <Checkbox />
+                        </Box>
+                      )}
+
+                      {item.icon && (
+                        <Box style={{ paddingRight: "10px" }}>
+                          <i class={item.icon}></i>
+                        </Box>
+                      )}
+                      {item.label}
+                    </CustomMenu>
+                  ))}
+                </React.Fragment>
+              ))}
+            </>
+          )}
         </StyledMenu>
       </div>
     </Box>

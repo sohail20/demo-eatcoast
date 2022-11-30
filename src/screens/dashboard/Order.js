@@ -1,15 +1,15 @@
-import React from 'react'
-import { Box } from '@mui/material'
-import DashboardLayout from '../DashboardLayout/DashboardLayout'
-
+import React from "react";
+import DashboardLayout from "../DashboardLayout/DashboardLayout";
+import RequestSection from "./Staff/Orders";
+import DetailsOrder from "./Staff/Orders/Request/DetailsOrder";
 const Order = () => {
   return (
     <>
-      <DashboardLayout>
-        Order
-      </DashboardLayout>   
+      <DashboardLayout padding={1}>
+        {false ? <RequestSection /> : <DetailsOrder />}
+      </DashboardLayout>
     </>
-  )
-}
+  );
+};
 
-export default Order
+export default Order;

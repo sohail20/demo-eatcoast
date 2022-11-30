@@ -27,9 +27,24 @@ const LabelTypography = styled(Typography)({
   color: "#FFFFFF",
 });
 
+const SubsChipColor = {
+  "Fitness subscription": "#FF8D85",
+  "Personal subscription": "#7B49E5",
+  "Bussines subscription": "#FF9933",
+  "Single order": "#7ECC49",
+  "On Progress": "#FAA641",
+  Cooked: "#42C677",
+};
+
 const SimpleChips = ({ label, chipColor }) => {
   return (
-    <MyComponent style={{ backgroundColor: chipColor }}>
+    <MyComponent
+      style={{
+        backgroundColor: SubsChipColor.hasOwnProperty(label)
+          ? SubsChipColor[label]
+          : chipColor,
+      }}
+    >
       <LabelTypography>{label}</LabelTypography>
     </MyComponent>
   );

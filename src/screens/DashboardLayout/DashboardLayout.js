@@ -118,7 +118,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
     }),
 );
 
-export default function DashboardLayout(props){
+export default function DashboardLayout({padding = 1,children}){
 
     const [open, setOpen] = useState(false);
     const [isTrue, setIsTrue] = useState(true);
@@ -186,8 +186,8 @@ export default function DashboardLayout(props){
             </Drawer>
 
             <Box component="main" sx={{ flexGrow: 1,mt:"70px" }}>
-              <Box p={1}>
-                  {props.children}
+              <Box p={padding}>
+                  {children}
               </Box>
             </Box>
 
