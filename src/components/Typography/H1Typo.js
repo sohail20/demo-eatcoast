@@ -6,11 +6,15 @@ const Title = styled(Typography)(({ color = "#1A1824", theme }) => ({
   fontWeight: 600,
   fontSize: "20px",
   letterSpacing: "0.015em",
-  color:color,
+  color: color,
 }));
 
-const H1Typo = ({ color, children }) => {
-  return <Title color={color}>{children}</Title>;
+const H1Typo = ({ color, children, ...rest }) => {
+  return (
+    <Title color={color} {...rest}>
+      {children}
+    </Title>
+  );
 };
 
 export default H1Typo;
