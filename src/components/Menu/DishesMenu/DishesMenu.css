@@ -1,0 +1,47 @@
+.dishSchedule{
+}
+
+
+.react-calendar{
+    width: 100% !important;
+    margin-top: 15px !important;
+border-radius: 6px !important;
+padding: 10px !important;
+
+}
+.react-calendar__navigation__prev2-button, .react-calendar__navigation__next2-button{
+display: none !important;
+}
+.react-calendar__navigation__arrow{
+    font-size: 30px;
+} 
+.react-calendar__navigation__prev-button, .react-calendar__navigation__next-button{
+size: 36px !important;
+color: #2B817B !important;
+border-radius: 6px !important;
+
+
+} 
+.react-calendar__tile--active:enabled:hover, .react-calendar__tile--active:enabled:focus {
+    background: #2B817B !important;
+    border-radius: 6px !important;
+
+}
+.react-calendar__navigation__label{
+color: #2B817B !important;
+border-radius: 6px !important;
+
+}
+.react-calendar__tile--active {
+    background: #2B817B !important;
+    border-radius: 6px !important;
+
+}
+.react-calendar__month-view__weekdays__weekday{
+    color: #E1E1E6 !important;
+    font-family: 'Outfit' !important;
+font-style: normal !important;
+font-weight: 500 !important;
+font-size: 14px !important;
+line-height: 20px !important;
+}
