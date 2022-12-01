@@ -12,7 +12,14 @@ const Typo = styled(Typography)(({ theme, variant, color }) => ({
   color: variant === "contained" ? "#fff" : color ? color : "#2B817B",
 }));
 
-const CustomIconButton = ({ label, color, variant, icon, onClick }) => {
+const CustomIconButton = ({
+  label,
+  color,
+  variant,
+  icon,
+  onClick,
+  width
+}) => {
   return (
     <Button
       onClick={onClick}
@@ -22,6 +29,7 @@ const CustomIconButton = ({ label, color, variant, icon, onClick }) => {
         borderColor:
           variant === "outlined" ? (color ? color : "#2B817B") : undefined,
         backgroundColor: variant === "contained" ? "#2B817B" : undefined,
+        width:width?width:undefined
       }}
     >
       <Typo variant={variant} color={color}>
