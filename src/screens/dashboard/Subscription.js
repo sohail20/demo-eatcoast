@@ -1,5 +1,5 @@
 import React from 'react'
-import DashboardLayout from '../DashboardLayout/DashboardLayout'
+import DashboardLayout from 'screens/DashboardLayout/DashboardLayout'
 
 const Subscription = () => {
   return (

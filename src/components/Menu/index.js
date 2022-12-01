@@ -102,7 +102,7 @@ export const MenuComponent = () => {
   return (
     <>
       <Box component="container">
-        {false ? (
+        {/* {false ? ( */}
           <>
             <Box
               sx={{
@@ -175,9 +175,9 @@ export const MenuComponent = () => {
               )}
             </Box>
           </>
-        ) : (
+        {/* ) : (
           <AddMealPlan/>
-        )}
+        )} */}
       </Box>
     </>
   );
