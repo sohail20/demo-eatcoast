@@ -5,6 +5,8 @@ import Tab from "@mui/material/Tab";
 import { Box } from "@mui/material";
 import Request from "./Request/Request";
 import Prepare from "./Prepare";
+import Upcoming from "./Upcoming/Upcoming";
+import OnDelivery from "./OnDelivery";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -126,9 +128,16 @@ export default function CustomTabs() {
         <Request />
       </TabPanel>
       <TabPanel value={value} index={1}>
+        <Upcoming />
       </TabPanel>
       <TabPanel value={value} index={2}>
-        <Prepare/>
+        <Prepare />
+      </TabPanel>
+      <TabPanel value={value} index={3}>
+        <p>Paked</p>
+      </TabPanel>
+      <TabPanel value={value} index={4}>
+        <OnDelivery />
       </TabPanel>
     </Box>
   );

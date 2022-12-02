@@ -6,7 +6,7 @@ const Order = () => {
   return (
     <>
       <DashboardLayout padding={1}>
-        {false ? <RequestSection /> : <DetailsOrder />}
+        {true ? <RequestSection /> : <DetailsOrder />}
       </DashboardLayout>
     </>
   );
