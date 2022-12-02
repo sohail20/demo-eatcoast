@@ -4,7 +4,7 @@ import { FlexBoxContainer } from "components/Containers";
 import { H1Typo } from "components/Typography";
 import DriverProfile from "./DriverProfile";
 
-const OnDelivery = () => {
+const OnDelivery = ({handleClickChat}) => {
   return (
     <Box>
       <FlexBoxContainer>
@@ -20,7 +20,7 @@ const OnDelivery = () => {
           <Grid item xs={12} sm={12} md={3}></Grid>
         </Grid>
       ) : (
-        <DriverProfile />
+        <DriverProfile handleClickChat={handleClickChat} />
       )}
     </Box>
   );

@@ -15,9 +15,11 @@ import DeliveryCard from "components/Cards/DeliveryCard";
 import CloseHeader from "components/Header/CloseHeader";
 import SimpleChips from "components/Chips/SimpleChips";
 import UnderlineButton from "components/Button/UnderlineButton";
+import RequestCard from "components/Cards/RequestCard";
 
-const DriverProfile = () => {
+const DriverProfile = ({handleClickChat}) => {
   const [showDeliveryList, setShowDeliveryList] = useState(null);
+  const [deliveryToShowDetail, setDeliveryToShowDetail] = useState(null);
   return (
     <>
       <Grid container spacing={2}>
@@ -49,6 +51,7 @@ const DriverProfile = () => {
                   icon={<ChatIcon />}
                   label="Chat"
                   variant={"contained"}
+                  onClick={handleClickChat}
                 />
               </Box>
             </BorderContainer>
@@ -110,22 +113,134 @@ const DriverProfile = () => {
           md={4}
           style={{ display: showDeliveryList ? "block" : "none" }}
         >
-          <DeliveryListCard
-            type={showDeliveryList}
-            handleClose={() => setShowDeliveryList(null)}
-          />
+          {deliveryToShowDetail === null ? (
+            <DeliveryListCard
+              type={showDeliveryList}
+              handleClose={() => setShowDeliveryList(null)}
+              handleSeeDetails={(e) => {
+                setDeliveryToShowDetail(e);
+              }}
+            />
+          ) : (
+            <DetailOrder
+              data={{ id: deliveryToShowDetail }}
+              handleClose={() => setDeliveryToShowDetail(null)}
+            />
+          )}
         </Grid>
       </Grid>
     </>
   );
 };
 
-const DeliveryListCard = ({ handleClose, type }) => {
+const DetailOrder = ({ data, handleClose }) => {
+  const { id } = data;
   return (
     <>
-      <CloseHeader title="In Queue" handleClose={handleClose} />
+      <CloseHeader title="Detail Order" variant="back" handleClose={handleClose} />
+      <Stack spacing={2}>
+        <FlexBoxContainer>
+          <LightTitle>{id}</LightTitle>
+          <SimpleChips label="Single order" />
+        </FlexBoxContainer>
+        <FlexBoxContainer>
+          <H3Typo>Salmon with chili sauce</H3Typo>
+          <Box textAlign={"center"}>
+            <H3Typo>1</H3Typo>
+            <LightTitle>Order</LightTitle>
+          </Box>
+        </FlexBoxContainer>
+        <FlexBoxContainer>
+          <LightTitle style={{ display: "flex", alignItems: "center" }}>
+            {" "}
+            <CalendarMonthOutlinedIcon
+              style={{ fontSize: "15px", marginRight: "10px" }}
+            />
+            Date
+          </LightTitle>
+          <Box>
+            <BorderContainer style={{ height: "32px" }}>
+              <LightTitle>Thursday, 9 Dec, 2021</LightTitle>
+            </BorderContainer>
+          </Box>
+        </FlexBoxContainer>
 
-      <BorderContainer>
+        <FlexBoxContainer>
+          <LightTitle style={{ display: "flex", alignItems: "center" }}>
+            {" "}
+            <TimerOutlinedIcon
+              style={{ fontSize: "15px", marginRight: "10px" }}
+            />
+            Time
+          </LightTitle>
+          <Box>
+            <BorderContainer style={{ height: "32px" }}>
+              <LightTitle>03.00 Pm - 07.00 Pm</LightTitle>
+            </BorderContainer>
+          </Box>
+        </FlexBoxContainer>
+
+        <BorderContainer>
+          <FlexBoxContainer>
+            <Box>
+              <LightTitle>Main course</LightTitle>
+              <H3Typo>Kabasa</H3Typo>
+            </Box>
+
+            <Box display="flex" gap={5}>
+              <H3Typo>1</H3Typo>
+              <H3Typo>$222</H3Typo>
+            </Box>
+          </FlexBoxContainer>
+        </BorderContainer>
+
+        <Box>
+          <LightTitle></LightTitle>
+          <FlexBoxContainer style={{ justifyContent: "end" }}>
+            <Box display="flex">
+              <LightTitle>Subtotal:</LightTitle>
+              <LightTitle style={{ width: "85px", textAlign: "end" }}>
+                $170.00
+              </LightTitle>
+            </Box>
+          </FlexBoxContainer>
+
+          <FlexBoxContainer style={{ justifyContent: "end" }}>
+            <Box display="flex">
+              <LightTitle>Tax:</LightTitle>
+              <LightTitle style={{ width: "85px", textAlign: "end" }}>
+                $10.00
+              </LightTitle>
+            </Box>
+          </FlexBoxContainer>
+
+          <FlexBoxContainer style={{ justifyContent: "end" }}>
+            <Box display="flex">
+              <LightTitle>Total:</LightTitle>
+              <LightTitle style={{ width: "85px", textAlign: "end" }}>
+                $180.00
+              </LightTitle>
+            </Box>
+          </FlexBoxContainer>
+        </Box>
+      </Stack>
+    </>
+  );
+};
+
+const DeliveryListCard = ({ data, handleClose, handleSeeDetails, type }) => {
+  return (
+    <>
+      <CloseHeader
+        title="In Queue"
+        handleClose={handleClose}
+        variant={"back"}
+      />
+
+      <BorderContainer
+        style={{ cursor: "pointer" }}
+        onClick={() => handleSeeDetails("#ECS - 12345")}
+      >
         <Stack spacing={2} width={"100%"}>
           <FlexBoxContainer>
             <Box
