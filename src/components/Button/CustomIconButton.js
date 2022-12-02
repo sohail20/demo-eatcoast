@@ -16,25 +16,30 @@ const CustomIconButton = ({
   label,
   color,
   variant,
+  disabled,
   icon,
   onClick,
-  width
+  width,
 }) => {
   return (
     <Button
       onClick={onClick}
+      disabled={disabled}
       startIcon={icon ? icon : undefined}
       variant={variant}
       style={{
+        opacity: disabled ? "0.5" : undefined,
         borderColor:
           variant === "outlined" ? (color ? color : "#2B817B") : undefined,
         backgroundColor: variant === "contained" ? "#2B817B" : undefined,
-        width:width?width:undefined
+        width: width ? width : undefined,
       }}
     >
-      <Typo variant={variant} color={color}>
-        {label}
-      </Typo>
+      {label && (
+        <Typo variant={variant} color={color}>
+          {label}
+        </Typo>
+      )}
     </Button>
   );
 };

@@ -2,12 +2,19 @@ import { Box } from "@mui/material";
 import CustomIconButton from "../Button/CustomIconButton";
 import { H1Typo } from "../Typography";
 import ClearIcon from "@mui/icons-material/Clear";
-
-const CloseHeader = ({ handleClose, title }) => {
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+const CloseHeader = ({ handleClose,label, variant = "close", title }) => {
   return (
     <Box display={"flex"} alignItems="center" style={{ marginBottom: "20px" }}>
       <CustomIconButton
-        icon={<ClearIcon style={{ color: "#E75C62" }} />}
+        icon={
+          variant === "close" ? (
+            <ClearIcon style={{ color: "#E75C62" }} />
+          ) : (
+            <ArrowBackIosIcon style={{ color: "#2B817B" }} />
+          )
+        }
+        label={label}
         onClick={handleClose}
       />
       {title && (

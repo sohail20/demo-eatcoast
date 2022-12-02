@@ -7,6 +7,7 @@ import Request from "./Request/Request";
 import Prepare from "./Prepare";
 import Upcoming from "./Upcoming/Upcoming";
 import OnDelivery from "./OnDelivery";
+import Packed from "./Packed";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -37,7 +38,7 @@ function a11yProps(index) {
   };
 }
 
-export default function CustomTabs() {
+export default function CustomTabs({handleClickChat}) {
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
@@ -134,10 +135,10 @@ export default function CustomTabs() {
         <Prepare />
       </TabPanel>
       <TabPanel value={value} index={3}>
-        <p>Paked</p>
+        <Packed/>
       </TabPanel>
       <TabPanel value={value} index={4}>
-        <OnDelivery />
+        <OnDelivery handleClickChat={handleClickChat}/>
       </TabPanel>
     </Box>
   );

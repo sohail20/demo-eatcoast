@@ -1,8 +1,8 @@
 import { TextField, Box } from "@mui/material";
 import { H3Typo } from "../Typography";
-const CustomInput = ({ label, ...rest }) => {
+const CustomInput = ({ label, width, ...rest }) => {
   return (
-    <Box>
+    <Box width={width}>
       <H3Typo>{label}</H3Typo>
       <TextField
         {...rest}
