@@ -16,7 +16,7 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import Menu from "./Menu";
 import Order from "./Order";
-import Subscription from "./Subscription";
+import Subscription from "./Subscription.js";
 import Financials from "./Financials";
 import Employee from "./Employee";
 import Settings from "./Settings";

@@ -14,7 +14,6 @@ import MealPlan2 from './screens/MealPlan2';
 import MealPlan from './screens/MealPlan/MealPlan';
 import Dashboard from './screens/dashboard/Dashboard';
 import Order from './screens/dashboard/Order';
-import Subscription from './screens/dashboard/Subscription';
 import Menu from './screens/dashboard/Menu';
 import Financials from './screens/dashboard/Financials';
 import Employee from './screens/dashboard/Employee';
@@ -25,6 +24,7 @@ import { BackToDishes } from './components/Dishes/AddDishes/BackToDishes/BackToD
 import AllDishes from './components/Dishes/AllDishes/AllDishes';
 import { EditDishes } from './components/Dishes/EditDishes/EditDishes';
 import { DetailDishes } from './components/Dishes/AllDishes/DetailDishes/DetailDishes';
+import Subscription from './screens/Subscription/Subscription';
 
 function App() {
   return (

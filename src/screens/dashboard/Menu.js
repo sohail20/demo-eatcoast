@@ -117,12 +117,14 @@ import DashboardLayout from "../DashboardLayout/DashboardLayout";
 import { DocumentEmployee } from "../../components/Document/Employee/DocumentEmployee";
 import { DocumentEmployee2 } from "../../components/Document/Employee/DocumentEmployee2";
 import { HelpCenter } from "../../components/HelpCenter/HelpCenterSection/HelpCenter";
+import MenuTabs from "../../components/Menu/MenuTabs";
 
 const Menu = () => {
   return (
     <>
       <DashboardLayout>
-        <HelpCenter/>
+        <MenuTabs/>
+        {/* <HelpCenter/> */}
       </DashboardLayout>
     </>
   );
