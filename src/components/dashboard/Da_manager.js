@@ -1,9 +1,12 @@
 import React from 'react'
-import { Box, FormControl, Grid, InputLabel, MenuItem, Select, Typography } from '@mui/material'
+import { Box, Button, FormControl, Grid, InputLabel, ListItemIcon, ListItemText, Menu, MenuItem, Select, Typography } from '@mui/material'
 import { BiCheckCircle } from 'react-icons/bi'
 import { BsArrowDown, BsArrowUp } from 'react-icons/bs'
 import { DonutChart } from './DonutChart';
 import { SalesChart } from './SalesChart';
+import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+
 
 export const Da_manager = ({ todayDate }) => {
         const dashRev =[
@@ -38,27 +41,33 @@ export const Da_manager = ({ todayDate }) => {
 
         }
     ]
-    const [dmonthly, setDmonthly] = React.useState('');
-
-    const handleChange = (event) => {
-        setDmonthly(event.target.value);
+    const [anchorEl, setAnchorEl] = React.useState(null);
+    const open = Boolean(anchorEl);
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
     };
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+    const [menu, setMenu] = React.useState('Month')
+    const [checkbox, setCheckbox] = React.useState(false);
+    const [checkbox2, setCheckbox2] = React.useState(false);
+    const [checkbox3, setCheckbox3] = React.useState(false);
 
-    // const handleColor=(color)=>{
-        
-    // }
-    const [checked, setChecked] = React.useState(true);
-    const [checked1, setChecked1] = React.useState(false);
+    const handleIcon = () => {
+        setCheckbox(true);
+        setCheckbox2(false);
+        setCheckbox3(false);
 
-   
-    const handleChecked = () => {
-        setChecked(true)
-        setChecked1(false)
     }
-    const handleChecked1 = () => {
-        setChecked1(true)
-        setChecked(false)
+    const handleIcon2 = () => {
+        setCheckbox(false);
+        setCheckbox2(true);
+        setCheckbox3(false);
+
     }
+
+
     return (
         <Box component={'div'} >
             <Box component={'div'} >
@@ -70,7 +79,15 @@ export const Da_manager = ({ todayDate }) => {
                     </Typography>
                 </Box>
                 <Box component={'div'}>
-                    <Box component={'div'} display={'flex'} justifyContent={'space-between'}
+                    <Typography textAlign={'end'} sx={{
+                        fontFamily: 'Outfit', fontSize: '14px',
+                        color: '#42C677', lineHeight: '30px', fontWeight: '400'
+                    }}>
+                        ( 30 % compared to last month )
+                    </Typography>
+                </Box>
+                <Box component={'div'}>
+                    <Box mb={1} component={'div'} display={'flex'} justifyContent={'space-between'}
                     // sx={{ flexDirection: {xs: 'column', }}}
                     >
                         <Box component={'div'} >
@@ -78,49 +95,102 @@ export const Da_manager = ({ todayDate }) => {
                                 fontFamily: 'Outfit', fontSize: '14px',
                                 color: '#9EA3AE', lineHeight: '30px', fontWeight: '400'
                             }}>Showing: </span>
-                            <FormControl sx={{ width: '160px', marginTop: '-16px' }} hiddenLabel>
-                            <InputLabel  disableAnimation={true}
-                                ></InputLabel>
-                                <Select
+                            
+                            <Button
+                                id="basic-button"
+                                aria-controls={open ? "basic-menu" : undefined}
+                                aria-haspopup="true"
+                                aria-expanded={open ? "true" : undefined}
+                                onClick={handleClick}
+                                endIcon={<KeyboardArrowDownIcon sx={{ fill: '#2B817B ' }} />}
+                                sx={{
+                                    color: "#545359",
+                                    marginLeft: '10px',
+                                    textTransform: "capitalize",
+                                    border: '1px solid #E1E1E6',
+                                    width: '76px',
+                                    borderRadius: '6px',
+                                    fontSize: {
+                                        xl: "14px",
+                                        lg: "14px",
+                                        md: "13px",
+                                        sm: "12px",
+                                        xs: "12px",
+                                    },
+                                    fontWeight: "500",
+                                    pl: "0px",
+                                    width: '100px'
+                                }}
+
+                            >
+                                {menu}
+                            </Button>
+                            <Menu
+                                id="basic-menu"
+                                anchorEl={anchorEl}
+                                onClose={handleClose}
+                                open={open}
+                                MenuListProps={{
+                                    "aria-labelledby": "basic-button",
+                                }}
+                                sx={{
+                                    border: "1px solid #E1E1E6",
+                                    borderRadius: "6px",
+                                }}
+                            >
+                                <MenuItem
                                     sx={{
-                                        boxShadow: 'none', margin: '10px', lineHeight: '25px', height: '30px', padding: '0px',
-                                        '& .MuiSelect-select': {
-                                           color: '#2B817B'
-                                        },
-                                       ".MuiOutlinedInput-notchedOutline": {
-                                            border: "none !important"
-                                        },
-                                        '& .MuiSelect-icon':{
-                                               fill: '#2B817B'
-                                           }
+                                        color: "#9EA3AE",
+                                        width: "120px",
+                                        pt: "0px",
+                                        pb: "0px",
+                                        fontSize: "12px",
+                                        fontWeight: "400",
                                     }}
-                                    labelId="demo-simple-select-label"
-                                    id="demo-simple-select"
-                                    value={dmonthly}
-                                    placeholder={"This Month"}
-                                    onChange={handleChange}
+                                    onClick={(e) => {
+                                        setMenu('Name');
+                                        handleClose(); handleIcon();
+                                    }}
                                 >
-                                    <MenuItem selected onClick={handleChecked} sx={{ marginRight: '0px', background: '#fff' }} disableRiple={true} value={'monthly'}>Monthly{" "}{" "}
-                                        {checked && <BiCheckCircle sx={{ marginTop: '9px', marginLeft: '8px' }} color='#42C677' />}
-                                    </MenuItem>
-                                    <MenuItem selected onClick={handleChecked} sx={{ marginRight: '0px', background: '#fff' }} disableRiple={true} value={'monthly'}>Monthly{" "}{" "}
-                                        {checked && <BiCheckCircle sx={{ marginTop: '9px', marginLeft: '8px' }} color='#42C677' />}
-                                    </MenuItem>
-                                    <MenuItem disableRiple={true} onClick={handleChecked1} value={'daily'}>Daily {" "}{" "}
-                                        {checked1 && <BiCheckCircle sx={{ marginTop: '9px', marginLeft: '8px' }} color='#42C677' />}</MenuItem>
-                                </Select>
-                            </FormControl>
+                                    <ListItemText primary={'Month'}
+                                        primaryTypographyProps={{ fontSize: '14px', fontFamily: "outfit", fontWeight: true ? '600' : '400', }} />
 
+                                    <ListItemIcon>
+                                        {checkbox ? (
+                                            <CheckCircleOutlineIcon sx={{ fill: "#42C677" }} />
+                                        ) : ''}
+                                    </ListItemIcon>
+
+                                </MenuItem>
+
+                                <MenuItem
+                                    sx={{
+                                        color: "#9EA3AE",
+                                        width: "120px",
+                                        pt: "0px",
+                                        pb: "0px",
+                                        fontSize: "12px",
+                                        fontWeight: "400",
+                                    }}
+                                    onClick={(e) => {
+                                        setMenu('Daily');
+                                        handleClose(); handleIcon2();
+                                    }}
+                                >
+                                    <ListItemText primary={'Daily'}
+                                        primaryTypographyProps={{ fontSize: '14px', fontFamily: "outfit", fontWeight: true ? '600' : '400', }} />
+
+                                    <ListItemIcon>
+                                        {checkbox2 ? (
+                                            <CheckCircleOutlineIcon sx={{ fill: "#42C677" }} />
+                                        ) : ''}
+                                    </ListItemIcon>
+
+                                </MenuItem>
+                            </Menu>
 
                         </Box>
-                        <Box component={'div'}>
-                            <Typography sx={{
-                                fontFamily: 'Outfit', fontSize: '14px',
-                                color: '#42C677', lineHeight: '30px', fontWeight: '400'
-                            }}>
-                                ( 30 % compared to last month )
-                            </Typography>
-                        </Box>
+                        
                     </Box>
 
                     {/* section 3 */}
@@ -251,6 +321,8 @@ export const Da_manager = ({ todayDate }) => {
                     </Box>
 
                     {/* section 4 end*/}
+
+                 
                 </Box>
             </Box>
         </Box>

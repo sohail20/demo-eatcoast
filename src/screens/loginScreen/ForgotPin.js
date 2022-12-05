@@ -22,7 +22,7 @@ export const ForgotPin = () => {
             </Box>
             <Link to="/signinPin">   
             <Button sx={{ position: 'absolute', content: '""', marginTop: '-40px',  }} disableRipple={true}>
-                <i className="fa-solid fa-angle-left" style={{ fontSize: '20px', color: '#1A1824' }}></i>
+                    <img src='images/leftAngle.svg' style={{ fontSize: '20px', color: '#1A1824' }} />
             </Button>
             </Link>
             <Grid container spacing={0} direction="column" alignItems='center' justifyContent="center"
@@ -55,7 +55,10 @@ export const ForgotPin = () => {
                                     style={{ border: 2, background: '#2B817B', width: '100%', color: 'white' }}
                                     >
 
-                                        <span style={{ color: '#FFFFFF', fontFamily: 'Outfit', fontSize: '16px'}}>Send Email</span>
+                                        <span style={{ color: '#FFFFFF', fontFamily: 'Outfit', fontSize: '16px',
+                                            textDecorationLine: 'underline',
+                                            textDecorationColor: '#2B817B', textTransform: 'none'
+}}>Send Email</span>
                                 </Button>
                                     </Link>
 

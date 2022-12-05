@@ -128,7 +128,7 @@ export default function DashboardLayout({
   const handleDrawerOpen = () => {
     setOpen(true);
     setIsTrue(false);
-  };
+  };  
 
   const handleDrawerClose = () => {
     setOpen(false);

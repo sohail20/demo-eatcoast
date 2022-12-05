@@ -73,7 +73,7 @@ export default function DishesSubHeader({
         "&:hover": {
             backgroundColor: "#2B817B",
         },
-        fontSize: { xl: "20px", lg: "16px", md: "16px", sm: "14px", xs: "8px" },
+        fontSize: { xl: "20px", lg: "16px", md: "16px", sm: "14px", xs: "12px" },
     };
 
     const Typo3 = {
@@ -101,7 +101,7 @@ export default function DishesSubHeader({
                     display: "flex",
                     flexDirection: "row",
                     justifyContent: "space-between",
-                    marginTop: { lg: "0px", md: "0px", sm: "150px", xs: "150px" },
+                    
                 }}
             >
                 <Box >
