@@ -4,24 +4,18 @@ import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
 import AddIcon from "@mui/icons-material/Add";
 import Button from "@mui/material/Button";
-// import AddCuisine from "../../components/Menu/AddCuisine";
 import { useState } from "react";
 import CustomSelectMenu from "./CuisineMenu/CustomSelectMenu";
 import ImageSection from "./ImageSection";
 import CuisineCategoryCard from "./CuisineMenu/CuisineCategoryCard";
 import AddCuisine from "./AddCuisine";
-// import ImageSection from "../../components/Menu/ImageSection";
-// import CustomSelectMenu from "../../components/Menu/CuisineMenu/CustomSelectMenu";
-// import CuisineCategoryCard from "../../components/Menu/CuisineMenu/CuisineCategoryCard";
-// import { Data2 } from "../../components/Menu/CuisineMenu/config";
 import { Data2 } from "./CuisineMenu/config";
 import AddMealPlan from "./AddMealPlan/AddMealPlan";
 export const MenuComponent = () => {
-  // const [isShownCuisine, setIsShownCuisine] = useState(false);
-  const [isShownCuisine, setIsShownCuisine] = useState(false);
-  const [isShown, setIsShown] = useState(false);
-  const [isShownButtonBox, setIsShownButtonBox] = useState(false);
-  const [showAllCuisine, setShowAllCuisine] = React.useState(false);
+const [isShownCuisine, setIsShownCuisine] = useState(false);
+const [isShown, setIsShown] = useState(false);
+const [isShownButtonBox, setIsShownButtonBox] = useState(false);
+const [showAllCuisine, setShowAllCuisine] = React.useState(false);
 
   console.log("add cuisine button is clicked", isShown);
   console.log("all cuisine button is clicked", showAllCuisine);
@@ -109,7 +103,7 @@ export const MenuComponent = () => {
                 display: "flex",
                 flexDirection: "row",
                 justifyContent: "space-between",
-                marginTop: { lg: "0px", md: "0px", sm: "150px", xs: "150px" },
+                
               }}
             >
               <Box>
@@ -135,10 +129,10 @@ export const MenuComponent = () => {
               <Box
                 sx={{
                   pr: {
-                    xl: "329px",
-                    lg: "329px",
-                    md: "150px",
-                    sm: "150px",
+                    // xl: "329px",
+                    // lg: "329px",
+                    // md: "150px",
+                    // sm: "150px",
                     xs: "0px",
                   },
                 }}

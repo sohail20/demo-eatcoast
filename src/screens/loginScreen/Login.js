@@ -18,7 +18,7 @@ const theme = createTheme({
 });
 
 const stylestf = {
-    marginBottom: 3,
+    marginBottom: 3, marginTop: '6px',
     width: '100%', background: '#F6F6F6', height: '40px',
     border: '1px solid #E1E1E6', borderRadius: '6px',
     textColor: 'black','&:hover': {color: '#F6F6F6'}
@@ -70,23 +70,32 @@ export const Login = () => {
 
                             <form >
                                 <ThemeProvider theme={theme}>
-                                    <TextField id="outlined-basic"
+                                    <label style={{
+                                        fontSize: '14px',
+                                        fontFamily: 'Outfit', fontWeight: '600', color: '#1A1824',mb:1
+                                    }}>Email</label>
+                                    <TextField id="outlined-basic" 
                                         sx={stylestf} color={'loginField'}
-                                        label="Email"
+                                        // label="Email"
                                         defaultValue=""
                                         size="small"
                                         type="email" autoFocus={true} onChange={(e) => setEmail(e.target.value)}
                                     />
+                                    <label style={{
+                                        fontSize: '14px',
+                                        fontFamily: 'Outfit', fontWeight: '600', color: '#1A1824'
+                                    }}>Password</label>
                                     <TextField
-                                        sx={stylestf} color={'loginField2'}
-                                        label="password" id="outlined-size-small"
+                                        sx={stylestf} color={'loginField2'} 
+                                         id="outlined-size-small"
                                         size="small"
                                         type="password" onChange={(e) => setPassword(e.target.value)}
                                     />
 
                                         <Link to={'/forgotpass'} >
                                     <Typography sx={{ marginBottom: 2, marginTop: -1, paddingLeft: 1 }}>
-                                            <span style={{ color: '#2B817B', fontFamily: 'Outfit', textDecorationLine: 'underline' }}>
+                                            <span style={{ color: '#2B817B', fontFamily: 'Outfit', textDecorationLine: 'underline',
+                                    textDecorationColor: '#2B817B', }}>
                                             Forgot Password ? </span>
                                     </Typography>
                                             </Link>
@@ -96,7 +105,9 @@ export const Login = () => {
                                     <Button
                                         style={{ border: 2, textTransform: 'none', background: '#2B817B', width: '100%', color: 'white' }}
                                     >
-                                            <span style={{ color: '#FFFFFF', fontFamily: 'Outfit' }}>Login</span>
+                                            <span style={{
+                                                color: '#FFFFFF', fontFamily: 'Outfit', textDecorationLine: 'underline',
+                                                textDecorationColor: '#2B817B', }}>Login</span>
                                     </Button>
                                         </Link>
                                 </ThemeProvider>

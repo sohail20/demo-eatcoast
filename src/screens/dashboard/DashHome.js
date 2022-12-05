@@ -70,7 +70,7 @@ const DashHome = () => {
     return setToDate = `${Month}, ${fullYear}`;
   }
   return (
-<Box sx={{marginTop:{xs: '100px', sm: '100px', md: '0px'}}}>
+<Box >
 
 <Typography variant='h5'  sx={{fontFamily: 'Outfit', fontSize: '20px', color: '#1A1b24',  lineHeight: '30px', fontWeight: '500'}}>
     Dashboard

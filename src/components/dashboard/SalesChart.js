@@ -1,8 +1,10 @@
-import { Box, FormControl, InputLabel, MenuItem, Select } from '@mui/material';
+import { Box, Button, FormControl, InputLabel, ListItemIcon, ListItemText, Menu, MenuItem, Select } from '@mui/material';
 import React from 'react'
 import Charts from 'react-apexcharts'
 import { BiCheckCircle } from 'react-icons/bi'
 import './SalesChartCss.css'
+import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
 
 export const SalesChart = () => {
@@ -93,20 +95,30 @@ export const SalesChart = () => {
         ]
     };
 
-    const [dmonthly, setDmonthly] = React.useState('');
-    const [checked, setChecked] = React.useState(true);
-    const [checked1, setChecked1] = React.useState(false);
-
-    const handleChange = (event) => {
-        setDmonthly(event.target.value);
+    const [anchorEl, setAnchorEl] = React.useState(null);
+    const open = Boolean(anchorEl);
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
     };
-    const handleChecked=()=>{
-        setChecked(true)
-        setChecked1(false)
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+    const [menu, setMenu] = React.useState('Month')
+    const [checkbox, setCheckbox] = React.useState(false);
+    const [checkbox2, setCheckbox2] = React.useState(false);
+    const [checkbox3, setCheckbox3] = React.useState(false);
+
+    const handleIcon = () => {
+        setCheckbox(true);
+        setCheckbox2(false);
+        setCheckbox3(false);
+
     }
-    const handleChecked1=()=>{
-        setChecked1(true)
-        setChecked(false)
+    const handleIcon2 = () => {
+        setCheckbox(false);
+        setCheckbox2(true);
+        setCheckbox3(false);
+
     }
     
     return (
@@ -115,36 +127,98 @@ export const SalesChart = () => {
                 <Box>
 
                 </Box>
-                <FormControl sx={{ width: '160px', marginTop: '-16px' }}>
-                    <InputLabel id="demo-simple-select-label"
-                    > </InputLabel>
-                    <Select 
-                         sx={{ boxShadow: 'none', margin: '10px', lineHeight: '25px', height: '30px', padding: '0px',
-                        '& .MuiSelect-select': {
-                            border: '1px solid transparent'
-                            ,color:'red'
-                        }, 
-                            '& .MuiSelect-icon': {
-                                fill: '#2B817B'
-                            },
-                            ".MuiOutlinedInput-notchedOutline": {
-                                border: "none !important"
-                            }
+                <Button
+                    id="basic-button"
+                    aria-controls={open ? "basic-menu" : undefined}
+                    aria-haspopup="true"
+                    aria-expanded={open ? "true" : undefined}
+                    onClick={handleClick}
+                    endIcon={<KeyboardArrowDownIcon sx={{ fill: '#2B817B ' }} />}
+                    sx={{
+                        color: "#545359",
+                        marginLeft: '10px',
+                        textTransform: "capitalize",
+                        border: '1px solid #E1E1E6',
+                        width: '76px',
+                        borderRadius: '6px',
+                        fontSize: {
+                            xl: "14px",
+                            lg: "14px",
+                            md: "13px",
+                            sm: "12px",
+                            xs: "12px",
+                        },
+                        fontWeight: "500",
+                        pl: "0px",
+                        width: '100px'
                     }}
-                        labelId="demo-simple-select-label"
-                        id="demo-simple-select"
-                        value={dmonthly}
-                        placeholder="This Month"
-                        onChange={handleChange}
-                    >
-                        <MenuItem selected onClick={handleChecked} sx={{ marginRight: '0px', background: '#fff' }} disableRiple={true} value={'monthly'}>Monthly{" "}{" "}
-                            {checked && <BiCheckCircle  sx={{ marginTop: '9px', marginLeft: '8px' }} color='#42C677' />} 
-                              </MenuItem>
-                        <MenuItem disableRiple={true} onClick={handleChecked1} value={'daily'}>Daily {" "}{" "}
-                            {checked1 && <BiCheckCircle sx={{ marginTop: '9px', marginLeft: '8px' }} color='#42C677' />}</MenuItem>
-                    </Select>
-                </FormControl>
 
+                >
+                    {menu}
+                </Button>
+                <Menu
+                    id="basic-menu"
+                    anchorEl={anchorEl}
+                    onClose={handleClose}
+                    open={open}
+                    MenuListProps={{
+                        "aria-labelledby": "basic-button",
+                    }}
+                    sx={{
+                        border: "1px solid #E1E1E6",
+                        borderRadius: "6px",
+                    }}
+                >
+                    <MenuItem
+                        sx={{
+                            color: "#9EA3AE",
+                            width: "120px",
+                            pt: "0px",
+                            pb: "0px",
+                            fontSize: "12px",
+                            fontWeight: "400",
+                        }}
+                        onClick={(e) => {
+                            setMenu('Name');
+                            handleClose(); handleIcon();
+                        }}
+                    >
+                        <ListItemText primary={'Month'}
+                            primaryTypographyProps={{ fontSize: '14px', fontFamily: "outfit", fontWeight: true ? '600' : '400', }} />
+
+                        <ListItemIcon>
+                            {checkbox ? (
+                                <CheckCircleOutlineIcon sx={{ fill: "#42C677" }} />
+                            ) : ''}
+                        </ListItemIcon>
+
+                    </MenuItem>
+
+                    <MenuItem
+                        sx={{
+                            color: "#9EA3AE",
+                            width: "120px",
+                            pt: "0px",
+                            pb: "0px",
+                            fontSize: "12px",
+                            fontWeight: "400",
+                        }}
+                        onClick={(e) => {
+                            setMenu('Daily');
+                            handleClose(); handleIcon2();
+                        }}
+                    >
+                        <ListItemText primary={'Daily'}
+                            primaryTypographyProps={{ fontSize: '14px', fontFamily: "outfit", fontWeight: true ? '600' : '400', }} />
+
+                        <ListItemIcon>
+                            {checkbox2 ? (
+                                <CheckCircleOutlineIcon sx={{ fill: "#42C677" }} />
+                            ) : ''}
+                        </ListItemIcon>
+
+                    </MenuItem>
+                </Menu>
             </Box>
             <Charts options={options}
                 series={options.series} type="line" width="100%" height='390px' />

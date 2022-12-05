@@ -64,7 +64,7 @@ export const Login3 = () => {
                     <Box>
                         <Link to={'/operators'}>
                             <Button sx={{ position: 'absolute', content: '""', marginTop: '-40px', maxWidth: 3 }}>
-                                <i className="fa-solid fa-angle-left" style={{ fontSize: '20px', color: '#1A1824' }}></i>
+                                <img src='images/leftAngle.svg' style={{ fontSize: '20px', color: '#1A1824' }} />
                             </Button>
                         </Link>
                     </Box>

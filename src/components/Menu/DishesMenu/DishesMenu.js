@@ -82,7 +82,7 @@ export const DishesMenu = () => {
   }  
   
   return (
-    <Box sx={{ marginTop: { xs: '100px', sm: '100px', md: '0px' } }}>
+    <Box >
           {stepper ? (
           <>
                   <DishesSteppet setStepper={setStepper} />
@@ -91,30 +91,6 @@ export const DishesMenu = () => {
                <>
                       <DishesSubHeader title={'All Dishes'} setStepper={setStepper} /> 
 
-      {/* <Box display={'flex'} justifyContent={'space-between'} alignItems={'center'}>
-        <Box>
-          <Typography sx={{ marginBottom: '4px', fontFamily: 'Outfit', fontSize: '20px', color: '#1A1b24', lineHeight: '30px', fontWeight: '500' }}>
-            All Dishes
-          </Typography>
-          <Typography sx={{ fontFamily: 'Outfit', fontSize: '16px', color: ' #2B817B', lineHeight: '24px', fontWeight: '400' }}>
-            Add Cuisine  +
-          </Typography>
-        </Box >
-        <Box>
-          <Button onClick={handleDishesAdd} sx={{
-            textTransform: 'none',
-            width: '110px',
-            height: '40px',
-            background: '#2B817B',
-            fontWeight: '600',
-            borderRadius: '4px',
-            color: '#fff', fontFamily: 'Outfit', fontSize: '14px',
-            '&:hover': { color: '#fff', background: '#2B817B' }
-          }}>
-            +  Add Dishes
-          </Button>
-        </Box>
-      </Box> */}
 
       <Box sx={{ width: '100%', marginTop: '-10px'}}>
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>

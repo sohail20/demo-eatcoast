@@ -140,7 +140,8 @@ export const MerchantRegis = ({ formik, handleStepper }) => {
           </IconButton>
         </Box>
         <Typography sx={{ marginBottom: 2, marginTop: 3, paddingLeft: 1 , fontWeight: '700' }}>
-          <Link  to={'#'} ><span style={{ color: '#2B817B', fontFamily: 'Outfit' }}>
+          <Link to={'/forgotpass'} ><span style={{ color: '#2B817B', fontFamily: 'Outfit', textDecorationLine: 'underline',
+            textDecorationColor: '#2B817B' }}>
             Forgot Password ? </span></Link>
         </Typography>
 

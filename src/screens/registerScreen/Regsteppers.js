@@ -68,9 +68,9 @@ function ColorlibStepIcon(props) {
 
     const icons = {
         1: <BiStore />,
-        2: <i className="fa-solid fa-user-pen" />,
-        3: <i className="fa-solid fa-rotate" />,
-        4: <i className="fa-regular fa-circle-check" />,
+        2: <img src='images/user-edit.svg' />,
+        3: <img src='images/refresh-2.svg' />,
+        4: <img src='images/tick-circle.svg' />,
     };
 
     return (
