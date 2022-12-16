@@ -11,7 +11,7 @@ import {
 } from "@mui/material";
 import CustomSearchBar from "../../Dishes/AddDishes/AddDishesDrawer/AddIngridient/CustomSearchBar";
 
-export const HelpCenter = () => {
+const HelpCenter = ({handleBack}) => {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -67,7 +67,7 @@ export const HelpCenter = () => {
         <Box display={"flex"} alignItems="center">
           <Box width="10%">
             <Box>
-              <Button width="20%">
+              <Button width="20%" onClick={handleBack}>
                 <Box
                   sx={{
                     display: "flex",
@@ -127,3 +127,5 @@ export const HelpCenter = () => {
     </div>
   );
 };
+
+export default HelpCenter

@@ -66,7 +66,7 @@ export const CheckEmail = () => {
               We have sent a password recover instruction <br />
               to your email
             </Typography>
-            <Link to={"#"}>
+            <a href={"https://mail.google.com/mail/u/0/#inbox"} target="_blank">
               <Button
                 disableRipple={true}
                 style={{
@@ -91,7 +91,7 @@ export const CheckEmail = () => {
                   Open email app
                 </span>
               </Button>
-            </Link>
+            </a>
 
             <Typography
               variant="body2"

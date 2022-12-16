@@ -10,11 +10,11 @@ import StepConnector, {
 } from "@mui/material/StepConnector";
 // import { MerchantRegSvg } from '../../assets/Svg/MerchantRegSvg'
 import { Box, Button, Container } from "@mui/material";
-import { Finsh } from "../../components/Finsh";
+import { Finsh } from "components/Finsh";
 import { useFormik } from "formik";
-import { Ownerinfo } from "../../components/OwnerInfo";
-import { WaitingSvg } from "../../components/WaitingSvg";
-import { MerchantRegis } from "../../components/MerchantRegis";
+import { Ownerinfo } from "components/OwnerInfo";
+import { WaitingSvg } from "components/WaitingSvg";
+import { MerchantRegis } from "components/MerchantRegis";
 import { BiStore } from "react-icons/bi";
 import { useGetRegisterMutation } from "api/signup";
 const ColorlibConnector = styled(StepConnector)(({ theme }) => ({

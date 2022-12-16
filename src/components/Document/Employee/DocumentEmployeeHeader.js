@@ -15,7 +15,7 @@ import { Data } from "./Config";
 import { CustomLargeBtn } from "./CustomLargeBtn";
 
 
-export const DocumentEmployeeHeader = () => {
+export const DocumentEmployeeHeader = ({handleBack}) => {
 
     const [open, setOpen] = React.useState(false);
 
@@ -63,7 +63,7 @@ export const DocumentEmployeeHeader = () => {
         <Box display={"flex"} alignItems="center">
         <Box width="10%">          
             <Box >
-            <Button width="20%">
+            <Button width="20%" onClick={handleBack}>
               <Box sx={{ display: "flex",
               //  alignItems: "center" 
                }}>

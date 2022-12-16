@@ -1,4 +1,5 @@
 import { Button, Typography, styled } from "@mui/material";
+import CircleLoader from "components/Loader/CircleLoader";
 
 const Typo = styled(Typography)(({ theme, variant, color }) => ({
   fontFamily: "Outfit",
@@ -17,9 +18,11 @@ const CustomIconButton = ({
   color,
   variant,
   disabled,
+  isLoading,
   icon,
   onClick,
   width,
+  type
 }) => {
   return (
     <Button
@@ -34,11 +37,16 @@ const CustomIconButton = ({
         backgroundColor: variant === "contained" ? "#2B817B" : undefined,
         width: width ? width : undefined,
       }}
+      type={type}
     >
-      {label && (
-        <Typo variant={variant} color={color}>
-          {label}
-        </Typo>
+      {isLoading ? (
+        <CircleLoader />
+      ) : (
+        label && (
+          <Typo variant={variant} color={color}>
+            {label}
+          </Typo>
+        )
       )}
     </Button>
   );
