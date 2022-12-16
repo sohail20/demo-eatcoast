@@ -4,10 +4,10 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import { Box } from "@mui/material";
-import HeadBar from '../HeadBar/HeadBar';
-import AddMealPlan from "../../addMealPlan/AddMealPlan";
+import MealPlan from "../../MealPlan";
+import AddMealPlan from '../../addMealPlan/AddMealPlan';
+import MealPlan_2 from "../../MealPlan_2/MealPlan_2";
 import './style.css';
-
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -110,8 +110,9 @@ export default function CustomTabs() {
     
       <TabPanel style={{ padding: "0px" }} value={value} index={0}>
         {/* Other Section related to Meal Plan */}
-        <HeadBar/>
-        {/* <AddMealPlan/> */}
+        {/* <MealPlan/> */}
+        <AddMealPlan/>
+        {/* <MealPlan_2/> */}
       </TabPanel>
       <TabPanel value={value} index={1}>
       </TabPanel>

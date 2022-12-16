@@ -28,7 +28,6 @@ import Subscription from "./screens/Subscription/Subscription";
 import { useEffect } from "react";
 
 function App() {
-
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -54,12 +53,12 @@ function App() {
           <Route path="/financials" element={<Financials />} />
           <Route path="/employee" element={<Employee />} />
           <Route path="/setting" element={<Settings />} />
-          <Route path="/dish" element={<AddDishes />} />
           <Route path="/alldishes" element={<AllDishes />} />
           <Route path="/mealPlan" element={<AddMealPlan />} />
           <Route path="/backToDishes" element={<BackToDishes />} />
           <Route path="/editdishes" element={<EditDishes />} />
           <Route path="/detaildishes" element={<DetailDishes />} />
+          <Route path="/dishes" element={<AddDishes />} />
         </Routes>
       </ThemeProvider>
     </>

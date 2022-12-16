@@ -14,10 +14,6 @@
 
 // export default Menu;
 
-
-
-
-
 // import React from "react";
 // import MealPlan from "../MealPlan/MealPlan";
 // import DashboardLayout from "../DashboardLayout/DashboardLayout";
@@ -26,15 +22,13 @@
 //   return (
 //     <>
 //       <DashboardLayout>
-        // <MealPlan />
+// <MealPlan />
 //       </DashboardLayout>
 //     </>
 //   );
 // };
 
 // export default Menu
-
-
 
 // import React from "react";
 // import DishesMealPlan from "../../components/Dishes/DishesMealPlan/DishesMealPlan";
@@ -52,7 +46,6 @@
 
 // export default Menu
 
-
 // import React from "react";
 // import AllDishes from "../../components/Dishes/AllDishes/AllDishes";
 // import DashboardLayout from "../DashboardLayout/DashboardLayout";
@@ -69,8 +62,6 @@
 
 // export default Menu
 
-
-
 // import React from "react";
 // import AddDishes from "../../components/Dishes/AddDishes/AddDishes";
 // import DashboardLayout from "../DashboardLayout/DashboardLayout";
@@ -86,8 +77,6 @@
 // };
 
 // export default Menu
-
-
 
 // import React from "react";
 // import MealPlan from "../MealPlan/MealPlan";
@@ -108,9 +97,6 @@
 
 // export default Menu
 
-
-
-
 import React from "react";
 import MealPlan from "../MealPlan/MealPlan";
 import DashboardLayout from "../DashboardLayout/DashboardLayout";
@@ -123,11 +109,11 @@ const Menu = () => {
   return (
     <>
       <DashboardLayout>
-        <MenuTabs/>
+        <MenuTabs />
         {/* <HelpCenter/> */}
       </DashboardLayout>
     </>
   );
 };
 
-export default Menu
+export default Menu;
