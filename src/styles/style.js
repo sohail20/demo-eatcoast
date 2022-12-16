@@ -2,10 +2,13 @@ import { createTheme } from "@mui/material/styles";
 
 const theme = createTheme({
   palette: {
-    customclr: {
-      main: '#2B817B',
-      darkblacks: '#1A1824',
+    primary:{
+      main:'#2B817B'
     },
+    secondary:{
+      main:'#2B817B'
+    }
+    
   },
   typography: {
     fontFamily: "Outfit",

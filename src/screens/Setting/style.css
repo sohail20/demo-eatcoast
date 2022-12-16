@@ -1,0 +1,19 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+@media only screen and (max-width:425px){
+    .mainBox{
+       padding-left: 0px !important;
+       padding-right: 0px !important;
+
+        
+    }
+    .chartBox{
+        /* width: 95% !important; */
+        padding:0px !important;
+    }
+
+}

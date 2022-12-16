@@ -2,18 +2,15 @@ import React, { useState } from "react";
 import { Box, Grid, Stack, styled } from "@mui/material";
 
 //components
-import CustomIconButton from "../../../../components/Button/CustomIconButton";
-import { H1Typo, LightTitle } from "../../../../components/Typography";
-import {
-  BorderContainer,
-  FlexBoxContainer,
-} from "../../../../components/Containers";
-import SimpleChips from "../../../../components/Chips/SimpleChips";
+import CustomIconButton from "components/Button/CustomIconButton";
+import { H1Typo, LightTitle } from "components/Typography";
+import { BorderContainer, FlexBoxContainer } from "components/Containers";
+import SimpleChips from "components/Chips/SimpleChips";
 //icons
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import StarIcon from "@mui/icons-material/Star";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-import CustomizedLineChart from "../../../../components/Charts/LineChart";
+import CustomizedLineChart from "components/Charts/LineChart";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 
 const CustomStarIcon = styled(StarIcon)(() => ({
@@ -89,7 +86,7 @@ const subscriptionType = [
   },
 ];
 
-const CustomerFeedbackDashboard = () => {
+const CustomerFeedbackDashboard = ({ handleBack }) => {
   const [currentFeedBackType, setCurrentFeedBackType] = useState(
     "fitness-subscription"
   );
@@ -111,6 +108,7 @@ const CustomerFeedbackDashboard = () => {
       >
         <CustomIconButton
           label="Back"
+          onClick={handleBack}
           icon={<ArrowBackIosIcon style={{ color: "#2B817B" }} />}
         />
         <Box style={{ width: "100%", textAlign: "center" }}>
@@ -237,7 +235,7 @@ const FeedBackCard = ({ item }) => (
         </Box>
         {subscriptionType.map((e) => {
           if (item.subscriptionType === e.id)
-           return <SimpleChips label={e.label} chipColor="#FF8D85" />;
+            return <SimpleChips label={e.label} chipColor="#FF8D85" />;
         })}
       </FlexBoxContainer>
 

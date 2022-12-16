@@ -6,6 +6,11 @@
     background-origin: border-box;
     
 } */
+.d-flex{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
 .mealInput:focus{
     border: 2px solid #2B817B !important;
    

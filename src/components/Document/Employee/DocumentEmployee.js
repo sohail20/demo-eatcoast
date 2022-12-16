@@ -15,14 +15,12 @@ import { Data } from "./Config";
 import { CustomLargeBtn } from "./CustomLargeBtn";
 import { DocumentEmployeeHeader } from "./DocumentEmployeeHeader";
 
-export const DocumentEmployee = () => {
-
-
+const DocumentEmployee = ({handleBack}) => {
   return (
     <div>
       <Box sx={{ mt: { lg: "0px", md: "0px", sm: "100px", xs: "100px" } }}>
         <Box>
-          <DocumentEmployeeHeader />
+          <DocumentEmployeeHeader handleBack={handleBack}/>
         </Box>
 
         <Box
@@ -52,3 +50,5 @@ export const DocumentEmployee = () => {
     </div>
   );
 };
+
+export default DocumentEmployee

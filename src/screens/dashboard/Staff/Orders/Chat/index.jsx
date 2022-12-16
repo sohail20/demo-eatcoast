@@ -24,7 +24,7 @@ import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
 //   "Dec",
 // ];
 
-const Chat = ({ handleClose }) => {
+const Chat = ({ title = "On Delivery", handleClose }) => {
   const [message, setMessage] = useState("");
   const [chat, setChat] = useState([
     {
@@ -65,11 +65,7 @@ const Chat = ({ handleClose }) => {
   return (
     <>
       <Box position={"fixed"} p={2} backgroundColor={"#fff"} width={"100%"}>
-        <CloseHeader
-          title="On Delivery"
-          variant="back"
-          handleClose={handleClose}
-        />
+        <CloseHeader title={title} variant="back" handleClose={handleClose} />
 
         <FlexBoxContainer style={{ width: "94%" }}>
           <Box display="flex" gap={2}>

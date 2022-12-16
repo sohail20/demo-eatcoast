@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useEffect} from "react";
 import {
   Typography,
   Box,
@@ -7,6 +7,7 @@ import {
   IconButton,
   Grid,
   Container,
+  Backdrop,
 } from "@mui/material";
 import { styled } from "@mui/material";
 import profile from "./Images/profile.png";
@@ -20,10 +21,14 @@ import arrowLeft from "./Images/arrow-left.png";
 import add_icon from "./Images/add_icon.png";
 import Link from "@mui/material/Link";
 import { ArrowBack, Add, PropaneSharp } from "@mui/icons-material";
+import InputAdornment from "@mui/material/InputAdornment";
+import calender from "./Images/calendar.png";
+import vector from "./Images/Vector.png";
+import Overlay from "../Overlay/Overlay";
 import Calendar from "../Components/Calendar/Calendar";
-
 import "./style.css";
-import CustomTextInputField from "../../../styles/CustomTextInputField";
+import MealPlanCheckBo from "../Components/MealPlanCheckBoxes/MealPlanCheckbox";
+import MealPlanDrawer from "../Components/MealPlanDrawer/MealPlanDrawer";
 
 const Heading = styled(Typography)(({ theme }) => ({
   fontFamily: "Outfit",
@@ -42,41 +47,51 @@ const Btn = styled(Button)(({ theme }) => ({
   textTransform: "capitalize",
 }));
 
-function AddMealPlan(props) {
-  const {setIsShowAddMealPlanScreenFunc} = props
+function AddMealPlan(porops) {
 
   const [checked, setChecked] = React.useState(false);
   const [word, setWord] = React.useState(0);
+  const [MealValu, setMealValue] = useState("");
+  const [descriptionValue, setDescriptionValue] = useState("");
   const [disabled, setDisabled] = useState("disabled");
-  const [mealCourses, setMealCourses] = useState("none");
-  const [hidden, setHidden] = useState("flex");
-  const meal_Courses = [];
-  const [date, setDate] = useState(null);
-  const getValue = (index,val) => {
-    console.log(index);
-    
-    
+  const [drawerMeal, setDrawerMeal] = useState([]);
+  const [disableInput, setDisableInput] = useState("disabled");
+  const [disabledDate, setDisabledDate] = useState('disabled')
 
-    
-  
-  };
+  const removeAllValues = ()=>{
+    setMealValue('');
+    setDescriptionValue('');
+    setDrawerMeal(['']);
+    setInputVal('');
+    setDateValue('')
+  }
+ 
+
+  // Switch Button Function created here
   const handleChange = (e) => {
     setChecked(e.target.checked);
+    alert("Switched on");
   };
+  // Close Button function created here
   const handleClose = () => {
-    // alert("Working...");
-    setIsShowAddMealPlanScreenFunc(false)
+    alert("Working...");
   };
-  const wordCoutn = (e) => {
-    setWord(e.length);
-    if (e.length > 10) {
+
+  // Submit Button Disbable and unable funtionality created here
+
+  const wordCount = (e) => {
+    setDescriptionValue(e.target.value);
+    setWord(e.target.value.length);
+    if (MealValu.length >= 10 && descriptionValue.length >= 10) {
       setDisabled("");
     } else {
       setDisabled("disabled");
     }
   };
-  const [openDrawer, setOpenDrawer] = useState(false);
 
+  // Drawer funtionality created here
+
+  const [openDrawer, setOpenDrawer] = useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -87,41 +102,79 @@ function AddMealPlan(props) {
     setAnchorEl(null);
     setOpenDrawer(false);
   };
-  const showBox = () => {
-    setMealCourses("block");
-    setHidden("none");
-  };
-  let [mealPlan, setMealPlan] = useState([
-    "Main Course",
-    "Salad dishes",
-    "Sweet dishes",
-    "Sweet dishes",
-    "Sweet dishes",
-  ]);
-  let [newPlan, setNewPlan] = useState("");
 
-  const addMenu = () => {
-    setMealPlan([...mealPlan, newPlan]);
-  };
-  const [addOn, setAddOn] = useState("flex");
-  const [display, setDisplay] = useState("none");
-  const showAdd_on = () => {
-    setDisplay("block");
-    setAddOn("none");
-  };
-  const [openCalendarDrawer, setOpenCalendarDrawer] = useState(false);
-
+  // Clander Drawer functionality created here
+  const [isDarwerOpen, setIsDrawerOpen] = useState(false);
   const [anchorElCalendar, setAnchorElCalendar] = React.useState(null);
   const Open = Boolean(anchorElCalendar);
-  const handleClickDarawer = (event) => {
+
+  const open_Drawer = (event) => {
     setAnchorElCalendar(event.currentTarget);
-    setOpenCalendarDrawer(true);
+    setIsDrawerOpen(true);
+  };
+
+  const close_Drawer = () => {
+    setIsDrawerOpen(false);
+  };
+
+  // Drawer Close Buttion function here
+
+ 
+
+  
+  // Save as draft button state and functions
+
+  const [isOpen, setIsOpen] = useState(false);
+
+  let [inputVal,setInputVal] = useState('');
+
+  let [dateValue, setDateValue] = useState('')
+
+  
+  const geteValuesFromDrawer = ((val)=>{
+    const promise = new Promise((resolve,reject)=>{
+      
+      resolve(val)
+
+      reject('did not get data from component')
+
+    })
+
+    promise.then((response)=>{
+      setInputVal(response);
+      setDisableInput('')
+
+    }).catch((error)=>{
+      console.log(error)
+
+    })
+
+    
    
-  };
-  const handleCloseCalendarDrawer = () => {
-    setAnchorElCalendar(null);
-    setOpenCalendarDrawer(false);
-  };
+   
+
+  })
+
+ 
+ const getDateFromCalendar = (val)=>{
+  const promise = new Promise((resolve,reject)=>{
+    resolve(val)
+    reject('Did not get date from calender component')
+  })
+  promise.then((response)=>{
+    setDateValue(response);
+    setDisabledDate('')
+  }).catch((error)=>{
+    console.log(error)
+  })
+
+ }
+let monthList = [1,2,3,4,5,6,7,8,9,10,11,12];
+ let date = new Date();
+ let day = date.getDate();
+ let year = date.getFullYear();
+ let month = monthList[date.getMonth()];
+ let fullDate = `${year}/${month}/${day}`;
 
   return (
     <>
@@ -131,7 +184,7 @@ function AddMealPlan(props) {
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
-          marginTop: 5,
+          margin:'10px 20px 0px 20px'
         }}
         className="mainContainer"
       >
@@ -148,8 +201,9 @@ function AddMealPlan(props) {
             Add Meal Plan
           </Heading>
         </Box>
-        <Box className="btnContainer">
+        <Box  className="btnContainer">
           <Btn
+            onClick={()=> setIsOpen(true)}
             sx={{
               backgroundColor: "#FFFFFF",
               padding: "10px 16px",
@@ -181,8 +235,9 @@ function AddMealPlan(props) {
         sx={{
           display: "flex",
           justifyContent: "space-between",
-          mt: 5,
+          margin:'10px 40px 0px 40px',
           flexWrap: "wrap",
+         
         }}
         component="div"
       >
@@ -223,6 +278,7 @@ function AddMealPlan(props) {
             alignItems: "center",
             justifyContent: "space-between",
             width: "40%",
+         
           }}
         >
           <Box>
@@ -258,18 +314,20 @@ function AddMealPlan(props) {
       </Box>
       <Box
         className="meal"
-        sx={{ marginTop: 2, display: "flex", justifyContent: "space-between" }}
+        sx={{ display: "flex", justifyContent: "space-between",margin:'10px 40px 0px 40px' }}
       >
         <Box sx={{ width: { lg: "40%", md: "40%", sm: "40%", xs: "90%" } }}>
-          <Para sx={{ fontSize: "16px", fontWeight: "600", marginTop: 1 }}>
+          <Para sx={{ fontSize: "16px", fontWeight: "600", marginTop: 2 }}>
             Meal Plan
           </Para>
           <OutlinedInput
+            name="meal plan"
+            onChange={(e) => setMealValue(e.target.value)}
             className="mealInput"
             placeholder="Enter Meal Plan"
-            sx={{ backgroundColor: "#F6F6F6", width: "100%", }}
+            sx={{ backgroundColor: "#F6F6F6", width: "100%",height:'48px', marginTop:1 }}
           />
-        
+
           <Box
             sx={{
               display: "flex",
@@ -286,317 +344,73 @@ function AddMealPlan(props) {
           </Box>
 
           <OutlinedInput
-          inputProps={{ maxLength: 80 }}
-          multiline={4}
+            inputProps={{ maxLength: 80 }}
+            multiline={4}
+            name="description"
             className="mealInput"
             maxLength="80"
-            onChange={(e) => wordCoutn(e.target.value)}
+            onChange={(e) => wordCount(e)}
             components="input"
             placeholder="Description"
-            sx={{ backgroundColor: "#F6F6F6", width: "100%", height: "96px" }}
+            sx={{ backgroundColor: "#F6F6F6", width: "100%", height: "96px",marginTop:1 }}
           />
         </Box>
         <Box sx={{ width: { lg: "40%", md: "40%", sm: "40%", xs: "90%" } }}>
           <Para sx={{ fontSize: "16px", fontWeight: "600" }}>Meal Courses</Para>
           <OutlinedInput
-            onClick={handleClick}
-            disabled
+            inputProps={{ maxLength: 0 }}
+            endAdornment={
+              <InputAdornment position="end">
+                <img src={vector} />
+              </InputAdornment>
+            }
+            value={inputVal}
+            onClick={drawerMeal == "" ? handleClick : null}
+            disabled={disableInput}
             className="mealInput mealCourses"
             placeholder="Enter Meal Courses"
-            sx={{ backgroundColor: "#F6F6F6", width: "100%" }}
+            sx={{
+              backgroundColor: "#F6F6F6",
+              width: "100%",
+              fontWeight: drawerMeal == "" ? undefined : "600",
+              color: "black",
+              height:'48px',
+              marginTop:1
+            }}
           />
           <Para sx={{ fontSize: "16px", fontWeight: "600", marginTop: 2 }}>
             Meal Plan End Date
           </Para>
           <OutlinedInput
-          onClick={props.handleClickDarawer}
+            placeholder={fullDate}
+            endAdornment={
+              <InputAdornment position="end">
+                <img src={calender} />
+              </InputAdornment>
+            }
+            onClick={() => setIsDrawerOpen(true)}
             className="mealInput"
-            // onChange={(e) => setDate(e.currentTarget.value)}
-            type="date"
-            sx={{ backgroundColor: "#F6F6F6", width: "100%" }}
+            sx={{ backgroundColor: "#F6F6F6", width: "100%",height:'48px',marginTop:1 }}
+            disabled={disabledDate}
+            value={dateValue}
           />
         </Box>
       </Box>
-      <Para sx={{ fontSize: "16px", fontWeight: "600", marginTop: 2 }}>
-        Meal Courses
+      <Para sx={{ fontSize: "16px", fontWeight: "600", margin:'10px 40px 0px 40px' }}>
+      Category
       </Para>
 
-      <Box
-        sx={{
-          marginTop: 2,
-          border: "1px solid #E1E1E6",
-          padding: "12px 20px",
-          borderRadius: "8px",
-          minHeight: "120px",
-        }}
-      >
-        <Box>
-          <Grid container spacing={2}>
-            {[
-              { title: "Vegetarian" },
-              { title: "Vegan" },
-              { title: "Halal" },
-              { title: "Gluten - friendly" },
-              {title:"Prescetarian"},
-               {title:"Low-crab"},
-               {title:"Diery-free"},
-                {title:"Lactose-free"}
-            ].map((item, index) => {
-              return (
-                <Grid key={index} lg={3} md={3} sm={6} xs={6} item>
-                  <Box>
-                    <Checkbox
-                      value={item.title}
-                      onChange={(e) => getValue(index,item.title)}
-                    />
-                    {item.title}
-                  </Box>
-                </Grid>
-              );
-            })}
-          </Grid>
-        </Box>
+    <MealPlanDrawer geteValuesFromDrawerfunc={geteValuesFromDrawer}  openDrawer={openDrawer} setOpenDrawer={setOpenDrawer} />
 
-        {/* <Grid container spacing={2}>
-          {[{title:"Prescetarian"}, {title:"Low-crab"}, {title:"Diery-free"}, {title:"Lactose-free"}].map(
-            (item, index) => {
-              return (
-                <Grid key={index} lg={3} md={3} sm={6} xs={6} item>
-                  <Box>
-                    <Checkbox value={item.title} onChange={(e)=>e.curtentTarget.value} />
-                    {item}
-                  </Box>
-                </Grid>
-              );
-            }
-          )}
-        </Grid> */}
-      </Box>
+      <MealPlanCheckBo />
 
-      <Drawer
-        anchor="right"
-        open={openDrawer}
-        onClose={openDrawer}
-        width="100%"
-      >
-        <Container
-          sx={{
-            width: { lg: "650px", md: "600px", sm: "400px", xs: "300px" },
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            marginTop: 3,
-          }}
-        >
-          <Button onClick={handleCloseDrawer}>
-            <ArrowBack />
-          </Button>
-          <Box>
-            <Para
-              sx={{
-                fontSize: { lg: "18px", md: "18px", sm: "16px", xs: "16px" },
-                fontWeight: "600",
-              }}
-            >
-              Meal Plan
-            </Para>
-          </Box>
-          <Box>
-            <Btn
-              sx={{
-                padding: "10px 16px",
-                backgroundColor: "#2B817B",
-                color: "white",
-                borderRadius: "4px",
-              }}
-            >
-              Save
-            </Btn>
-          </Box>
-        </Container>
-        <Box
-          sx={{
-            border: "1px solid #E1E1E6",
-            margin: "40px 20px 0px 20px",
-            borderRadius: "8px",
-            display: "flex",
-            justifyContent: "center",
-            padding: "24px 32px",
-            flexDirection: "column",
-          }}
-        >
-          <Box
-            sx={{
-              border: "1px solid #E1E1E6",
-              width: "100%",
-              borderRadius: "4px",
-            }}
-          >
-            <Para
-              sx={{
-                color: "#9EA3AE",
-                fontSize: "15px",
-                fontWeight: "500",
-                textAlign: "left",
-                padding: "10px",
-              }}
-            >
-              Meal Courses
-            </Para>
-            {mealPlan.map((item, inde) => {
-              return (
-                <Box
-                  sx={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    padding: "10px",
-                  }}
-                >
-                  <Para sx={{ fontSize: "16px", fontWeight: "600" }}>
-                    {item}
-                  </Para>
-                  <Checkbox />
-                </Box>
-              );
-            })}
-            <Btn
-              onClick={showBox}
-              href="#"
-              sx={{
-                display: hidden,
-                alignItems: "center",
-                justifyContent: "center",
-                textDecoration: "none",
-                color: "#6A82CF",
-                fontWeight: "600",
-                fontSize: "16px",
-              }}
-            >
-              {" "}
-              Other
-              <img src={add_icon} />{" "}
-            </Btn>
+      
 
-            <Box
-              sx={{
-                marign: "0 atuo 0 auto",
-                width: "100%",
-                display: mealCourses,
-              }}
-            >
-              <OutlinedInput
-                onChange={(e) => setNewPlan(e.target.value)}
-                placeholder="Type your meal plan"
-                sx={{
-                  backgroundColor: "#F6F6F6",
-                  padding: "10px 16px",
-                  height: "40px",
-                  width: "80%",
-                  margin: "10px",
-                }}
-              />
-              <Btn
-                onClick={addMenu}
-                sx={{
-                  backgroundColor: "#2B817B;",
-                  color: "white",
-                  // padding:'10px 16px',
-                  borderRadius: "4px",
-                }}
-              >
-                {" "}
-                Add
-              </Btn>
-            </Box>
-          </Box>
-          <Box
-            sx={{
-              border: "1px solid #E1E1E6",
-              width: "100%",
-              borderRadius: "4px",
-              marginTop: 2,
-            }}
-          >
-            <Para
-              sx={{
-                color: "#9EA3AE",
-                fontSize: "15px",
-                fontWeight: "500",
-                textAlign: "left",
-                padding: "10px",
-              }}
-            >
-              Add-ons
-            </Para>
-            {["Dips", "Side", "Juice"].map((item, index) => {
-              return (
-                <Box
-                  sx={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    padding: "10px",
-                  }}
-                >
-                  <Para sx={{ fontSize: "16px", fontWeight: "600" }}>
-                    {item}
-                  </Para>
-                  <Checkbox />
-                </Box>
-              );
-            })}
-            <center>
-              <Btn
-                onClick={showAdd_on}
-                sx={{
-                  display: addOn,
-                  alignItems: "center",
-                  justifyContent: "center",
-                  textDecoration: "none",
-                  color: "#6A82CF",
-                  fontWeight: "600",
-                  fontSize: "16px",
-                }}
-              >
-                {" "}
-                Other
-                <img src={add_icon} />{" "}
-              </Btn>
+      {/* Calendar Drawer Created here */}
 
-              <Box
-                sx={{ display: "flex", alignItems: "center", display: display }}
-              >
-                <OutlinedInput
-                  placeholder="Type you add-ons"
-                  sx={{
-                    backgroundColor: "#F6F6F6",
-                    padding: "10px 16px",
-                    height: "40px",
-                    width: "80%",
-                    margin: "10px",
-                  }}
-                />
-                <Btn
-                  sx={{
-                    backgroundColor: "#2B817B;",
-                    color: "white",
-
-                    borderRadius: "4px",
-                  }}
-                >
-                  {" "}
-                  Add
-                </Btn>
-              </Box>
-            </center>
-          </Box>
-        </Box>
-      </Drawer>
-      <Calendar
-       handleClickDarawer={handleClickDarawer}
-       handleCloseCalendarDrawer={handleCloseCalendarDrawer} />
-
-    
-       
+      <Calendar getDateFromCalendarfunc={getDateFromCalendar} isDarwerOpen={isDarwerOpen} setIsDarwerOpen={setIsDrawerOpen} />
+      <Overlay removeAllValuesfunc={removeAllValues} isOpenFunc={isOpen} setIsOpenFunc={setIsOpen} />
+     
     </>
   );
 }
