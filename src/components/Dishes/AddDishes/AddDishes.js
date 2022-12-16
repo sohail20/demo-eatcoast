@@ -8,12 +8,12 @@ import Button from '@mui/material/Button'
 import AddDishesSubHeader from "./AddDishesSubHeader";
 import { AddDishesFieldBox } from "./AddDishesFieldBox";
 
-export default function AddDishes() {
+export default function AddDishes({setOpenBackToDish}) {
   const [disabled , setDisabled] = useState("disabled")
   return <>
   
-  <Box>
-    <Box mb="28px"><AddDishesSubHeader disabled={disabled} setDisabled={setDisabled} /></Box>
+  <Box pl="26px" pr="24px" pb="24px">
+    <Box mb="28px"><AddDishesSubHeader disabled={disabled} setDisabled={setDisabled} setOpenBackToDish={setOpenBackToDish} /></Box>
     <Box><AddDishesFieldBox disabled={disabled} setDisabled={setDisabled} /></Box>
   </Box>
   

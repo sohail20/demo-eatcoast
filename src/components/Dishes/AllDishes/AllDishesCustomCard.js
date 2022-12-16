@@ -6,7 +6,7 @@ import { styled, alpha } from "@mui/material/styles";
 import Button from "@mui/material/Button";
 import { CustomChip } from "./CustomChip";
 
-export const AllDishesCustomCard = ({ chip, data, onHandleClick }) => {
+export const AllDishesCustomCard = ({ chip, data, onHandleClick, setOpenEditDishscreen }) => {
   const MainBox = styled("div")(({ theme }) => ({
     marginBottom: "24px",
     // width: "476px",
@@ -130,7 +130,7 @@ export const AllDishesCustomCard = ({ chip, data, onHandleClick }) => {
                 <Typo2>{data.subTitle}</Typo2>
               </Box>
               <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
-                <Button1 variant="text" onClick={onHandleClick}>Edit</Button1>
+                <Button1 variant="text" onClick={() => setOpenEditDishscreen(true)}>Edit</Button1>
               </Box>
             </Box>
           </Box>

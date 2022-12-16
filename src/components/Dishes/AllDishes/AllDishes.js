@@ -9,7 +9,7 @@ import { DetailDishesDrawer } from "./DetailDishes/DetailDishesDrawer";
 import { useState, useRef } from "react";
 import { DetailDishesMainCard } from "./DetailDishes/DetailDishesMainCard";
 
-export default function AllDishes() {
+export default function AllDishes({openEditDish, setOpenEditDish, setOpenEditDishscreen}) {
 
   const SubBox = styled("div")(({ theme }) => ({
     padding: "32px",
@@ -33,7 +33,7 @@ export default function AllDishes() {
   return (
     <>
      <Box sx={{paddingLeft: "32px", paddingRight: "32px"}}>
-     <Box mb="16px"><AllDishesSubHeader /></Box>
+     <Box mb="16px"><AllDishesSubHeader  /></Box>
       <SubBox
       
         sx={{
@@ -58,10 +58,12 @@ export default function AllDishes() {
           BtnName={"Add Dishes"}
           hasToInput = {true}
           onHandleClick={handleClick}
+          setOpenEditDish={setOpenEditDish}
+          
 
         />
         <Box>
-          <AllDishesTabs onHandleClick={handleClick} />
+          <AllDishesTabs onHandleClick={handleClick} setOpenEditDishscreen={setOpenEditDishscreen} />
         </Box>
 
         <Box>

@@ -3,11 +3,19 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import { Typography } from "@mui/material";
 import { styled, alpha } from "@mui/material/styles";
+import IconButton from '@mui/material/IconButton';
 import Button from "@mui/material/Button";
 import CloseIcon from "@mui/icons-material/Close";
 import DeleteItemDialog from "./DeleteItemDialog/DeleteItemDialog";
+import { AllDishesContext } from "../Context";
+import { useContext} from "react";
 
-export default function AddDishesSubHeader({ disabled, setDisabled }) {
+
+export default function AddDishesSubHeader({ disabled, setDisabled, setOpenBackToDish }) {
+  
+
+
+  const {setOpenEditDish} = useContext(AllDishesContext)
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -82,8 +90,10 @@ export default function AddDishesSubHeader({ disabled, setDisabled }) {
   return (
     <>
       <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-        <Box sx={{ width: { lg: "50%", md: "50%", sm: "20%", xs: "0%" } }}>
-          <Button>
+        <Box 
+        sx={{ width: { lg: "50%", md: "50%", sm: "20%", xs: "0%" } }}
+        >
+          <IconButton onClick={()=>setOpenEditDish(false)}>
             <Box
               sx={
                 {
@@ -94,7 +104,7 @@ export default function AddDishesSubHeader({ disabled, setDisabled }) {
             >
               <CloseIcon sx={{ fill: "#E75C62" }} />
             </Box>
-          </Button>
+          </IconButton>
         </Box>
 
         <Box
@@ -153,6 +163,7 @@ export default function AddDishesSubHeader({ disabled, setDisabled }) {
             </Box>
             <Box ml="12px">
               <Button3
+              onClick={() => {setOpenBackToDish(true)}}
                 variant="contained"
                 disabled={disabled}
                 sx={{
