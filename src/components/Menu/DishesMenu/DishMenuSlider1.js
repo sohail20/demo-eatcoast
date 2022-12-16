@@ -11,7 +11,6 @@ function containsObject(obj, list) {
     var i;
     for (i = 0; i < list.length; i++) {
         if (list[i].value.id === obj.id) {
-            console.log("inside true")
             return true;
         }
     }
@@ -29,7 +28,7 @@ export default function DishMenuSlider1({ isDrawerOpenStaff1, setIsDrawerOpenSta
         lineHeight: "20px",
         color: '#1A1824'
     }));
-// console.log(addNutrional)
+
     const [searchQuerry, setSearch] = React.useState("")
     const [searched, setSearched] = React.useState([])
    
@@ -61,8 +60,6 @@ export default function DishMenuSlider1({ isDrawerOpenStaff1, setIsDrawerOpenSta
         }
     }, [itemValue, searchQuerry])
 
-    console.log(ingredientonFly)
-    console.log("---here",itemValue);
     return (
         <>
             <Drawer anchor='right' open={isDrawerOpenStaff1}
