@@ -4,10 +4,7 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
-import NoDishesAdded from "./NoDishesAdded";
-import { AllDishesCard } from "./AllDishesCard";
-import { AllDishesData } from "./Config";
-import { AllDishesData2 } from "./Config";
+
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -20,7 +17,7 @@ function TabPanel(props) {
       {...other}
     >
       {value === index && (
-        <Box sx={{ pt: "24px" }}>
+        <Box>
           <Typography sx={{ fontFamily: "outfit" }}>{children}</Typography>
         </Box>
       )}
@@ -41,7 +38,7 @@ function a11yProps(index) {
   };
 }
 
-export default function AllDishesTabs({onHandleClick, setOpenEditDishscreen}) {
+export default function LiveChatTabs({ onHandleClick }) {
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
@@ -50,88 +47,69 @@ export default function AllDishesTabs({onHandleClick, setOpenEditDishscreen}) {
 
   return (
     <Box sx={{ width: "100%" }}>
-      <Box sx={{borderBottom: "1px solid #E1E1E6", borderBottom: 1, borderColor: "divider" }}>
+      <Box
+      //    sx={{borderBottom: "1px solid #E1E1E6", borderBottom: 1, borderColor: "divider" }}
+      >
         <Tabs
           value={value}
           onChange={handleChange}
           aria-label="basic tabs example"
           textColor="#1A1824"
+          padding="0px"
           // // textColor="secondary"
           // indicatorColor="#2B817B"
-          // TabIndicatorProps={{
-          //   style: {
-          //     backgroundColor: "#2B817B",
-          //   },
-          // }}
-          sx={{'& .MuiTabs-indicator': { backgroundColor: "#2B817B" },
-          '& .MuiTab-root': { color: "#9EA3AE" },
-          '& .Mui-selected': { color: "#1A1824" },}}
+          TabIndicatorProps={{
+            style: {
+              backgroundColor: "#2B817B",
+              paddingTop: "0px", margin: "0px",
+              
+            },
+
+          }}
+          sx={{
+            "& .MuiTabs-indicator": { backgroundColor: "#2B817B",  },
+            "& .MuiTab-root": { color: "#9EA3AE" },
+            "& .Mui-selected": { color: "#1A1824" },
+          }}
         >
           <Tab
-            label="Active"
+            label="Money"
             {...a11yProps(0)}
             sx={{
               textTransform: "capitalize",
               fontSize: "14px",
               fontWeight: "600",
-              lineHeight: "20px",
-              fontFamily: "outfit"
+              //   lineHeight: "20px",
+              fontFamily: "outfit",
             }}
           />
           <Tab
-            label="Not active"
+            label="Order"
             {...a11yProps(1)}
             sx={{
               textTransform: "capitalize",
               fontSize: "14px",
               fontWeight: "600",
-              lineHeight: "20px",
-              fontFamily: "outfit"
+              //   lineHeight: "20px",
+              fontFamily: "outfit",
             }}
           />
           <Tab
-            label="Under review"
+            label="Bank"
             {...a11yProps(2)}
             sx={{
               textTransform: "capitalize",
               fontSize: "14px",
               fontWeight: "600",
-              lineHeight: "20px",
-              fontFamily: "outfit"
-            }}
-          />
-          <Tab
-            label="Draft"
-            {...a11yProps(3)}
-            sx={{
-              textTransform: "capitalize",
-              fontSize: "14px",
-              fontWeight: "600",
-              lineHeight: "20px",
-              fontFamily: "outfit"
+              //   lineHeight: "20px",
+              fontFamily: "outfit",
             }}
           />
         </Tabs>
       </Box>
-      <TabPanel value={value} index={0}>
-        {
-          false? (<NoDishesAdded />)
-          : 
-          (
-            <AllDishesCard AllDishesData={AllDishesData2} />
-          )
-        }
-        
-      </TabPanel>
-      <TabPanel value={value} index={1}>
-      <AllDishesCard AllDishesData={AllDishesData2} onHandleClick={onHandleClick}/>
-      </TabPanel>
-      <TabPanel value={value} index={2}>
-      <AllDishesCard AllDishesData={AllDishesData} setOpenEditDishscreen={setOpenEditDishscreen} />
-      </TabPanel>
-      <TabPanel value={value} index={3}>
-      <AllDishesCard AllDishesData={AllDishesData2} />
-      </TabPanel>
+      <TabPanel value={value} index={0}></TabPanel>
+      <TabPanel value={value} index={1}></TabPanel>
+      <TabPanel value={value} index={2}></TabPanel>
     </Box>
   );
 }

@@ -60,9 +60,41 @@ export default function DetailDishesTabs() {
           //     backgroundColor: "#2B817B",
           //   },
           // }}
-          sx={{'& .MuiTabs-indicator': { backgroundColor: "#2B817B" },
-          '& .MuiTab-root': { color: "#9EA3AE" },
-          '& .Mui-selected': { color: "#1A1824" },}}
+          textColor="#1A1824"
+          padding="0px"
+          // // textColor="secondary"
+          // indicatorColor="#2B817B"
+          TabIndicatorProps={{
+            style: {
+              backgroundColor: "#2B817B",
+              paddingTop: "0px",
+              margin: "0px",
+            },
+          }}
+          sx={{
+            "& .MuiTabs-indicator": {
+              backgroundColor: "#2B817B",
+              height: "4px",
+            },
+            "& .MuiTab-root": {
+              color: "#9EA3AE",
+              fontSize: { lg: "16px", md: "16px", sm: "16px", xs: "12px" },
+              fontWeight: "400",
+              lineHeight: "25.6px",
+              paddingBottom: "0px",
+              paddingLeft: { lg: "15px", md: "15px", sm: "auto", xs: "0px" },
+              //   paddingTop : "0px"
+            },
+            "& .Mui-selected": {
+              color: "#1A1824",
+              fontSize: { lg: "16px", md: "16px", sm: "16px", xs: "12px" },
+              fontWeight: "600",
+              lineHeight: "25.6px",
+            },
+          }}
+          // sx={{'& .MuiTabs-indicator': { backgroundColor: "#2B817B" },
+          // '& .MuiTab-root': { color: "#9EA3AE" },
+          // '& .Mui-selected': { color: "#1A1824" },}}
         >
           <Tab
             label="Ingridient"

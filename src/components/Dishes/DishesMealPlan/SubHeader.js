@@ -4,7 +4,9 @@ import { styled, alpha } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 
+
 export default function SubHeader() {
+  
   const Heading1 = styled("div")(({ theme }) => ({
     // padding: theme.spacing(0, 2),
     fontFamily: "outfit",
@@ -28,7 +30,7 @@ export default function SubHeader() {
       <Box sx={{ display: "flex" }}>
         <Box width="20%">          
             <Box >
-            <Button width="20%">
+            <Button width="20%" >
               <Box sx={{ display: "flex",
               //  alignItems: "center" 
                }}>

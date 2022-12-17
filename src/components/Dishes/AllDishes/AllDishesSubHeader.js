@@ -3,8 +3,13 @@ import Typography from "@mui/material/Typography";
 import { styled, alpha } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
+import { useContext, createContext } from "react";
+import { AllDishesContext } from '../Context';
+
+
 
 export default function AllDishesSubHeader() {
+  const {openAllDishes,setOpenAllDishes} = useContext(AllDishesContext)
 
     const Heading1 = styled("div")(({ theme }) => ({
         // padding: theme.spacing(0, 2),
@@ -34,7 +39,7 @@ export default function AllDishesSubHeader() {
       <Box sx={{ display: "flex" }}>
         <Box sx={{width:{lg: "20%", md: "20%", sm: "20%", xs: "30%"}}}>          
             <Box >
-            <Button width="20%">
+            <Button width="20%" onClick={() => setOpenAllDishes(false)} >
               <Box sx={{ display: "flex",
               //  alignItems: "center" 
                }}>

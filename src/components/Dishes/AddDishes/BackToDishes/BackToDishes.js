@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import {
   Box,
   IconButton,
@@ -11,8 +11,10 @@ import {
 } from "@mui/material";
 import BackButton from "../../../Button/CustomIconButton";
 import CloseIcon from "@mui/icons-material/Close";
+import { AllDishesContext } from "components/Dishes/Context";
 
 export const BackToDishes = () => {
+   const {setOpenEditDish }  = useContext(AllDishesContext)
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -80,7 +82,7 @@ export const BackToDishes = () => {
       <Box>
         <Box display={"flex"} alignItems="center">
           <Box width="10%">
-          <IconButton onClick={handleClose} aria-label="delete">
+          <IconButton onClick={ () => setOpenEditDish(false)} aria-label="delete">
             <CloseIcon sx={{ color: "#E75C62", width: "24px", height: "24px" }} />
           </IconButton>
           </Box>
@@ -116,7 +118,7 @@ export const BackToDishes = () => {
                 justifyContent: "center",
               }}
             >
-              <Button2 variant="contained" onClick={handleClose} autoFocus>
+              <Button2 variant="contained" onClick={ () => setOpenEditDish(false)}autoFocus>
                 Back to dishes
               </Button2>
             </Box>

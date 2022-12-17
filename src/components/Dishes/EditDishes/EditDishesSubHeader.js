@@ -5,8 +5,13 @@ import { Typography } from "@mui/material";
 import { styled, alpha } from "@mui/material/styles";
 import Button from "@mui/material/Button";
 import CloseIcon from "@mui/icons-material/Close";
+import { AllDishesContext } from "../Context";
+import { useContext } from "react";
+import IconButton from '@mui/material/IconButton';
+
 
 export default function EditDishesSubHeader({ disabled, setDisabled }) {
+  const {setOpenEditDishscreen} = useContext(AllDishesContext)
 
   const Heading1 = styled("div")(({ theme }) => ({
     // padding: theme.spacing(0, 2),
@@ -73,7 +78,7 @@ export default function EditDishesSubHeader({ disabled, setDisabled }) {
     <>
       <Box sx={{ display: "flex", justifyContent: "space-between" }}>
         <Box sx={{ width: { lg: "50%", md: "50%", sm: "20%", xs: "0%" } }}>
-          <Button>
+          <IconButton onClick={() => setOpenEditDishscreen(false)}>
             <Box
               sx={
                 {
@@ -84,7 +89,7 @@ export default function EditDishesSubHeader({ disabled, setDisabled }) {
             >
               <CloseIcon sx={{ fill: "#E75C62" }} />
             </Box>
-          </Button>
+          </IconButton>
         </Box>
 
         <Box
@@ -134,6 +139,7 @@ export default function EditDishesSubHeader({ disabled, setDisabled }) {
             
             <Box ml="12px">
               <Button3
+              onClick={() => setOpenEditDishscreen(false)}
                 variant="contained"
                 disabled={disabled}
                 sx={{

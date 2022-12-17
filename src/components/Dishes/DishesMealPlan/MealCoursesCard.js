@@ -3,10 +3,18 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import { Typography } from "@mui/material";
 import { styled, alpha } from "@mui/material/styles";
-import Button from '@mui/material/Button'
+import Button from '@mui/material/Button';
+import { Link, NavLink  } from "react-router-dom";
+import { AllDishesContext } from "../Context";
+
+import { useContext} from "react";
+
 
 
 export default function MealCoursesCard() {
+  const {setOpenAllDishes} = useContext(AllDishesContext)
+  // const colors = useContext(ColorContext);
+
   const Data = [
     {
       title: "Main Course",
@@ -35,6 +43,8 @@ export default function MealCoursesCard() {
     fontSize: "16px",
     fontWeight: "600",
     lineHeight: "24px",
+    color: "#000000",
+    textDecoration: "none",
     [theme.breakpoints.down('sm')]:{
       fontSize: "12px",
   }
@@ -76,7 +86,7 @@ export default function MealCoursesCard() {
     <>
           
            
-      <Box sx={{}}>
+      <Box >
       <Box sx={{display: "flex", justifyContent: "space-between"}}>
         <Box><MainTypo>Meal Courses</MainTypo></Box>
         <Box >
@@ -88,7 +98,8 @@ export default function MealCoursesCard() {
                   return (
                     <>
           <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
-            <SubBox>
+           {/* <NavLink to='/dishes' style={{textDecoration: "none"}}> */}
+           <SubBox onClick={() => setOpenAllDishes(true)} sx={{cursor: "pointer"}} >
               <Box
                 sx={{
                   display: "flex",
@@ -109,7 +120,7 @@ export default function MealCoursesCard() {
                   <Box sx={{ display: "flex", 
                   // textAlign: "center" 
                   }}>
-                    <Typo1 sx={{ display: "flex", pl: "16px"
+                    <Typo1 sx={{ display: "flex", pl: "16px", textDecoration: "none"
                     // alignItems: "center" 
                     }}>
                       {v.title}
@@ -138,6 +149,7 @@ export default function MealCoursesCard() {
                 </Box>
               </Box>
             </SubBox>
+           {/* </NavLink> */}
           </Grid>
           </>
                   );

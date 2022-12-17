@@ -11,9 +11,11 @@ export const EditDishes = () => {
   return (
     <div>
         <>
+        <Box pl="26px" pr="24px" pb="24px">
         <Box><EditDishesSubHeader/></Box>
         <Box ><StatusAlert/></Box>
         <Box sx={{mt:{sm: "40px", xs: "40px"}}}><AddDishesFieldBox disabled={disabled} setDisabled={setDisabled} /></Box>
+        </Box>
         </>
 
     </div>
