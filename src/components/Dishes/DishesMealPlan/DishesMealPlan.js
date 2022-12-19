@@ -6,7 +6,11 @@ import DishesMealPlanCard from "./DishesMealPlanCard";
 import DishesMealPlanTabs from "./DishesMealPlanTabs";
 // import { ThemeProvider } from "@mui/material/styles";
 
+
+
+
 export default function DishesMealPlan() {
+
   const MainBox = styled("div")(({ theme }) => ({
     // padding: theme.spacing(0, 2),
     // padding: "32px",
@@ -28,7 +32,7 @@ export default function DishesMealPlan() {
       <Box
         pl="32px"
         pr="32px"
-        sx={{ paddingTop: { sm: "100px", xs: "100px" } }}
+        sx={{ paddingTop: {lg: "0px", md: "0px", sm: "100px", xs: "100px" } }}
       >
         <MainBox>
           <Box>
@@ -52,7 +56,7 @@ export default function DishesMealPlan() {
                 lg: "596px",
                 md: "596px",
                 sm: "auto",
-                xs: "autp",
+                xs: "auto",
               },
             }}
           >
@@ -66,7 +70,7 @@ export default function DishesMealPlan() {
               <DishesMealPlanCard />
             </Box>
             <Box sx={{}}>
-              <DishesMealPlanTabs />
+              <DishesMealPlanTabs  />
             </Box>
           </SubBox>
         </Box>

@@ -7,7 +7,7 @@ import Button from "@mui/material/Button";
 import { AllDishesCustomCard } from "./AllDishesCustomCard";
 // import { AllDishesData } from "./Config";
 
-export const AllDishesCard = ({AllDishesData, onHandleClick}) => {
+export const AllDishesCard = ({AllDishesData, onHandleClick, setOpenEditDishscreen}) => {
 
     const Title = styled(Typography)(({ theme }) => ({
         // padding: theme.spacing(0, 2),
@@ -63,7 +63,7 @@ export const AllDishesCard = ({AllDishesData, onHandleClick}) => {
             return (
               <>
                 <Grid xl={6} item lg={6} md={6} sm={12} xs={12}>
-                  <AllDishesCustomCard data = {item} onHandleClick={onHandleClick}/>
+                  <AllDishesCustomCard data = {item} onHandleClick={onHandleClick} setOpenEditDishscreen={setOpenEditDishscreen}/>
                 </Grid>
               </>
             );

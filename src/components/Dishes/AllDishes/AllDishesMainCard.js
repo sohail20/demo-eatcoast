@@ -11,7 +11,9 @@ export default function AllDishesMainCard({
   BtnName,
   icon,
   hasToInput,
-  onHandleClick
+  onHandleClick,
+  setOpenEditDish,
+  openEditDishscreen
 }) {
   // const Data = [
   //   {
@@ -151,7 +153,12 @@ export default function AllDishesMainCard({
                       },
                     }}
                   >
-                    <Button1 variant="contained" startIcon={icon}>
+                    <Button1 variant="contained" startIcon={icon}
+                    onClick={()=>setOpenEditDish(true)}
+                    // onClick={() => {
+                    //   setOpenEditDish(true)
+                    // }}
+                    >
                       {BtnName}
                     </Button1>
                   </Box>
