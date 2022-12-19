@@ -8,6 +8,7 @@ import DocumentEmployee from "components/Document/Employee/DocumentEmployee";
 import Chat from "../Staff/Orders/Chat";
 import Profile from "./Profile";
 import ChangeLocation from "./Profile/ChangeLocation";
+
 const Settings = () => {
   const [currentPage, setCurrentTab] = useState("dashboard");
   const renderTab = {

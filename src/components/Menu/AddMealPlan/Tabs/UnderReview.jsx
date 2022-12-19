@@ -1,5 +1,6 @@
 import { Grid } from "@mui/material";
 import SmallInfoCard from "../../../Cards/SmallInfoCard";
+
 const UnderReview = () => {
   return (
     <Grid container spacing={2}>
@@ -40,7 +41,7 @@ const UnderReview = () => {
           status: "Under review",
         },
       ].map((item) => (
-        <Grid item xs={6} md={6}>
+        <Grid item xs={12} md={6}>
           <SmallInfoCard
             borderLess
             status={item.status}
