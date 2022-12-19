@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Box } from "@mui/material";
 import DashboardLayout from "../../DashboardLayout/DashboardLayout";
 import CustomIconButton from "../../../components/Button/CustomIconButton";
@@ -12,33 +12,43 @@ import AddEmployees from "./AddEmployees";
 import EmployeesTable from "./EmployeesTable";
 
 const Employee = () => {
+  const [employees] = useState(10);
+  const [addEmployeeScreen, setAddEmployeeScreen] = useState(false);
   return (
     <>
       <DashboardLayout>
         <Box p={3}>
-          {/* <FlexBoxContainer width="100%">
-          <Box
-            display={"flex"}
-            alignItems="center"
-            justifyContent="space-between"
-            style={{ marginBottom: "20px", width:"100%" }}
-          >
-            <H1Typo>Employee</H1Typo>
-
-            <CustomIconButton
-              variant="contained"
-              label="Add Employee"
-              icon={<AddRoundedIcon style={{ color: "#fff" }} />}
+          {addEmployeeScreen ? (
+            <AddEmployees handleOnClose={() => setAddEmployeeScreen(false)} />
+          ) : employees > 0 ? (
+            <EmployeesTable
+              handleOnAddClick={() => setAddEmployeeScreen(true)}
             />
-          </Box>
-        </FlexBoxContainer>
+          ) : (
+            <>
+              <FlexBoxContainer width="100%">
+                <Box
+                  display={"flex"}
+                  alignItems="center"
+                  justifyContent="space-between"
+                  style={{ marginBottom: "20px", width: "100%" }}
+                >
+                  <H1Typo>Employee</H1Typo>
 
-        <BorderContainer style={{height:"232px"}}>
-          <LightTitle>No employee added</LightTitle>
-        </BorderContainer> */}
+                  <CustomIconButton
+                    onClick={() => setAddEmployeeScreen(true)}
+                    variant="contained"
+                    label="Add Employee"
+                    icon={<AddRoundedIcon style={{ color: "#fff" }} />}
+                  />
+                </Box>
+              </FlexBoxContainer>
 
-          <AddEmployees/>
-          {/* <EmployeesTable /> */}
+              <BorderContainer style={{ height: "232px" }}>
+                <LightTitle>No employee added</LightTitle>
+              </BorderContainer>
+            </>
+          )}
         </Box>
       </DashboardLayout>
     </>

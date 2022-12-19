@@ -98,7 +98,7 @@ export default function Profile({handleChangeAddress, handleBack }) {
         <ProfileSettings />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <RestaurantSettings handleChangeAddress={handleChangeAddress}/>
+        <RestaurantSettings handleChangeAddress={(formValues)=>handleChangeAddress(formValues)}/>
       </TabPanel>
     </Box>
   );

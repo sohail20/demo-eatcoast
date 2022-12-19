@@ -8,12 +8,37 @@ import DocumentEmployee from "components/Document/Employee/DocumentEmployee";
 import Chat from "../Staff/Orders/Chat";
 import Profile from "./Profile";
 import ChangeLocation from "./Profile/ChangeLocation";
+import { useAddRestaurantMutation } from "api/restaurant";
+
 const Settings = () => {
+  const [addRestaurantData, setAddRestaurantData] = useState([]);
   const [currentPage, setCurrentTab] = useState("dashboard");
+  const [addRestaurant, { isLoading }] = useAddRestaurantMutation();
+
+  const handleSubmit = (values) => {
+    let formData = new FormData(); //formdata object
+    let addressData = {};
+    Object.keys(values).map((keys) => {
+      if (
+        keys === "lat" ||
+        keys === "lng" ||
+        keys === "address" ||
+        keys === "note"
+      )
+        Object.assign(addressData, { [keys]: values[keys] });
+      else formData.append(keys, values[keys]);
+    });
+
+    formData.append("address", values.address);
+    addRestaurant(formData);
+  };
   const renderTab = {
     profile: (
       <Profile
-        handleChangeAddress={() => setCurrentTab("changeAddress")}
+        handleChangeAddress={(e) => {
+          setAddRestaurantData(e);
+          setCurrentTab("changeAddress");
+        }}
         handleBack={() => setCurrentTab("dashboard")}
       />
     ),
@@ -24,7 +49,12 @@ const Settings = () => {
     ),
     contactSupport: <Chat title="Live Chat" />,
     changeAddress: (
-      <ChangeLocation handleClose={() => setCurrentTab("profile")} />
+      <ChangeLocation
+        handleClose={() => setCurrentTab("profile")}
+        handleSubmitForm={(e) => {
+          handleSubmit({ ...addRestaurantData, ...e });
+        }}
+      />
     ),
     customerFeedback: (
       <CustomerFeedbackDashboard
@@ -34,7 +64,9 @@ const Settings = () => {
   };
   return (
     <>
-      <DashboardLayout>{renderTab[currentPage]}</DashboardLayout>
+      <DashboardLayout>
+        {isLoading ? <p>Loading...</p> : renderTab[currentPage]}
+      </DashboardLayout>
     </>
   );
 };
