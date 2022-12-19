@@ -10,14 +10,15 @@ import { ForgotPin } from "./screens/loginScreen/ForgotPin";
 import { CheckEmail } from "./screens/loginScreen/CheckEmail";
 import { Regsteppers } from "./screens/registerScreen/Regsteppers";
 import { Dashindex } from "./screens/dashboard/Dashindex";
-import MealPlan2 from "./screens/MealPlan2";
 import MealPlan from "./screens/MealPlan/MealPlan";
 import Dashboard from "./screens/dashboard/Dashboard";
 import Order from "./screens/dashboard/Order";
 import Menu from "./screens/dashboard/Menu";
+import Menu2 from "./screens/Menu2"
 import Financials from "./screens/dashboard/Financials";
 import Employee from "./screens/dashboard/Employee";
 import Settings from "./screens/dashboard/Settings/index";
+import Dishes from "./components/Dishes";
 import AddDishes from "./components/Dishes/AddDishes/AddDishes";
 import AddMealPlan from "./components/Menu/AddMealPlan/AddMealPlan";
 import { BackToDishes } from "./components/Dishes/AddDishes/BackToDishes/BackToDishes";
@@ -32,7 +33,7 @@ function App() {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    if (token === null || token === "") navigate("/login");
+    // if (token === null || token === "") navigate("/login");
   }, []);
 
   return (
@@ -47,12 +48,15 @@ function App() {
           <Route path={"/checkemail"} element={<CheckEmail />} />
           <Route path={"/stepper"} element={<Regsteppers />} />
           <Route path={"/"} element={<Dashboard />} />
+          <Route path={"/dashboard"} element={<Dashboard />} />
           <Route path="/order" element={<Order />} />
           <Route path="/subscription" element={<Subscription />} />
           <Route path="/menu" element={<Menu />} />
+          <Route path="/menu2" element={<Menu2 />} />
           <Route path="/financials" element={<Financials />} />
           <Route path="/employee" element={<Employee />} />
           <Route path="/setting" element={<Settings />} />
+          <Route path="/dishes" element={<Dishes />} />
           <Route path="/alldishes" element={<AllDishes />} />
           <Route path="/mealPlan" element={<AddMealPlan />} />
           <Route path="/backToDishes" element={<BackToDishes />} />

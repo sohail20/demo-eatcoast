@@ -11,12 +11,13 @@ import { AllDishesContext } from "./Context";
 import DashboardLayout from "screens/DashboardLayout/DashboardLayout";
 // const AllDishesContext = createContext(null);
 
-export const Dishes = () => {
+const Dishes = () => {
   const [openEditDish, setOpenEditDish] = useState(false);
   const [openBackToDish, setOpenBackToDish] = useState(false);
   const [openEditDishscreen, setOpenEditDishscreen] = useState(false);
   const [openAllDishes, setOpenAllDishes] = useState(false);
   console.log("dishes", openEditDishscreen);
+  
   return (
     <div>
       <DashboardLayout>
@@ -64,3 +65,6 @@ export const Dishes = () => {
     </div>
   );
 };
+
+
+export default Dishes

@@ -7,8 +7,11 @@ const theme = createTheme({
     },
     secondary:{
       main:'#2B817B'
+    },
+    customclr: {
+      main: '#2B817B',
+      darkblacks: '#1A1824',
     }
-    
   },
   typography: {
     fontFamily: "Outfit",
