@@ -9,159 +9,14 @@ import CustomIconButton from "../Button/CustomIconButton";
 import CustomCalendar from "../Calendar/Calendar";
 import { BorderContainer, FlexBoxContainer } from "../Containers";
 import CustomInput from "../Inputs/CustomInput";
-import CustomizedDrop from "../Inputs/DropDown";
+import CustomizedDrop from "components/Inputs/DropDown";
+import MenuButton from "components/Inputs/MenuButton";
 import CustomDrawer from "../Modal/CustomDrawer";
 import CustomizedModal from "../Modal/CustomModal";
 import { H1Typo } from "../Typography";
 import LightTitle from "../Typography/LightTitle";
 
-const rowsDishes = [
-  {
-    id: 1,
-    col1: "1",
-    col2: "Kabasa",
-    col3: "Main Course",
-    col4: "Salmon with chilli sauce",
-    col5: "1",
-  },
-  {
-    id: 2,
-    col1: "2",
-    col2: "Bella",
-    col3: "Main Course",
-    col4: "Salmon with chilli sauce",
-    col5: "4",
-  },
-  {
-    id: 3,
-    col1: "3",
-    col2: "Kabasa",
-    col3: "Main Course",
-    col4: "Salmon with chilli sauce",
-    col5: "7",
-  },
-  {
-    id: 4,
-    col1: "4",
-    col2: "Kabasa Rice",
-    col3: "Main Course",
-    col4: "Salmon with chilli sauce",
-    col5: "8",
-  },
-];
-const rowsAddson = [
-  {
-    id: 1,
-    col1: "1",
-    col2: "Kabasa",
-    col3: "Main Course",
-    col4: "Salmon with chilli sauce",
-    col5: "1",
-  },
-  {
-    id: 2,
-    col1: "2",
-    col2: "Bella",
-    col3: "Main Course",
-    col4: "Salmon with chilli sauce",
-    col5: "4",
-  },
-  {
-    id: 3,
-    col1: "3",
-    col2: "Kabasa",
-    col3: "Main Course",
-    col4: "Salmon with chilli sauce",
-    col5: "7",
-  },
-  {
-    id: 4,
-    col1: "4",
-    col2: "Kabasa Rice",
-    col3: "Main Course",
-    col4: "Salmon with chilli sauce",
-    col5: "8",
-  },
-];
-
-const columnsAddson = [
-  { field: "#", hide: true },
-  { field: "col1", headerName: "#", flex: 1 },
-  { field: "col2", headerName: "Dishes Name", flex: 1 },
-  { field: "col3", headerName: "Meal Courses", flex: 1 },
-  { field: "col4", headerName: "Meal Plan", flex: 1 },
-  { field: "col5", headerName: "Qty", flex: 1 },
-];
-const columnsDishes = [
-  { field: "#", hide: true },
-  { field: "col1", headerName: "#", flex: 1 },
-  { field: "col2", headerName: "Dishes Name", flex: 1 },
-  { field: "col3", headerName: "Meal Courses", flex: 1 },
-  { field: "col4", headerName: "Meal Plan", flex: 1 },
-  { field: "col5", headerName: "Qty", flex: 1 },
-];
-
-function createData(meal, plan, qty) {
-  return { meal, plan, qty };
-}
-
-const rows = [
-  createData("Main Courses", "Salmon with chilli sauce", "1"),
-  createData("Main Courses", "Salmon with chilli sauce", "2"),
-  createData("Salad Courses", "Salmon with chilli sauce", "22"),
-  createData("Pinkatola Courses", "Salmon with chilli sauce", "99"),
-  createData("Main Courses", "Salmon with chilli sauce", "0"),
-];
-function createDataOrder(idOrder, menu, time, qty, subs_type) {
-  return { idOrder, menu, time, qty, subs_type };
-}
-
-const rowsOrder = [
-  createDataOrder(
-    "EC-123",
-    "Salmon with chilli sauce",
-    "04:00-06:00pm",
-    "1",
-    "Ps"
-  ),
-  createDataOrder(
-    "EC-193",
-    "Salmon with chilli sauce",
-    "04:00-06:00pm",
-    "1",
-    `So`
-  ),
-  createDataOrder(
-    "EC-125",
-    "Salmon with chilli sauce",
-    "04:00-06:00pm",
-    "1",
-    `Fs`
-  ),
-  createDataOrder(
-    "EC-122",
-    "Salmon with chilli sauce",
-    "04:00-06:00pm",
-    "1",
-    `Bs`
-  ),
-  createDataOrder(
-    "EC-128",
-    "Salmon with chilli sauce",
-    "04:00-06:00pm",
-    "1",
-    `So`
-  ),
-  createDataOrder(
-    "EC-122",
-    "Salmon with chilli sauce",
-    "04:00-06:00pm",
-    "1",
-    `Ms`
-  ),
-];
-
-const SimpleDataTable = ({ topBar }) => {
+const SimpleDataTable = ({ rowsOrder, headerCells, topBar }) => {
   return (
     <>
       {topBar && (
@@ -201,12 +56,9 @@ const SimpleDataTable = ({ topBar }) => {
         >
           <TableHead>
             <TableRow>
-              <TableCell>#</TableCell>
-              <TableCell>Id order</TableCell>
-              <TableCell>Menu name</TableCell>
-              <TableCell>Time</TableCell>
-              <TableCell>Qty</TableCell>
-              <TableCell>Subscription Type</TableCell>
+              {headerCells.map((item) => (
+                <TableCell>{item.title}</TableCell>
+              ))}
             </TableRow>
           </TableHead>
           <TableBody>
@@ -222,61 +74,17 @@ const SimpleDataTable = ({ topBar }) => {
                 <TableCell>{row.menu}</TableCell>
                 <TableCell>{row.time}</TableCell>
                 <TableCell>{row.qty}</TableCell>
-                <TableCell>
-                  {row.subs_type === "Ps" ? (
-                    <Chip
-                      label="Personal Subscription"
-                      variant="contained"
-                      sx={{
-                        background: "#7B49E5",
-                        borderRadius: "6px",
-                        color: "#fff",
-                      }}
+                {row.action && (
+                  <TableCell>
+                    <MenuButton
+                      label="action"
+                      items={[
+                        { label: "Edit Account", id: "edit", icon:"fas fa-heart" },
+                        { label: "Delete Account", id: "delete" },
+                      ]}
                     />
-                  ) : row.subs_type === "Fs" ? (
-                    <Chip
-                      label="Fitness Subscription"
-                      variant="outlined"
-                      sx={{
-                        background: "#FF8D85",
-                        borderRadius: "6px",
-                        color: "#fff",
-                      }}
-                    />
-                  ) : row.subs_type === "Bs" ? (
-                    <Chip
-                      label="Business Subscription"
-                      variant="outlined"
-                      sx={{
-                        background: "#FF9933",
-                        borderRadius: "6px",
-                        color: "#fff",
-                      }}
-                    />
-                  ) : row.subs_type === "Ms" ? (
-                    <Chip
-                      label="Multiple Subscription"
-                      variant="outlined"
-                      sx={{
-                        background: "#158FAD",
-                        borderRadius: "6px",
-                        color: "#fff",
-                      }}
-                    />
-                  ) : row.subs_type === "So" ? (
-                    <Chip
-                      label="Single order"
-                      variant="outlined"
-                      sx={{
-                        background: "#7ECC49",
-                        borderRadius: "6px",
-                        color: "#fff",
-                      }}
-                    />
-                  ) : (
-                    ""
-                  )}
-                </TableCell>
+                  </TableCell>
+                )}
               </TableRow>
             ))}
           </TableBody>
@@ -314,15 +122,19 @@ const SimpleDataTable = ({ topBar }) => {
         title="Delete Account"
       >
         <Stack spacing={4}>
-        <Box textAlign="center">
-          <LightTitle>
-            Something you delete can not be returned again, are you sure ?
-          </LightTitle>
-        </Box>
-        <Box display="flex" alignItems="center" justifyContent="space-evenly">
-          <CustomIconButton label="Delete" color={"#E75C62"} variant="outlined" />
-          <CustomIconButton label="Cancel" variant="contained" />
-        </Box>
+          <Box textAlign="center">
+            <LightTitle>
+              Something you delete can not be returned again, are you sure ?
+            </LightTitle>
+          </Box>
+          <Box display="flex" alignItems="center" justifyContent="space-evenly">
+            <CustomIconButton
+              label="Delete"
+              color={"#E75C62"}
+              variant="outlined"
+            />
+            <CustomIconButton label="Cancel" variant="contained" />
+          </Box>
         </Stack>
       </CustomizedModal>
     </>

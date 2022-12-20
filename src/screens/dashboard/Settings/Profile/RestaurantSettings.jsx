@@ -35,7 +35,6 @@ const RestaurantSettings = ({handleChangeAddress}) => {
   const formik = useFormik({
     initialValues: {
       name: "",
-      address: "",
       image: "",
     },
     onSubmit: (values) => {
@@ -145,7 +144,7 @@ const RestaurantSettings = ({handleChangeAddress}) => {
                   name="address"
                   value={formik.values.address}
                   onChange={formik.handleChange}
-                  onClick={handleChangeAddress}
+                  onClick={()=>handleChangeAddress(formik.values)}
                 />
               </Stack>
             </Grid>

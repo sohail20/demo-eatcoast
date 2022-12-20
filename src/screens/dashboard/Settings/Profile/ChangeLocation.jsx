@@ -20,7 +20,7 @@ const CustomTextArea = styled(TextareaAutosize)(({ theme }) => ({
 
 const initiallyValues = { lat: 25.395969, lng: 68.357773 };
 
-const ChangeLocation = ({ handleClose }) => {
+const ChangeLocation = ({ handleClose, handleSubmitForm }) => {
   const [latLng, setLatLng] = useState(initiallyValues);
   const formik = useFormik({
     initialValues: {
@@ -30,7 +30,7 @@ const ChangeLocation = ({ handleClose }) => {
       note: "",
     },
     onSubmit: (values, action) => {
-      console.log("formik", values);
+      handleSubmitForm(values);
       action.resetForm();
     },
   });
@@ -45,13 +45,14 @@ const ChangeLocation = ({ handleClose }) => {
 
   return (
     <>
-      <CloseHeader
-        label="Back"
-        variant="back"
-        handleClose={handleClose}
-        title="Change Location"
-      />
       <form onSubmit={formik.handleSubmit} onChange={(e) => onChangeValue(e)}>
+        <CloseHeader
+          label="Back"
+          variant="back"
+          handleClose={handleClose}
+          title="Change Location"
+          rightButton
+        />
         <Grid container spacing={2}>
           <Grid item xs={12} sm={12} md={6}>
             <Grid container spacing={2}>
@@ -59,6 +60,10 @@ const ChangeLocation = ({ handleClose }) => {
                 <CustomInput
                   label="Detail Address"
                   placeholder="4474 Bridgeport Rd. Canada"
+                  id="address"
+                  name="address"
+                  value={formik.values.address}
+                  onChange={formik.handleChange}
                 />
               </Grid>
               <Grid item xs={12} sm={12} md={6}>
@@ -94,6 +99,10 @@ const ChangeLocation = ({ handleClose }) => {
                 aria-label="empty textarea"
                 placeholder="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s"
                 minRows={5}
+                id="note"
+                name="note"
+                value={formik.values.note}
+                onChange={formik.handleChange}
               />
             </Box>
           </Grid>

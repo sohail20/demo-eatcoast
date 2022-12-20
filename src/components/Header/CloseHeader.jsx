@@ -3,7 +3,14 @@ import CustomIconButton from "../Button/CustomIconButton";
 import { H1Typo } from "../Typography";
 import ClearIcon from "@mui/icons-material/Clear";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
-const CloseHeader = ({ handleClose, label, variant = "close", title }) => {
+import { FlexBoxContainer } from "components/Containers";
+const CloseHeader = ({
+  handleClose,
+  label,
+  variant = "close",
+  title,
+  rightButton,
+}) => {
   return (
     <Box display={"flex"} alignItems="center" style={{ marginBottom: "20px" }}>
       <CustomIconButton
@@ -17,17 +24,20 @@ const CloseHeader = ({ handleClose, label, variant = "close", title }) => {
         label={label}
         onClick={handleClose}
       />
-      {title && (
-        <Box style={{ width: "100%", textAlign: "center" }}>
-          <H1Typo>{title}</H1Typo>
-        </Box>
-      )}
-
-      {title && (
-        <Box style={{ width: "100%", textAlign: "end" }}>
-          <H1Typo>{title}</H1Typo>
-        </Box>
-      )}
+      <FlexBoxContainer>
+        {title && (
+          <Box style={{ width: "100%", textAlign: "center" }}>
+            <H1Typo>{title}</H1Typo>
+          </Box>
+        )}
+        {rightButton && (
+          <CustomIconButton
+            label="Submit"
+            variant={"contained"}
+            type="submit"
+          />
+        )}
+      </FlexBoxContainer>
     </Box>
   );
 };
