@@ -33,6 +33,9 @@ const extendedApi = api.injectEndpoints({
     getRestaurantById: build.mutation({
       query: (query) => `/restaurant/${query}`,
     }),
+    getAllRestaurants: build.mutation({
+      query: (query) => `/restaurant`,
+    }),
   }),
   overrideExisting: false,
 });

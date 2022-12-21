@@ -20,7 +20,8 @@ export default function DishesStepper2({formik}) {
   
   return (
     <>
-      <Container maxWidth="xs">
+      {/* <Container maxWidth="xs"> */}
+      <Container>
         <Box mt={6}>
           <Box mb={2}>
             <Box mb={1}>

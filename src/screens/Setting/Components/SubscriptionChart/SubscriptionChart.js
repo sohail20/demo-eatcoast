@@ -1,6 +1,7 @@
 import React from 'react'
 import Charts from 'react-apexcharts';
 import '../../style.css';
+
  const SubscriptionChart = () => {
 
     const options = {
@@ -79,7 +80,7 @@ import '../../style.css';
 
 
     return (
-        <div  style={{display:'flex',alignItems:'center'}}>
+        <div  style={{display:'flex',alignItems:'center',marginTop:"5px"}}>
 
             <Charts  options={options}
                 series={options.series} type="donut" width="400" />

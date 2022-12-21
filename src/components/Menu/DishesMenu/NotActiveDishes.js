@@ -4,7 +4,7 @@ import DishesDataGrid from './DishesDataGrid'
 import { dishesTabs } from './configdishes'
 
 export const NotActiveDishes = () => {
-    const subscriptionTableColumns = [
+    const girdTableColumnsArr = [
         { field: "id", headerName: "#", width: 100 },
         {
             field: "photo",
@@ -54,7 +54,7 @@ export const NotActiveDishes = () => {
     return (
         <Box >
 
-            <DishesDataGrid subscriptionTableColumns={subscriptionTableColumns}
+            <DishesDataGrid girdTableColumns={girdTableColumnsArr}
                 dishesTabs={dishesTabs} pageSize={pageSize} />
 
         </Box>

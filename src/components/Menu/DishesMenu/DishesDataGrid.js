@@ -45,8 +45,9 @@ const paginationSx = {
         borderRadius: "8px",
     },
 }
+
 export default function DishesDataGrid({
-    subscriptionTableColumns, pageSize, dishesTabs}) {
+    girdTableColumns, pageSize, dishesTabs}) {
     const [searchVal, setSearchVal] = React.useState('')
     console.log(searchVal)
     return (
@@ -60,7 +61,7 @@ export default function DishesDataGrid({
                         <Box sx={{ width: '100%', height: '400px' }}>
                             <StyledDataGrid
                                 rows={dishesTabs}
-                                columns={subscriptionTableColumns}
+                                columns={girdTableColumns}
                                 disableSelectionOnClick
                                 autoHeight
                                 pageSize={pageSize}
