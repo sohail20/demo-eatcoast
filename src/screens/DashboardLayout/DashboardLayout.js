@@ -58,6 +58,11 @@ const navList = [
     icon: <BsBook size={"20px"} />,
   },
   {
+    title: "Dishes",
+    link: "/dishes",
+    icon: <BsBook size={"20px"} />,
+  },
+  {
     title: "Financials",
     link: "/financials",
     icon: <MdOutlineAccountTree size={"20px"} />,

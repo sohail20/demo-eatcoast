@@ -11,6 +11,7 @@ import CuisineCategoryCard from "./CuisineMenu/CuisineCategoryCard";
 import AddCuisine from "./AddCuisine";
 import { Data2 } from "./CuisineMenu/config";
 import AddMealPlan from "./AddMealPlan/AddMealPlan";
+
 export const MenuComponent = () => {
 const [isShownCuisine, setIsShownCuisine] = useState(false);
 const [isShown, setIsShown] = useState(false);

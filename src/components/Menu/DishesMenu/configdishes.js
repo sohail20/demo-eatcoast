@@ -76,7 +76,8 @@ export const dishesTabs=[
     {
         id: 1,
         dishesName: "Kabasa",
-        image: "./images/dishesImage.svg",
+        // image: "./images/dishesImage.svg",
+        image: "images/dishesImage.svg",
         subCuisine: "Mesopotamian cusine",
         mealPlan: "Salmon with chili sauce",
         mealCourse: "Main course",
@@ -86,7 +87,8 @@ export const dishesTabs=[
     {
         id: 2,
         dishesName: "Kabasa",
-       image: "./images/dishesImage.svg",
+    //    image: "./images/dishesImage.svg",
+       image: "images/dishesImage.svg",
         subCuisine: "Mesopotamian cusine",
         mealPlan: "Salmon with chili sauce",
         mealCourse: "Main course",
@@ -96,7 +98,8 @@ export const dishesTabs=[
     {
         id: 3,
         dishesName: "Kabasa",
-       image: "./images/dishesImage.svg",
+    //    image: "./images/dishesImage.svg",
+       image: "images/dishesImage.svg",
         subCuisine: "Mesopotamian cusine",
         mealPlan: "Salmon with chili sauce",
         mealCourse: "Main course",
@@ -106,7 +109,8 @@ export const dishesTabs=[
     {
         id: 4,
         dishesName: "Kabasa",
-       image: "./images/dishesImage.svg",
+    //    image: "./images/dishesImage.svg",
+       image: "images/dishesImage.svg",
         subCuisine: "Mesopotamian cusine",
         mealPlan: "Salmon with chili sauce",
         mealCourse: "Main course",
@@ -116,7 +120,8 @@ export const dishesTabs=[
     {
         id: 5,
         dishesName: "Kabasa",
-       image: "./images/dishesImage.svg",
+    //    image: "./images/dishesImage.svg",
+       image: "images/dishesImage.svg",
         subCuisine: "Mesopotamian cusine",
         mealPlan: "Salmon with chili sauce",
         mealCourse: "Main course",
@@ -126,7 +131,8 @@ export const dishesTabs=[
     {
         id: 6,
         dishesName: "Kabasa",
-       image: "./images/dishesImage.svg",
+    //    image: "./images/dishesImage.svg",
+       image: "images/dishesImage.svg",
         subCuisine: "Mesopotamian cusine",
         mealPlan: "Salmon with chili sauce",
         mealCourse: "Main course",
@@ -136,7 +142,8 @@ export const dishesTabs=[
     {
         id: 7,
         dishesName: "Maquluoba",
-       image: "./images/dishesImage.svg",
+    //    image: "./images/dishesImage.svg",
+       image: "images/dishesImage.svg",
         subCuisine: "Mesopotamian cusine",
         mealPlan: "Salmon with chili sauce",
         mealCourse: "Main course",
@@ -146,7 +153,8 @@ export const dishesTabs=[
     {
         id: 8,
         dishesName: "Maquluoba",
-       image: "./images/dishesImage.svg",
+    //    image: "./images/dishesImage.svg",
+       image: "images/dishesImage.svg",
         subCuisine: "Mesopotamian cusine",
         mealPlan: "Salmon with chili sauce",
         mealCourse: "Main course",
@@ -156,7 +164,8 @@ export const dishesTabs=[
     {
         id: 9,
         dishesName: "Maquluoba",
-       image: "./images/dishesImage.svg",
+    //    image: "./images/dishesImage.svg",
+       image: "images/dishesImage.svg",
         subCuisine: "Mesopotamian cusine",
         mealPlan: "Salmon with chili sauce",
         mealCourse: "Main course",
@@ -166,7 +175,8 @@ export const dishesTabs=[
     {
         id: 10,
         dishesName: "Maquluoba",
-       image: "./images/dishesImage.svg",
+    //    image: "./images/dishesImage.svg",
+       image: "images/dishesImage.svg",
         subCuisine: "Mesopotamian cusine",
         mealPlan: "Salmon with chili sauce",
         mealCourse: "Main course",
@@ -176,7 +186,8 @@ export const dishesTabs=[
     {
         id: 11,
         dishesName: "Mandi",
-       image: "./images/dishesImage.svg",
+    //    image: "./images/dishesImage.svg",
+       image: "images/dishesImage.svg",
         subCuisine: "Mesopotamian cusine",
         mealPlan: "Salmon with chili sauce",
         mealCourse: "Main course",
@@ -186,7 +197,8 @@ export const dishesTabs=[
     {
         id: 12,
         dishesName: "Mandi",
-       image: "./images/dishesImage.svg",
+    //    image: "./images/dishesImage.svg",
+       image: "images/dishesImage.svg",
         subCuisine: "Mesopotamian cusine",
         mealPlan: "Salmon with chili sauce",
         mealCourse: "Main course",
@@ -196,7 +208,8 @@ export const dishesTabs=[
     {
         id: 13,
         dishesName: "Mandi",
-       image: "./images/dishesImage.svg",
+    //    image: "./images/dishesImage.svg",
+       image: "images/dishesImage.svg",
         subCuisine: "Mesopotamian cusine",
         mealPlan: "Salmon with chili sauce",
         mealCourse: "Main course",
@@ -206,7 +219,8 @@ export const dishesTabs=[
     {
         id: 14,
         dishesName: "Shawarma plate",
-       image: "./images/dishesImage.svg",
+    //    image: "./images/dishesImage.svg",
+       image: "images/dishesImage.svg",
         subCuisine: "Mesopotamian cusine",
         mealPlan: "Salmon with chili sauce",
         mealCourse: "Main course",
@@ -216,7 +230,8 @@ export const dishesTabs=[
     {
         id: 15,
         dishesName: "Shawarma plate",
-       image: "./images/dishesImage.svg",
+    //    image: "./images/dishesImage.svg",
+       image: "images/dishesImage.svg",
         subCuisine: "Mesopotamian cusine",
         mealPlan: "Salmon with chili sauce",
         mealCourse: "Main course",
@@ -228,7 +243,8 @@ export const dishesTabsStatus=[
     {
         id: 1,
         dishesName: "Kabasa",
-        image: "./images/dishesImage.svg",
+        // image: "./images/dishesImage.svg",
+        image: "images/dishesImage.svg",
         subCuisine: "Mesopotamian cusine",
         mealPlan: "Salmon with chili sauce",
         mealCourse: "Main course",
@@ -238,7 +254,8 @@ export const dishesTabsStatus=[
     {
         id: 2,
         dishesName: "Kabasa",
-       image: "./images/dishesImage.svg",
+    //    image: "./images/dishesImage.svg",
+       image: "images/dishesImage.svg",
         subCuisine: "Mesopotamian cusine",
         mealPlan: "Salmon with chili sauce",
         mealCourse: "Main course",
@@ -248,7 +265,8 @@ export const dishesTabsStatus=[
     {
         id: 3,
         dishesName: "Kabasa",
-       image: "./images/dishesImage.svg",
+    //    image: "./images/dishesImage.svg",
+       image: "images/dishesImage.svg",
         subCuisine: "Mesopotamian cusine",
         mealPlan: "Salmon with chili sauce",
         mealCourse: "Main course",
@@ -258,7 +276,8 @@ export const dishesTabsStatus=[
     {
         id: 4,
         dishesName: "Kabasa",
-       image: "./images/dishesImage.svg",
+    //    image: "./images/dishesImage.svg",
+       image: "images/dishesImage.svg",
         subCuisine: "Mesopotamian cusine",
         mealPlan: "Salmon with chili sauce",
         mealCourse: "Main course",
@@ -268,7 +287,8 @@ export const dishesTabsStatus=[
     {
         id: 5,
         dishesName: "Kabasa",
-       image: "./images/dishesImage.svg",
+    //    image: "./images/dishesImage.svg",
+       image: "images/dishesImage.svg",
         subCuisine: "Mesopotamian cusine",
         mealPlan: "Salmon with chili sauce",
         mealCourse: "Main course",
@@ -278,7 +298,8 @@ export const dishesTabsStatus=[
     {
         id: 6,
         dishesName: "Kabasa",
-       image: "./images/dishesImage.svg",
+    //    image: "./images/dishesImage.svg",
+       image: "images/dishesImage.svg",
         subCuisine: "Mesopotamian cusine",
         mealPlan: "Salmon with chili sauce",
         mealCourse: "Main course",
@@ -288,7 +309,8 @@ export const dishesTabsStatus=[
     {
         id: 7,
         dishesName: "Maquluoba",
-       image: "./images/dishesImage.svg",
+    //    image: "./images/dishesImage.svg",
+       image: "images/dishesImage.svg",
         subCuisine: "Mesopotamian cusine",
         mealPlan: "Salmon with chili sauce",
         mealCourse: "Main course",
@@ -298,7 +320,8 @@ export const dishesTabsStatus=[
     {
         id: 8,
         dishesName: "Maquluoba",
-       image: "./images/dishesImage.svg",
+    //    image: "./images/dishesImage.svg",
+       image: "images/dishesImage.svg",
         subCuisine: "Mesopotamian cusine",
         mealPlan: "Salmon with chili sauce",
         mealCourse: "Main course",
@@ -308,7 +331,8 @@ export const dishesTabsStatus=[
     {
         id: 9,
         dishesName: "Maquluoba",
-       image: "./images/dishesImage.svg",
+    //    image: "./images/dishesImage.svg",
+       image: "images/dishesImage.svg",
         subCuisine: "Mesopotamian cusine",
         mealPlan: "Salmon with chili sauce",
         mealCourse: "Main course",
@@ -318,7 +342,8 @@ export const dishesTabsStatus=[
     {
         id: 10,
         dishesName: "Maquluoba",
-       image: "./images/dishesImage.svg",
+    //    image: "./images/dishesImage.svg",
+       image: "images/dishesImage.svg",
         subCuisine: "Mesopotamian cusine",
         mealPlan: "Salmon with chili sauce",
         mealCourse: "Main course",
@@ -328,7 +353,8 @@ export const dishesTabsStatus=[
     {
         id: 11,
         dishesName: "Mandi",
-       image: "./images/dishesImage.svg",
+    //    image: "./images/dishesImage.svg",
+       image: "images/dishesImage.svg",
         subCuisine: "Mesopotamian cusine",
         mealPlan: "Salmon with chili sauce",
         mealCourse: "Main course",
@@ -338,7 +364,8 @@ export const dishesTabsStatus=[
     {
         id: 12,
         dishesName: "Mandi",
-       image: "./images/dishesImage.svg",
+    //    image: "./images/dishesImage.svg",
+       image: "images/dishesImage.svg",
         subCuisine: "Mesopotamian cusine",
         mealPlan: "Salmon with chili sauce",
         mealCourse: "Main course",
@@ -348,7 +375,8 @@ export const dishesTabsStatus=[
     {
         id: 13,
         dishesName: "Mandi",
-       image: "./images/dishesImage.svg",
+    //    image: "./images/dishesImage.svg",
+       image: "images/dishesImage.svg",
         subCuisine: "Mesopotamian cusine",
         mealPlan: "Salmon with chili sauce",
         mealCourse: "Main course",
@@ -358,7 +386,8 @@ export const dishesTabsStatus=[
     {
         id: 14,
         dishesName: "Shawarma plate",
-       image: "./images/dishesImage.svg",
+    //    image: "./images/dishesImage.svg",
+       image: "images/dishesImage.svg",
         subCuisine: "Mesopotamian cusine",
         mealPlan: "Salmon with chili sauce",
         mealCourse: "Main course",
@@ -368,7 +397,8 @@ export const dishesTabsStatus=[
     {
         id: 15,
         dishesName: "Shawarma plate",
-       image: "./images/dishesImage.svg",
+    //    image: "./images/dishesImage.svg",
+       image: "images/dishesImage.svg",
         subCuisine: "Mesopotamian cusine",
         mealPlan: "Salmon with chili sauce",
         mealCourse: "Main course",

@@ -45,7 +45,7 @@ export default function DishesSubHeader({
   };
 
   const Link1 = {
-    marginTop: { lg: "-30px" },
+    // marginTop: { lg: "-30px" },
     textTransform: "none",
     "&:hover": { backgroundColor: "transparent" },
   };
@@ -93,8 +93,10 @@ export default function DishesSubHeader({
   };
 
   const IconBtn = {
-    width: { xl: "26px", lg: "16px", md: "16px", sm: "16px", xs: "12px" },
-    marginTop: { xl: "10px", lg: "10px", md: "10px", sm: "10px", xs: "10px" },
+    // width: { xl: "26px", lg: "16px", md: "16px", sm: "16px", xs: "12px" },
+    width: { xl: "26px", lg: "16px", xs: "12px" },
+    // marginTop: { xl: "10px", lg: "10px", md: "10px", sm: "10px", xs: "10px" },
+    // marginTop: "10px",
     height: "auto",
   };
   return (
@@ -112,7 +114,7 @@ export default function DishesSubHeader({
           </Box>
 
           {isShownButtonBox ? (
-            "farahan ali"
+            ""
           ) : (
             // <CustomSelectMenu setShowAllCuisine />
             <Box>
@@ -134,7 +136,7 @@ export default function DishesSubHeader({
             sx={Btn2}
             onClick={() => setStepper(true)}
           >
-            Add Dishesqweqwe
+            Add Dishes
           </Button>
         </Box>
       </Box>

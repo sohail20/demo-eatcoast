@@ -2,6 +2,7 @@ import { Box, Button, Card, CardContent, CardMedia, Grid, Typography } from '@mu
 import { Container } from '@mui/system'
 import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+
 export const Login2 = () => {
   const navigation = useNavigate();
   const gotoLoginPin=()=>{

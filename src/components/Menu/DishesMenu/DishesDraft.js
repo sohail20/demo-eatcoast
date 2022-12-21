@@ -8,7 +8,7 @@ import {dishesTabs} from './configdishes'
 
 export default function DishesDraft() {
     
-    const subscriptionTableColumns = [
+    const girdTableColumnsArr = [
         { field: "id", headerName: "#", width: 100 },
         {
             field: "photo",
@@ -59,7 +59,7 @@ export default function DishesDraft() {
           return (
           <Box >
 
-              <DishesDataGrid subscriptionTableColumns={subscriptionTableColumns}
+              <DishesDataGrid girdTableColumns={girdTableColumnsArr}
                   dishesTabs={dishesTabs} pageSize={pageSize} />
 
           </Box>

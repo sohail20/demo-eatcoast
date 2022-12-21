@@ -48,7 +48,8 @@ export default function DishesStepper3() {
 
     return (
     <> 
-          <Container maxWidth="xs" >
+          {/* <Container maxWidth="xs" > */}
+          <Container>
                 <Box
                     width="100%"
                     sx={{ pl: { lg: "50px", md: "50px", sm: "0px", xs: "0px" },

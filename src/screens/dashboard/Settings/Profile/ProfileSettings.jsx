@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Box, styled, Button, Grid, Stack } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import { CenteredBoxContainer, FlexBoxContainer } from "components/Containers";
@@ -31,6 +31,7 @@ const Button1 = {
 
 const ProfileSettings = () => {
   const [hasChanged, setHasChanged] = useState(false);
+  const [image, setImage] = useState("./images/image profile.svg");
   const formik = useFormik({
     initialValues: {
       ownerName: "",
@@ -54,6 +55,17 @@ const ProfileSettings = () => {
     []
   );
 
+  useEffect(() => {
+    if (formik.values.image !== "") {
+      let reader = new FileReader();
+      reader.onloadend = () => {
+        setImage(reader.result);
+      };
+
+      reader.readAsDataURL(formik.values.image);
+    }
+  }, [formik]);
+
   return (
     <form onSubmit={formik.handleSubmit} onChange={onChangeValue}>
       <Grid container>
@@ -63,7 +75,11 @@ const ProfileSettings = () => {
             <Grid item xs={12} sm={12} md={4}>
               <Box>
                 <CenteredBoxContainer>
-                  <img src={"./images/image profile.svg"} alt="" />
+                   <img
+                    src={image}
+                    alt=""
+                    style={{ width: "96px", height: "97px" }}
+                  />
                 </CenteredBoxContainer>
                 <CenteredBoxContainer>
                   <Button
@@ -81,8 +97,8 @@ const ProfileSettings = () => {
                       id="image"
                       image="image"
                       onChange={(event) => {
-                        console.log(
-                          " event.currentTarget.files[0]",
+                        formik.setFieldValue(
+                          "image",
                           event.currentTarget.files[0]
                         );
                       }}

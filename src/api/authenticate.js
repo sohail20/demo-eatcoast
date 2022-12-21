@@ -1,5 +1,6 @@
 import swal from "sweetalert";
 import { api } from "../store/middleware/api";
+
 const extendedApi = api.injectEndpoints({
   endpoints: (build) => ({
     getAuthenticate: build.mutation({
@@ -53,5 +54,8 @@ const extendedApi = api.injectEndpoints({
   overrideExisting: false,
 });
 
-export const { useGetAuthenticateMutation, useForgotPasswordMutation } =
-  extendedApi;
+export const { 
+  useGetAuthenticateMutation, 
+  useForgotPasswordMutation, 
+  useVerifyOTPMutation, 
+} = extendedApi;

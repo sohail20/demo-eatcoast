@@ -15,6 +15,7 @@ import support from "./Icons/support.png";
 import policy from "./Icons/policy.png";
 import arrowRight from "./Icons/Vector.png";
 import "../../style.css";
+
 function ButtonsScreen({handleChangeScreen}) {
   const buttonData = [
     {
@@ -23,8 +24,8 @@ function ButtonsScreen({handleChangeScreen}) {
       icon: profile,
     },
     {
-      title: "Dokumens",
-      id: "dokumens",
+      title: "Documents",
+      id: "documents",
       icon: dok,
     },
     {
@@ -99,7 +100,7 @@ function ButtonsScreen({handleChangeScreen}) {
         <center>
           <Button
             sx={{
-              width: "404px",
+              width: {xs:"290px",sm:"320px",md:"404px"},
               height: "36px",
               border: "1px solid #FFF1F1",
               borderRadius: "4px",

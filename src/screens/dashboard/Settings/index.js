@@ -44,10 +44,10 @@ const Settings = () => {
     ),
     dashboard: <DashBoard handleChangeScreen={(id) => setCurrentTab(id)} />,
     helpCenter: <HelpCenter handleBack={() => setCurrentTab("dashboard")} />,
-    dokumens: (
+    documents: (
       <DocumentEmployee handleBack={() => setCurrentTab("dashboard")} />
     ),
-    contactSupport: <Chat title="Live Chat" />,
+    contactSupport: <Chat title="Live Chat" handleClose={() => setCurrentTab("dashboard")} />,
     changeAddress: (
       <ChangeLocation
         handleClose={() => setCurrentTab("profile")}

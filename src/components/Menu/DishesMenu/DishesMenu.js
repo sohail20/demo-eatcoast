@@ -67,11 +67,11 @@ export const DishesMenu = () => {
   };
 
   // to show active and not actparamsive dishess
-  const [activeDishes, setActiveDishes] = React.useState(!true);
+  const [activeDishes, setActiveDishes] = React.useState(true);
 
   // to show multiStepper
-  // const [stepper, setStepper] = React.useState(false)
-  const [stepper, setStepper] = React.useState(true);
+  const [stepper, setStepper] = React.useState(false)
+  // const [stepper, setStepper] = React.useState(true);
   const [stepper1, setStepper1] = React.useState(false);
 
   const handleDishesAdd = () => {
@@ -88,7 +88,7 @@ export const DishesMenu = () => {
         <>
           <DishesSubHeader title={"All Dishes"} setStepper={setStepper} />
 
-          <Box sx={{ width: "100%", marginTop: "-10px" }}>
+          <Box sx={{ width: "100%" }}>
             <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
               <Tabs
                 value={value}
@@ -173,11 +173,11 @@ export const DishesMenu = () => {
               <DishesUnderReview />
             </TabPanel>
             <TabPanel value={value} index={3}>
-              <DishesDraft />
+              <DishesDraft /> 
             </TabPanel>
           </Box>
         </>
-      )}
+       )} 
     </Box>
   );
 };
