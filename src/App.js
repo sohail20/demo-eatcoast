@@ -14,7 +14,7 @@ import MealPlan from "./screens/MealPlan/MealPlan";
 import Dashboard from "./screens/dashboard/Dashboard";
 import Order from "./screens/dashboard/Order";
 import Menu from "./screens/dashboard/Menu";
-import Menu2 from "./screens/Menu2"
+import Menu2 from "./screens/Menu2";
 import Financials from "./screens/dashboard/Financials";
 import Employee from "./screens/dashboard/Employee";
 import Settings from "./screens/dashboard/Settings/index";
@@ -32,8 +32,8 @@ function App() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    // if (token === null || token === "") navigate("/login");
+    const employee = localStorage.getItem("employee");
+    if (employee === null || employee === "") navigate("/operators");
   }, []);
 
   return (

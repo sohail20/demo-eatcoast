@@ -21,7 +21,6 @@ const AddEmployees = ({ handleOnClose }) => {
       pin: "",
     },
     onSubmit: (values, action) => {
-      delete values.pin;
       registerEmployee(values);
       action.resetForm();
     },

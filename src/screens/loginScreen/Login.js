@@ -36,7 +36,7 @@ export const Login = () => {
 
   const handleSubmit = () => {
     authenticate({ email, password }).then((res) => {
-      if (res.data) navigate("/");
+      if (res.data) navigate("/operators");
     });
   };
 
