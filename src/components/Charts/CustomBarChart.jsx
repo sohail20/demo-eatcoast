@@ -1,5 +1,6 @@
 import React from "react";
 import Charts from "react-apexcharts";
+
 const CustomBarChart = () => {
   const options = {
     chart: {

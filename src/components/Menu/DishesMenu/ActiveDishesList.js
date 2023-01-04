@@ -5,7 +5,7 @@ import { Box } from '@mui/system';
 
 
   export default function ActiveDishesList() {
-    const subscriptionTableColumns = [
+    const girdTableColumnsArr = [
       { field: "id", headerName: "#", width: 100 },
       {
         field: "photo",
@@ -54,7 +54,7 @@ import { Box } from '@mui/system';
     const [pageSize, setPageSize] = React.useState(5);
   return (
     <>
-      <DishesDataGrid subscriptionTableColumns={subscriptionTableColumns}  
+      <DishesDataGrid girdTableColumns={girdTableColumnsArr}  
         dishesTabs={dishesTabs} pageSize={pageSize} />
 
     </>   

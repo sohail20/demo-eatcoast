@@ -53,7 +53,8 @@ export default function DishesStepper1({ formik, setStepper }) {
 
   return (
     <>
-      <Container maxWidth="xs">
+      {/* <Container maxWidth="xs"> */}
+      <Container>
         <Box width="100%" sx={{ display: "flex", mt: 6 }}>
           <Box>
             <img src={image} alt="" />

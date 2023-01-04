@@ -1,6 +1,7 @@
 import { Grid } from "@mui/material";
 import SmallInfoCard from "../../../Cards/SmallInfoCard";
 import { H1Typo } from "../../../Typography";
+
 const Draft = () => {
   return (
     <>
@@ -37,7 +38,7 @@ const Draft = () => {
             status: "Need to Submit",
           },
         ].map((item) => (
-          <Grid item xs={6} md={6}>
+          <Grid item xs={12} md={6}>
             <SmallInfoCard data={item} hasEditButton />
           </Grid>
         ))}

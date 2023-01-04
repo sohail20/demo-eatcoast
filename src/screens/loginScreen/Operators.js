@@ -1,16 +1,8 @@
-import {
-  Box,
-  Button,
-  Card,
-  CardContent,
-  CardMedia,
-  Grid,
-  Typography,
-} from "@mui/material";
-import { Container } from "@mui/system";
-import { useGetEmployeesQuery } from "api/employee";
-import React, { useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Box, Button, Card, CardContent, CardMedia, Grid, Typography } from '@mui/material'
+import { Container } from '@mui/system'
+import React from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+
 export const Login2 = () => {
   const navigate = useNavigate();
   const { data: employees, isLoading } = useGetEmployeesQuery();

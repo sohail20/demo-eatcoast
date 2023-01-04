@@ -8,13 +8,14 @@ import { Login3 } from "./screens/loginScreen/Login3";
 import { ForgotPassword } from "./screens/loginScreen/ForgotPassword";
 import { ForgotPin } from "./screens/loginScreen/ForgotPin";
 import { CheckEmail } from "./screens/loginScreen/CheckEmail";
+import PasswordReset from "./screens/loginScreen/PasswordReset";
 import { Regsteppers } from "./screens/registerScreen/Regsteppers";
 import { Dashindex } from "./screens/dashboard/Dashindex";
-import MealPlan from "./screens/MealPlan/MealPlan";
+// import MealPlan from "./screens/MealPlan/MealPlan";
+import Menu2 from './screens/Menu2'
 import Dashboard from "./screens/dashboard/Dashboard";
 import Order from "./screens/dashboard/Order";
 import Menu from "./screens/dashboard/Menu";
-import Menu2 from "./screens/Menu2";
 import Financials from "./screens/dashboard/Financials";
 import Employee from "./screens/dashboard/Employee";
 import Settings from "./screens/dashboard/Settings/index";
@@ -32,8 +33,8 @@ function App() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const employee = localStorage.getItem("employee");
-    if (employee === null || employee === "") navigate("/operators");
+    const token = localStorage.getItem("token");
+    if (token === null || token === "") navigate("/login");
   }, []);
 
   return (
@@ -46,8 +47,9 @@ function App() {
           <Route path={"/forgotpass"} element={<ForgotPassword />} />
           <Route path={"/forgotpin"} element={<ForgotPin />} />
           <Route path={"/checkemail"} element={<CheckEmail />} />
+          <Route path={"/passwordReset"} element={<PasswordReset />} />
           <Route path={"/stepper"} element={<Regsteppers />} />
-          <Route path={"/"} element={<Dashboard />} />
+          <Route path={"/"} element={<Login />} />
           <Route path={"/dashboard"} element={<Dashboard />} />
           <Route path="/order" element={<Order />} />
           <Route path="/subscription" element={<Subscription />} />
@@ -62,7 +64,7 @@ function App() {
           <Route path="/backToDishes" element={<BackToDishes />} />
           <Route path="/editdishes" element={<EditDishes />} />
           <Route path="/detaildishes" element={<DetailDishes />} />
-          <Route path="/dishes" element={<AddDishes />} />
+          <Route path="/adddishes" element={<AddDishes />} />
         </Routes>
       </ThemeProvider>
     </>

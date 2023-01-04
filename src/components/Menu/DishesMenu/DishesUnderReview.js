@@ -7,7 +7,7 @@ import { dishesTabsStatus } from './configdishes'
 
 
 function DishesUnderReview() {
-    const subscriptionTableColumns = [
+    const girdTableColumnsArr = [
         { field: "id", headerName: "#", width: 100 },
         {
             field: "photo",
@@ -83,7 +83,7 @@ function DishesUnderReview() {
     return (
         <Box >
 
-            <DishesDataGrid subscriptionTableColumns={subscriptionTableColumns}
+            <DishesDataGrid girdTableColumns={girdTableColumnsArr}
                 dishesTabs={dishesTabsStatus} pageSize={pageSize} />
  
         </Box>
