@@ -18,10 +18,11 @@ const AddEmployees = ({ handleOnClose }) => {
     initialValues: {
       name: "",
       email: "",
+      role: "",
       pin: "",
     },
     onSubmit: (values, action) => {
-      registerEmployee(values);
+      registerEmployee({ ...values, role: empoyeeType });
       action.resetForm();
     },
   });
