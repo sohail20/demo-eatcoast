@@ -1,4 +1,4 @@
-import React,{useEffect} from "react";
+import React, { useCallback } from "react";
 import {
   Typography,
   Box,
@@ -15,13 +15,9 @@ import add from "./Images/add.png";
 import Switch from "@mui/material/Switch";
 import { useState, useRef } from "react";
 import OutlinedInput from "@mui/material/OutlinedInput";
-import Checkbox from "@mui/material/Checkbox/Checkbox";
-import Drawer from "@mui/material/Drawer";
-import arrowLeft from "./Images/arrow-left.png";
-import add_icon from "./Images/add_icon.png";
-import Link from "@mui/material/Link";
-import { ArrowBack, Add, PropaneSharp } from "@mui/icons-material";
 import InputAdornment from "@mui/material/InputAdornment";
+import debounce from "lodash.debounce";
+
 import calender from "./Images/calendar.png";
 import vector from "./Images/Vector.png";
 import Overlay from "../Overlay/Overlay";
@@ -47,25 +43,23 @@ const Btn = styled(Button)(({ theme }) => ({
   textTransform: "capitalize",
 }));
 
-function AddMealPlan(porops) {
-
+function AddMealPlan({ handleOnClose }) {
   const [checked, setChecked] = React.useState(false);
   const [word, setWord] = React.useState(0);
   const [MealValu, setMealValue] = useState("");
   const [descriptionValue, setDescriptionValue] = useState("");
-  const [disabled, setDisabled] = useState("disabled");
+  const [disabled, setDisabled] = useState(true);
   const [drawerMeal, setDrawerMeal] = useState([]);
   const [disableInput, setDisableInput] = useState("disabled");
-  const [disabledDate, setDisabledDate] = useState('disabled')
+  const [disabledDate, setDisabledDate] = useState("disabled");
 
-  const removeAllValues = ()=>{
-    setMealValue('');
-    setDescriptionValue('');
-    setDrawerMeal(['']);
-    setInputVal('');
-    setDateValue('')
-  }
- 
+  const removeAllValues = () => {
+    setMealValue("");
+    setDescriptionValue("");
+    setDrawerMeal([""]);
+    setInputVal("");
+    setDateValue("");
+  };
 
   // Switch Button Function created here
   const handleChange = (e) => {
@@ -83,9 +77,9 @@ function AddMealPlan(porops) {
     setDescriptionValue(e.target.value);
     setWord(e.target.value.length);
     if (MealValu.length >= 10 && descriptionValue.length >= 10) {
-      setDisabled("");
+      setDisabled(false);
     } else {
-      setDisabled("disabled");
+      setDisabled(true);
     }
   };
 
@@ -119,62 +113,58 @@ function AddMealPlan(porops) {
 
   // Drawer Close Buttion function here
 
- 
-
-  
   // Save as draft button state and functions
 
   const [isOpen, setIsOpen] = useState(false);
 
-  let [inputVal,setInputVal] = useState('');
+  let [inputVal, setInputVal] = useState("");
 
-  let [dateValue, setDateValue] = useState('')
+  let [dateValue, setDateValue] = useState("");
 
-  
-  const geteValuesFromDrawer = ((val)=>{
-    const promise = new Promise((resolve,reject)=>{
-      
-      resolve(val)
+  const geteValuesFromDrawer = (val) => {
+    const promise = new Promise((resolve, reject) => {
+      resolve(val);
 
-      reject('did not get data from component')
+      reject("did not get data from component");
+    });
 
-    })
+    promise
+      .then((response) => {
+        setInputVal(response);
+        setDisableInput("");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
-    promise.then((response)=>{
-      setInputVal(response);
-      setDisableInput('')
+  const getDateFromCalendar = (val) => {
+    const promise = new Promise((resolve, reject) => {
+      resolve(val);
+      reject("Did not get date from calender component");
+    });
+    promise
+      .then((response) => {
+        setDateValue(response);
+        setDisabledDate("");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+  let monthList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+  let date = new Date();
+  let day = date.getDate();
+  let year = date.getFullYear();
+  let month = monthList[date.getMonth()];
+  let fullDate = `${year}/${month}/${day}`;
 
-    }).catch((error)=>{
-      console.log(error)
-
-    })
-
-    
-   
-   
-
-  })
-
- 
- const getDateFromCalendar = (val)=>{
-  const promise = new Promise((resolve,reject)=>{
-    resolve(val)
-    reject('Did not get date from calender component')
-  })
-  promise.then((response)=>{
-    setDateValue(response);
-    setDisabledDate('')
-  }).catch((error)=>{
-    console.log(error)
-  })
-
- }
-let monthList = [1,2,3,4,5,6,7,8,9,10,11,12];
- let date = new Date();
- let day = date.getDate();
- let year = date.getFullYear();
- let month = monthList[date.getMonth()];
- let fullDate = `${year}/${month}/${day}`;
+  const onChangeValue = useCallback(
+    debounce((e) => {
+      setDisabled(false);
+    }, 800),
+    []
+  );
 
   return (
     <>
@@ -184,11 +174,11 @@ let monthList = [1,2,3,4,5,6,7,8,9,10,11,12];
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
-          margin:'10px 20px 0px 20px'
+          margin: "10px 20px 0px 20px",
         }}
         className="mainContainer"
       >
-        <Button onClick={handleClose}>
+        <Button onClick={handleOnClose}>
           <img src={require("./Images/close.png")} />
         </Button>
         <Box>
@@ -201,9 +191,9 @@ let monthList = [1,2,3,4,5,6,7,8,9,10,11,12];
             Add Meal Plan
           </Heading>
         </Box>
-        <Box  className="btnContainer">
+        <Box className="btnContainer">
           <Btn
-            onClick={()=> setIsOpen(true)}
+            onClick={() => setIsOpen(true)}
             sx={{
               backgroundColor: "#FFFFFF",
               padding: "10px 16px",
@@ -219,7 +209,7 @@ let monthList = [1,2,3,4,5,6,7,8,9,10,11,12];
           <Btn
             sx={{
               height: "40px",
-              backgroundColor: disabled == "disabled" ? "#D5E6E5;" : "#2B817B",
+              backgroundColor: disabled ? "#D5E6E5;" : "#2B817B",
               padding: "10px 16px",
               color: "white",
               width: "120px",
@@ -235,9 +225,8 @@ let monthList = [1,2,3,4,5,6,7,8,9,10,11,12];
         sx={{
           display: "flex",
           justifyContent: "space-between",
-          margin:'10px 40px 0px 40px',
+          margin: "10px 40px 0px 40px",
           flexWrap: "wrap",
-         
         }}
         component="div"
       >
@@ -278,7 +267,6 @@ let monthList = [1,2,3,4,5,6,7,8,9,10,11,12];
             alignItems: "center",
             justifyContent: "space-between",
             width: "40%",
-         
           }}
         >
           <Box>
@@ -314,7 +302,11 @@ let monthList = [1,2,3,4,5,6,7,8,9,10,11,12];
       </Box>
       <Box
         className="meal"
-        sx={{ display: "flex", justifyContent: "space-between",margin:'10px 40px 0px 40px' }}
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          margin: "10px 40px 0px 40px",
+        }}
       >
         <Box sx={{ width: { lg: "40%", md: "40%", sm: "40%", xs: "90%" } }}>
           <Para sx={{ fontSize: "16px", fontWeight: "600", marginTop: 2 }}>
@@ -325,7 +317,12 @@ let monthList = [1,2,3,4,5,6,7,8,9,10,11,12];
             onChange={(e) => setMealValue(e.target.value)}
             className="mealInput"
             placeholder="Enter Meal Plan"
-            sx={{ backgroundColor: "#F6F6F6", width: "100%",height:'48px', marginTop:1 }}
+            sx={{
+              backgroundColor: "#F6F6F6",
+              width: "100%",
+              height: "48px",
+              marginTop: 1,
+            }}
           />
 
           <Box
@@ -349,10 +346,18 @@ let monthList = [1,2,3,4,5,6,7,8,9,10,11,12];
             name="description"
             className="mealInput"
             maxLength="80"
-            onChange={(e) => wordCount(e)}
+            onChange={(e) => {
+              onChangeValue();
+              wordCount(e);
+            }}
             components="input"
             placeholder="Description"
-            sx={{ backgroundColor: "#F6F6F6", width: "100%", height: "96px",marginTop:1 }}
+            sx={{
+              backgroundColor: "#F6F6F6",
+              width: "100%",
+              height: "96px",
+              marginTop: 1,
+            }}
           />
         </Box>
         <Box sx={{ width: { lg: "40%", md: "40%", sm: "40%", xs: "90%" } }}>
@@ -374,8 +379,8 @@ let monthList = [1,2,3,4,5,6,7,8,9,10,11,12];
               width: "100%",
               fontWeight: drawerMeal == "" ? undefined : "600",
               color: "black",
-              height:'48px',
-              marginTop:1
+              height: "48px",
+              marginTop: 1,
             }}
           />
           <Para sx={{ fontSize: "16px", fontWeight: "600", marginTop: 2 }}>
@@ -390,27 +395,47 @@ let monthList = [1,2,3,4,5,6,7,8,9,10,11,12];
             }
             onClick={() => setIsDrawerOpen(true)}
             className="mealInput"
-            sx={{ backgroundColor: "#F6F6F6", width: "100%",height:'48px',marginTop:1 }}
+            sx={{
+              backgroundColor: "#F6F6F6",
+              width: "100%",
+              height: "48px",
+              marginTop: 1,
+            }}
             disabled={disabledDate}
             value={dateValue}
           />
         </Box>
       </Box>
-      <Para sx={{ fontSize: "16px", fontWeight: "600", margin:'10px 40px 0px 40px' }}>
-      Category
+      <Para
+        sx={{
+          fontSize: "16px",
+          fontWeight: "600",
+          margin: "10px 40px 0px 40px",
+        }}
+      >
+        Category
       </Para>
 
-    <MealPlanDrawer geteValuesFromDrawerfunc={geteValuesFromDrawer}  openDrawer={openDrawer} setOpenDrawer={setOpenDrawer} />
+      <MealPlanDrawer
+        geteValuesFromDrawerfunc={geteValuesFromDrawer}
+        openDrawer={openDrawer}
+        setOpenDrawer={setOpenDrawer}
+      />
 
       <MealPlanCheckBo />
 
-      
-
       {/* Calendar Drawer Created here */}
 
-      <Calendar getDateFromCalendarfunc={getDateFromCalendar} isDarwerOpen={isDarwerOpen} setIsDarwerOpen={setIsDrawerOpen} />
-      <Overlay removeAllValuesfunc={removeAllValues} isOpenFunc={isOpen} setIsOpenFunc={setIsOpen} />
-     
+      <Calendar
+        getDateFromCalendarfunc={getDateFromCalendar}
+        isDarwerOpen={isDarwerOpen}
+        setIsDarwerOpen={setIsDrawerOpen}
+      />
+      <Overlay
+        removeAllValuesfunc={removeAllValues}
+        isOpenFunc={isOpen}
+        setIsOpenFunc={setIsOpen}
+      />
     </>
   );
 }

@@ -21,6 +21,7 @@ const Dishes = () => {
   return (
     <div>
       <DashboardLayout>
+        adasdasjdkh
         <AllDishesContext.Provider
           value={{
             openAllDishes,

@@ -33,7 +33,7 @@ const Btn = styled(Button)(({ theme }) => ({
   textTransform: "capitalize",
 }));
 
-function MealPlan() {
+function MealPlan({handleAddMealPlan}) {
   const [openDrawer, setOpenDrawer] = useState(false);
 
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -141,6 +141,7 @@ function MealPlan() {
                 marginTop:{lg:'0px',md:'0px',sm:'10px',xs:'10px'},
                 '&:hover':{backgroundColor:'#2B817B'}
               }}
+              onClick={handleAddMealPlan}
             >
               Add Meal Plan 
             </Btn>

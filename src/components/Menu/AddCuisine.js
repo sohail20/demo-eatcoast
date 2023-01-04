@@ -13,10 +13,14 @@ import Box from "@mui/material/Box";
 import { styled, alpha } from "@mui/material/styles";
 import { useState } from "react";
 import ImageSection from "../../components/Menu/ImageSection";
-import MenuButton1 from "./AddCuisineMenuButtons/MenuButton1";
-import MenuButton2 from "./AddCuisineMenuButtons/MenuButton2";
 import CuisineCategoryCard from "./CuisineMenu/CuisineCategoryCard";
 import { Data } from "./CuisineMenu/config";
+import CustomInput from "components/Inputs/CustomInput";
+import { useCuisineAddMutation } from "api/cuisine";
+import debounce from "lodash.debounce";
+import MenuButton1 from "./AddCuisineMenuButtons/MenuButton1";
+import MenuButton2 from "./AddCuisineMenuButtons/MenuButton2";
+
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
     width: "508px",
@@ -114,12 +118,12 @@ export default function AddCuisine({ setIsShownButtonBoxFunc }) {
 
   const [open, setOpen] = useState(true);
   const [checkbox, setCheckbox] = useState(false);
-  const [isShownCuisine, setIsShownCuisine] = useState(false);
-  const [menuVal, setMenuVal] = useState("Arabian Cuisine");
-  const [showAllCuisine, setShowAllCuisine] = useState(false);
+  const [isShownCuisine, setIsShownCuisine] = useState(true);
+  const [cuisine, setCuisine] = useState("Arabian Cuisine");
+  const [subCuisine, setSubCuisine] = useState("");
   const [disable, setDisable] = useState(false);
-  
-  console.log("disable" , disable);
+
+  const [addCuisine, { isLoading }] = useCuisineAddMutation();
 
   const handleClickCheckbox = () => {
     // setOpen(!open);
@@ -132,7 +136,15 @@ export default function AddCuisine({ setIsShownButtonBoxFunc }) {
     },
   };
 
+  const onChangeValue = React.useCallback(
+    debounce((e) => {
+      setDisable(true);
+    }, 800),
+    []
+  );
+
   const handleClickBtn = (event) => {
+    addCuisine({ cuisine, subCuisine });
     setIsShownCuisine((current) => !current);
     handleClose();
     setIsShownButtonBoxFunc(true);
@@ -233,8 +245,14 @@ export default function AddCuisine({ setIsShownButtonBoxFunc }) {
                 </Typo1>
               </Box>
 
+              {/* <CustomInput
+                value={cuisine}
+                onChange={(e) => {
+                  onChangeValue();
+                  setCuisine(e.target.value);
+                }}
+              /> */}
               <MenuButton1 setDisableFunc={setDisable}/>
-            
             </Box>
 
             <Box mt="16px">
@@ -254,8 +272,14 @@ export default function AddCuisine({ setIsShownButtonBoxFunc }) {
                   Sub-cuisine <span>(Optional)</span>
                 </Typo1>
               </Box>
-
               <MenuButton2 />
+              {/* <CustomInput
+                value={subCuisine}
+                onChange={(e) => {
+                  onChangeValue();
+                  setSubCuisine(e.target.value);
+                }}
+              /> */}
             </Box>
 
             <DialogActions sx={{ justifyContent: "center", mt: "32px" }}>
@@ -282,14 +306,14 @@ export default function AddCuisine({ setIsShownButtonBoxFunc }) {
                   "&:hover": {
                     borderColor: "#2B817B",
                   },
-                  textTransform: "capitalize"
+                  textTransform: "capitalize",
                 }}
               >
                 Close
               </Button>
 
               <Button
-              disabled={disable? false : true}
+                disabled={disable ? false : true}
                 variant="contained"
                 onClick={handleClickBtn}
                 sx={{
@@ -309,13 +333,13 @@ export default function AddCuisine({ setIsShownButtonBoxFunc }) {
                     xs: "auto",
                   },
                   "&:hover": {
-                    backgroundColor: "#2B817B" ,
+                    backgroundColor: "#2B817B",
                   },
-                  "&.Mui-disabled":  {
+                  "&.Mui-disabled": {
                     color: "#fff",
-                    background:"#D5E6E5",
+                    background: "#D5E6E5",
                   },
-                  textTransform: "capitalize"
+                  textTransform: "capitalize",
                 }}
               >
                 Save
@@ -333,7 +357,11 @@ export default function AddCuisine({ setIsShownButtonBoxFunc }) {
       >
         {/* {isShownCuisine ? <ArabianCuisineMenu /> : <ImageSection />} */}
         {isShownCuisine ? (
-          <CuisineCategoryCard title={"Arabian Cuisine"} Data={Data} subTitle={"6 Sub-cuisine"}/>
+          <CuisineCategoryCard
+            title={"Arabian Cuisine"}
+            Data={Data}
+            subTitle={"6 Sub-cuisine"}
+          />
         ) : (
           <ImageSection />
         )}

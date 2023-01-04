@@ -8,10 +8,12 @@ import Menu from "../../screens/dashboard/Menu";
 import { MenuComponent } from ".";
 import Draft from "./AddMealPlan/Draft/Draft";
 import { DishesMenu } from "./DishesMenu/DishesMenu";
+import MealPlan from "screens/MealPlan/MealPlan";
+import AddMealPlan from "screens/MealPlan/addMealPlan/AddMealPlan";
 
 export default function MenuTabs() {
   const [value, setValue] = React.useState("1");
-
+  const [showAddMealPlan, setShowAddMealPlan] = React.useState(false);
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -66,7 +68,11 @@ export default function MenuTabs() {
           </TabList>
         </Box>
         <TabPanel value="1">
-          <MenuComponent />
+          {showAddMealPlan ? (
+            <AddMealPlan handleOnClose={()=>setShowAddMealPlan(false)}/>
+          ) : (
+            <MealPlan handleAddMealPlan={() => setShowAddMealPlan(true)} />
+          )}
         </TabPanel>
         <TabPanel value="2">
           <DishesMenu />
