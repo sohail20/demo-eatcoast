@@ -16,6 +16,7 @@ import InputAdornment from "@mui/material/InputAdornment";
 import NoResult from "./NoResult";
 import { FlexBoxContainer } from "components/Containers";
 import CustomIconButton from "components/Button/CustomIconButton";
+import MenuButton from "components/Inputs/MenuButton";
 
 const SearchInputField = styled(TextField)({
   background: "#F6F6F6",
@@ -68,6 +69,7 @@ const CustomDataGrid = ({
   heading,
   handleOnAddClick,
   handleAction,
+  handleMenuAction,
   tableColumns,
 }) => {
   const [value, setValue] = React.useState(0);
@@ -76,7 +78,7 @@ const CustomDataGrid = ({
   return (
     <>
       <Box width="100%">
-        <FlexBoxContainer style={{marginBottom:"10px"}}>
+        <FlexBoxContainer style={{ marginBottom: "10px" }}>
           <Typography
             sx={{
               fontFamily: "Outfit",
@@ -141,7 +143,29 @@ const CustomDataGrid = ({
               <Box sx={{ width: "100%" }}>
                 <StyledDataGrid
                   rows={tableRow}
-                  columns={tableColumns}
+                  columns={[
+                    ...tableColumns,
+                    {
+                      field: "action",
+                      headerName: "Action",
+                      width: 230,
+                      renderCell: (params) => {
+                        return (
+                          <>
+                            <MenuButton
+                              items={[
+                                { label: "Edit Account", id: "edit" },
+                                { label: "Delete Account", id: "delete" },
+                              ]}
+                              onClick={(type) =>
+                                handleMenuAction(type, params.row.id)
+                              }
+                            />
+                          </>
+                        );
+                      },
+                    },
+                  ]}
                   disableSelectionOnClick
                   autoHeight
                   hideFooterPagination={true}

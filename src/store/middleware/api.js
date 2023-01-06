@@ -8,7 +8,7 @@ export const api = createApi({
   reducerPath: "mainApi",
   baseQuery: fetchBaseQuery({
     baseUrl: BASE_URL,
-    tagTypes: ['Post', 'User'],
+    tagTypes: ['Post', 'User', "Employees"],
     prepareHeaders: (headers) => {
       const token = JSON.parse(localStorage.getItem("token"));
       if (token && token !== null && token !== "") {

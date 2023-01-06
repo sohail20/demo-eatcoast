@@ -1,8 +1,8 @@
 import { Box, Button, Card, CardContent, CardMedia, Grid, Typography } from '@mui/material'
 import { Container } from '@mui/system'
-import React from 'react'
+import React,{useEffect} from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-
+import {useGetEmployeesQuery} from "api/employee"
 export const Login2 = () => {
   const navigate = useNavigate();
   const { data: employees, isLoading } = useGetEmployeesQuery();
@@ -10,10 +10,11 @@ export const Login2 = () => {
     navigate("/signinPin",{state:{id}});
   };
 
+
   useEffect(()=>{
    const token = localStorage.getItem("token")
-   if (token === null || token === "") navigate("/login");
-  },[])
+   if (token === null || token === "" || employees.data.length === 0) navigate("/dashboard");
+  },[employees])
   return isLoading ? (
     <p>Loading</p>
   ) : (

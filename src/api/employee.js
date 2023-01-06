@@ -8,9 +8,11 @@ const extendedApi = api.injectEndpoints({
         method: "POST",
         body,
       }),
+      invalidatesTags:["Employees"]
     }),
     getEmployees: build.query({
       query: (body) => `/caterer/employee`,
+      providesTags: ['Employees'],
     }),
     getUpdateEmployee: build.mutation({
       query: (body) => ({
@@ -18,6 +20,7 @@ const extendedApi = api.injectEndpoints({
         method: "POST",
         body,
       }),
+      invalidatesTags:["Employees"]
     }),
     deleteEmployee: build.mutation({
       query: (body) => ({
@@ -25,6 +28,7 @@ const extendedApi = api.injectEndpoints({
         method: "POST",
         body,
       }),
+      invalidatesTags:["Employees"]
     }),
     searchEmployee: build.mutation({
       query: (body) => ({
@@ -34,10 +38,9 @@ const extendedApi = api.injectEndpoints({
       }),
     }),
     getEmployeeById: build.query({
-      query: (id) => `/caterer/employee/${id}`,
+      query: ({id}) => `/caterer/employee/${id}`,
     }),
   }),
-  overrideExisting: false,
 });
 
-export const { useGetRegisterEmployeeMutation, useGetEmployeeByIdQuery, useGetEmployeesQuery } = extendedApi;
+export const { useGetRegisterEmployeeMutation, useGetEmployeeByIdQuery, useGetEmployeesQuery, useDeleteEmployeeMutation, useGetUpdateEmployeeMutation } = extendedApi;

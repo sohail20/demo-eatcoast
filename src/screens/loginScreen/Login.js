@@ -35,7 +35,6 @@ export const Login = () => {
   const [password, setPassword] = useState("");
 
   const handleSubmit = () => {
-    console.log("email and password",email,password)
     authenticate({ email, password }).then((res) => {
       if (res.data) navigate("/operators");
     });

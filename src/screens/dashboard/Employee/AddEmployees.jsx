@@ -9,24 +9,51 @@ import CustomInput from "../../../components/Inputs/CustomInput";
 import CustomIconButton from "../../../components/Button/CustomIconButton";
 import ClearRoundedIcon from "@mui/icons-material/ClearRounded";
 import { useFormik } from "formik";
-import { useGetRegisterEmployeeMutation } from "api/employee";
+import {
+  useGetEmployeeByIdQuery,
+  useGetRegisterEmployeeMutation,
+  useGetUpdateEmployeeMutation,
+} from "api/employee";
+import { useEffect } from "react";
 
-const AddEmployees = ({ handleOnClose }) => {
+const AddEmployees = ({ handleOnClose, employeeId }) => {
   const [empoyeeType, setEmployeeType] = useState("staff");
+  const { data: fetchedEmployee, isLoading: fetching } =
+    useGetEmployeeByIdQuery({ id: employeeId }, { skip: employeeId === null });
   const [registerEmployee, { isLoading }] = useGetRegisterEmployeeMutation();
+  const [updateEmployee, { isLoading: isUpdating }] =
+    useGetUpdateEmployeeMutation();
   const formik = useFormik({
     initialValues: {
       name: "",
       email: "",
       role: "",
+      idCard: "123",
+      phone: "1234567",
       pin: "",
     },
     onSubmit: (values, action) => {
-      registerEmployee({ ...values, role: empoyeeType });
+      if (fetchedEmployee !== undefined){
+        updateEmployee({ ...values, role: empoyeeType, id: employeeId});
+        handleOnClose()
+      }
+      else registerEmployee({ ...values, role: empoyeeType });
       action.resetForm();
     },
   });
-  return (
+
+  useEffect(() => {
+    if (fetchedEmployee !== undefined) {
+      formik.setFieldValue("name", fetchedEmployee.data.name);
+      formik.setFieldValue("email", fetchedEmployee.data.email);
+      formik.setFieldValue("pin", fetchedEmployee.data.pin);
+      setEmployeeType(fetchedEmployee.data.role);
+    }
+  }, [fetchedEmployee]);
+
+  return fetching || isLoading || isUpdating ? (
+    <p>Loading...</p>
+  ) : (
     <>
       <form onSubmit={formik.handleSubmit}>
         <Box display={"flex"} alignItems="center" mb={4}>
@@ -115,7 +142,7 @@ const AddEmployees = ({ handleOnClose }) => {
                 >
                   <CustomIconButton label="Save as Draft" variant="outlined" />
                   <CustomIconButton
-                    label="Submit"
+                    label={fetchedEmployee !== undefined ? "Update" : "Submit"}
                     isLoading={isLoading}
                     variant="contained"
                     type="submit"

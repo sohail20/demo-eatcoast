@@ -13,15 +13,23 @@ import EmployeesTable from "./EmployeesTable";
 
 const Employee = () => {
   const [employees] = useState(10);
+  const [employeeToBeEdit, setEmployeeTobeEdit] = useState(null)
   const [addEmployeeScreen, setAddEmployeeScreen] = useState(false);
   return (
     <>
       <DashboardLayout>
         <Box p={3}>
           {addEmployeeScreen ? (
-            <AddEmployees handleOnClose={() => setAddEmployeeScreen(false)} />
+            <AddEmployees employeeId={employeeToBeEdit}  handleOnClose={() =>{
+               setAddEmployeeScreen(false)
+               setEmployeeTobeEdit(null)
+            }} />
           ) : employees > 0 ? (
             <EmployeesTable
+            handleEditEmployee={(id)=>{
+              setEmployeeTobeEdit(id)
+              setAddEmployeeScreen(true)
+            }}
               handleOnAddClick={() => setAddEmployeeScreen(true)}
             />
           ) : (

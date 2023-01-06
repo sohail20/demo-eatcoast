@@ -1,22 +1,11 @@
 import CustomDataGrid from "components/DataTable/DataGrid";
 import { Avatar } from "@mui/material";
 import MenuButton from "components/Inputs/MenuButton";
-import { useGetEmployeesQuery } from "api/employee";
+import { useDeleteEmployeeMutation, useGetEmployeesQuery } from "api/employee";
+import { useEffect } from "react";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-const handleAction = (type, id) => {
-  switch (type) {
-    case "edit":
-      console.log("edited" + id);
-      break;
-
-    case "delete":
-      console.log("deleted " + id);
-      break;
-
-    default:
-      break;
-  }
-};
 const tableColumns = [
   { field: "id", headerName: "#", width: 240 },
   {
@@ -42,37 +31,41 @@ const tableColumns = [
     headerName: "Email",
     width: 230,
   },
-  {
-    field: "action",
-    headerName: "Action",
-    width: 230,
-    renderCell: (params) => {
-      return (
-        <>
-          <MenuButton
-            items={[
-              { label: "Edit Account", id: "edit" },
-              { label: "Delete Account", id: "delete" },
-            ]}
-            onClick={(type) => handleAction(type, params.row.name)}
-          />
-        </>
-      );
-    },
-  },
 ];
 
-const tableRow = [
-  {
-    id: 1,
-    photo: "ECS - 12345",
-    name: "Mesopotamian cuisine",
-    email: "09/11 - 09/18",
-  },
-];
+const filterData = data =>{
+ const {_id,email,name} = data 
+ return {id:_id, email,name, photo:""}
+}
 
-const EmployeesTable = ({ handleOnAddClick }) => {
+const EmployeesTable = ({ handleOnAddClick,handleEditEmployee }) => {
+  const navigate = useNavigate()
+  const [employeesFilterData,setEmployeesFilteredData] = useState([])
+  const [deleteEmployee,{isLoading:deleteLoading}] = useDeleteEmployeeMutation()
   const { data: employees, isLoading } = useGetEmployeesQuery();
+  
+  useEffect(()=>{
+    if(employees){
+      const dataEmployee = employees.data.map(item=>filterData(item))
+      setEmployeesFilteredData(dataEmployee)
+    }
+  },[employees,deleteLoading])
+
+  const handleAction = (type, id) => {
+    switch (type) {
+      case "edit":
+        handleEditEmployee(id)
+        break;
+  
+      case "delete":
+        deleteEmployee({id});
+        break;
+  
+      default:
+        break;
+    }
+  };
+    
   return isLoading ? (
     <p>Loading...</p>
   ) : (
@@ -80,9 +73,10 @@ const EmployeesTable = ({ handleOnAddClick }) => {
       <CustomDataGrid
         heading="Employees"
         handleAction={(e) => console.log(e)}
-        tableRow={tableRow}
+        tableRow={employeesFilterData}
         tableColumns={tableColumns}
         handleOnAddClick={handleOnAddClick}
+        handleMenuAction={handleAction}
       />
     </>
   );
