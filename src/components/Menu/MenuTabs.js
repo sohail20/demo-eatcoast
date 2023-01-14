@@ -13,7 +13,7 @@ import AddMealPlan from "screens/MealPlan/addMealPlan/AddMealPlan";
 
 export default function MenuTabs() {
   const [value, setValue] = React.useState("1");
-  const [showAddMealPlan, setShowAddMealPlan] = React.useState(false);
+  const [showAddMealPlan, setShowAddMealPlan] = React.useState(true);
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };

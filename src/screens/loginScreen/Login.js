@@ -41,8 +41,10 @@ export const Login = () => {
   };
 
   useEffect(() => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("user");
+    const token = localStorage.removeItem("token");
+    const user = localStorage.removeItem("user");
+    if ((token === "" || token === null) && (user === "" || user === null))
+      navigate("/");
   }, []);
 
   return (

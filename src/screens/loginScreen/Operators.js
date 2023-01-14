@@ -13,7 +13,7 @@ export const Login2 = () => {
 
   useEffect(()=>{
    const token = localStorage.getItem("token")
-   if (token === null || token === "" || employees.data.length === 0) navigate("/dashboard");
+   if (token === null || token === "" || employees && employees.data.length === 0) navigate("/dashboard");
   },[employees])
   return isLoading ? (
     <p>Loading</p>

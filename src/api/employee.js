@@ -38,7 +38,7 @@ const extendedApi = api.injectEndpoints({
       }),
     }),
     getEmployeeById: build.query({
-      query: ({id}) => `/caterer/employee/${id}`,
+      query: (id) => `/caterer/employee/${id}`,
     }),
   }),
 });
