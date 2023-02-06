@@ -4,10 +4,10 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import { Box } from "@mui/material";
-import HeadBar from '../HeadBar/HeadBar';
+import HeadBar from "../HeadBar/HeadBar";
 import AddMealPlan from "../../addMealPlan/AddMealPlan";
 import MealPlan_2 from "../../MealPlan_2/MealPlan_2";
-import './style.css';
+import "./style.css";
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -45,9 +45,9 @@ export default function CustomTabs() {
   };
 
   return (
-    <Box  sx={{ width: "100%", minHeight:'33px',}}>
+    <Box sx={{ width: "100%", minHeight: "33px" }}>
       <Box sx={{ borderBottom: "1px solid #E1E1E6", borderColor: "divider" }}>
-      <Tabs
+        <Tabs
           textColor="secondary"
           indicatorColor="#2B817B"
           value={value}
@@ -76,19 +76,18 @@ export default function CustomTabs() {
             label="Meal Plan"
             {...a11yProps(0)}
             sx={{
-                fontWeight:'600',
-                fontSize:{lg:"18px",md:'18px',sm:"14px",xs:"14px"}
+              fontWeight: "600",
+              fontSize: { lg: "18px", md: "18px", sm: "14px", xs: "14px" },
             }}
-
           />
           <Tab
             style={{ textTransform: "none" }}
             label="Dishes"
             {...a11yProps(2)}
             sx={{
-                fontWeight:'600',
-                fontSize:{lg:"18px",md:'18px',sm:"14px",xs:"14px"},
-                color:'#9EA3AE'
+              fontWeight: "600",
+              fontSize: { lg: "18px", md: "18px", sm: "14px", xs: "14px" },
+              color: "#9EA3AE",
             }}
           />
           <Tab
@@ -96,26 +95,21 @@ export default function CustomTabs() {
             label="Draft"
             {...a11yProps(3)}
             sx={{
-                fontWeight:'600',
-                fontSize:{lg:"18px",md:'18px',sm:"14px",xs:"14px"},
-                color:'#9EA3AE'
+              fontWeight: "600",
+              fontSize: { lg: "18px", md: "18px", sm: "14px", xs: "14px" },
+              color: "#9EA3AE",
             }}
           />
-
-
-        
         </Tabs>
-        
       </Box>
-    
+
       <TabPanel style={{ padding: "0px" }} value={value} index={0}>
         {/* Other Section related to Meal Plan */}
-        <HeadBar/>
+        <HeadBar />
         {/* <AddMealPlan/> */}
         {/* <MealPlan_2/> */}
       </TabPanel>
-      <TabPanel value={value} index={1}>
-      </TabPanel>
+      <TabPanel value={value} index={1}></TabPanel>
     </Box>
   );
 }

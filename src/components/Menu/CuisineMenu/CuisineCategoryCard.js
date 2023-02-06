@@ -3,73 +3,77 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import { Typography } from "@mui/material";
 import { styled, alpha } from "@mui/material/styles";
+import { useGetAllCuisineQuery } from "api/cuisine";
+import { Data2 } from "./config";
 
-export default function CuisineCategoryCard({ title, Data, subTitle }) {
-  const Img = styled("img")({
-    margin: "auto",
-    display: "block",
-    maxWidth: "100%",
-    maxHeight: "120px",
-  });
+const Img = styled("img")({
+  margin: "auto",
+  display: "block",
+  maxWidth: "100%",
+  maxHeight: "120px",
+});
 
-  const Typo1 = styled(Typography)(({ theme }) => ({
-    fontFamily: "outfit",
-    fontSize: "16px",
-    fontWeight: "500",
-    lineHeight: "26px",
-    color: "#1A1824",
-    [theme.breakpoints.up("xl")]: {
-      fontSize: "26px",
-    },
-  }));
+const Typo1 = styled(Typography)(({ theme }) => ({
+  fontFamily: "outfit",
+  fontSize: "16px",
+  fontWeight: "500",
+  lineHeight: "26px",
+  color: "#1A1824",
+  [theme.breakpoints.up("xl")]: {
+    fontSize: "26px",
+  },
+}));
 
-  const Typo2 = styled(Typography)(({ theme }) => ({
-    fontFamily: "outfit",
-    fontSize: "16px",
-    fontWeight: "400",
-    lineHeight: "26px",
-    color: "#9EA3AE",
-    [theme.breakpoints.up("xl")]: {
-      fontSize: "26px",
-    },
-  }));
+const Typo2 = styled(Typography)(({ theme }) => ({
+  fontFamily: "outfit",
+  fontSize: "16px",
+  fontWeight: "400",
+  lineHeight: "26px",
+  color: "#9EA3AE",
+  [theme.breakpoints.up("xl")]: {
+    fontSize: "26px",
+  },
+}));
 
-  const Typo3 = styled(Typography)(({ theme }) => ({
-    fontFamily: "outfit",
+const Typo3 = styled(Typography)(({ theme }) => ({
+  fontFamily: "outfit",
+  fontSize: "20px",
+  fontWeight: "600",
+  lineHeight: "28px",
+  [theme.breakpoints.up("xl")]: {
+    fontSize: "26px",
+  },
+}));
+
+const Typo4 = styled(Typography)(({ theme }) => ({
+  fontFamily: "outfit",
+  fontSize: "14px",
+  fontWeight: "400",
+  lineHeight: "20px",
+  [theme.breakpoints.up("xl")]: {
     fontSize: "20px",
-    fontWeight: "600",
-    lineHeight: "28px",
-    [theme.breakpoints.up("xl")]: {
-      fontSize: "26px",
-    },
-  }));
+  },
 
-  const Typo4 = styled(Typography)(({ theme }) => ({
-    fontFamily: "outfit",
-    fontSize: "14px",
-    fontWeight: "400",
-    lineHeight: "20px",
-    [theme.breakpoints.up("xl")]: {
-      fontSize: "20px",
-    },
-    
-    color: "#9EA3AE",
-    paddingRight: "32px"
-  }));
+  color: "#9EA3AE",
+  paddingRight: "32px"
+}));
 
-  return (
+export default function CuisineCategoryCard({ title, subTitle, handleOnClick,setSelectedCuisine }) {
+  const {data:allCuisine,isLoading} = useGetAllCuisineQuery()
+
+  return isLoading?<p>Loading...</p>:(
     <>
       <Box sx={{}}>
-        <Box sx={{display: "flex", justifyContent: "space-between"}}>
-        <Box>
-          <Typo3 sx={{ pb: "16px" }}>{title}</Typo3>
-        </Box>
-        <Box>
-          <Typo4 sx={{marginRight: {xl: "0px", lg: "0px", md: "0px",sm : "0px", xs: "0px"}}}>{subTitle}</Typo4>
-        </Box>
+        <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+          <Box>
+            <Typo3 sx={{ pb: "16px" }}>{title}</Typo3>
+          </Box>
+          <Box>
+            <Typo4 sx={{ marginRight: { xl: "0px", lg: "0px", md: "0px", sm: "0px", xs: "0px" } }}>{subTitle}</Typo4>
+          </Box>
         </Box>
         <Grid container>
-          {Data.map((item, index) => {
+          {allCuisine.data.map((item, index) => {
             return (
               <>
                 <Grid item xl={4} lg={4} md={4} sm={6} xs={12}>
@@ -96,7 +100,9 @@ export default function CuisineCategoryCard({ title, Data, subTitle }) {
                         xs: "120px",
                       },
                       display: "flex",
+                      cursor:"pointer"
                     }}
+                    onClick={()=>{handleOnClick(item.Cuisine)}}
                   >
                     <Box
                       sx={{
@@ -139,7 +145,7 @@ export default function CuisineCategoryCard({ title, Data, subTitle }) {
                         }}
                       >
                         <img
-                          src={item.image}
+                          src={"./images/meal1.svg"}
                           alt=""
                           width="100%"
                           height="auto"
@@ -152,16 +158,16 @@ export default function CuisineCategoryCard({ title, Data, subTitle }) {
                         flexDirection: "column",
                         justifyContent: "space-between",
                         alignItems: "space-between",
-                        pl: {xl: "26px", lg: "12px", md: "12px", sm: "12px", xs: "12px"},
+                        pl: { xl: "26px", lg: "12px", md: "12px", sm: "12px", xs: "12px" },
                         pt: "8px",
                         pb: "8px",
                       }}
                     >
                       <Box>
-                        <Typo1>{item.title}</Typo1>
+                        <Typo1>{item.Cuisine}</Typo1>
                       </Box>
                       <Box>
-                        <Typo2>{item.subTitle}</Typo2>
+                        <Typo2>you have {item.subCuisine.length} menu</Typo2>
                       </Box>
                     </Box>
                   </Box>

@@ -4,16 +4,12 @@ import Tab from "@mui/material/Tab";
 import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
-import Menu from "../../screens/dashboard/Menu";
-import { MenuComponent } from ".";
 import Draft from "./AddMealPlan/Draft/Draft";
 import { DishesMenu } from "./DishesMenu/DishesMenu";
-import MealPlan from "screens/MealPlan/MealPlan";
-import AddMealPlan from "screens/MealPlan/addMealPlan/AddMealPlan";
+import { MenuComponent } from ".";
 
 export default function MenuTabs() {
   const [value, setValue] = React.useState("1");
-  const [showAddMealPlan, setShowAddMealPlan] = React.useState(true);
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -68,13 +64,10 @@ export default function MenuTabs() {
           </TabList>
         </Box>
         <TabPanel value="1">
-          {showAddMealPlan ? (
-            <AddMealPlan handleOnClose={()=>setShowAddMealPlan(false)}/>
-          ) : (
-            <MealPlan handleAddMealPlan={() => setShowAddMealPlan(true)} />
-          )}
+          <MenuComponent />
         </TabPanel>
         <TabPanel value="2">
+          hjghjgjh
           <DishesMenu />
         </TabPanel>
         <TabPanel value="3">

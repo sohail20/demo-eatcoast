@@ -22,7 +22,7 @@ const extendedApi = api.injectEndpoints({
         body,
       }),
     }),
-    getAllCuisine: build.mutation({
+    getAllCuisine: build.query({
       query: () => ({
         url: `/cuisine/get`,
       }),
@@ -41,6 +41,6 @@ export const {
   useCuisineAddMutation,
   useCuisineDeleteMutation,
   useCuisineUpdateMutation,
-  useGetAllCuisineMutation,
+  useGetAllCuisineQuery,
   useSearchCuisineMutation
 } = extendedApi;

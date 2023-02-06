@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
@@ -8,6 +8,8 @@ import { createTheme } from "@mui/system";
 import { ThemeProvider } from "@mui/material";
 import { Da_manager } from "../../components/dashboard/Da_manager";
 import { Da_staff } from "../../components/dashboard/Da_staff";
+import { getCurrentEmpoyee } from "helper";
+import FullPageLoader from "components/Loader/FullPageLoader";
 
 const theme = createTheme({
   palette: {
@@ -51,8 +53,8 @@ function a11yProps(index) {
 }
 
 const DashHome = () => {
-  const [value, setValue] = React.useState(0);
-
+  const [value, setValue] = useState(0);
+  const [employeeDash, setEmployeeDash] = useState(null)
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -80,7 +82,12 @@ const DashHome = () => {
     let fullYear = currentDate.getFullYear();
     return (setToDate = `${Month}, ${fullYear}`);
   };
-  return (
+
+  useEffect(() => {
+    const user = getCurrentEmpoyee()
+    if (user) setEmployeeDash(user)
+  }, [])
+  return employeeDash === null ? <FullPageLoader /> : (
     <Box>
       <Typography
         variant="h5"
@@ -94,52 +101,55 @@ const DashHome = () => {
       >
         Dashboard
       </Typography>
-      <Box sx={{ width: "100%" }}>
-        <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-          <Tabs
-            value={value}
-            onChange={handleChange}
-            aria-label="basic tabs example"
-            TabIndicatorProps={{
-              sx: { backgroundColor: "#2B817B" },
-            }}
-            sx={{ "& button.Mui-selected": { color: "#1A1b24" } }}
-          >
-            <Tab
-              disableRipple={true}
-              label="Manager"
-              {...a11yProps(0)}
-              sx={{
-                marginBottom: "-20px",
-                fontFamily: "Outfit",
-                fontSize: "14px",
-                color: "#9EA3AE",
-                lineHeight: "30px",
-                fontWeight: "600",
-              }}
-            />
-            <Tab
-              disableRipple={true}
-              label="Staff"
-              {...a11yProps(1)}
-              sx={{
-                marginBottom: "-20px",
-                fontFamily: "Outfit",
-                fontSize: "14px",
-                color: "#9EA3AE",
-                lineHeight: "30px",
-                fontWeight: "600",
-              }}
-            />
-          </Tabs>
-        </Box>
-        <TabPanel value={value} index={0}>
-          <Da_manager todayDate={todayDate} />
-        </TabPanel>
-        <TabPanel value={value} index={1}>
-          <Da_staff />
-        </TabPanel>
-      </Box>
+      {
+        employeeDash.role === "staff" ? <Da_staff info={employeeDash}/> :
+          <Box sx={{ width: "100%" }}>
+            <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+              <Tabs
+                value={value}
+                onChange={handleChange}
+                aria-label="basic tabs example"
+                TabIndicatorProps={{
+                  sx: { backgroundColor: "#2B817B" },
+                }}
+                sx={{ "& button.Mui-selected": { color: "#1A1b24" } }}
+              >
+                <Tab
+                  disableRipple={true}
+                  label="Manager"
+                  {...a11yProps(0)}
+                  sx={{
+                    marginBottom: "-20px",
+                    fontFamily: "Outfit",
+                    fontSize: "14px",
+                    color: "#9EA3AE",
+                    lineHeight: "30px",
+                    fontWeight: "600",
+                  }}
+                />
+                <Tab
+                  disableRipple={true}
+                  label="Staff"
+                  {...a11yProps(1)}
+                  sx={{
+                    marginBottom: "-20px",
+                    fontFamily: "Outfit",
+                    fontSize: "14px",
+                    color: "#9EA3AE",
+                    lineHeight: "30px",
+                    fontWeight: "600",
+                  }}
+                />
+              </Tabs>
+            </Box>
+            <TabPanel value={value} index={0}>
+              <Da_manager todayDate={todayDate} info={employeeDash}/>
+            </TabPanel>
+            <TabPanel value={value} index={1} >
+              <Da_staff info={employeeDash}/>
+            </TabPanel>
+          </Box>
+      }
     </Box>
   );
 };

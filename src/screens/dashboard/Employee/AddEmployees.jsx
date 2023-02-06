@@ -19,7 +19,7 @@ import { useEffect } from "react";
 const AddEmployees = ({ handleOnClose, employeeId }) => {
   const [empoyeeType, setEmployeeType] = useState("staff");
   const { data: fetchedEmployee, isLoading: fetching } =
-    useGetEmployeeByIdQuery({ id: employeeId }, { skip: employeeId === null });
+    useGetEmployeeByIdQuery(employeeId, { skip: employeeId === null });
   const [registerEmployee, { isLoading }] = useGetRegisterEmployeeMutation();
   const [updateEmployee, { isLoading: isUpdating }] =
     useGetUpdateEmployeeMutation();

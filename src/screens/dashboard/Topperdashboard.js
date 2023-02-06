@@ -11,15 +11,13 @@ import {
   Tooltip,
   Avatar,
 } from "@mui/material";
-import React from "react";
+import React,{useState, useEffect} from "react";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { BsFillBellFill, BsCheckCircleFill } from "react-icons/bs";
 import { CiLocationOn } from "react-icons/ci";
-import { styled, alpha } from "@mui/material/styles";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-import { AccountCircle } from "@mui/icons-material";
-import { Link } from "react-router-dom";
+import { styled } from "@mui/material/styles";
+import { Link, useNavigate } from "react-router-dom";
+import { getCurrentEmpoyee } from "helper";
 
 const theme = createTheme({
   palette: {
@@ -117,11 +115,11 @@ const Root1 = styled("div")(({ theme }) => ({
   },
 }));
 const Topperdashboard = () => {
-  const [isDrawerOpen, setIsDrawerOpen] = React.useState(false);
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const [open1, setOpen1] = React.useState(true);
+  const navigate = useNavigate()
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [userName,setUserName] = useState("")
   //---- bell iIon
-  const [anchorElnot, setAnchorElnot] = React.useState(null);
+  const [anchorElnot, setAnchorElnot] = useState(null);
   const openBell = Boolean(anchorElnot);
   const handleClickBell = (event) => {
     setAnchorElnot(event.currentTarget);
@@ -130,8 +128,8 @@ const Topperdashboard = () => {
     setAnchorElnot(null);
   };
 
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const [anchorElNav, setAnchorElNav] = useState(null);
+  const [anchorElUser, setAnchorElUser] = useState(null);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -147,6 +145,11 @@ const Topperdashboard = () => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
+  useEffect(()=>{
+    const user = getCurrentEmpoyee()
+    if(user) setUserName(user.name)
+  },[])
 
   return (
     <ThemeProvider theme={theme}>
@@ -383,7 +386,7 @@ const Topperdashboard = () => {
                   m={1}
                   onClick={handleCloseUserMenu}
                 >
-                  Yousaf (Mang)
+                  {userName || ""}
                 </Typography>
                 {/* </MenuItem> */}
                 {/* <MenuItem onClick={handleCloseUserMenu} disableRipple */}
@@ -402,7 +405,9 @@ const Topperdashboard = () => {
                 <Typography
                   sx={Typo12pxSlid}
                   m={1}
-                  onClick={handleCloseUserMenu}
+                  onClick={()=>{
+                    navigate("/operators")
+                  }}
                 >
                   Switch Account
                 </Typography>

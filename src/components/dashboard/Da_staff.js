@@ -13,41 +13,11 @@ import { DataGrid } from "@mui/x-data-grid";
 import { CiLocationOn } from "react-icons/ci";
 import { Dash_staff_SideSilder } from "./Dash_staff_SideSilder";
 import SimpleDataTable from "../DataTable/SimpleDataTable";
+import { useGetStaffDashQuery } from "api/dashboard";
+import FullPageLoader from "components/Loader/FullPageLoader";
+import DataGridTableView from "./Components/DataGridTableView";
 
-const rowsDishes = [
-  {
-    id: 1,
-    col1: "1",
-    col2: "Kabasa",
-    col3: "Main Course",
-    col4: "Salmon with chilli sauce",
-    col5: "1",
-  },
-  {
-    id: 2,
-    col1: "2",
-    col2: "Bella",
-    col3: "Main Course",
-    col4: "Salmon with chilli sauce",
-    col5: "4",
-  },
-  {
-    id: 3,
-    col1: "3",
-    col2: "Kabasa",
-    col3: "Main Course",
-    col4: "Salmon with chilli sauce",
-    col5: "7",
-  },
-  {
-    id: 4,
-    col1: "4",
-    col2: "Kabasa Rice",
-    col3: "Main Course",
-    col4: "Salmon with chilli sauce",
-    col5: "8",
-  },
-];
+
 const rowsAddson = [
   {
     id: 1,
@@ -91,14 +61,6 @@ const columnsAddson = [
   { field: "col4", headerName: "Meal Plan", flex: 1 },
   { field: "col5", headerName: "Qty", flex: 1 },
 ];
-const columnsDishes = [
-  { field: "#", hide: true },
-  { field: "col1", headerName: "#", flex: 1 },
-  { field: "col2", headerName: "Dishes Name", flex: 1 },
-  { field: "col3", headerName: "Meal Courses", flex: 1 },
-  { field: "col4", headerName: "Meal Plan", flex: 1 },
-  { field: "col5", headerName: "Qty", flex: 1 },
-];
 
 function createData(meal, plan, qty) {
   return { meal, plan, qty };
@@ -111,6 +73,50 @@ const rows = [
   createData("Pinkatola Courses", "Salmon with chilli sauce", "99"),
   createData("Main Courses", "Salmon with chilli sauce", "0"),
 ];
+
+const rowsDishes = [
+  {
+    id: 1,
+    col1: "1",
+    col2: "Kabasa",
+    col3: "Main Course",
+    col4: "Salmon with chilli sauce",
+    col5: "1",
+  },
+  {
+    id: 2,
+    col1: "2",
+    col2: "Bella",
+    col3: "Main Course",
+    col4: "Salmon with chilli sauce",
+    col5: "4",
+  },
+  {
+    id: 3,
+    col1: "3",
+    col2: "Kabasa",
+    col3: "Main Course",
+    col4: "Salmon with chilli sauce",
+    col5: "7",
+  },
+  {
+    id: 4,
+    col1: "4",
+    col2: "Kabasa Rice",
+    col3: "Main Course",
+    col4: "Salmon with chilli sauce",
+    col5: "8",
+  },
+];
+
+const columnsDishes = [
+  { field: "#", hide: true },
+  { field: "col1", headerName: "#", flex: 1 },
+  { field: "addOnes", headerName: "Add Ones", flex: 1 },
+  { field: "MealPlane", headerName: "Meal Plane", flex: 1 },
+  { field: "quatity", headerName: "Quatity", flex: 1 }
+];
+
 function createDataOrder(idOrder, menu, time, qty, subs_type) {
   return { idOrder, menu, time, qty, subs_type };
 }
@@ -160,11 +166,13 @@ const rowsOrder = [
   ),
 ];
 
-export const Da_staff = (props) => {
+export const Da_staff = ({ info }) => {
   const [allOrders, setAllOrders] = React.useState(false);
   const [mealcourse, setmealCourse] = React.useState(false);
   const [dishes, setDishes] = React.useState(false);
   const [addson, setAddson] = React.useState(false);
+
+  const { data: staffDash, isLoading } = useGetStaffDashQuery({ catererId: info._id })
   const handleOrders = () => {
     setAllOrders(true);
     setmealCourse(false);
@@ -239,8 +247,8 @@ export const Da_staff = (props) => {
 
   //-=-==-=---=======================================
 
-  return (
-    <>
+  return isLoading ? <FullPageLoader /> : (
+    staffDash && <>
       <Box component={"div"}>
         <Grid
           container
@@ -352,69 +360,7 @@ export const Da_staff = (props) => {
               toggleClicked();
             }}
           >
-            <Box
-              component={"div"}
-              sx={{
-                padding: "15px",
-                height: "128px",
-                width: "100%",
-                background: "#fff",
-                border: "1px solid #E1E1E6",
-                borderRadius: "6px",
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "space-between",
-                backgroundColor: clicked ? "#F0FAF9" : "white",
-              }}
-            >
-              <Box
-                component={"div"}
-                display={"flex"}
-                alignItems={"center"}
-                justifyContent={"start"}
-              >
-                <img src="../../images/allOrder.svg" alt="" />
-              </Box>
-              <Box
-                componet={"div"}
-                display={"flex"}
-                alignItems={"center"}
-                justifyContent={"space-between"}
-              >
-                <Typography
-                  variant="p"
-                  sx={{
-                    fontFamily: "Outfit",
-                    fontSize: { lg: "18px", md: "17px", sm: "15px" },
-                    color: "#1A1B24",
-                    lineHeight: "26px",
-                    fontWeight: "500",
-                  }}
-                >
-                  All Orders
-                </Typography>
-                <Box componet={"div"}>
-                  <Typography
-                    variant={"p"}
-                    sx={{
-                      marginLeft: "10px",
-                      marginTop: "10px",
-                      fontFamily: "Outfit",
-                      fontSize: "14px",
-                      color: "#E75C62",
-                      lineHeight: "20px",
-                      fontWeight: "500",
-                      backgroundColor: clicked ? "#D5E6E5" : "white",
-                      borderRadius: clicked ? "2px" : "white",
-                      height: clicked ? "32px" : "0px",
-                      width: clicked ? "32px" : "0px",
-                    }}
-                  >
-                    25
-                  </Typography>
-                </Box>
-              </Box>
-            </Box>
+            <DashInfoCard icon={"../../images/allOrder.svg"} title="All Orders" clicked={clicked} count={staffDash.data.allOrder} />
           </Grid>
 
           <Grid
@@ -428,69 +374,7 @@ export const Da_staff = (props) => {
               toggleClicked1();
             }}
           >
-            <Box
-              component={"div"}
-              sx={{
-                padding: "15px",
-                height: "128px",
-                width: "100%",
-                background: "#fff",
-                border: "1px solid #E1E1E6",
-                borderRadius: "6px",
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "space-between",
-                backgroundColor: clicked1 ? "#F0FAF9" : "white",
-              }}
-            >
-              <Box
-                component={"div"}
-                display={"flex"}
-                alignItems={"center"}
-                justifyContent={"start"}
-              >
-                <img src="../../images/Book.svg" alt="" />
-              </Box>
-              <Box
-                componet={"div"}
-                display={"flex"}
-                alignItems={"center"}
-                justifyContent={"space-between"}
-              >
-                <Typography
-                  variant="p"
-                  sx={{
-                    fontFamily: "Outfit",
-                    fontSize: { lg: "18px", md: "17px", sm: "15px" },
-                    color: "#1A1B24",
-                    lineHeight: "26px",
-                    fontWeight: "500",
-                  }}
-                >
-                  All Meal Courses
-                </Typography>
-                <Box componet={"div"}>
-                  <Typography
-                    variant={"p"}
-                    sx={{
-                      marginLeft: "10px",
-                      marginTop: "10px",
-                      fontFamily: "Outfit",
-                      fontSize: "14px",
-                      color: "#E75C62",
-                      lineHeight: "20px",
-                      fontWeight: "500",
-                      backgroundColor: clicked1 ? "#D5E6E5" : "white",
-                      borderRadius: clicked1 ? "2px" : "white",
-                      height: clicked1 ? "32px" : "0px",
-                      width: clicked1 ? "32px" : "0px",
-                    }}
-                  >
-                    25
-                  </Typography>
-                </Box>
-              </Box>
-            </Box>
+            <DashInfoCard icon={"../../images/Book.svg"} title="All Meal Courses" clicked={clicked1} count={staffDash.data.countMealCourse} />
           </Grid>
           <Grid
             item
@@ -503,69 +387,7 @@ export const Da_staff = (props) => {
               toggleClicked2();
             }}
           >
-            <Box
-              component={"div"}
-              sx={{
-                padding: "15px",
-                height: "128px",
-                width: "100%",
-                background: "#fff",
-                border: "1px solid #E1E1E6",
-                borderRadius: "6px",
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "space-between",
-                backgroundColor: clicked2 ? "#F0FAF9" : "white",
-              }}
-            >
-              <Box
-                component={"div"}
-                display={"flex"}
-                alignItems={"center"}
-                justifyContent={"start"}
-              >
-                <img src="../../images/Bell.svg" alt="" />
-              </Box>
-              <Box
-                componet={"div"}
-                display={"flex"}
-                alignItems={"center"}
-                justifyContent={"space-between"}
-              >
-                <Typography
-                  variant="p"
-                  sx={{
-                    fontFamily: "Outfit",
-                    fontSize: { lg: "18px", md: "17px", sm: "15px" },
-                    color: "#1A1B24",
-                    lineHeight: "26px",
-                    fontWeight: "500",
-                  }}
-                >
-                  All Dishes
-                </Typography>
-                <Box componet={"div"}>
-                  <Typography
-                    variant={"p"}
-                    sx={{
-                      marginLeft: "10px",
-                      marginTop: "10px",
-                      fontFamily: "Outfit",
-                      fontSize: "14px",
-                      color: "#E75C62",
-                      lineHeight: "20px",
-                      fontWeight: "500",
-                      backgroundColor: clicked2 ? "#D5E6E5" : "white",
-                      borderRadius: clicked2 ? "2px" : "white",
-                      height: clicked2 ? "32px" : "0px",
-                      width: clicked2 ? "32px" : "0px",
-                    }}
-                  >
-                    25
-                  </Typography>
-                </Box>
-              </Box>
-            </Box>
+            <DashInfoCard icon={"../../images/Bell.svg"} title="All Dishes" clicked={clicked2} count={staffDash.data.dish} />
           </Grid>
           <Grid
             item
@@ -578,69 +400,8 @@ export const Da_staff = (props) => {
               toggleClicked3();
             }}
           >
-            <Box
-              component={"div"}
-              sx={{
-                padding: "15px",
-                height: "128px",
-                width: "100%",
-                background: "#fff",
-                border: "1px solid #E1E1E6",
-                borderRadius: "6px",
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "space-between",
-                backgroundColor: clicked3 ? "#F0FAF9" : "white",
-              }}
-            >
-              <Box
-                component={"div"}
-                display={"flex"}
-                alignItems={"center"}
-                justifyContent={"start"}
-              >
-                <img src="../../images/milk.svg" alt="" />
-              </Box>
-              <Box
-                componet={"div"}
-                display={"flex"}
-                alignItems={"center"}
-                justifyContent={"space-between"}
-              >
-                <Typography
-                  variant="p"
-                  sx={{
-                    fontFamily: "Outfit",
-                    fontSize: { lg: "18px", md: "17px", sm: "15px" },
-                    color: "#1A1B24",
-                    lineHeight: "26px",
-                    fontWeight: "500",
-                  }}
-                >
-                  All Add-Ons
-                </Typography>
-                <Box componet={"div"}>
-                  <Typography
-                    variant={"p"}
-                    sx={{
-                      marginLeft: "10px",
-                      marginTop: "10px",
-                      fontFamily: "Outfit",
-                      fontSize: "14px",
-                      color: "#E75C62",
-                      lineHeight: "20px",
-                      fontWeight: "500",
-                      backgroundColor: clicked3 ? "#D5E6E5" : "white",
-                      borderRadius: clicked3 ? "2px" : "white",
-                      height: clicked3 ? "32px" : "0px",
-                      width: clicked3 ? "32px" : "0px",
-                    }}
-                  >
-                    25
-                  </Typography>
-                </Box>
-              </Box>
-            </Box>
+            <DashInfoCard icon={"../../images/milk.svg"} title="All Add-Ons" clicked={clicked3} count={staffDash.data.countAddOnes} />
+
           </Grid>
         </Grid>
       </Box>
@@ -661,7 +422,7 @@ export const Da_staff = (props) => {
             >
               Subscription list
             </Typography>
-            <SimpleDataTable/>
+            <SimpleDataTable />
           </>
         ) : mealcourse ? (
           <>
@@ -762,27 +523,7 @@ export const Da_staff = (props) => {
             </Typography>
 
             <div style={{ height: 400, width: "100%" }}>
-              <DataGrid
-                sx={{
-                  boxShadow: "none",
-                  border: "none",
-                  borderColor: "#fff",
-                  "& .MuiDataGrid-cell:focus": {
-                    color: "#9EA3AE",
-                    outline: "none",
-                    color: "#1A1824",
-                    border: "1px solid transparent !important",
-                  },
-                  "& .MuiDataGrid-iconButtonContainer": {
-                    marginLeft: "2px",
-                    visibility: "visible !important",
-                    width: "auto !important",
-                  },
-                }}
-                rows={rowsAddson}
-                columns={columnsAddson}
-                disableColumnMenu
-              />
+              <DataGridTableView info={info}/>
             </div>
           </>
         ) : (
@@ -823,7 +564,7 @@ export const Da_staff = (props) => {
                   Top selling Meal Plan
                 </Typography>
                 <Box component={"div"}>
-                  {[1, 2, 3, 4].map((item, i) => {
+                  {staffDash && staffDash.data && staffDash.data.TopSellingMP.length > 0 ? staffDash.data.TopSellingMP.map((item, i) => {
                     return (
                       <Box component={"div"} key={item}>
                         <Box
@@ -865,7 +606,20 @@ export const Da_staff = (props) => {
                         </Box>
                       </Box>
                     );
-                  })}
+                  }) : <Typography
+                    sx={{
+                      marginTop: "20px",
+                      fontFamily: "Outfit",
+                      fontSize: "16px",
+                      textAlign: "center",
+                      height: "24px",
+                      color: "#545359",
+                      lineHeight: "24x",
+                      fontWeight: "600",
+                    }}
+                  >
+                    Empty Record
+                  </Typography>}
                 </Box>
               </Box>
             </Grid>
@@ -897,7 +651,7 @@ export const Da_staff = (props) => {
                   All Subscription
                 </Typography>
                 <Box component={"div"}>
-                  <DonutChart />
+                  <DonutChart figure={Object.values(staffDash.data.allSubscriptions)} />
                 </Box>
               </Box>
             </Grid>
@@ -917,3 +671,69 @@ export const Da_staff = (props) => {
     </>
   );
 };
+
+const DashInfoCard = ({ title, icon, count, clicked }) => (
+  <Box
+    component={"div"}
+    sx={{
+      padding: "15px",
+      height: "128px",
+      width: "100%",
+      background: "#fff",
+      border: "1px solid #E1E1E6",
+      borderRadius: "6px",
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "space-between",
+      backgroundColor: clicked ? "#F0FAF9" : "white",
+    }}
+  >
+    <Box
+      component={"div"}
+      display={"flex"}
+      alignItems={"center"}
+      justifyContent={"start"}
+    >
+      <img src={icon} alt="" />
+    </Box>
+    <Box
+      componet={"div"}
+      display={"flex"}
+      alignItems={"center"}
+      justifyContent={"space-between"}
+    >
+      <Typography
+        variant="p"
+        sx={{
+          fontFamily: "Outfit",
+          fontSize: { lg: "18px", md: "17px", sm: "15px" },
+          color: "#1A1B24",
+          lineHeight: "26px",
+          fontWeight: "500",
+        }}
+      >
+        {title}
+      </Typography>
+      <Box componet={"div"}>
+        <Typography
+          variant={"p"}
+          sx={{
+            marginLeft: "10px",
+            marginTop: "10px",
+            fontFamily: "Outfit",
+            fontSize: "14px",
+            color: "#E75C62",
+            lineHeight: "20px",
+            fontWeight: "500",
+            backgroundColor: clicked ? "#D5E6E5" : "white",
+            borderRadius: clicked ? "2px" : "white",
+            height: clicked ? "32px" : "0px",
+            width: clicked ? "32px" : "0px",
+          }}
+        >
+          {count}
+        </Typography>
+      </Box>
+    </Box>
+  </Box>
+)

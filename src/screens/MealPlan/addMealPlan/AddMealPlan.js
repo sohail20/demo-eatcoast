@@ -6,7 +6,9 @@ import {
   Avatar,
   IconButton,
   Grid,
+  Drawer,
   Container,
+  Checkbox,
   Backdrop,
 } from "@mui/material";
 import { styled } from "@mui/material";
@@ -24,6 +26,8 @@ import MealPlan from "../MealPlan";
 import Overlay from "../Overlay/Overlay";
 import Calendar from "../Components/Calendar/Calendar";
 import MealPlan_2 from "../MealPlan_2/MealPlan_2";
+import arrowLeft from "./Images/arrow-left.png";
+
 import "./style.css";
 
 const Heading = styled(Typography)(({ theme }) => ({

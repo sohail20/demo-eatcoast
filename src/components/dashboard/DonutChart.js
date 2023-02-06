@@ -1,9 +1,8 @@
 import React from 'react'
 import Charts from 'react-apexcharts'
-export const DonutChart = () => {
-
+export const DonutChart = ({figure}) => {
     const options = {
-        series: [45, 52, 22, 51, 30],
+        series: figure,
         chart: {
             type: 'donut',
             width: '300px',

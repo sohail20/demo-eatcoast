@@ -100,8 +100,6 @@ export default function DishesStepper1({ formik, setStepper }) {
           <Box>
             <TextField
               fullWidth
-              id="dishName"
-              name="dishName"
               placeholder="Dish name"
               variant="outlined"
               InputProps={{
@@ -118,6 +116,8 @@ export default function DishesStepper1({ formik, setStepper }) {
                 backgroundColor: "#F6F6F6",
                 color: "#9EA3AE",
               }}
+              id="dishName"
+              name="dishName"
               value={formik.values.dishName}
               onChange={formik.handleChange}
             />

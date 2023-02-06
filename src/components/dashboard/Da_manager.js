@@ -1,47 +1,18 @@
-import React from 'react'
-import { Box, Button, FormControl, Grid, InputLabel, ListItemIcon, ListItemText, Menu, MenuItem, Select, Typography } from '@mui/material'
-import { BiCheckCircle } from 'react-icons/bi'
+import React, { useEffect, useState } from 'react'
+import { Box, Button, Grid, ListItemIcon, ListItemText, Menu, MenuItem, Select, Typography } from '@mui/material'
 import { BsArrowDown, BsArrowUp } from 'react-icons/bs'
 import { DonutChart } from './DonutChart';
 import { SalesChart } from './SalesChart';
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import { useGetManagerDashQuery } from 'api/dashboard';
+import FullPageLoader from 'components/Loader/FullPageLoader';
 
+export const Da_manager = ({ todayDate, info }) => {
 
-export const Da_manager = ({ todayDate }) => {
-        const dashRev =[
-            {
-            name: 'Revenue',
-            price: 2000,
-            value: 41,
-            image: 'images/Revenue.svg',
-        },
-            {
-            name: 'Active Subscription',
-            price: 2000,
-            value: -41,
-                image: 'images/Play.svg',
-
-
-        },
-            {
-            name: 'Paused Subscription',
-            price: 2000,
-            value: -41,
-                image: 'images/Pause.svg',
-
-
-        },
-            {
-            name: 'Single Order',
-            price: 2000,
-            value: 1,
-                image: 'images/Single.svg',
-
-
-        }
-    ]
+    const { data: managerDash, isLoading } = useGetManagerDashQuery({ catererId: info._id })
     const [anchorEl, setAnchorEl] = React.useState(null);
+    const [cardInfo, setCardInfo] = useState(null)
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -67,11 +38,31 @@ export const Da_manager = ({ todayDate }) => {
 
     }
 
+    useEffect(() => {
+        if (managerDash && managerDash.data) {
+            const tempDate = []
+            Object.keys(managerDash.data).map((key) => {
+                if (key === "totalBalance" || key === "pauseSubscription" || key === "activeSubscription" || key === "singleSubscription") {
+                    tempDate.push({
+                        name: key === "activeSubscription" ? 'Active Subscription' :
+                            key === "pauseSubscription" ? 'Pause Subscription' :
+                                key === "singleSubscription" ? 'Single Subscription' : "Revenue",
+                        price: managerDash.data[key],
+                        value: managerDash.data[`${key}Percent`],
+                        image: key === "activeSubscription" ? 'images/Play.svg' :
+                            key === "pauseSubscription" ? 'images/Pause.svg' :
+                                key === "singleSubscription" ? 'images/Single.svg' : "images/Revenue.svg",
+                    })
+                }
+            })
+            setCardInfo(tempDate)
+        }
+    }, [managerDash])
 
-    return (
-        <Box component={'div'} >
+    return isLoading ? <FullPageLoader /> : (
+        managerDash && managerDash.data && <Box component={'div'} >
             <Box component={'div'} >
-                <Box component={'div'} display={'flex'} justifyContent={'space-between'} 
+                <Box component={'div'} display={'flex'} justifyContent={'space-between'}
                 >
                     <Box component={'div'}></Box>
                     <Typography variant='div'>
@@ -95,7 +86,7 @@ export const Da_manager = ({ todayDate }) => {
                                 fontFamily: 'Outfit', fontSize: '14px',
                                 color: '#9EA3AE', lineHeight: '30px', fontWeight: '400'
                             }}>Showing: </span>
-                            
+
                             <Button
                                 id="basic-button"
                                 aria-controls={open ? "basic-menu" : undefined}
@@ -190,14 +181,14 @@ export const Da_manager = ({ todayDate }) => {
                             </Menu>
 
                         </Box>
-                        
+
                     </Box>
 
                     {/* section 3 */}
                     <Box component={'div'} >
                         <Grid container spacing={1}>
-                            {dashRev.map((item, i) =>{
-                                return(
+                            {cardInfo !== null && cardInfo.map((item, i) => {
+                                return (
                                     <Grid key={i} item xs={12} sm={6} md={4} lg={3}  >
                                         <Box component={'div'} sx={{
                                             padding: '15px', height: '128px', width: '100%', background: '#fff',
@@ -207,7 +198,7 @@ export const Da_manager = ({ todayDate }) => {
                                             <Box component={'div'} display={'flex'} alignItems={'center'} justifyContent={'start'} >
                                                 <img src={item.image} alt="" />
                                                 <Typography sx={{ paddingLeft: '15px' }}>
-                                                   {item.name}
+                                                    {item.name}
                                                 </Typography>
                                             </Box>
                                             <Box componet={"div"} display={'flex'} alignItems={'center'} justifyContent={'space-between'}>
@@ -215,31 +206,31 @@ export const Da_manager = ({ todayDate }) => {
                                                     fontFamily: 'Outfit', fontSize: '20px',
                                                     color: '#1A1B24', lineHeight: '32px', fontWeight: '600'
                                                 }}>
-                                                   {item.price}
+                                                    {item.price}
                                                 </Typography>
                                                 <Box componet={'div'}>
                                                     {item.value > 0 ? <BsArrowUp color={'#42C677'} /> :
                                                         <BsArrowDown color={'#E75C62'} />}
-                                                    { item.value > 0 ? 
-                                                    <Typography variant={'p'} sx={{
-                                                        marginLeft: '10px', marginTop: '10px', fontFamily: 'Outfit', fontSize: '14px',
+                                                    {item.value > 0 ?
+                                                        <Typography variant={'p'} sx={{
+                                                            marginLeft: '10px', marginTop: '10px', fontFamily: 'Outfit', fontSize: '14px',
                                                             color: '#42C677', lineHeight: '20px', fontWeight: '500'
-                                                    }}>
-                                                        {item.value}%
-                                                    </Typography>
+                                                        }}>
+                                                            {item.value}%
+                                                        </Typography>
                                                         : <Typography variant={'p'} sx={{
                                                             marginLeft: '10px', marginTop: '10px', fontFamily: 'Outfit', fontSize: '14px',
                                                             color: '#E75C62', lineHeight: '20px', fontWeight: '500'
                                                         }}>
                                                             {item.value}%
-                                                        </Typography> }
+                                                        </Typography>}
                                                 </Box>
                                             </Box>
                                         </Box>
-                                    </Grid>    
+                                    </Grid>
                                 )
                             })}
-                          
+
                         </Grid>
                     </Box>
 
@@ -247,57 +238,74 @@ export const Da_manager = ({ todayDate }) => {
                     <Box>
                         <Grid container spacing={1} mt={1}>
                             <Grid item xs={12} md={8} lg={8} >
-                                <Box sx={{ borderRadius: '6px', 
-                                border: '1px solid #E1E1E6',
-                                height: '100%' }} 
+                                <Box sx={{
+                                    borderRadius: '6px',
+                                    border: '1px solid #E1E1E6',
+                                    height: '100%'
+                                }}
                                 >
                                     <SalesChart />
                                 </Box>
                             </Grid>
                             <Grid item xs={12} md={4} lg={4}>
-                                
-                                <Grid item xs={12} sx={{ borderRadius: '6px', marginBottom: '15px'}}>
-                            <Box sx={{padding: '5px 20px',borderRadius: '6px',}}>
-                                 <Typography component={'div'}
-                    sx={{
-                        fontFamily: 'Outfit', fontSize: '18px', width: '100%', height: '26px'
-                        , color: '#1A1B24', lineHeight: '26px', fontWeight: '600'
 
-                    }}>
-                    Top selling Meal Plan</Typography>
-                <Box component={'div'}  >
-                    {[1, 2, 3, 4].map((item, i) => {
-                        return (
-                            <Box component={'div'}
-                                key={item}>
-                                <Box component={'div'} display={'flex'} justifyContent={'space-between'}
-                                >
-                                    <Typography sx={{
-                                        marginTop: '10px',
-                                        fontFamily: 'Outfit', fontSize: '16px', width: '100%', height: '24px'
-                                        , color: '#545359', lineHeight: '24px', fontWeight: '400'
-                                    }}>
-                                        {1 + i}. <span style={{ paddingLeft: '15px', }}>Salmon with chili</span>
-                                    </Typography>
+                                <Grid item xs={12} sx={{ borderRadius: '6px', marginBottom: '15px' }}>
+                                    <Box sx={{ padding: '5px 20px', borderRadius: '6px', }}>
+                                        <Typography component={'div'}
+                                            sx={{
+                                                fontFamily: 'Outfit', fontSize: '18px', width: '100%', height: '26px'
+                                                , color: '#1A1B24', lineHeight: '26px', fontWeight: '600'
 
-                                    <Typography sx={{
-                                        marginTop: '10px',
-                                        fontFamily: 'Outfit', fontSize: '16px', height: '24px'
-                                        , color: '#545359', lineHeight: '24x', fontWeight: '600'
-                                    }}>
-                                        00
-                                    </Typography>
-                                </Box>
-                            </Box>)
-                    })}
+                                            }}>
+                                            Top selling Meal Plan</Typography>
+                                        <Box component={'div'}  >
+                                            {managerDash && managerDash.data.TopSellingMP.map((item, i) => {
+                                                return (
+                                                    <Box component={'div'}
+                                                        key={item}>
+                                                        <Box component={'div'} display={'flex'} justifyContent={'space-between'}
+                                                        >
+                                                            <Typography sx={{
+                                                                marginTop: '10px',
+                                                                fontFamily: 'Outfit', fontSize: '16px', width: '100%', height: '24px'
+                                                                , color: '#545359', lineHeight: '24px', fontWeight: '400'
+                                                            }}>
+                                                                {1 + i}. <span style={{ paddingLeft: '15px', }}>{item}</span>
+                                                            </Typography>
 
-                </Box>
+                                                            <Typography sx={{
+                                                                marginTop: '10px',
+                                                                fontFamily: 'Outfit', fontSize: '16px', height: '24px'
+                                                                , color: '#545359', lineHeight: '24x', fontWeight: '600'
+                                                            }}>
+                                                                {managerDash && managerDash.data.allSubscriptions[item]}
+                                                            </Typography>
+                                                        </Box>
+                                                    </Box>)
+                                            })}
+                                            {
+                                                managerDash && managerDash.data.TopSellingMP.length === 0 && <Typography
+                                                    sx={{
+                                                        marginTop: "20px",
+                                                        fontFamily: "Outfit",
+                                                        fontSize: "16px",
+                                                        textAlign: "center",
+                                                        height: "24px",
+                                                        color: "#545359",
+                                                        lineHeight: "24x",
+                                                        fontWeight: "600",
+                                                    }}
+                                                >
+                                                    Empty Record
+                                                </Typography>
+                                            }
+                                        </Box>
 
 
-                            </Box>
+                                    </Box>
 
                                 </Grid>
-                                <Grid item xs={12} md={12} sx={{ borderRadius: '6px'}}>
+                                <Grid item xs={12} md={12} sx={{ borderRadius: '6px' }}>
                                     <Box component={'div'} sx={{
                                         marginTop: "10px",
                                         width: '100%', height: '202px', border: '1px solid #E1E1E6', height: '100%',
@@ -311,21 +319,22 @@ export const Da_manager = ({ todayDate }) => {
                                             All Subscription
                                         </Typography>
                                         <Box component={'div'} >
-                                            <DonutChart />
+                                            {managerDash && <DonutChart figure={[...Object.values(managerDash.data.allSubscriptions)]} />}
                                         </Box>
                                     </Box>
                                 </Grid>
                             </Grid>
-                            
-                            </Grid>
+
+                        </Grid>
                     </Box>
 
                     {/* section 4 end*/}
 
-                 
+
                 </Box>
             </Box>
         </Box>
+
     )
 }
 

@@ -27,7 +27,7 @@ const CustomPlaceHolder = styled(Typography)({
   color: "#9EA3AE",
 });
 
-function CustomCalendar({ hasTopInput }) {
+function CustomCalendar({ hasTopInput, handleOnChangeDate }) {
   const [value, onChange] = useState(new Date());
 
   return (
@@ -39,7 +39,14 @@ function CustomCalendar({ hasTopInput }) {
         </StartDate>
       )}
       <Calendar
-        onChange={onChange}
+        onChange={(e) => {
+          handleOnChangeDate(
+            `${new Date(e).getFullYear()}-${
+              new Date(e).getMonth() + 1
+            }-${new Date(e).getDate()}`
+          );
+          onChange(e);
+        }}
         nextLabel={
           <i class="fa fa-chevron-right" style={{ color: "#2B817B" }}></i>
         }
