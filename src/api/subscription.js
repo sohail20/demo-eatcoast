@@ -20,6 +20,13 @@ const extendedApi = api.injectEndpoints({
                 method: "POST",
                 body
             })
+        }),
+        getSubscriptionHistory:build.query({
+            query:(body)=>({
+                url:"/caterer/all/sub/history",
+                method:"POST",
+                body
+            })
         })
     }),
     overrideExisting: false,
@@ -27,5 +34,6 @@ const extendedApi = api.injectEndpoints({
 
 export const {
     useGetAllSubscriptionsQuery,
-    useGetSubscriptionDetailQuery
+    useGetSubscriptionDetailQuery,
+    useGetSubscriptionHistoryQuery
 } = extendedApi;

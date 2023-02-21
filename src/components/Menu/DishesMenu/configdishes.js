@@ -1,74 +1,71 @@
 export const addIngredient = [
     {
         id: 1,
-        title: "Beef",
+        name: "Beef",
         image: "./images/beef.svg",
-        qty: 1 ,
+        quantity: 1 ,
+        unit: "Gr"
     },
     {
         id: 2,
-        title: "Olive Oil",
+        name: "Olive Oil",
         image: "./images/OliveOil.svg",
-        qty: 6,
+        quantity: 6,
+        unit: "Gr"
     },
     {
         id: 3,
-        title: "Garlic Clover",
+        name: "Garlic Clover",
         image: "./images/Garilic.svg",
-         qty: 1,
+        quantity: 1,
+        unit: "Gr"
     },
     {
         id:4,
-        title: "Small Onion",
+        name: "Small Onion",
         image: "./images/smallOninon.svg",
-        qty: 1,
+        quantity: 1,
+        unit: "Gr"
     },
     {
         id:5,
-        title: "All Spice",
+        name: "All Spice",
         image: "./images/allSpice.svg",
-        qty: 1,    
+        quantity: 1,  
+        unit: "Gr"  
     },
     {
         id:6,
-        title: "Tomato Pasta",
+        name: "Tomato Pasta",
         image: "./images/tomato.svg",
-        qty: 1, 
+        quantity: 1, 
+        unit: "Gr"
     },
    
 ];
 
- export const addNutrional= [
+ export const addNutrition= [
     {
         id: 1,
-        title: "Vitamin A",
+        name: "Vitamin A",
         image: "./images/vitamin.svg",
-         
+        quantity: 1, 
+        unit: "Gr"
     },
     {
         id: 2,
-        title: "Vitamin B",
+        name: "Vitamin B",
         image: "./images/vitamin.svg",
-         
+        quantity: 1, 
+        unit: "Gr"
     },
     {
         id: 3,
-        title: "Vitamin C",
+        name: "Vitamin C",
         image: "./images/vitamin.svg",
-         
+        quantity: 1, 
+        unit: "Gr"
     },
-    {
-        id: 4,
-        title: "Calories",
-        image: "./images/Calories.svg",
-         
-    },
-    {
-        id: 5,
-        title: "Fat",
-        image: "./images/fat.svg",
-         
-    }
 ];
 
 

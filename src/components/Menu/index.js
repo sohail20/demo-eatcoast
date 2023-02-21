@@ -98,7 +98,7 @@ export const MenuComponent = () => {
     setIsShownCuisine((current) => !current);
   };
 
-  return selectedCuisine !== null ? <HeadBar handleBack={() => setSelectedCuisine(null)} /> : (
+  return selectedCuisine !== null ? <HeadBar selectedCuisine={selectedCuisine} handleBack={() => setSelectedCuisine(null)} /> : (
     <>
       <Box component="container">
         {/* {false ? ( */}

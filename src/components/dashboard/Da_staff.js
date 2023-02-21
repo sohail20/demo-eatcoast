@@ -109,14 +109,6 @@ const rowsDishes = [
   },
 ];
 
-const columnsDishes = [
-  { field: "#", hide: true },
-  { field: "col1", headerName: "#", flex: 1 },
-  { field: "addOnes", headerName: "Add Ones", flex: 1 },
-  { field: "MealPlane", headerName: "Meal Plane", flex: 1 },
-  { field: "quatity", headerName: "Quatity", flex: 1 }
-];
-
 function createDataOrder(idOrder, menu, time, qty, subs_type) {
   return { idOrder, menu, time, qty, subs_type };
 }
@@ -171,7 +163,6 @@ export const Da_staff = ({ info }) => {
   const [mealcourse, setmealCourse] = React.useState(false);
   const [dishes, setDishes] = React.useState(false);
   const [addson, setAddson] = React.useState(false);
-
   const { data: staffDash, isLoading } = useGetStaffDashQuery({ catererId: info._id })
   const handleOrders = () => {
     setAllOrders(true);
@@ -439,33 +430,10 @@ export const Da_staff = ({ info }) => {
             >
               All Meal Courses
             </Typography>
-            <TableContainer component="div">
-              <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                <TableHead>
-                  <TableRow>
-                    <TableCell>#</TableCell>
-                    <TableCell>Meal Courses</TableCell>
-                    <TableCell>Meal Plans</TableCell>
-                    <TableCell>Qty</TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {rows.map((row, i) => (
-                    <TableRow
-                      key={row.i}
-                      sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                    >
-                      <TableCell component="th" scope="row">
-                        {i + 1}
-                      </TableCell>
-                      <TableCell>{row.meal}</TableCell>
-                      <TableCell>{row.plan}</TableCell>
-                      <TableCell>{row.qty}</TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </TableContainer>
+            <div style={{ height: 400, width: "100%" }}>
+              <DataGridTableView info={info} type={"mealCourses"} />
+            </div>
+
           </>
         ) : dishes ? (
           <>
@@ -484,7 +452,8 @@ export const Da_staff = ({ info }) => {
             </Typography>
 
             <div style={{ height: 400, width: "100%" }}>
-              <DataGrid
+              <DataGridTableView info={info} type={"allDishes"} />
+              {/* <DataGrid
                 sx={{
                   boxShadow: "none",
                   border: "none",
@@ -502,8 +471,9 @@ export const Da_staff = ({ info }) => {
                 }}
                 rows={rowsDishes}
                 columns={columnsDishes}
+                type="allDishes"
                 disableColumnMenu
-              />
+              /> */}
             </div>
           </>
         ) : addson ? (
@@ -523,7 +493,7 @@ export const Da_staff = ({ info }) => {
             </Typography>
 
             <div style={{ height: 400, width: "100%" }}>
-              <DataGridTableView info={info}/>
+              <DataGridTableView info={info} type={"addOnes"} />
             </div>
           </>
         ) : (

@@ -10,12 +10,8 @@ import {
   Container,
 } from "@mui/material";
 import { CustomChip } from "../AllDishes/CustomChip";
-import { AllDishesData } from "../AllDishes/Config";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
-import ListItemAvatar from "@mui/material/ListItemAvatar";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
 import CircleIcon from "@mui/icons-material/Circle";
 
 export const StatusAlert = () => {

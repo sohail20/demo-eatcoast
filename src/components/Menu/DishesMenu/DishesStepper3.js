@@ -7,56 +7,56 @@ import DishMenuSlider from './DishMenuSlider';
 import DishMenuSlider1 from './DishMenuSlider1';
 import DishesCalander from './DishesCalander';
 import Overlay from './overlay/Overlay';
+import { addIngredient, addNutrition } from './configdishes';
 
-export default function DishesStepper3() {
-    const Typo1 = styled("div")(({ theme }) => ({
-        // padding: theme.spacing(0, 2),
-        fontFamily: "outfit",
-        fontSize: "12px",
-        fontWeight: "400",
-        lineHeight: "16px",
-        color: "#9EA3AE",
-    }));
-    const Typo2 = styled(Typography)(({ theme }) => ({
-        // padding: theme.spacing(0, 2),
-        fontFamily: "outfit",
-        fontSize: "14px",
-        fontWeight: "500",
-        lineHeight: "20px",
-    }));
+const Typo1 = styled("div")(({ theme }) => ({
+    // padding: theme.spacing(0, 2),
+    fontFamily: "outfit",
+    fontSize: "12px",
+    fontWeight: "400",
+    lineHeight: "16px",
+    color: "#9EA3AE",
+}));
+const Typo2 = styled(Typography)(({ theme }) => ({
+    // padding: theme.spacing(0, 2),
+    fontFamily: "outfit",
+    fontSize: "14px",
+    fontWeight: "500",
+    lineHeight: "20px",
+}));
 
-    const Button1 = {
-        // padding: theme.spacing(0, 2),
-        fontFamily: "outfit",
-        fontSize: "16px",
-        fontWeight: "400",
-        lineHeight: "20px",
-        textTransform: "capitalize",
-        color: "#2B817B",
-        marginTop: '10px'
-    }
-    const [word, setWord]= React.useState(0)
-    const handleCount = (value) => {
-        console.log(value)
-        if (value.length <= 80) {
-            setWord(value);
-        }
-    }
-    const [isDrawerOpenStaff, setIsDrawerOpenStaff]=React.useState(false)
-    const [isDrawerOpenStaff1, setIsDrawerOpenStaff1]=React.useState(false)
-    const [isDrawerOpenStaff2, setIsDrawerOpenStaff2]=React.useState(false)
+const Button1 = {
+    // padding: theme.spacing(0, 2),
+    fontFamily: "outfit",
+    fontSize: "16px",
+    fontWeight: "400",
+    lineHeight: "20px",
+    textTransform: "capitalize",
+    color: "#2B817B",
+    marginTop: '10px'
+}
+
+export default function DishesStepper3({ formik }) {
+    const [selectedModal, setSelectedModal] = React.useState(null)
+    const [ingridientsValue, setIngridientsValue] = React.useState("")
+    const [nutritionValue, setNutritionValue] = React.useState("")
+    const [scheduled, setScheduled] = React.useState("")
+
+    const [isDrawerOpenStaff2, setIsDrawerOpenStaff2] = React.useState(false)
 
     return (
-    <> 
-          {/* <Container maxWidth="xs" > */}
-          <Container>
+        <>
+            {/* <Container maxWidth="xs" > */}
+            <Container>
                 <Box
                     width="100%"
-                    sx={{ pl: { lg: "50px", md: "50px", sm: "0px", xs: "0px" },
-                     pt: { lg: "0px", md: "0px", sm: "70px", xs: "70px" }, mt:6 }}
+                    sx={{
+                        pl: { lg: "50px", md: "50px", sm: "0px", xs: "0px" },
+                        pt: { lg: "0px", md: "0px", sm: "70px", xs: "70px" }, mt: 6
+                    }}
                 >
                     <Box>
-                        <Box 
+                        <Box
                             sx={{ display: "flex", justifyContent: "space-between" }}
                         >
                             <Box>
@@ -65,7 +65,7 @@ export default function DishesStepper3() {
                                     *If the plate is active it will be visible to the customer
                                 </Typo1>
                             </Box>
-                            <Box sx={{ml:1}}>
+                            <Box sx={{ ml: 1 }}>
                                 <SwitchButton />
                             </Box>
                         </Box>
@@ -79,16 +79,10 @@ export default function DishesStepper3() {
                                         ( Optional )
                                     </Typo2>
                                 </Box>
-                                <Box
-                                    sx={
-                                        {
-                                            // '& .MuiTextField-root': {  height: '48px' },
-                                        }
-                                    }
-                                >
+                                <Box>
                                     <TextField
                                         fullWidth
-                                        onClick={() => setIsDrawerOpenStaff(true)}
+                                        onClick={() => setSelectedModal("ingridients")}
                                         id="filled-textarea"
                                         placeholder="Select ingridients"
                                         variant="outlined"
@@ -102,6 +96,7 @@ export default function DishesStepper3() {
                                                 height: "48px",
                                             },
                                         }}
+                                        value={ingridientsValue}
                                         sx={{
                                             fontSize: "14px",
                                             fontWeight: "400",
@@ -126,8 +121,7 @@ export default function DishesStepper3() {
                                 </Box>
                                 <Box>
                                     <TextField
-                                        onClick={() => setIsDrawerOpenStaff1(true)}
-
+                                        onClick={() => setSelectedModal("nutrition")}
                                         fullWidth
                                         id="filled-textarea"
                                         placeholder="Select nutritional info"
@@ -142,6 +136,7 @@ export default function DishesStepper3() {
                                                 height: "48px",
                                             },
                                         }}
+                                        value={nutritionValue}
                                         sx={{
                                             fontSize: "14px",
                                             fontWeight: "400",
@@ -180,6 +175,7 @@ export default function DishesStepper3() {
                                                 height: "48px",
                                             },
                                         }}
+                                        value={scheduled}
                                         sx={{
                                             fontSize: "14px",
                                             fontWeight: "400",
@@ -195,13 +191,26 @@ export default function DishesStepper3() {
                         </Box>
                     </Box>
                 </Box>
-                <DishMenuSlider setIsDrawerOpenStaff={setIsDrawerOpenStaff} isDrawerOpenStaff={isDrawerOpenStaff} />
-                <DishMenuSlider1 setIsDrawerOpenStaff1={setIsDrawerOpenStaff1} isDrawerOpenStaff1={isDrawerOpenStaff1} />
-                <DishesCalander setIsDrawerOpenStaff2={setIsDrawerOpenStaff2} isDrawerOpenStaff2={isDrawerOpenStaff2} />
-          </Container>
+                {/* //addIngredient */}
+                <DishMenuSlider 
+                 selectedModal={selectedModal} 
+                 addIngredient={selectedModal === "nutrition" ? addNutrition : addIngredient} 
+                 formik={formik} 
+                 setIsDrawerOpenStaff={setSelectedModal} 
+                 handleUpdateValue={(type, value) => {
+                    if (type == "nutrition") setNutritionValue(value)
+                    else setIngridientsValue(value)
+                 }} 
+                 isDrawerOpenStaff={selectedModal !== null} 
+                />
+
+                <DishesCalander handleUpdateValue={(e)=>{
+                  setScheduled(e)
+                }} setIsDrawerOpenStaff2={setIsDrawerOpenStaff2} isDrawerOpenStaff2={isDrawerOpenStaff2} />
+            </Container>
 
 
-            </>
+        </>
 
     )
 }

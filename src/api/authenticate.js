@@ -13,12 +13,12 @@ const extendedApi = api.injectEndpoints({
         if (loginResponse.error)
           return swal("Failed!", loginResponse.error.data.message, "warning");
 
-        localStorage.setItem(
-          "token",
-          JSON.stringify(loginResponse.data.data.token)
-        );
-        delete loginResponse.data.data.token;
-        localStorage.setItem("user", JSON.stringify(loginResponse.data.data));
+        // localStorage.setItem(
+        //   "token",
+        //   JSON.stringify(loginResponse.data.data.token)
+        // );
+        // delete loginResponse.data.data.token;
+        // localStorage.setItem("user", JSON.stringify(loginResponse.data.data));
         swal("Success!", loginResponse.data.message, "success");
         return loginResponse;
       },
@@ -50,12 +50,33 @@ const extendedApi = api.injectEndpoints({
         return otpResponse;
       },
     }),
+    verifyLoginOTP: build.mutation({
+      async queryFn(_arg, _queryApi, _extraOptions, fetchWithBQ) {
+        const loginResponse = await fetchWithBQ({
+          url: "/auth/login/verify/caterer",
+          method: "POST",
+          body: _arg,
+        });
+        if (loginResponse.error)
+          return swal("Failed!", loginResponse.error.data.message, "warning");
+
+        localStorage.setItem(
+          "token",
+          JSON.stringify(loginResponse.data.data.token)
+        );
+        delete loginResponse.data.data.token;
+        localStorage.setItem("user", JSON.stringify(loginResponse.data.data));
+        swal("Success!", loginResponse.data.message, "success");
+        return loginResponse;
+      },
+    })
   }),
   overrideExisting: false,
 });
 
-export const { 
-  useGetAuthenticateMutation, 
-  useForgotPasswordMutation, 
-  useVerifyOTPMutation, 
+export const {
+  useGetAuthenticateMutation,
+  useForgotPasswordMutation,
+  useVerifyOTPMutation,
+  useVerifyLoginOTPMutation
 } = extendedApi;

@@ -1,20 +1,22 @@
 import { Box, Button, Card, CardContent, CardMedia, Grid, Typography } from '@mui/material'
 import { Container } from '@mui/system'
-import React,{useEffect} from 'react'
+import React, { useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import {useGetEmployeesQuery} from "api/employee"
+import { useGetEmployeesQuery } from "api/employee"
 export const Login2 = () => {
   const navigate = useNavigate();
   const { data: employees, isLoading } = useGetEmployeesQuery();
   const gotoLoginPin = (id) => {
-    navigate("/signinPin",{state:{id}});
+    navigate("/signinPin", { state: { id } });
   };
 
 
-  useEffect(()=>{
-   const token = localStorage.getItem("token")
-   if (token === null || token === "" || employees && employees.data.length === 0) navigate("/dashboard");
-  },[employees])
+  useEffect(() => {
+    const token = localStorage.getItem("token")
+    const notNumberOfEmployees = employees && employees.data.length === 0
+    localStorage.setItem("hasEmployees", notNumberOfEmployees ? false : true)
+    if (token === null || token === "" || notNumberOfEmployees) navigate("/dashboard");
+  }, [employees])
   return isLoading ? (
     <p>Loading</p>
   ) : (
@@ -46,7 +48,7 @@ export const Login2 = () => {
         <Container maxwidth="lg">
           <Grid container spacing={2} sx={{ marginTop: 5 }}>
             {employees &&
-              employees.data.map((item,index) => {
+              employees.data.map((item, index) => {
                 return (
                   <Grid
                     scpacing={2}
@@ -64,7 +66,7 @@ export const Login2 = () => {
                         padding: 1,
                         cursor: "pointer",
                       }}
-                      onClick={()=>gotoLoginPin(item._id)}
+                      onClick={() => gotoLoginPin(item._id)}
                     >
                       <Box sx={{ display: "flex", alignItems: "center" }}>
                         <CardMedia
@@ -87,7 +89,7 @@ export const Login2 = () => {
                             fontStyle: "normal",
                           }}
                         >
-                          {item.name?item.name:"No Name"}
+                          {item.name ? item.name : "No Name"}
                         </Typography>
                         <Typography
                           variant="caption"
@@ -98,7 +100,7 @@ export const Login2 = () => {
                             fontStyle: "normal",
                           }}
                         >
-                          {item.type}
+                          {item.role}
                         </Typography>
                       </CardContent>
                     </Card>

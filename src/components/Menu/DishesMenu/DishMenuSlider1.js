@@ -1,9 +1,7 @@
 import styled from '@emotion/styled';
 import { Box, Button, Drawer, IconButton, InputAdornment, Select, MenuItem, TextField, Typography } from '@mui/material'
 import React, { useEffect, useState } from 'react'
-import { addNutrional } from './configdishes'
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import { AspectRatioSharp } from '@mui/icons-material';
+import { addNutrition } from './configdishes'
 
 
 //-=========== onClick addIngredieent fun start
@@ -53,7 +51,7 @@ export default function DishMenuSlider1({ isDrawerOpenStaff1, setIsDrawerOpenSta
         if (searchQuerry) {
 
             setSearched(
-                addNutrional.filter((item) => {
+                addNutrition.filter((item) => {
                     return Object.values(item).join('').toLowerCase().includes(searchQuerry.toLowerCase())
                 })
             )

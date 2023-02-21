@@ -11,7 +11,7 @@ import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import Box from "@mui/material/Box";
 import { styled, alpha } from "@mui/material/styles";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ImageSection from "../../components/Menu/ImageSection";
 import CuisineCategoryCard from "./CuisineMenu/CuisineCategoryCard";
 import { Data } from "./CuisineMenu/config";
@@ -86,54 +86,24 @@ const TypoTitle = styled("div")(({ theme }) => ({
 }));
 
 const Typo1 = styled("div")(({ theme }) => ({
-  // padding: theme.spacing(0, 17),
   fontFamily: "Outfit",
   fontStyle: "normal",
   fontWeight: "500",
   fontSize: "14px",
   lineHeight: "20px",
-
-  // display: "flex",
   alignItems: "center",
-  // textAlign: "center",
-
   color: "#1A1824",
   paddingBottom: "8px",
 }));
 
 
-export default function AddCuisine({isOpen,handleClose,handleSelected, setIsShownButtonBoxFunc }) {
+export default function AddCuisine({ isOpen, handleClose, handleSelected, setIsShownButtonBoxFunc }) {
 
-  const [open, setOpen] = useState(true);
-  const [checkbox, setCheckbox] = useState(false);
   const [isShownCuisine, setIsShownCuisine] = useState(true);
-  const [cuisine, setCuisine] = useState("Arabian Cuisine");
-  const [subCuisine, setSubCuisine] = useState("");
   const [disable, setDisable] = useState(false);
   const [image, setImage] = useState("./images/image profile.svg");
 
   const [addCuisine, { isLoading }] = useCuisineAddMutation();
-
-  const handleClickCheckbox = () => {
-    // setOpen(!open);
-    setCheckbox(!checkbox);
-  };
-
-  // const handleClose = () => {
-  //   setOpen(false);
-  // };
-
-  const [val, setVal] = React.useState("");
-
-  const handleChange = (event) => {
-    setVal(event.target.value);
-  };
-
-  const ItemStyle = {
-    "& .Mui-Selected": {
-      color: "green",
-    },
-  };
 
   const onChangeValue = React.useCallback(
     debounce((e) => {
@@ -146,27 +116,39 @@ export default function AddCuisine({isOpen,handleClose,handleSelected, setIsShow
     handleClose();
   };
 
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const openBox = Boolean(anchorEl);
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const handleCloseBox = () => {
-    setAnchorEl(null);
-  };
-
   const formik = useFormik({
     initialValues: {
       cuisine: "",
-      subCuisine: ""
+      subCuisine: "",
+      image: "",
     },
     onSubmit: (values) => {
-      addCuisine(values);
-      setIsShownCuisine((current) => !current);
-      handleClose();
-      setIsShownButtonBoxFunc(true);
+      let formData = new FormData(); //formdata object
+      Object.keys(values).map((keys) => {
+        formData.append(keys, values[keys]);
+      });
+      addCuisine(formData).then(res => {
+        if (res.data) {
+          setIsShownCuisine((current) => !current);
+          handleClose();
+          setIsShownButtonBoxFunc(true);
+        }
+      });
+
     },
   });
+
+  useEffect(() => {
+    if (formik.values.image !== "") {
+      let reader = new FileReader();
+      reader.onloadend = () => {
+        setImage(reader.result);
+      };
+      if (formik.values.image !== "") {
+        reader.readAsDataURL(formik.values.image);
+      }
+    }
+  }, [formik]);
 
   return (
     <>
@@ -233,7 +215,7 @@ export default function AddCuisine({isOpen,handleClose,handleSelected, setIsShow
           <DialogContent>
             <form onSubmit={formik.handleSubmit} onChange={() => { onChangeValue() }}>
 
-            <Box>
+              <Box>
                 <CenteredBoxContainer>
                   <img
                     src={image}
@@ -251,7 +233,7 @@ export default function AddCuisine({isOpen,handleClose,handleSelected, setIsShow
                     Change Photo
                     <input
                       hidden
-                      accept="image/*"
+                      accept="impage/*"
                       multiple
                       type="file"
                       id="image"
@@ -411,10 +393,7 @@ export default function AddCuisine({isOpen,handleClose,handleSelected, setIsShow
         {/* {isShownCuisine ? <ArabianCuisineMenu /> : <ImageSection />} */}
         {isShownCuisine ? (
           <CuisineCategoryCard
-            title={"Arabian Cuisine"}
-            Data={Data}
-            subTitle={"6 Sub-cuisine"}
-            handleOnClick={(e)=>handleSelected(e)}
+            handleOnClick={(e) => handleSelected(e)}
           />
         ) : (
           <ImageSection />

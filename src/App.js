@@ -28,6 +28,7 @@ import { EditDishes } from "./components/Dishes/EditDishes/EditDishes";
 import { DetailDishes } from "./components/Dishes/AllDishes/DetailDishes/DetailDishes";
 import Subscription from "./screens/Subscription/Subscription";
 import { useEffect } from "react";
+import ErrorBoundary from "screens/ErrorBoundary";
 
 function App() {
   const navigate = useNavigate();
@@ -40,32 +41,34 @@ function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <Routes>
-          <Route path={"/login"} element={<Login />} />
-          <Route path={"/operators"} element={<Login2 />} />
-          <Route path={"/signinPin"} element={<Login3 />} />
-          <Route path={"/forgotpass"} element={<ForgotPassword />} />
-          <Route path={"/forgotpin"} element={<ForgotPin />} />
-          <Route path={"/checkemail"} element={<CheckEmail />} />
-          <Route path={"/passwordReset"} element={<PasswordReset />} />
-          <Route path={"/stepper"} element={<Regsteppers />} />
-          <Route path={"/"} element={<Login />} />
-          <Route path={"/dashboard"} element={<Dashboard />} />
-          <Route path="/order" element={<Order />} />
-          <Route path="/subscription" element={<Subscription />} />
-          <Route path="/menu" element={<Menu />} />
-          <Route path="/menu2" element={<Menu2 />} />
-          <Route path="/financials" element={<Financials />} />
-          <Route path="/employee" element={<Employee />} />
-          <Route path="/setting" element={<Settings />} />
-          <Route path="/dishes" element={<Dishes />} />
-          <Route path="/alldishes" element={<AllDishes />} />
-          <Route path="/mealPlan" element={<AddMealPlan />} />
-          <Route path="/backToDishes" element={<BackToDishes />} />
-          <Route path="/editdishes" element={<EditDishes />} />
-          <Route path="/detaildishes" element={<DetailDishes />} />
-          <Route path="/adddishes" element={<AddDishes />} />
-        </Routes>
+        <ErrorBoundary>
+          <Routes>
+            <Route path={"/login"} element={<Login />} />
+            <Route path={"/operators"} element={<Login2 />} />
+            <Route path={"/signinPin"} element={<Login3 />} />
+            <Route path={"/forgotpass"} element={<ForgotPassword />} />
+            <Route path={"/forgotpin"} element={<ForgotPin />} />
+            <Route path={"/checkemail"} element={<CheckEmail />} />
+            <Route path={"/passwordReset"} element={<PasswordReset />} />
+            <Route path={"/stepper"} element={<Regsteppers />} />
+            <Route path={"/"} element={<Login />} />
+            <Route path={"/dashboard"} element={<Dashboard />} />
+            <Route path="/order" element={<Order />} />
+            <Route path="/subscription" element={<Subscription />} />
+            <Route path="/menu" element={<Menu />} />
+            <Route path="/menu2" element={<Menu2 />} />
+            <Route path="/financials" element={<Financials />} />
+            <Route path="/employee" element={<Employee />} />
+            <Route path="/setting" element={<Settings />} />
+            <Route path="/dishes" element={<Dishes />} />
+            <Route path="/alldishes" element={<AllDishes />} />
+            <Route path="/mealPlan" element={<AddMealPlan />} />
+            <Route path="/backToDishes" element={<BackToDishes />} />
+            <Route path="/editdishes" element={<EditDishes />} />
+            <Route path="/detaildishes" element={<DetailDishes />} />
+            <Route path="/adddishes" element={<AddDishes />} />
+          </Routes>
+        </ErrorBoundary>
       </ThemeProvider>
     </>
   );

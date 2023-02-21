@@ -27,9 +27,10 @@ const extendedApi = api.injectEndpoints({
         url: `/mealplane/get`,
       }),
     }),
-    searchMealplane: build.mutation({
+    mealPlaneByCuisineId: build.query({
       query: (body) => ({
         url: `/mealplane/cuisine`,
+        method:"POST",
         body,
       }),
     }),
@@ -41,5 +42,6 @@ export const {
     useMealplaneAddMutation,
     useGetAllMealplaneMutation,
     useMealplaneDeleteMutation,
-    useMealplaneUpdateMutation
+    useMealplaneUpdateMutation,
+    useMealPlaneByCuisineIdQuery,
 } = extendedApi;

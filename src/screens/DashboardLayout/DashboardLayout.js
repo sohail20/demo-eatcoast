@@ -52,11 +52,11 @@ const navList = [
     link: "/menu",
     icon: <BsBook size={"20px"} />,
   },
-  {
-    title: "Menu2",
-    link: "/menu2",
-    icon: <BsBook size={"20px"} />,
-  },
+  // {
+  //   title: "Menu2",
+  //   link: "/menu2",
+  //   icon: <BsBook size={"20px"} />,
+  // },
   {
     title: "Dishes",
     link: "/dishes",

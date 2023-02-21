@@ -9,10 +9,26 @@ const extendedApi = api.injectEndpoints({
         body,
       }),
     }),
+    getVerified: build.mutation({
+      query: (body) => ({
+        url: `/auth/email/verify/caterer`,
+        method: "POST",
+        body,
+      }),
+    }),
+    changePassword:build.mutation({
+      query: (body) => ({
+        url: `/auth/verify/otp/caterer`,
+        method: "POST",
+        body,
+      }),
+    })
   }),
   overrideExisting: false,
 });
 
 export const {
-    useGetRegisterMutation
+    useGetRegisterMutation,
+    useGetVerifiedMutation,
+    useChangePasswordMutation
 } = extendedApi;

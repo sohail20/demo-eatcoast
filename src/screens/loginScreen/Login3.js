@@ -43,6 +43,7 @@ export const Login3 = () => {
     } else if (value === "c") {
       if (dataArray.length === 4) {
         if (user.data.pin === dataArray.join("")) {
+          console.log("user.data",user.data)
           localStorage.setItem("employee", JSON.stringify(user.data));
           navigate("/dashboard");
         } else swal("Failed!", "Wrong pin try again", "warning");

@@ -85,6 +85,7 @@ const DashHome = () => {
 
   useEffect(() => {
     const user = getCurrentEmpoyee()
+    console.log("user",user)
     if (user) setEmployeeDash(user)
   }, [])
   return employeeDash === null ? <FullPageLoader /> : (

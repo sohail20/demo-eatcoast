@@ -47,7 +47,7 @@ const Btn = styled(Button)(({ theme }) => ({
   textTransform: "capitalize",
 }));
 
-function AddMealPlan({ handleOnClose }) {
+function AddMealPlan({selectedCuisine, handleOnClose }) {
   const [checked, setChecked] = React.useState(false);
   const [mealPlanData, setMealPlanData] = useState({ reviewStatus: false });
   const [word, setWord] = React.useState(0);
@@ -174,7 +174,7 @@ function AddMealPlan({ handleOnClose }) {
       endDate,
       forReview: true,
       addOnes: drawerMeal,
-      cuisine: "63a948c3cad5f26ec72e72fe",
+      cuisine: selectedCuisine._id,
       image: tmpImage,
     };
     Object.keys(formObject).map((keys) => {

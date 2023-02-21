@@ -67,7 +67,6 @@ export default function MenuTabs() {
           <MenuComponent />
         </TabPanel>
         <TabPanel value="2">
-          hjghjgjh
           <DishesMenu />
         </TabPanel>
         <TabPanel value="3">

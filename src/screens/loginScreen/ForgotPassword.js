@@ -30,7 +30,7 @@ export const ForgotPassword = () => {
 
   const handleSendRequest = () => {
     forgotPasswordRequest({ email }).then((res) => {
-      if (res.data) navigate("/checkemail");
+      if (res.data) navigate("/checkemail",{state:{email}});
     });
   };
   return (

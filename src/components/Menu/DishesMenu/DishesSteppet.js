@@ -118,25 +118,65 @@ export const DishesSteppet = ({ setStepper }) => {
     }
   };
 
+  function transformInToFormObject(data) {
+    let formData = new FormData();
+    for (let key in data) {
+      if (Array.isArray(data[key])) {
+        data[key].forEach((obj, index) => {
+          let keyList = Object.keys(obj);
+          keyList.forEach((keyItem) => {
+            let keyName = [key, "[", index, "]", ".", keyItem].join("");
+            formData.append(keyName, obj[keyItem]);
+          });
+        });
+      } else if (typeof data[key] === "object") { 
+        for (let innerKey in data[key]) {
+          formData.append(`${key}.${innerKey}`, data[key][innerKey]);
+        }
+      } else {
+        formData.append(key, data[key]);
+      }
+    }
+    return formData;
+  }
+
   const formik = useFormik({
     initialValues: {
-      dishName: "",
-      country: "Pakistan",
-      price: 1200,
-      repice: "",
-      category: "",
-      restaurent: "",
+      name: "",
+      description: "",
+      mealCourse: "",
+      addOnes: "",
+      forReview: true,
       image: "",
+      ingredient: [],
+      nutritionInformation: []
     },
-    onSubmit: (values) => {
-      let formData = new FormData(); //formdata object
+    onSubmit: (form) => {
 
-      Object.keys(values).map((keys) => {
-        formData.append(keys, values[keys]);
+      
+      let formData = new FormData()
+
+      for (let key in form) {
+        Array.isArray(form[key])
+            ? form[key].forEach(value => formData.append(key, value))
+            : formData.append(key, form[key]) ;
+    }
+      // Object.keys(values).map((keys) => {
+      //   if (Array.isArray(values[keys])){
+      //     console.log("key===>"+keys,values[keys])
+      //     formData.append(keys + "[]", values[keys]);}
+      //   else
+      //     formData.append(keys, values[keys]);
+      // });
+
+      // Display the values
+      // for (const value of formData.values()) {
+      //   console.log(value);
+      // }
+
+      addDishes(formData).then((res) => {
+        console.log("res-res", res);
       });
-        addDishes(formData).then((res) => {
-          console.log("res-res", res);
-        });
     },
   });
   // console.log(formik.values)
@@ -158,14 +198,6 @@ export const DishesSteppet = ({ setStepper }) => {
     }
   };
   const [isDialogOpen, setIsDialogOpen] = React.useState(false);
-
-  const handleOpenDialogDisshes = (activeStep) => {
-    if (activeStep === 2) {
-      setIsDialogOpen(true);
-    } else {
-      handleStepper();
-    }
-  };
 
   return (
     <>
@@ -287,7 +319,7 @@ export const DishesSteppet = ({ setStepper }) => {
                     Next
                   </Button>
                 </>
-              ) : activeStep === 2 ? (
+              ) : activeStep == 2 ? (
                 <>
                   <Button
                     onClick={handleStepperPrev}

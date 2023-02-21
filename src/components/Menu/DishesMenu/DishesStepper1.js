@@ -33,12 +33,6 @@ const Button1 = {
 
 export default function DishesStepper1({ formik, setStepper }) {
   const [image, setImage] = React.useState("./images/image profile.svg");
-  const [word, setWord] = React.useState(0);
-  const handleCount = (value) => {
-    if (value.length <= 80) {
-      setWord(value);
-    }
-  };
 
   useEffect(() => {
     if (formik.values.image !== "") {
@@ -57,7 +51,8 @@ export default function DishesStepper1({ formik, setStepper }) {
       <Container>
         <Box width="100%" sx={{ display: "flex", mt: 6 }}>
           <Box>
-            <img src={image} alt="" />
+            <img src={image} alt="" style={{ width: "96px", height: "97px" }}
+            />
           </Box>
           <Box sx={{ ml: "32px" }}>
             <Box>
@@ -116,9 +111,9 @@ export default function DishesStepper1({ formik, setStepper }) {
                 backgroundColor: "#F6F6F6",
                 color: "#9EA3AE",
               }}
-              id="dishName"
-              name="dishName"
-              value={formik.values.dishName}
+              id="name"
+              name="name"
+              value={formik.values.name}
               onChange={formik.handleChange}
             />
           </Box>
@@ -130,13 +125,11 @@ export default function DishesStepper1({ formik, setStepper }) {
               <Typo2>Description</Typo2>
             </Box>
             <Box sx={{ pt: "9px", pb: "8px" }}>
-              <Typo2 color="#9EA3AE">{word.length || 0}/80</Typo2>
+              <Typo2 color="#9EA3AE">{formik.values.description.length || 0}/80</Typo2>
             </Box>
           </Box>
           <Box>
             <TextField
-              onChange={(e) => handleCount(e.target.value)}
-              id="outlined-multiline-static"
               fullWidth
               placeholder="Type your reason"
               multiline
@@ -151,6 +144,10 @@ export default function DishesStepper1({ formik, setStepper }) {
                   color: "#E1E1E6",
                 },
               }}
+              id="description"
+              name="description"
+              value={formik.values.description}
+              onChange={formik.handleChange}
             />
           </Box>
         </Box>

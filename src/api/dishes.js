@@ -23,6 +23,20 @@ const extendedApi = api.injectEndpoints({
         body,
       }),
     }),
+    getAllDishes:build.query({
+      query:(body)=>({
+        url:"/caterer/all/dish",
+        method:"POST",
+        body      
+      })
+    }),
+    getAllMealCourses:build.query({
+      query:(body)=>({
+        url:"/caterer/all/mealcourse",
+        method:"POST",
+        body      
+      })
+    }),
     findDishesByRestaurant: build.query({
       query: (body) => ({
         url: `/dish/get/restaurant`,
@@ -34,4 +48,4 @@ const extendedApi = api.injectEndpoints({
   overrideExisting: false,
 });
 
-export const { useAddDishesMutation } = extendedApi;
+export const { useAddDishesMutation, useGetAllDishesQuery, useGetAllMealCoursesQuery } = extendedApi;

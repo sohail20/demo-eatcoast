@@ -11,9 +11,6 @@ import {
   Typography,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { addIngredient } from "./configdishes";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import { AspectRatioSharp } from "@mui/icons-material";
 
 //-=========== onClick addIngredieent fun start
 function containsObject(obj, list) {
@@ -29,6 +26,10 @@ function containsObject(obj, list) {
 
 export default function DishMenuSlider({
   isDrawerOpenStaff,
+  formik,
+  addIngredient,
+  handleUpdateValue,
+  selectedModal,
   setIsDrawerOpenStaff,
 }) {
   const Typo2 = styled(Typography)(({ theme }) => ({
@@ -93,7 +94,7 @@ export default function DishMenuSlider({
               component="div"
               textAlign={"start"}
               sx={{ color: "#E75C62", cursor: "pointer" }}
-              onClick={() => setIsDrawerOpenStaff(false)}
+              onClick={() => setIsDrawerOpenStaff(null)}
             >
               X
             </Typography>
@@ -112,6 +113,24 @@ export default function DishMenuSlider({
                 fontFamily: "Outfit",
                 fontSize: "14px",
                 "&:hover": { color: "#fff", background: "#2B817B" },
+              }}
+              onClick={()=>{
+                const tmpArray = []
+                const tmpString = []
+                ingredientonFly.map((item)=>{
+                  delete item.value.id
+                  delete item.value.image
+                  tmpString.push(item.value.name)
+                  tmpArray.push(item.value)
+                })
+                formik.setFieldValue(
+                  selectedModal === "nutrition"?"nutritionInformation":"ingredient",
+                  tmpArray
+                );
+                setIsDrawerOpenStaff(null)
+                setSearched([])
+                setingredientonFly([])
+                handleUpdateValue(selectedModal,tmpString.join(","))
               }}
             >
               Save
@@ -150,17 +169,19 @@ export default function DishMenuSlider({
                       </Box>
                       <Box display={"flex"} alignItems={"center"}>
                         <Box>
-                          <Typography
+                          <TextField
                             sx={{
-                              border: "1px sloid #E1E1E6",
+                              //border: "1px sloid #E1E1E6",
+                              "& fieldset": { border: 'none' },
                               width: "60px",
-                              height: "40px",
-                              padding: "5px 12px",
+                              height: "37px",
                               background: "#F6F6F6",
                             }}
-                          >
-                            {}
-                          </Typography>
+                            type="number"
+                            onChange={(e)=>{
+                              ingredientonFly[index].value.quantity = e.target.value
+                            }}
+                          />
                         </Box>
                         <Box style={{ padding: "5px" }}>
                           <Select
@@ -180,21 +201,15 @@ export default function DishMenuSlider({
                             id="demo-simple-select"
                             value={item.value.qty}
                             label="Age"
-                            // id={item.value.id}
-                            // onChange={(w) => {
-                            //     console.log(ingredientonFly.value, w)
-                            //     const tempArray = ingredientonFly.value;
-                            //     tempArray[index].qty = w.target.value;
-                            //     console.log(tempArray)
-                            //     setInd([...tempArray])
-                            //     // setItemValue()
-                            // }}
+                            defaultValue={"Gr"}
+                            onChange={(e)=>{
+                              ingredientonFly[index].value.unit = e.target.value
+                            }}
                           >
-                            <MenuItem value={11}>11 Pcs</MenuItem>
-                            <MenuItem value={5}>5 Pcs</MenuItem>
-                            <MenuItem value={300}>300 Gr</MenuItem>
-                            <MenuItem value={50}>50 Gr</MenuItem>
-                            <MenuItem value={30}>50 Gr</MenuItem>
+                            <MenuItem value="Pcs"> Pcs</MenuItem>
+                            <MenuItem value="%"> %</MenuItem>
+                            <MenuItem value="Gr"> Gr</MenuItem>
+                            <MenuItem value="Kg"> Kg</MenuItem>
                           </Select>
                         </Box>
                         <Box>
@@ -282,7 +297,7 @@ export default function DishMenuSlider({
                       >
                         <Box display={"flex"} alignItems={"center"}>
                           <img src={search.image} width={"40px"} alt="" />
-                          <Typo2>{search.title}</Typo2>
+                          <Typo2>{search.name}</Typo2>
                         </Box>
                         <Box>
                           <Typography
@@ -302,36 +317,6 @@ export default function DishMenuSlider({
                   );
                 })
               : null}
-
-            {/* {
-                            ind.map((item,index) => (
-                                <Box style={{ border: "1px solid #333", padding: "5px" }}>
-                                    <p>{item.label}</p>
-                                    <p>{item.value}</p>
-                                    <p>{ItemValue}</p>
-                                    <Select
-                                        labelId="demo-simple-select-label"
-                                        id="demo-simple-select"
-                                        value={item.qty}
-                                        label="Age"
-                                        onChange={(w) => {
-                                            const tempArray = ind
-                                            tempArray[index].qty = w.target.value
-                                            console.log(tempArray.qty, " here-=========")
-                                            setInd([...tempArray])
-                                            // setItemValue()
-                                        }}
-                                    >
-                                        <MenuItem onClick={()=>setItemValue(11)} value={11}>Pcs</MenuItem>
-                                        <MenuItem onClick={() => setItemValue(5)} value={5}>Pcs</MenuItem>
-                                        <MenuItem onClick={() => setItemValue(300)} value={300}>Gr</MenuItem>
-                                        <MenuItem onClick={() => setItemValue(50)} value={50}>Gr</MenuItem>
-                                        <MenuItem onClick={() => setItemValue(30)} value={30}>Gr</MenuItem>
-                                    </Select>
-                                </Box>
-                            ))
-                        } */}
-            {/* start from  here for search value */}
           </Box>
         </Box>
       </Drawer>

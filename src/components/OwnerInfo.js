@@ -81,11 +81,11 @@ export const Ownerinfo = ({ formik, handleStepper }) => {
           }}
           fullWidth
           size="small"
-          id="owberName"
-          name="owberName"
+          id="ownerName"
+          name="ownerName"
           placeholder="Owner Name"
           type="text"
-          value={formik.values.owberName}
+          value={formik.values.ownerName}
           onChange={formik.handleChange}
         />
         <label
@@ -197,7 +197,7 @@ export const Ownerinfo = ({ formik, handleStepper }) => {
                 }}
               >
                 {" "}
-                Set Pin{" "}
+                Set Password{" "}
               </Typography>
               <TextField
                 sx={{
@@ -217,7 +217,8 @@ export const Ownerinfo = ({ formik, handleStepper }) => {
                 size="small"
                 id="pin"
                 name="pin"
-                placeholder="xxxxx"
+                type="password"
+                placeholder="password"
                 value={formik.values.pin}
                 onChange={formik.handleChange}
               />

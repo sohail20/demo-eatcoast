@@ -6,6 +6,7 @@ import dish from "../Images/dish.png";
 import "../style.css";
 import AddPlanSection from "../AddPlanSection/AddPlanSection";
 import AddMealPlan from "../../addMealPlan/AddMealPlan";
+import CustomTabs from "components/Menu/AddMealPlan/Tabs"
 
 const Heading = styled(Typography)(({ theme }) => ({
   fontFamily: "Outfit",
@@ -25,12 +26,13 @@ const Btn = styled(Button)(({ theme }) => ({
   textTransform: "capitalize",
 }));
 
-function HeadBar({handleBack}) {
+function HeadBar({selectedCuisine, handleBack}) {
   const [showAddMealPlan, setShowAddMealPaln] = useState(false);
   return (
     <>
       {showAddMealPlan ? (
         <AddMealPlan
+          selectedCuisine={selectedCuisine}
           setShowAddMealPaln={setShowAddMealPaln}
           handleOnClose={() => setShowAddMealPaln(false)}
         />
@@ -101,7 +103,7 @@ function HeadBar({handleBack}) {
                 <Box sx={{ display: "flex", alignItems: "center" }}>
                   <img id="dish" src={dish} />
                   <Box sx={{ marginLeft: { lg: 2, md: 2, sm: 0, xs: 0 } }}>
-                    <Heading>Mesopotamian cuisine</Heading>
+                    <Heading>{selectedCuisine.subCuisine}</Heading>
 
                     <Para
                       sx={{
@@ -133,8 +135,8 @@ function HeadBar({handleBack}) {
                 Add Meal Plan
               </Btn>
             </Box>
-
-            <AddPlanSection />
+            <CustomTabs cuisineId={selectedCuisine._id}/>
+            {/* <AddPlanSection /> */}
           </Box>
         </Box>
       )}

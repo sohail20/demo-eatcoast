@@ -6,6 +6,9 @@ import { Box } from "@mui/material";
 import Active from "./Active";
 import UnderReview from "./UnderReview";
 import Submitted from "./Submitted";
+import { useMealPlaneByCuisineIdQuery } from "api/mealplane";
+import FullPageLoader from "components/Loader/FullPageLoader";
+import AddPlanSection from "screens/Menu2/Components/AddPlanSection/AddPlanSection";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -36,15 +39,22 @@ function a11yProps(index) {
   };
 }
 
-export default function CustomTabs() {
+export default function CustomTabs({ cuisineId }) {
   const [value, setValue] = React.useState(0);
 
+  const { data: cuisineData, isLoading } = useMealPlaneByCuisineIdQuery({
+    cuisineId,
+  });
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
-  return (
-    <Box sx={{ width: "100%"}}>
+  return isLoading ? (
+    <FullPageLoader />
+  ) : cuisineData && cuisineData.data === null ? (
+    <AddPlanSection />
+  ) : (
+    <Box sx={{ width: "100%" }}>
       <Box sx={{ borderBottom: "1px solid #E1E1E6", borderColor: "divider" }}>
         <Tabs
           textColor="secondary"
@@ -103,15 +113,19 @@ export default function CustomTabs() {
         </Tabs>
       </Box>
 
-      <TabPanel style={{ padding: "0px" }} value={value} index={0}>
-        <Active/>
-      </TabPanel>
-      <TabPanel value={value} index={1}>
-        <UnderReview/>
-      </TabPanel>
-      <TabPanel value={value} index={2}>
-        <Submitted/>
-      </TabPanel>
+      {cuisineData && cuisineData.data && (
+        <>
+          <TabPanel style={{ padding: "0px" }} value={value} index={0}>
+            <Active cuisineData={cuisineData.data} />
+          </TabPanel>
+          <TabPanel value={value} index={1}>
+            <UnderReview />
+          </TabPanel>
+          <TabPanel value={value} index={2}>
+            <Submitted />
+          </TabPanel>
+        </>
+      )}
     </Box>
   );
 }

@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { styled } from "@mui/material/styles";
 import Stack from "@mui/material/Stack";
@@ -127,16 +127,25 @@ export const Regsteppers = () => {
     initialValues: {
       merchantName: "",
       address: "",
-      certification: "",
-      BusinessLisence: "",
+      certificate: "",
+      licence: "",
       idCard: "",
-      owberName: "",
+      ownerName: "",
       email: "",
       phone: "",
       pin: "",
     },
+    
     onSubmit: (values) => {
-      getRegister({...values,password:"123456"}).then((res) => {
+      let formData = new FormData(); //formdata object
+
+      Object.keys(values).map((keys) => {
+        formData.append(keys, values[keys]);
+      });
+
+      formData.append("password", values.pin);
+        
+      getRegister(formData).then((res) => {
         if (res.data) handleStepper();
       });
     },
@@ -149,13 +158,24 @@ export const Regsteppers = () => {
       case 1:
         return <Ownerinfo formik={formik} />;
       case 2:
-        return <WaitingSvg handleStepperPrev={handleStepperPrev} />;
+        return <WaitingSvg email={formik.values.email} handleStepperPrev={handleStepperPrev} />;
       case 3:
         return <Finsh />;
       default:
         return "did not get any value";
     }
   };
+
+  useEffect(() => {
+    if (formik.values.certificate !== "") {
+      let reader = new FileReader();
+      reader.onloadend = () => {
+        //console.log(reader.result);
+      };
+
+      reader.readAsDataURL(formik.values.certificate);
+    }
+  }, [formik]);
 
   return (
     <Container maxWidth="md">
