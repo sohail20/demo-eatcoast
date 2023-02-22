@@ -14,3 +14,10 @@ export const getCurrentEmpoyee = () => {
 
   return false
 }
+
+
+export const generateImageURL = (key, image) => {
+  const development = "http://localhost:5055/image"
+  const production = "https://backend.eatcoast.ca/v1/image"
+  return `${process.env.NODE_ENV === "development" ? development : production}/${key}/${image}`
+}

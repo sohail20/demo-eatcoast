@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { Box, styled, Button, Grid, Stack } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import { CenteredBoxContainer, FlexBoxContainer } from "components/Containers";
@@ -8,6 +8,7 @@ import UnderlineButton from "components/Button/UnderlineButton";
 import { useFormik } from "formik";
 import debounce from "lodash.debounce";
 import CustomIconButton from "components/Button/CustomIconButton";
+import { getCurrentEmpoyee } from "helper";
 
 const Typo1 = styled("div")(({ theme }) => ({
   // padding: theme.spacing(0, 2),
@@ -31,6 +32,7 @@ const Button1 = {
 
 const ProfileSettings = () => {
   const [hasChanged, setHasChanged] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
   const [image, setImage] = useState("./images/image profile.svg");
   const formik = useFormik({
     initialValues: {
@@ -55,6 +57,14 @@ const ProfileSettings = () => {
     []
   );
 
+  useMemo(()=>{
+    const user = getCurrentEmpoyee()
+    if(user){
+      formik.initialValues.ownerName = user.ownerName
+      formik.initialValues.email = user.email
+      formik.initialValues.phone = user.phone
+   }
+  })
   useEffect(() => {
     if (formik.values.image !== "") {
       let reader = new FileReader();
@@ -75,7 +85,7 @@ const ProfileSettings = () => {
             <Grid item xs={12} sm={12} md={4}>
               <Box>
                 <CenteredBoxContainer>
-                   <img
+                  <img
                     src={image}
                     alt=""
                     style={{ width: "96px", height: "97px" }}
@@ -140,6 +150,7 @@ const ProfileSettings = () => {
                   placeholder="Ilham Syaif"
                   id="ownerName"
                   name="ownerName"
+                  disabled
                   value={formik.values.ownerName}
                   onChange={formik.handleChange}
                 />
@@ -147,6 +158,7 @@ const ProfileSettings = () => {
                   label="Email"
                   placeholder="Ilhamsyaif@gmail.com"
                   id="email"
+                  disabled
                   name="email"
                   value={formik.values.email}
                   onChange={formik.handleChange}

@@ -1,5 +1,5 @@
-// BASE_URL for APIS
-const BASE_URL = "https://backend.eatcoast.ca/v1/api";
+// BASE_URL for APIS https://backend.eatcoast.ca/v1/api
+const BASE_URL = "http://localhost:5055/api";
 const token = localStorage.getItem("token");
 const config = {
   "Authorization": `Bearer ${token}`,

@@ -20,14 +20,14 @@ const CustomTextArea = styled(TextareaAutosize)(({ theme }) => ({
 
 const initiallyValues = { lat: 25.395969, lng: 68.357773 };
 
-const ChangeLocation = ({ handleClose, handleSubmitForm }) => {
+const ChangeLocation = ({addRestaurantData, handleClose, handleSubmitForm }) => {
   const [latLng, setLatLng] = useState(initiallyValues);
   const formik = useFormik({
     initialValues: {
-      address: "",
+      address: addRestaurantData.address || "",
       lat: initiallyValues.lat,
       lng: initiallyValues.lng,
-      note: "",
+      note: addRestaurantData.note || "",
     },
     onSubmit: (values, action) => {
       handleSubmitForm(values);

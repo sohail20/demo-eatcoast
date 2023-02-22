@@ -208,7 +208,7 @@ const Subscription = () => {
 
   const [value, setValue] = React.useState(0);
   const [showDetailSubscription, setShowDetailSubscription] = useState(false);
-  const [selectedSubs,setSelectedSubs] = useState("") 
+  const [selectedSubs, setSelectedSubs] = useState("")
   const [searchVal, setSearchVal] = React.useState("");
   const [btnActive, setBtnActive] = React.useState(false);
   const [btnPaused, setBtnPaused] = React.useState(false);
@@ -217,8 +217,11 @@ const Subscription = () => {
     setValue(newValue);
   };
 
-
-  const { data: AllSubs, isLoading } = useGetAllSubscriptionsQuery()
+  const { data: AllSubs, isLoading } = useGetAllSubscriptionsQuery({
+    "catererId": "63c00bce2197ca82a09533ec",
+    "page": 1,
+    "size": 10
+  })
 
   const subscriptionTableColumns = [
     { field: "#", hide: true },
@@ -323,10 +326,10 @@ const Subscription = () => {
         return (
           <>
             <Box>
-              <Button sx={{ color: "#42C677", textTransform: "none" }} onClick={() =>{
-                 setShowDetailSubscription(true)
-                 setSelectedSubs(params.row._id)
-                }} variant="text">Detail</Button>
+              <Button sx={{ color: "#42C677", textTransform: "none" }} onClick={() => {
+                setShowDetailSubscription(true)
+                setSelectedSubs(params.row._id)
+              }} variant="text">Detail</Button>
             </Box>
           </>
         );

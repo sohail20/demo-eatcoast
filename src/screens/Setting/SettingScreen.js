@@ -1,12 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Container, Box, Typography, Grid } from "@mui/material";
 import SubscriptionChart from "./Components/SubscriptionChart/SubscriptionChart";
 import ButtonsScreen from "./Components/ButtonsScreen/ButtonsScreen";
 import "./style.css";
+import { useGetManagerDashQuery } from "api/dashboard";
+import FullPageLoader from "components/Loader/FullPageLoader";
 
 
 function SettingScreen({ handleChangeScreen }) {
-  return (
+
+  const { data: managerDash, isLoading } = useGetManagerDashQuery()
+
+  return isLoading ? <FullPageLoader /> : (
     <>
       {/* <Box component='div' sx={{borderBottom:'1px solid #E1E1E6',height:'84px',width:'100%',}}></Box> */}
 
@@ -37,57 +42,56 @@ function SettingScreen({ handleChangeScreen }) {
               >
                 Total Subscription
               </Typography>
-
-              <SubscriptionChart />
+              {managerDash && <SubscriptionChart figure={[...Object.values(managerDash.data.allSubscriptions)]} />}
             </Box>
           </Grid>
           <Grid lg={6} md={6} sm={12} xs={12}>
-              <Box
-                className="chartBox"
+            <Box
+              className="chartBox"
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                // justifyContent: "center",
+                border: "1px solid #E1E1E6",
+                borderRadius: "4px",
+                // minHeight: "35vh",
+                minHeight: "240px",
+                height: "auto",
+                flexDirection: "column",
+                padding: "10px",
+                margin: 2,
+              }}
+            >
+              <Typography
                 sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  // justifyContent: "center",
-                  border: "1px solid #E1E1E6",
-                  borderRadius: "4px",
-                  // minHeight: "35vh",
-                  minHeight: "240px",
-                  height:"auto",
-                  flexDirection: "column",
-                  padding: "10px",
-                  margin: 2,
+                  fontSize: "14px",
+                  color: "#545359",
+                  fontWeight: "600",
+                  mt: "10px"
                 }}
               >
-                <Typography
-                  sx={{
-                    fontSize: "14px",
-                    color: "#545359",
-                    fontWeight: "600",
-                    mt:"10px"
-                  }}
-                >
-                  Total Meals Prepared
-                </Typography>
-                <Typography
-                  sx={{
-                    fontSize: { xs: "24px", md: "32px" },
-                    fontWeight: "600",
-                    marginTop: 3,
-                  }}
-                >
-                  1352
-                </Typography>
-                <Typography
-                  sx={{
-                    marginTop: 3,
-                    color: "#9EA3AE",
-                    fontSize: "16px",
-                    fontWeight: "400",
-                  }}
-                >
-                  Meals Plan
-                </Typography>
-              </Box>
+                Total Meals Prepared
+              </Typography>
+              {managerDash && <Typography
+                sx={{
+                  fontSize: { xs: "24px", md: "32px" },
+                  fontWeight: "600",
+                  marginTop: 3,
+                }}
+              >
+                {managerDash.data.TopSellingMP.length}
+              </Typography>}
+              <Typography
+                sx={{
+                  marginTop: 3,
+                  color: "#9EA3AE",
+                  fontSize: "16px",
+                  fontWeight: "400",
+                }}
+              >
+                Meals Plan
+              </Typography>
+            </Box>
           </Grid>
         </Grid>
       </Container>

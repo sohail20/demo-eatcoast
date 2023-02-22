@@ -1,3 +1,4 @@
+import { getCurrentEmpoyee } from "helper";
 import { api } from "../store/middleware/api";
 const extendedApi = api.injectEndpoints({
   endpoints: (build) => ({
@@ -17,10 +18,10 @@ const extendedApi = api.injectEndpoints({
     }),
 
     updateRestaurant: build.mutation({
-      query: (body) => ({
-        url: `/restaurant/update`,
+      query: ({id,data}) => ({
+        url: `/restaurant/update/${id}`,
         method: "POST",
-        body,
+        body:data,
       }),
     }),
     searchRestaurant: build.mutation({
@@ -32,6 +33,21 @@ const extendedApi = api.injectEndpoints({
     }),
     getRestaurantById: build.mutation({
       query: (query) => `/restaurant/${query}`,
+    }),
+    getRestaurantByUserId: build.query({
+      async queryFn(_arg, _queryApi, _extraOptions, fetchWithBQ) {
+        const user = getCurrentEmpoyee()
+        if (user) {
+          const restaurantResponse = await fetchWithBQ({
+            url: `/restaurant/user/${user._id}`,
+            method: "GET",
+          });
+          if (restaurantResponse.error)
+            return swal("Failed!", loginResponse.error.data.message, "warning");
+          swal("Success!", restaurantResponse.data.message, "success");
+          return restaurantResponse;
+        }
+      },
     }),
     getAllRestaurants: build.mutation({
       query: (query) => `/restaurant`,
@@ -45,5 +61,6 @@ export const {
   useDeleteRestaurantMutation,
   useUpdateRestaurantMutation,
   useSearchRestaurantMutation,
+  useGetRestaurantByUserIdQuery,
   useGetRestaurantByIdMutation,
 } = extendedApi;

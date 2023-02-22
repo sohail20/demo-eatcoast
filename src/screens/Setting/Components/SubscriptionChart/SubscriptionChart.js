@@ -2,10 +2,10 @@ import React from 'react'
 import Charts from 'react-apexcharts';
 import '../../style.css';
 
- const SubscriptionChart = () => {
+ const SubscriptionChart = ({figure}) => {
 
     const options = {
-        series: [9, 25, 10, 24, 32],
+        series: figure,
         chart: {
             type: 'donut',
             width: '300px',

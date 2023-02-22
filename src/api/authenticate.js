@@ -1,3 +1,4 @@
+import { getCurrentEmpoyee } from "helper";
 import swal from "sweetalert";
 import { api } from "../store/middleware/api";
 
@@ -69,7 +70,40 @@ const extendedApi = api.injectEndpoints({
         swal("Success!", loginResponse.data.message, "success");
         return loginResponse;
       },
-    })
+    }),
+    getCatererDocument: build.query({
+      async queryFn(_arg, _queryApi, _extraOptions, fetchWithBQ) {
+        const user = getCurrentEmpoyee()
+        if (user) {
+          const docResponse = await fetchWithBQ({
+            url: `/caterer/get/document/${user._id}`,
+            method: "GET",
+          });
+          if (docResponse.error)
+            return swal("Failed!", docResponse.error.data.message, "warning");
+          swal("Success!", docResponse.data.message, "success");
+          return docResponse;
+        }
+      },
+      providesTags:["Documents"]
+    }),
+    updateCatererDoc: build.mutation({
+      async queryFn(_arg, _queryApi, _extraOptions, fetchWithBQ) {
+        const user = getCurrentEmpoyee()
+        if (user) {
+          const docResponse = await fetchWithBQ({
+            url: `/auth/update/caterer/document/${user._id}`,
+            method: "POST",
+            body: _arg
+          });
+          if (docResponse.error)
+            return swal("Failed!", docResponse.error.data.message, "warning");
+          swal("Success!", docResponse.data.message, "success");
+          return docResponse;
+        }
+      },
+      invalidatesTags: ["Documents"]
+    }),
   }),
   overrideExisting: false,
 });
@@ -78,5 +112,7 @@ export const {
   useGetAuthenticateMutation,
   useForgotPasswordMutation,
   useVerifyOTPMutation,
-  useVerifyLoginOTPMutation
+  useVerifyLoginOTPMutation,
+  useGetCatererDocumentQuery,
+  useUpdateCatererDocMutation
 } = extendedApi;

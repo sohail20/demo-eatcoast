@@ -12,6 +12,8 @@ import StarIcon from "@mui/icons-material/Star";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import CustomizedLineChart from "components/Charts/LineChart";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
+import { useGetFeedbackQuery } from "api/feedback";
+import FullPageLoader from "components/Loader/FullPageLoader";
 
 const CustomStarIcon = styled(StarIcon)(() => ({
   fontSize: "18px",
@@ -87,6 +89,7 @@ const subscriptionType = [
 ];
 
 const CustomerFeedbackDashboard = ({ handleBack }) => {
+  const { data: FeedBackData, isLoading } = useGetFeedbackQuery();
   const [currentFeedBackType, setCurrentFeedBackType] = useState(
     "fitness-subscription"
   );
@@ -99,7 +102,11 @@ const CustomerFeedbackDashboard = ({ handleBack }) => {
     );
     setFeedBack(filteredArray);
   };
-  return (
+
+  console.log("FeedBackData", FeedBackData);
+  return isLoading ? (
+    <FullPageLoader />
+  ) : (
     <>
       <Box
         display={"flex"}

@@ -8,34 +8,29 @@ import DocumentEmployee from "components/Document/Employee/DocumentEmployee";
 import Chat from "../Staff/Orders/Chat";
 import Profile from "./Profile";
 import ChangeLocation from "./Profile/ChangeLocation";
-import { useAddRestaurantMutation } from "api/restaurant";
+import { useAddRestaurantMutation, useUpdateRestaurantMutation } from "api/restaurant";
 
 const Settings = () => {
   const [addRestaurantData, setAddRestaurantData] = useState([]);
+  const [hasRestaurantID, setHasRestaurantID] = useState(null)
   const [currentPage, setCurrentTab] = useState("dashboard");
   const [addRestaurant, { isLoading }] = useAddRestaurantMutation();
-
+  const [updatedRestaurant, { isLoading: isUpdating }] = useUpdateRestaurantMutation()
   const handleSubmit = (values) => {
     let formData = new FormData(); //formdata object
-    let addressData = {};
     Object.keys(values).map((keys) => {
-      if (
-        keys === "lat" ||
-        keys === "lng" ||
-        keys === "address" ||
-        keys === "note"
-      )
-        Object.assign(addressData, { [keys]: values[keys] });
-      else formData.append(keys, values[keys]);
+      formData.append(keys, values[keys]);
     });
 
-    formData.append("address", values.address);
-    addRestaurant(formData);
+    if (hasRestaurantID !== null) updatedRestaurant({ id: hasRestaurantID, data: formData })
+    else addRestaurant(formData);
   };
   const renderTab = {
     profile: (
       <Profile
-        handleChangeAddress={(e) => {
+        handleChangeAddress={(e, id) => {
+          if (id !== undefined)
+            setHasRestaurantID(id)
           setAddRestaurantData(e);
           setCurrentTab("changeAddress");
         }}
@@ -50,6 +45,7 @@ const Settings = () => {
     contactSupport: <Chat title="Live Chat" handleClose={() => setCurrentTab("dashboard")} />,
     changeAddress: (
       <ChangeLocation
+        addRestaurantData={addRestaurantData}
         handleClose={() => setCurrentTab("profile")}
         handleSubmitForm={(e) => {
           handleSubmit({ ...addRestaurantData, ...e });

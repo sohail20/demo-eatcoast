@@ -6,6 +6,7 @@ import { Box } from "@mui/material";
 import CloseHeader from "components/Header/CloseHeader";
 import ProfileSettings from "./ProfileSettings";
 import RestaurantSettings from "./RestaurantSettings";
+import { getCurrentEmpoyee } from "helper";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -38,10 +39,15 @@ function a11yProps(index) {
 
 export default function Profile({handleChangeAddress, handleBack }) {
   const [value, setValue] = React.useState(0);
-
+  const [userData,setUserData] = React.useState({})
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+
+  React.useEffect(()=>{
+    const user = getCurrentEmpoyee()
+    if(user) setUserData(user)
+  },[])
 
   return (
     <Box sx={{ width: "100%" }}>
@@ -98,7 +104,9 @@ export default function Profile({handleChangeAddress, handleBack }) {
         <ProfileSettings />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <RestaurantSettings handleChangeAddress={(formValues)=>handleChangeAddress(formValues)}/>
+        <RestaurantSettings handleChangeAddress={(formValues,id)=>{
+          handleChangeAddress(formValues,id)
+          }}/>
       </TabPanel>
     </Box>
   );

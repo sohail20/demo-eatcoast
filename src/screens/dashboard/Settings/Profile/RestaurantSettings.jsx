@@ -1,4 +1,4 @@
-import { useCallback, useState, useEffect } from "react";
+import { useCallback, useState, useEffect, useMemo } from "react";
 import { Box, styled, Button, Grid, Stack } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import { CenteredBoxContainer, FlexBoxContainer } from "components/Containers";
@@ -8,6 +8,9 @@ import UnderlineButton from "components/Button/UnderlineButton";
 import { useFormik } from "formik";
 import debounce from "lodash.debounce";
 import CustomIconButton from "components/Button/CustomIconButton";
+import { useGetRestaurantByUserIdQuery } from "api/restaurant";
+import FullPageLoader from "components/Loader/FullPageLoader";
+import { generateImageURL } from "helper";
 
 const Typo1 = styled("div")(({ theme }) => ({
   // padding: theme.spacing(0, 2),
@@ -29,13 +32,17 @@ const Button1 = {
   marginTop: "10px",
 };
 
-const RestaurantSettings = ({handleChangeAddress}) => {
+const RestaurantSettings = ({ handleChangeAddress }) => {
   const [hasChanged, setHasChanged] = useState(false);
+  const [hasRestaurant,setHasRestaurant] = useState(false)
   const [image, setImage] = useState("./images/image profile.svg");
+  const { data: restaurant, isLoading } = useGetRestaurantByUserIdQuery();
   const formik = useFormik({
     initialValues: {
       name: "",
       image: "",
+      address:"",
+      note:""
     },
     onSubmit: (values) => {
       console.log(values);
@@ -49,8 +56,27 @@ const RestaurantSettings = ({handleChangeAddress}) => {
     []
   );
 
+  useMemo(() => {
+    if(restaurant && restaurant.data){
+      const {name, address, image, note} = restaurant.data
+      formik.initialValues.name = name
+      formik.initialValues.address = address
+      formik.initialValues.note = note
+      setImage(generateImageURL("restaurantImages",image))
+      setHasRestaurant(true)
+    }
+  }, [restaurant]);
+
   useEffect(() => {
-    if (formik.values.image !== "") {
+
+    // if(restaurant && restaurant.data){
+    //   console.log("restaurant.data",restaurant.data.address)
+    //   formik.initialValues.name = restaurant.data.name
+    //   formik.initialValues.address = restaurant.data.address
+    //   console.log("v",restaurant.data)
+    //   setImage(`http://localhost:5055/image/restaurantImages/${restaurant.data.image}`)
+    // }
+    if (typeof formik.values.image !== "string") {
       let reader = new FileReader();
       reader.onloadend = () => {
         setImage(reader.result);
@@ -60,7 +86,9 @@ const RestaurantSettings = ({handleChangeAddress}) => {
     }
   }, [formik]);
 
-  return (
+  return isLoading ? (
+    <FullPageLoader />
+  ) : (
     <form onSubmit={formik.handleSubmit} onChange={onChangeValue}>
       <Grid container>
         <Grid item xs={12} sm={12} md={2}></Grid>
@@ -144,7 +172,7 @@ const RestaurantSettings = ({handleChangeAddress}) => {
                   name="address"
                   value={formik.values.address}
                   onChange={formik.handleChange}
-                  onClick={()=>handleChangeAddress(formik.values)}
+                  onClick={() => handleChangeAddress(formik.values, restaurant.data._id)}
                 />
               </Stack>
             </Grid>

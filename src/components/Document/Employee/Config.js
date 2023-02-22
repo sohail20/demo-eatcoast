@@ -1,5 +1,6 @@
 export const Data = [
     {
+        id:"bussinessLicence",
         title: "Business License",
         subTitle: "Chef Juna Business License.jpg",
         image: "./images/directbox-notif.svg",
@@ -8,6 +9,7 @@ export const Data = [
         hasOutlineBtn: true,
     },
     {
+        id:"certification",
         title: "Food Safety Certificate",
         subTitle: "Chef Juna Business License.jpg",
         image: "./images/directbox-notif.svg",
