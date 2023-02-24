@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { Box, Grid, Stack, styled } from "@mui/material";
 
 //components
@@ -89,21 +89,33 @@ const subscriptionType = [
 ];
 
 const CustomerFeedbackDashboard = ({ handleBack }) => {
-  const { data: FeedBackData, isLoading } = useGetFeedbackQuery();
+  const [query, setQuery] = useState("page=1&size=10");
+  const { data: FeedBackData, isLoading } = useGetFeedbackQuery(query);
   const [currentFeedBackType, setCurrentFeedBackType] = useState(
     "fitness-subscription"
   );
-  const [feedback, setFeedBack] = useState(tmpSubsArray);
+  const [feedback, setFeedBack] = useState([]);
 
   const handleUpdateFeedback = (val) => {
     setCurrentFeedBackType(val);
-    const filteredArray = tmpSubsArray.filter(
-      (e) => e.subscriptionType === val
+    const filteredArray = FeedBackData.data.feedback.filter(
+      (e) => e.result.type === val
     );
     setFeedBack(filteredArray);
   };
 
-  console.log("FeedBackData", FeedBackData);
+  const updateQuery = useCallback(
+    (query) => {
+      console.log(query);
+      setQuery(query);
+    },
+    [query]
+  );
+
+  useEffect(() => {
+    if (FeedBackData && FeedBackData.data)
+      setFeedBack(FeedBackData.data.feedback);
+  }, [FeedBackData]);
   return isLoading ? (
     <FullPageLoader />
   ) : (
@@ -147,7 +159,7 @@ const CustomerFeedbackDashboard = ({ handleBack }) => {
                   </Box>
 
                   <H1Typo style={{ textAlign: "end", marginTop: "10px" }}>
-                    4.4 / 5
+                    {FeedBackData.data.average} / 5
                   </H1Typo>
                   <LightTitle style={{ textAlign: "end" }}>
                     Avg. rating
@@ -156,14 +168,11 @@ const CustomerFeedbackDashboard = ({ handleBack }) => {
               </FlexBoxContainer>
             </BorderContainer>
 
-            {[
-              { value: 80 },
-              { value: 60 },
-              { value: 40 },
-              { value: 20 },
-              { value: 5 },
-            ].map((item, index) => (
-              <CustomizedLineChart value={item.value} stars={index} />
+            {Object.keys(FeedBackData.data.counts).map((item, index) => (
+              <CustomizedLineChart
+                value={FeedBackData.data.counts[item]}
+                stars={index + 1}
+              />
             ))}
 
             {subscriptionType.map((item, index) => (
@@ -196,6 +205,9 @@ const CustomerFeedbackDashboard = ({ handleBack }) => {
                     width: "95px",
                     background: "#FAA641",
                   }}
+                  onClick={()=>{
+                    updateQuery(`page=1&size=10`);
+                  }}
                 >
                   <LightTitle style={{ color: "#fff" }}>All Review</LightTitle>
                 </BorderContainer>
@@ -207,6 +219,10 @@ const CustomerFeedbackDashboard = ({ handleBack }) => {
                       padding: 0,
                       width: "61px",
                       marginLeft: 10,
+                      cursor: "pointer",
+                    }}
+                    onClick={() => {
+                      updateQuery(`page=1&size=10&sortBy=${i}`);
                     }}
                   >
                     <LightTitle>{i}</LightTitle>
@@ -219,11 +235,10 @@ const CustomerFeedbackDashboard = ({ handleBack }) => {
               </LightTitle>
             </FlexBoxContainer>
 
-            {feedback
-              .filter((e) => e.subscriptionType === currentFeedBackType)
-              .map((item) => (
-                <FeedBackCard item={item} />
-              ))}
+            {feedback.map((item) => (
+              <FeedBackCard item={item} />
+            ))}
+            {feedback.length == 0 && <LightTitle style={{ textAlign:"center", width:"100%"}}>No Result Found</LightTitle>}
           </Stack>
         </Grid>
       </Grid>
@@ -231,29 +246,35 @@ const CustomerFeedbackDashboard = ({ handleBack }) => {
   );
 };
 
+// {feedback
+//   .filter((e) => e.subscriptionType === currentFeedBackType)
+//   .map((item) => (
+//     <FeedBackCard item={item} />
+//   ))}
+
 const FeedBackCard = ({ item }) => (
   <BorderContainer>
     <Box width="100%">
       <FlexBoxContainer>
         <Box>
-          {[...Array(5)].map(() => (
+          {[...Array(item.stars)].map(() => (
             <CustomStarIcon style={{ color: "#FAA641" }} />
           ))}
         </Box>
         {subscriptionType.map((e) => {
-          if (item.subscriptionType === e.id)
+          if (item.result.type === e.id)
             return <SimpleChips label={e.label} chipColor="#FF8D85" />;
         })}
       </FlexBoxContainer>
 
       <Box mt={2} style={{ borderBottom: "1px solid #F6F6F6" }} pb={2}>
-        <H1Typo>{item.customerName}</H1Typo>
-        <LightTitle>{item.date}</LightTitle>
+        <H1Typo>{item.result.userData[0].fullName}</H1Typo>
+        <LightTitle>{item.result.createdAt}</LightTitle>
       </Box>
 
       <Box mt={2}>
-        <H1Typo>{item.subject}</H1Typo>
-        <LightTitle>{item.message}</LightTitle>
+        <H1Typo>{item.name}</H1Typo>
+        <LightTitle>{item.comment}</LightTitle>
       </Box>
     </Box>
   </BorderContainer>
