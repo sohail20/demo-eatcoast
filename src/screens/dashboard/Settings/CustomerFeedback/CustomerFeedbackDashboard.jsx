@@ -14,6 +14,7 @@ import CustomizedLineChart from "components/Charts/LineChart";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import { useGetFeedbackQuery } from "api/feedback";
 import FullPageLoader from "components/Loader/FullPageLoader";
+import { subscriptionType } from "helper";
 
 const CustomStarIcon = styled(StarIcon)(() => ({
   fontSize: "18px",
@@ -64,29 +65,7 @@ const tmpSubsArray = [
   },
 ];
 
-const subscriptionType = [
-  {
-    label: "Personal subscription",
-    id: "personal-subscription",
-    color: "#7B49E5",
-  },
-  {
-    label: "Fitness subscription",
-    id: "fitness-subscription",
-    color: "#FF8D85",
-  },
-  {
-    label: "Multiple subscription",
-    id: "multiple-subscription",
-    color: "#158FAD",
-  },
-  { label: "Single order", id: "single-order", color: "#7ECC49" },
-  {
-    label: "Bussines subscription",
-    id: "bussines-subscription",
-    color: "#FF9933",
-  },
-];
+
 
 const CustomerFeedbackDashboard = ({ handleBack }) => {
   const [query, setQuery] = useState("page=1&size=10");
@@ -231,7 +210,7 @@ const CustomerFeedbackDashboard = ({ handleBack }) => {
                 ))}
               </Box>
               <LightTitle style={{ textAlign: "end" }}>
-                {"( 52 Review )"}
+                ( {FeedBackData.data.queryCount} Review )
               </LightTitle>
             </FlexBoxContainer>
 

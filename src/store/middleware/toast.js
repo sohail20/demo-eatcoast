@@ -9,7 +9,7 @@ const toast = (store) => (next) => (action) => {
     action.payload.status !== undefined &&
     action.payload.status === true
   )
-    if(action.payload.message !== undefined) swal("Success", action.payload.message, "warning");
+    if(action.payload.message !== undefined) swal("Success", action.payload.message, "success");
   return next(action);
 };
 

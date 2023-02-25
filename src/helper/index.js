@@ -21,3 +21,27 @@ export const generateImageURL = (key, image) => {
   const production = "https://backend.eatcoast.ca/v1/image"
   return `${process.env.NODE_ENV === "development" ? development : production}/${key}/${image}`
 }
+
+export const subscriptionType = [
+  {
+    label: "Personal subscription",
+    id: "personal-subscription",
+    color: "#7B49E5",
+  },
+  {
+    label: "Fitness subscription",
+    id: "fitness-subscription",
+    color: "#FF8D85",
+  },
+  {
+    label: "Multiple subscription",
+    id: "multiple-subscription",
+    color: "#158FAD",
+  },
+  { label: "Single order", id: "single-order", color: "#7ECC49" },
+  {
+    label: "Bussines subscription",
+    id: "bussines-subscription",
+    color: "#FF9933",
+  },
+];

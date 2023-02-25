@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Grid, Box, Stack } from "@mui/material";
 import RequestCard from "components/Cards/RequestCard";
 import CustomizedDrop from "components/Inputs/DropDown";
 import CloseHeader from "components/Header/CloseHeader";
+import { useGetAllOrderQuery, useGetSingleOrderDetailQuery, useUpdateOrderStatusMutation } from "api/order";
+import FullPageLoader from "components/Loader/FullPageLoader";
 
 const requestData = [
   {
@@ -52,8 +54,20 @@ const requestData = [
 ];
 
 const Request = () => {
-  const [showDetails, setShowDetail] = useState(0);
-  return (
+  const { data: RequestedOrder, isLoading } = useGetAllOrderQuery(
+    `page=1&size=10&sortBy=asc&status=request`
+  );
+
+  const [updateOrderStauts,{isLoading:isUpdating}] = useUpdateOrderStatusMutation()
+  const [showDetails, setShowDetail] = useState(null);
+
+  const handleUpdateStatus = (id)=>{
+    updateOrderStauts({id,status:"approved"})
+  }
+
+  return isLoading || isUpdating ? (
+    <FullPageLoader />
+  ) : (
     <>
       <CustomizedDrop
         title="Sort by"
@@ -98,13 +112,13 @@ const Request = () => {
       <Grid container spacing={2} mt={2}>
         <Grid item xs={12} sm={12} md={6}>
           <Stack spacing={2}>
-            {requestData.map((item, index) => (
+            {RequestedOrder.data.map((item, index) => (
               <Grid item xs={12} sm={12} md={12}>
                 <RequestCard
                   item={item}
-                  handleOnClickDetail={(id) => setShowDetail(index)}
+                  handleOnClickDetail={(id) => setShowDetail(id)}
                   handleOnClickAccept={(id) =>
-                    console.log("handleOnClickAccept", id)
+                    handleUpdateStatus(id)
                   }
                 />
               </Grid>
@@ -120,7 +134,7 @@ const Request = () => {
         >
           {showDetails !== null && (
             <RequestDetail
-              request={requestData[showDetails]}
+              request={showDetails}
               handleCloseDetail={() => setShowDetail(null)}
             />
           )}
@@ -131,16 +145,43 @@ const Request = () => {
 };
 
 const RequestDetail = ({ request, handleCloseDetail }) => {
-  return (
+  const { data: singleOrderDetail, isLoading } =
+    useGetSingleOrderDetailQuery(request);
+  const [subscription, setSubscription] = useState([]);
+  const [deliveryData, setDeliveryData] = useState({});
+  const [paymentDetails, setPaymentDetails] = useState({});
+
+  useEffect(() => {
+    if (
+      singleOrderDetail &&
+      singleOrderDetail.deliveryDetails &&
+      singleOrderDetail.deliveryDetails[0]
+    ) {
+      setSubscription(singleOrderDetail.deliveryDetails[0].subscriptionId);
+      setDeliveryData({
+        from: singleOrderDetail.deliveryDetails[0].deliveryTime,
+        to: singleOrderDetail.deliveryDetails[0].deliveryTime,
+      });
+      setPaymentDetails(singleOrderDetail.paymentDetails[0]);
+    }
+  }, []);
+
+  console.log("singleOrderDetail",singleOrderDetail)
+
+  return isLoading ? (
+    <FullPageLoader />
+  ) : (
     <>
       <CloseHeader handleClose={handleCloseDetail} title={"Detail Request"} />
-      <RequestCard
-        borderLess
-        item={request}
-        variant="modal"
-        handleOnClickDetail={(id) => console.log("handleOnClickDetail", id)}
-        handleOnClickAccept={(id) => console.log("handleOnClickAccept", id)}
-      />
+      {singleOrderDetail && singleOrderDetail.data && (
+        <RequestCard
+          borderLess
+          item={singleOrderDetail.data}
+          variant="modal"
+          handleOnClickDetail={(id) => console.log("handleOnClickDetail", id)}
+          handleOnClickAccept={(id) => console.log("handleOnClickAccept", id)}
+        />
+      )}
     </>
   );
 };
