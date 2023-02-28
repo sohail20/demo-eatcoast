@@ -28,12 +28,30 @@ const LabelTypography = styled(Typography)({
 });
 
 const SubsChipColor = {
-  "Fitness subscription": "#FF8D85",
-  "Personal subscription": "#7B49E5",
-  "Bussines subscription": "#FF9933",
-  "Single order": "#7ECC49",
-  "On Progress": "#FAA641",
-  Cooked: "#42C677",
+  "fitness-subscription": {
+    label: "Fitness subscription",
+    color: "#FF8D85"
+  },
+  "personal-subscription": {
+    label: "Personal subscription",
+    color: "#7B49E5"
+  },
+  "multiple-subscription":{
+    label:"Multiple subscription",
+    color:"#158FAD"
+  },
+  "dietary-subscription":{
+    label:"Dietary Subscription",
+    color:"#FF8D85"
+  },
+  "bussines-subscription": {
+    label: "Bussines subscription",
+    color: "#FF9933"
+  },
+  "single-order": { label: "Single order", color: "#7ECC49" },
+  "on-progress": { label: "On Progress", color: "#FAA641" },
+  cooked: { label: "Cooked", color: "#42C677" },
+  packed: { label: "Packed", color: "#42C677" },
 };
 
 const SimpleChips = ({ label, chipColor }) => {
@@ -41,11 +59,11 @@ const SimpleChips = ({ label, chipColor }) => {
     <MyComponent
       style={{
         backgroundColor: SubsChipColor.hasOwnProperty(label)
-          ? SubsChipColor[label]
+          ? SubsChipColor[label].color
           : chipColor,
       }}
     >
-      <LabelTypography>{label}</LabelTypography>
+      {SubsChipColor && SubsChipColor[label] && <LabelTypography>{SubsChipColor[label].label}</LabelTypography>}
     </MyComponent>
   );
 };

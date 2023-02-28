@@ -4,43 +4,59 @@ import SimpleChips from "components/Chips/SimpleChips";
 import { H1Typo, LightTitle, H3Typo } from "components/Typography";
 import CustomIconButton from "components/Button/CustomIconButton";
 import ArrowForwardIosOutlinedIcon from "@mui/icons-material/ArrowForwardIosOutlined";
+import { useGetAllOrderQuery } from "api/order";
+import FullPageLoader from "components/Loader/FullPageLoader";
+import { useEffect, useState } from "react";
+
+
+// [
+//   {
+//     subscriptionType: "Cooked",
+//     name: "Salmon with chili sauce",
+//     numberOfOrders: "30",
+//   },
+//   {
+//     subscriptionType: "On Progress",
+//     name: "Salmon with chili sauce",
+//     numberOfOrders: "30",
+//   },
+//   {
+//     subscriptionType: "Cooked",
+//     name: "Salmon with chili sauce",
+//     numberOfOrders: "30",
+//   },
+//   {
+//     subscriptionType: "On Progress",
+//     name: "Salmon with chili sauce",
+//     numberOfOrders: "30",
+//   },
+//   {
+//     subscriptionType: "Cooked",
+//     name: "Salmon with chili sauce",
+//     numberOfOrders: "30",
+//   },
+//   {
+//     subscriptionType: "On Progress",
+//     name: "Salmon with chili sauce",
+//     numberOfOrders: "30",
+//   },
+// ]
 
 const Prepare = () => {
-  return (
+  const [data,setData] = useState([])
+  const { data: RequestedOrder, isLoading } = useGetAllOrderQuery(
+    `page=1&size=10&sortBy=asc&status=on-progressorcooked`
+  );
+
+  useEffect(()=>{
+    if(RequestedOrder && RequestedOrder.data){
+      setData(RequestedOrder.data)
+    }
+  },[RequestedOrder])
+  return isLoading?<FullPageLoader/>: (
     <Box>
       <Grid container spacing={2}>
-        {[
-          {
-            subscriptionType: "Cooked",
-            name: "Salmon with chili sauce",
-            numberOfOrders: "30",
-          },
-          {
-            subscriptionType: "On Progress",
-            name: "Salmon with chili sauce",
-            numberOfOrders: "30",
-          },
-          {
-            subscriptionType: "Cooked",
-            name: "Salmon with chili sauce",
-            numberOfOrders: "30",
-          },
-          {
-            subscriptionType: "On Progress",
-            name: "Salmon with chili sauce",
-            numberOfOrders: "30",
-          },
-          {
-            subscriptionType: "Cooked",
-            name: "Salmon with chili sauce",
-            numberOfOrders: "30",
-          },
-          {
-            subscriptionType: "On Progress",
-            name: "Salmon with chili sauce",
-            numberOfOrders: "30",
-          },
-        ].map((item) => (
+        {data.map((item) => (
           <Grid item xs={12} sm={12} md={6}>
             <BorderContainer>
               <Box width="100%">
@@ -52,13 +68,12 @@ const Prepare = () => {
                     }}
                   >
                     <SimpleChips
-                      label={item.subscriptionType}
-                      chipColor={"#FAA641"}
+                      label={item.status}
                     />
                   </Box>
                   <FlexBoxContainer>
-                    <H1Typo>{item.name}</H1Typo>
-                    <H1Typo>{item.numberOfOrders} Order</H1Typo>
+                    <H1Typo>"mealplaneId"</H1Typo>
+                    <H1Typo>{item.orderSummary.length} Order</H1Typo>
                   </FlexBoxContainer>
                 </Stack>
               </Box>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Box, Grid, Stack } from "@mui/material";
 import { BorderContainer, FlexBoxContainer } from "components/Containers";
 import SimpleChips from "components/Chips/SimpleChips";
@@ -7,6 +7,7 @@ import Details from "./Details";
 import StickedBar from "components/Header/StickedBar";
 import CustomIconButton from "components/Button/CustomIconButton";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import { useGetAllOrderQuery } from "api/order";
 const Packed = () => {
   const [showDetail, setShowDetail] = useState("details");
 
@@ -144,40 +145,19 @@ const Packed = () => {
 };
 
 const PackedList = ({ handleShowDetail }) => {
+  const [data,setData] = useState([])
+  const { data: RequestedOrder, isLoading } = useGetAllOrderQuery(
+    `page=1&size=10&sortBy=asc&status=packed`
+  );
+
+  useEffect(()=>{
+    if(RequestedOrder && RequestedOrder.data){
+      setData(RequestedOrder.data)
+    }
+  },[RequestedOrder])
   return (
     <Grid container spacing={2} style={{ marginBottom: "86px" }}>
-      {[
-        {
-          subscriptionType: "Cooked",
-          name: "Salmon with chili sauce",
-          numberOfOrders: "30",
-        },
-        {
-          subscriptionType: "On Progress",
-          name: "Salmon with chili sauce",
-          numberOfOrders: "30",
-        },
-        {
-          subscriptionType: "Cooked",
-          name: "Salmon with chili sauce",
-          numberOfOrders: "30",
-        },
-        {
-          subscriptionType: "On Progress",
-          name: "Salmon with chili sauce",
-          numberOfOrders: "30",
-        },
-        {
-          subscriptionType: "On Progress",
-          name: "Salmon with chili sauce",
-          numberOfOrders: "30",
-        },
-        {
-          subscriptionType: "On Progress",
-          name: "Salmon with chili sauce",
-          numberOfOrders: "30",
-        },
-      ].map((item) => (
+      {data.map((item) => (
         <Grid item xs={12} sm={12} md={6}>
           <BorderContainer pointer onClick={handleShowDetail}>
             <Box width="100%">
@@ -188,11 +168,11 @@ const PackedList = ({ handleShowDetail }) => {
                     paddingBottom: "15px",
                   }}
                 >
-                  <SimpleChips label={item.subscriptionType} />
+                  <SimpleChips label={item.status} />
                 </Box>
                 <FlexBoxContainer>
-                  <H1Typo>{item.name}</H1Typo>
-                  <H1Typo>{item.numberOfOrders} Order</H1Typo>
+                  <H1Typo>"123132"</H1Typo>
+                  <H1Typo>{item.orderSummary.length} Order</H1Typo>
                 </FlexBoxContainer>
               </Stack>
             </Box>

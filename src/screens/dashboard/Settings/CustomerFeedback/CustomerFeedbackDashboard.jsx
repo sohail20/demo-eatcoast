@@ -165,7 +165,7 @@ const CustomerFeedbackDashboard = ({ handleBack }) => {
                 }}
               >
                 <FlexBoxContainer>
-                  <SimpleChips label={item.label} chipColor={item.color} />
+                  <SimpleChips label={item.id} chipColor={item.color} />
                   <ArrowForwardIosIcon style={{ color: "#E1E1E6" }} />
                 </FlexBoxContainer>
               </BorderContainer>
@@ -240,10 +240,7 @@ const FeedBackCard = ({ item }) => (
             <CustomStarIcon style={{ color: "#FAA641" }} />
           ))}
         </Box>
-        {subscriptionType.map((e) => {
-          if (item.result.type === e.id)
-            return <SimpleChips label={e.label} chipColor="#FF8D85" />;
-        })}
+          <SimpleChips label={item.result.type} chipColor="#FF8D85" />
       </FlexBoxContainer>
 
       <Box mt={2} style={{ borderBottom: "1px solid #F6F6F6" }} pb={2}>

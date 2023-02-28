@@ -43,11 +43,7 @@ const RequestCard = ({
             <Stack spacing={2}>
               <FlexBoxContainer>
                 <LightTitle>{item.orderId}</LightTitle>
-
-                {subscriptionType.map((e) => {
-                  if (subscription.type === e.id)
-                    return <SimpleChips label={e.label} chipColor="#FF8D85" />;
-                })}
+                <SimpleChips label={subscription.type} />
               </FlexBoxContainer>
               <FlexBoxContainer>
                 <H1Typo>{name}</H1Typo>
@@ -129,7 +125,9 @@ const RequestCard = ({
 
                                 <Box display="flex" gap={5}>
                                   <H3Typo>{orderSummary[item][0].count}</H3Typo>
-                                  <H3Typo>$ {orderSummary[item][0].count * 122}</H3Typo>
+                                  <H3Typo>
+                                    $ {orderSummary[item][0].count * 122}
+                                  </H3Typo>
                                 </Box>
                               </FlexBoxContainer>
                             );

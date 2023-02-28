@@ -6,6 +6,7 @@ import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
 import Draft from "./AddMealPlan/Draft/Draft";
 import { DishesMenu } from "./DishesMenu/DishesMenu";
+import Dishes from "components/Dishes";
 import { MenuComponent } from ".";
 
 export default function MenuTabs() {
@@ -67,7 +68,7 @@ export default function MenuTabs() {
           <MenuComponent />
         </TabPanel>
         <TabPanel value="2">
-          <DishesMenu />
+          <Dishes />
         </TabPanel>
         <TabPanel value="3">
           <Draft />
