@@ -7,12 +7,14 @@ import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { useGetManagerDashQuery } from 'api/dashboard';
 import FullPageLoader from 'components/Loader/FullPageLoader';
+import { getDays } from 'helper';
 
 export const Da_manager = ({ todayDate, info }) => {
 
     const { data: managerDash, isLoading } = useGetManagerDashQuery({ catererId: info._id })
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [cardInfo, setCardInfo] = useState(null)
+    const [salesChartData,setSalesChartData] = useState([])
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -56,8 +58,21 @@ export const Da_manager = ({ todayDate, info }) => {
                 }
             })
             setCardInfo(tempDate)
+            getSalesData(managerDash.data.salesChart)
         }
     }, [managerDash])
+
+
+    const getSalesData = (chartData)=>{
+        const tmpData = []
+        const dayInCurrentMonth = getDays(new Date().getFullYear(), new Date().getMonth() + 1)
+        for(let i=0;i<dayInCurrentMonth;i++){
+            if(chartData[i]){
+                tmpData.push(chartData[i].count)
+            }else tmpData.push(0)
+        }
+        setSalesChartData(tmpData)
+    }
 
     return isLoading ? <FullPageLoader /> : (
         managerDash && managerDash.data && <Box component={'div'} >
@@ -244,7 +259,7 @@ export const Da_manager = ({ todayDate, info }) => {
                                     height: '100%'
                                 }}
                                 >
-                                    <SalesChart />
+                                    <SalesChart salesChartData={salesChartData}/>
                                 </Box>
                             </Grid>
                             <Grid item xs={12} md={4} lg={4}>

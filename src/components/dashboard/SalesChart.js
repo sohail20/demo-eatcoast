@@ -7,7 +7,7 @@ import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
 
-export const SalesChart = () => {
+export const SalesChart = ({salesChartData = [0]}) => {
 
 
     var options = {
@@ -68,7 +68,7 @@ export const SalesChart = () => {
     },
         series: [{
             name: 'Order',
-            data: [11, 22, 32, 45, 67, 79, 81, 9, 58, 67,55,77,22,1,3,4],
+            data: salesChartData,
             style:{
                 fontSize: '8px ', fontFamily: 'Outfit', background: 'red'
             }

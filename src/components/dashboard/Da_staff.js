@@ -1,162 +1,22 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Box, Button, Chip, Grid, Typography } from "@mui/material";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
 import { DonutChart } from "./DonutChart";
 import { SalesChart } from "./SalesChart";
-import { DataGrid } from "@mui/x-data-grid";
 import { CiLocationOn } from "react-icons/ci";
 import { Dash_staff_SideSilder } from "./Dash_staff_SideSilder";
 import SimpleDataTable from "../DataTable/SimpleDataTable";
 import { useGetStaffDashQuery } from "api/dashboard";
 import FullPageLoader from "components/Loader/FullPageLoader";
 import DataGridTableView from "./Components/DataGridTableView";
-
-
-const rowsAddson = [
-  {
-    id: 1,
-    col1: "1",
-    col2: "Kabasa",
-    col3: "Main Course",
-    col4: "Salmon with chilli sauce",
-    col5: "1",
-  },
-  {
-    id: 2,
-    col1: "2",
-    col2: "Bella",
-    col3: "Main Course",
-    col4: "Salmon with chilli sauce",
-    col5: "4",
-  },
-  {
-    id: 3,
-    col1: "3",
-    col2: "Kabasa",
-    col3: "Main Course",
-    col4: "Salmon with chilli sauce",
-    col5: "7",
-  },
-  {
-    id: 4,
-    col1: "4",
-    col2: "Kabasa Rice",
-    col3: "Main Course",
-    col4: "Salmon with chilli sauce",
-    col5: "8",
-  },
-];
-
-const columnsAddson = [
-  { field: "#", hide: true },
-  { field: "col1", headerName: "#", flex: 1 },
-  { field: "col2", headerName: "Dishes Name", flex: 1 },
-  { field: "col3", headerName: "Meal Courses", flex: 1 },
-  { field: "col4", headerName: "Meal Plan", flex: 1 },
-  { field: "col5", headerName: "Qty", flex: 1 },
-];
+import { getDays } from "helper";
 
 function createData(meal, plan, qty) {
   return { meal, plan, qty };
 }
 
-const rows = [
-  createData("Main Courses", "Salmon with chilli sauce", "1"),
-  createData("Main Courses", "Salmon with chilli sauce", "2"),
-  createData("Salad Courses", "Salmon with chilli sauce", "22"),
-  createData("Pinkatola Courses", "Salmon with chilli sauce", "99"),
-  createData("Main Courses", "Salmon with chilli sauce", "0"),
-];
-
-const rowsDishes = [
-  {
-    id: 1,
-    col1: "1",
-    col2: "Kabasa",
-    col3: "Main Course",
-    col4: "Salmon with chilli sauce",
-    col5: "1",
-  },
-  {
-    id: 2,
-    col1: "2",
-    col2: "Bella",
-    col3: "Main Course",
-    col4: "Salmon with chilli sauce",
-    col5: "4",
-  },
-  {
-    id: 3,
-    col1: "3",
-    col2: "Kabasa",
-    col3: "Main Course",
-    col4: "Salmon with chilli sauce",
-    col5: "7",
-  },
-  {
-    id: 4,
-    col1: "4",
-    col2: "Kabasa Rice",
-    col3: "Main Course",
-    col4: "Salmon with chilli sauce",
-    col5: "8",
-  },
-];
-
 function createDataOrder(idOrder, menu, time, qty, subs_type) {
   return { idOrder, menu, time, qty, subs_type };
 }
-
-const rowsOrder = [
-  createDataOrder(
-    "EC-123",
-    "Salmon with chilli sauce",
-    "04:00-06:00pm",
-    "1",
-    "Ps"
-  ),
-  createDataOrder(
-    "EC-193",
-    "Salmon with chilli sauce",
-    "04:00-06:00pm",
-    "1",
-    `So`
-  ),
-  createDataOrder(
-    "EC-125",
-    "Salmon with chilli sauce",
-    "04:00-06:00pm",
-    "1",
-    `Fs`
-  ),
-  createDataOrder(
-    "EC-122",
-    "Salmon with chilli sauce",
-    "04:00-06:00pm",
-    "1",
-    `Bs`
-  ),
-  createDataOrder(
-    "EC-128",
-    "Salmon with chilli sauce",
-    "04:00-06:00pm",
-    "1",
-    `So`
-  ),
-  createDataOrder(
-    "EC-122",
-    "Salmon with chilli sauce",
-    "04:00-06:00pm",
-    "1",
-    `Ms`
-  ),
-];
 
 export const Da_staff = ({ info }) => {
   const [allOrders, setAllOrders] = React.useState(false);
@@ -164,6 +24,8 @@ export const Da_staff = ({ info }) => {
   const [dishes, setDishes] = React.useState(false);
   const [addson, setAddson] = React.useState(false);
   const { data: staffDash, isLoading } = useGetStaffDashQuery({ catererId: info._id })
+  const [salesChartData, setSalesChartData] = useState([])
+
   const handleOrders = () => {
     setAllOrders(true);
     setmealCourse(false);
@@ -237,6 +99,24 @@ export const Da_staff = ({ info }) => {
   };
 
   //-=-==-=---=======================================
+  useEffect(() => {
+    if (staffDash && staffDash.data) {
+      getSalesData(staffDash.data.salesChart)
+    }
+  }, [staffDash])
+
+  const getSalesData = (chartData) => {
+    const tmpData = []
+    const dayInCurrentMonth = getDays(new Date().getFullYear(), new Date().getMonth() + 1)
+    for (let i = 0; i < dayInCurrentMonth; i++) {
+      if (chartData[i]) {
+        tmpData.push(chartData[i].count)
+      } else tmpData.push(0)
+    }
+    
+    setSalesChartData(tmpData)
+  }
+
 
   return isLoading ? <FullPageLoader /> : (
     staffDash && <>
@@ -509,7 +389,7 @@ export const Da_staff = ({ info }) => {
                 height: "100%",
               }}
             >
-              <SalesChart />
+              <SalesChart salesChartData={salesChartData} />
             </Box>
           </Grid>
           <Grid item xs={12} md={4} lg={4}>

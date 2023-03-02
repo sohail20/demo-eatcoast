@@ -15,6 +15,13 @@ export const getCurrentEmpoyee = () => {
   return false
 }
 
+export const getCaterer = () => {
+  const userCaterer = localStorage.getItem("user")
+  if (userCaterer !== "" || userCaterer !== null) {
+    return JSON.parse(userCaterer)
+  }
+  return false
+}
 
 export const generateImageURL = (key, image) => {
   const development = "http://localhost:5055/image"
@@ -45,3 +52,7 @@ export const subscriptionType = [
     color: "#FF9933",
   },
 ];
+
+export const getDays = (year, month) => {
+  return new Date(year, month, 0).getDate();
+};

@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+
 import "./App.css";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "./styles/style";
@@ -27,15 +29,20 @@ import AllDishes from "./components/Dishes/AllDishes/AllDishes";
 import { EditDishes } from "./components/Dishes/EditDishes/EditDishes";
 import { DetailDishes } from "./components/Dishes/AllDishes/DetailDishes/DetailDishes";
 import Subscription from "./screens/Subscription/Subscription";
-import { useEffect } from "react";
 import ErrorBoundary from "screens/ErrorBoundary";
+import { getCaterer } from "helper";
 
 function App() {
+  const [caterer, setCaterer] = useState({})
   const navigate = useNavigate();
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    if (token === null || token === "") navigate("/login");
+    const caterer = getCaterer()
+    if (token === null || token === "") return navigate("/login");
+    if (caterer) setCaterer(caterer)
+
+
   }, []);
 
   return (
@@ -54,7 +61,7 @@ function App() {
             <Route path={"/"} element={<Login />} />
             <Route path={"/dashboard"} element={<Dashboard />} />
             <Route path="/order" element={<Order />} />
-            <Route path="/subscription" element={<Subscription />} />
+            <Route path="/subscription" element={<Subscription caterer={caterer}/>} />
             <Route path="/menu" element={<Menu />} />
             <Route path="/menu2" element={<Menu2 />} />
             <Route path="/financials" element={<Financials />} />
