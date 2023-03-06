@@ -67,7 +67,7 @@ export const DishesMenu = () => {
   };
 
   // to show active and not actparamsive dishess
-  const [activeDishes, setActiveDishes] = React.useState(true);
+  const [activeDishes, setActiveDishes] = React.useState(false);
 
   // to show multiStepper
   const [stepper, setStepper] = React.useState(false)

@@ -7,7 +7,6 @@ const Menu = () => {
     <>
       <DashboardLayout>
         <MenuTabs />
-        {/* <HelpCenter/> */}
       </DashboardLayout>
     </>
   );

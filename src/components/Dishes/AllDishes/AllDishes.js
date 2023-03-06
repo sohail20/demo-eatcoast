@@ -9,7 +9,7 @@ import { DetailDishesDrawer } from "./DetailDishes/DetailDishesDrawer";
 import { useState, useRef } from "react";
 import { DetailDishesMainCard } from "./DetailDishes/DetailDishesMainCard";
 
-export default function AllDishes({openEditDish, setOpenEditDish, setOpenEditDishscreen}) {
+export default function AllDishes({ openEditDish, setOpenEditDish, setOpenEditDishscreen }) {
 
   const SubBox = styled("div")(({ theme }) => ({
     padding: "32px",
@@ -32,51 +32,48 @@ export default function AllDishes({openEditDish, setOpenEditDish, setOpenEditDis
 
   return (
     <>
-     <Box sx={{paddingLeft: "32px", paddingRight: "32px"}}>
-     <Box mb="16px"><AllDishesSubHeader  /></Box>
-      <SubBox
-      
-        sx={{
-          width: {
-            xl: "100%",
-            // lg: "1036px",
-            lg: "100%",
-            md: "100%",
-            sm: "100%",
-            xs: "100%",
-          },
-
-          height: "auto",
-          padding: "32px"
-        }}
-      >
-        <AllDishesMainCard
-          title={"Main Course"}
-          subTitle={"No dishes added"}
-          image={"./images/MainCourse.svg"}
-          icon={<AddIcon sx={{width: "16px", height: "16px"}}/>}
-          BtnName={"Add Dishes"}
-          hasToInput = {true}
-          onHandleClick={handleClick}
-          setOpenEditDish={setOpenEditDish}
-          
-
-        />
-        <Box>
-          <AllDishesTabs onHandleClick={handleClick} setOpenEditDishscreen={setOpenEditDishscreen} />
+      <Box sx={{ paddingLeft: "32px", paddingRight: "32px" }}>
+        <Box mb="16px">
+          <AllDishesSubHeader />
         </Box>
-
-        <Box>
-        <DetailDishesDrawer
-          setOpenDrawer={setOpenDrawer}
-          // setPlaceholderSched={setPlaceholderSched}
-          openDrawer={openDrawer}
-          Component={<DetailDishesMainCard  />}
-          title={"Detail dishes"}
-        />
+        <SubBox
+          sx={{
+            width: {
+              xl: "100%",
+              // lg: "1036px",
+              lg: "100%",
+              md: "100%",
+              sm: "100%",
+              xs: "100%",
+            },
+            height: "auto",
+            padding: "32px"
+          }}
+        >
+          <AllDishesMainCard
+            title={"Main Course"}
+            subTitle={"No dishes added"}
+            image={"./images/MainCourse.svg"}
+            icon={<AddIcon sx={{ width: "16px", height: "16px" }} />}
+            BtnName={"Add Dishes"}
+            hasToInput={true}
+            onHandleClick={handleClick}
+            setOpenEditDish={setOpenEditDish}
+          />
+          <Box>
+            <AllDishesTabs onHandleClick={handleClick} setOpenEditDishscreen={setOpenEditDishscreen} />
+          </Box>
+          <Box>
+            <DetailDishesDrawer
+              setOpenDrawer={setOpenDrawer}
+              // setPlaceholderSched={setPlaceholderSched}
+              openDrawer={openDrawer}
+              Component={<DetailDishesMainCard />}
+              title={"Detail dishes"}
+            />
+          </Box>
+        </SubBox>
       </Box>
-      </SubBox>
-     </Box>
     </>
   );
 }

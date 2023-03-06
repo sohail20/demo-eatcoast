@@ -8,14 +8,73 @@ import Button from "@mui/material/Button";
 import CloseIcon from "@mui/icons-material/Close";
 import DeleteItemDialog from "./DeleteItemDialog/DeleteItemDialog";
 import { AllDishesContext } from "../Context";
-import { useContext} from "react";
+import { useContext } from "react";
 
 
-export default function AddDishesSubHeader({ disabled, setDisabled, setOpenBackToDish }) {
-  
+const Heading1 = styled("div")(({ theme }) => ({
+  // padding: theme.spacing(0, 2),
+  fontFamily: "outfit",
+  fontSize: "16px",
+  fontWeight: "600",
+  lineHeight: "24px",
+  color: "#2B817B",
+  textTransform: "capitalize",
+}));
 
+const Typo1 = styled("div")(({ theme }) => ({
+  // padding: theme.spacing(0, 2),
+  fontFamily: "outfit",
+  fontSize: "20px",
+  fontWeight: "600",
+  lineHeight: "28px",
+  textTransform: "capitalize",
+}));
 
-  const {setOpenEditDish} = useContext(AllDishesContext)
+const Button1 = styled(Button)(({ theme }) => ({
+  // padding: theme.spacing(0, 2),
+  fontFamily: "outfit",
+  fontSize: "14px",
+  fontWeight: "600",
+  lineHeight: "20px",
+  textTransform: "capitalize",
+  border: "1px solid #80B3B0",
+  height: "40px",
+  [theme.breakpoints.down("sm")]: {
+    width: "90px",
+    fontSize: "9px",
+  },
+}));
+
+const Button2 = styled(Button)(({ theme }) => ({
+  // padding: theme.spacing(0, 2),
+  fontFamily: "outfit",
+  fontSize: "14px",
+  fontWeight: "600",
+  lineHeight: "20px",
+  textTransform: "capitalize",
+  border: "1px solid #80B3B0",
+  height: "40px",
+}));
+
+const Button3 = styled(Button)(({ theme }) => ({
+  // padding: theme.spacing(0, 2),
+  fontFamily: "outfit",
+  fontSize: "14px",
+  fontWeight: "600",
+  lineHeight: "20px",
+  textTransform: "capitalize",
+  height: "40px",
+  backgroundColor: "#D5E6E5",
+  color: "#ffffff",
+  [theme.breakpoints.down("sm")]: {
+    width: "90px",
+    fontSize: "9px",
+  },
+}));
+
+export default function AddDishesSubHeader({ disabled, setOpenBackToDish }) {
+
+  const { setOpenEditDish } = useContext(AllDishesContext)
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -26,74 +85,13 @@ export default function AddDishesSubHeader({ disabled, setDisabled, setOpenBackT
     setOpen(false);
   };
 
-  const Heading1 = styled("div")(({ theme }) => ({
-    // padding: theme.spacing(0, 2),
-    fontFamily: "outfit",
-    fontSize: "16px",
-    fontWeight: "600",
-    lineHeight: "24px",
-    color: "#2B817B",
-    textTransform: "capitalize",
-  }));
-
-  const Typo1 = styled("div")(({ theme }) => ({
-    // padding: theme.spacing(0, 2),
-    fontFamily: "outfit",
-    fontSize: "20px",
-    fontWeight: "600",
-    lineHeight: "28px",
-    textTransform: "capitalize",
-  }));
-
-  const Button1 = styled(Button)(({ theme }) => ({
-    // padding: theme.spacing(0, 2),
-    fontFamily: "outfit",
-    fontSize: "14px",
-    fontWeight: "600",
-    lineHeight: "20px",
-    textTransform: "capitalize",
-    border: "1px solid #80B3B0",
-    height: "40px",
-    [theme.breakpoints.down("sm")]: {
-      width: "90px",
-      fontSize: "9px",
-    },
-  }));
-
-  const Button2 = styled(Button)(({ theme }) => ({
-    // padding: theme.spacing(0, 2),
-    fontFamily: "outfit",
-    fontSize: "14px",
-    fontWeight: "600",
-    lineHeight: "20px",
-    textTransform: "capitalize",
-    border: "1px solid #80B3B0",
-    height: "40px",
-  }));
-
-  const Button3 = styled(Button)(({ theme }) => ({
-    // padding: theme.spacing(0, 2),
-    fontFamily: "outfit",
-    fontSize: "14px",
-    fontWeight: "600",
-    lineHeight: "20px",
-    textTransform: "capitalize",
-    height: "40px",
-    backgroundColor: "#D5E6E5",
-    color: "#ffffff",
-    [theme.breakpoints.down("sm")]: {
-      width: "90px",
-      fontSize: "9px",
-    },
-  }));
-
   return (
     <>
       <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-        <Box 
-        sx={{ width: { lg: "50%", md: "50%", sm: "20%", xs: "0%" } }}
+        <Box
+          sx={{ width: { lg: "50%", md: "50%", sm: "20%", xs: "0%" } }}
         >
-          <IconButton onClick={()=>setOpenEditDish(false)}>
+          <IconButton onClick={() => setOpenEditDish(false)}>
             <Box
               sx={
                 {
@@ -163,8 +161,9 @@ export default function AddDishesSubHeader({ disabled, setDisabled, setOpenBackT
             </Box>
             <Box ml="12px">
               <Button3
-              onClick={() => {setOpenBackToDish(true)}}
+                // onClick={() => { setOpenBackToDish(true) }}
                 variant="contained"
+                type="submit"
                 disabled={disabled}
                 sx={{
                   backgroundColor:

@@ -3,8 +3,13 @@ import { Grid, Box, Stack } from "@mui/material";
 import RequestCard from "components/Cards/RequestCard";
 import CustomizedDrop from "components/Inputs/DropDown";
 import CloseHeader from "components/Header/CloseHeader";
-import { useGetAllOrderQuery, useGetSingleOrderDetailQuery, useUpdateOrderStatusMutation } from "api/order";
+import {
+  useGetAllOrderQuery,
+  useGetSingleOrderDetailQuery,
+  useUpdateOrderStatusMutation,
+} from "api/order";
 import FullPageLoader from "components/Loader/FullPageLoader";
+import NoResultMsg from "screens/Subscription/NoResultMsg/NoResultMsg";
 
 const requestData = [
   {
@@ -58,88 +63,95 @@ const Request = () => {
     `page=1&size=10&sortBy=asc&status=request`
   );
 
-  const [updateOrderStauts,{isLoading:isUpdating}] = useUpdateOrderStatusMutation()
+  const [updateOrderStauts, { isLoading: isUpdating }] =
+    useUpdateOrderStatusMutation();
   const [showDetails, setShowDetail] = useState(null);
 
-  const handleUpdateStatus = (id)=>{
-    updateOrderStauts({id,status:"approved"})
-  }
+  const handleUpdateStatus = (id) => {
+    updateOrderStauts({ id, status: "approved" });
+  };
 
   return isLoading || isUpdating ? (
     <FullPageLoader />
   ) : (
     <>
-      <CustomizedDrop
-        title="Sort by"
-        label="All Request"
-        hasCheckbox
-        height="24"
-        items={{
-          "Subscription type": [
-            {
-              label: "All subscription",
-              id: "view-details",
-            },
-            {
-              label: "Personal subscription",
-              id: "pause-subscription",
-            },
-            {
-              label: "Multiple subscription",
-              id: "change-address",
-            },
-            {
-              label: "Single order",
-              id: "view-receipt",
-            },
-            {
-              label: "Event catering",
-              id: "cancel-subscription",
-            },
-            { label: "Fitness subscription", id: "help" },
-          ],
+      {RequestedOrder &&
+      RequestedOrder.data &&
+      RequestedOrder.data.length === 0 ? (
+        <NoResultMsg />
+      ) : (
+        <>
+          <CustomizedDrop
+            title="Sort by"
+            label="All Request"
+            hasCheckbox
+            height="24"
+            items={{
+              "Subscription type": [
+                {
+                  label: "All subscription",
+                  id: "view-details",
+                },
+                {
+                  label: "Personal subscription",
+                  id: "pause-subscription",
+                },
+                {
+                  label: "Multiple subscription",
+                  id: "change-address",
+                },
+                {
+                  label: "Single order",
+                  id: "view-receipt",
+                },
+                {
+                  label: "Event catering",
+                  id: "cancel-subscription",
+                },
+                { label: "Fitness subscription", id: "help" },
+              ],
 
-          Time: [
-            { label: "All Time", id: "help" },
-            { label: "10.00 am - 01.00 pm", id: "help" },
-            { label: "10.00 am - 01.00 pm", id: "help" },
-          ],
-        }}
-        onClick={(e) => {
-          console.log(e);
-        }}
-      />
-      <Grid container spacing={2} mt={2}>
-        <Grid item xs={12} sm={12} md={6}>
-          <Stack spacing={2}>
-            {RequestedOrder.data.map((item, index) => (
-              <Grid item xs={12} sm={12} md={12}>
-                <RequestCard
-                  item={item}
-                  handleOnClickDetail={(id) => setShowDetail(id)}
-                  handleOnClickAccept={(id) =>
-                    handleUpdateStatus(id)
-                  }
+              Time: [
+                { label: "All Time", id: "help" },
+                { label: "10.00 am - 01.00 pm", id: "help" },
+                { label: "10.00 am - 01.00 pm", id: "help" },
+              ],
+            }}
+            onClick={(e) => {
+              console.log(e);
+            }}
+          />
+          <Grid container spacing={2} mt={2}>
+            <Grid item xs={12} sm={12} md={6}>
+              <Stack spacing={2}>
+                {RequestedOrder.data.map((item, index) => (
+                  <Grid item xs={12} sm={12} md={12}>
+                    <RequestCard
+                      item={item}
+                      handleOnClickDetail={(id) => setShowDetail(id)}
+                      handleOnClickAccept={(id) => handleUpdateStatus(id)}
+                    />
+                  </Grid>
+                ))}
+              </Stack>
+            </Grid>
+            <Grid
+              item
+              xs={12}
+              sm={12}
+              md={6}
+              style={{ display: showDetails === null ? "none" : undefined }}
+            >
+              {showDetails !== null && (
+                <RequestDetail
+                  request={showDetails}
+                  handleCloseDetail={() => setShowDetail(null)}
                 />
-              </Grid>
-            ))}
-          </Stack>
-        </Grid>
-        <Grid
-          item
-          xs={12}
-          sm={12}
-          md={6}
-          style={{ display: showDetails === null ? "none" : undefined }}
-        >
-          {showDetails !== null && (
-            <RequestDetail
-              request={showDetails}
-              handleCloseDetail={() => setShowDetail(null)}
-            />
-          )}
-        </Grid>
-      </Grid>
+              )}
+            </Grid>
+          </Grid>
+        </>
+      )}
     </>
   );
 };
@@ -166,7 +178,7 @@ const RequestDetail = ({ request, handleCloseDetail }) => {
     }
   }, []);
 
-  console.log("singleOrderDetail",singleOrderDetail)
+  console.log("singleOrderDetail", singleOrderDetail);
 
   return isLoading ? (
     <FullPageLoader />

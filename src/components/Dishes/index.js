@@ -13,7 +13,7 @@ import DashboardLayout from "screens/DashboardLayout/DashboardLayout";
 
 const Dishes = () => {
   const [openEditDish, setOpenEditDish] = useState(false);
-  const [openBackToDish, setOpenBackToDish] = useState(true);
+  const [openBackToDish, setOpenBackToDish] = useState(false);
   const [openEditDishscreen, setOpenEditDishscreen] = useState(false);
   const [openAllDishes, setOpenAllDishes] = useState(true);
   console.log("dishes", openEditDishscreen);
@@ -34,7 +34,9 @@ const Dishes = () => {
             {openBackToDish ? (
               <BackToDishes />
             ) : (
-              <Box ><AddDishes setOpenBackToDish={setOpenBackToDish} /></Box>
+              <Box >
+                <AddDishes setOpenBackToDish={setOpenBackToDish} />
+              </Box>
             )}
           </Box>
         ) : (

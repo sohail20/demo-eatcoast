@@ -76,10 +76,6 @@ export default function DishesStepper1({ formik, setStepper }) {
                   id="image"
                   image="image"
                   onChange={(event) => {
-                    console.log(
-                      " event.currentTarget.files[0]",
-                      event.currentTarget.files[0]
-                    );
                     formik.setFieldValue("image", event.currentTarget.files[0]);
                   }}
                 />

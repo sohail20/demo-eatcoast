@@ -1,10 +1,10 @@
 import CustomDataGrid from "components/DataTable/DataGrid";
 import { Avatar } from "@mui/material";
-import MenuButton from "components/Inputs/MenuButton";
 import { useDeleteEmployeeMutation, useGetEmployeesQuery } from "api/employee";
-import { useEffect } from "react";
+import { useEffect, useCallback } from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import debounce from "lodash.debounce";
 
 const tableColumns = [
   { field: "id", headerName: "#", width: 240 },
@@ -33,39 +33,60 @@ const tableColumns = [
   },
 ];
 
-const filterData = data =>{
- const {_id,email,name} = data 
- return {id:_id, email,name, photo:""}
-}
+const filterData = (data) => {
+  const { _id, email, name } = data;
+  return { id: _id, email, name, photo: "" };
+};
 
-const EmployeesTable = ({ handleOnAddClick,handleEditEmployee }) => {
-  const navigate = useNavigate()
-  const [employeesFilterData,setEmployeesFilteredData] = useState([])
-  const [deleteEmployee,{isLoading:deleteLoading}] = useDeleteEmployeeMutation()
+const EmployeesTable = ({ handleOnAddClick, handleEditEmployee }) => {
+  const navigate = useNavigate();
+  const [employeesFilterData, setEmployeesFilteredData] = useState([]);
+  const [deleteEmployee, { isLoading: deleteLoading }] =
+    useDeleteEmployeeMutation();
   const { data: employees, isLoading } = useGetEmployeesQuery();
-  
-  useEffect(()=>{
-    if(employees){
-      const dataEmployee = employees.data.map(item=>filterData(item))
-      setEmployeesFilteredData(dataEmployee)
+
+  useEffect(() => {
+    if (employees) {
+      const dataEmployee = employees.data.map((item) => filterData(item));
+      setEmployeesFilteredData(dataEmployee);
     }
-  },[employees,deleteLoading])
+  }, [employees, deleteLoading]);
 
   const handleAction = (type, id) => {
     switch (type) {
       case "edit":
-        handleEditEmployee(id)
+        handleEditEmployee(id);
         break;
-  
+
       case "delete":
-        deleteEmployee({id});
+        deleteEmployee({ id });
         break;
-  
+
       default:
         break;
     }
   };
-    
+
+  const onChangeValue = useCallback(
+    debounce((value) => {
+      const tmpData = [];
+      console.log("employees", employees);
+      if (employees && employees.data) {
+        employees.data
+          .filter((item) => {
+            console.log("asdasd", item.name, value);
+            // if (item.name.includes(value) || value == "") return item;
+          })
+          .map((item, index) => {
+            // console.log("item", item);
+          });
+        // console.log("dataEmployee",dataEmployee)
+      }
+      // setEmployeesFilteredData(dataEmployee);
+    }, 1500),
+    []
+  );
+
   return isLoading ? (
     <p>Loading...</p>
   ) : (
@@ -77,6 +98,7 @@ const EmployeesTable = ({ handleOnAddClick,handleEditEmployee }) => {
         tableColumns={tableColumns}
         handleOnAddClick={handleOnAddClick}
         handleMenuAction={handleAction}
+        handleSearch={(e) => onChangeValue(e)}
       />
     </>
   );

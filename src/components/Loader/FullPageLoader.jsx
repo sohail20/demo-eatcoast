@@ -1,11 +1,18 @@
-import React from "react";
+import * as React from "react";
+import Backdrop from "@mui/material/Backdrop";
+import CircularProgress from "@mui/material/CircularProgress";
+import Button from "@mui/material/Button";
 
-function FullPageLoader(props) {
+export default function FullPageLoader() {
   return (
     <div>
-      <p>Loading...</p>
+      <Backdrop
+        sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={true}
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop>
     </div>
   );
 }
-
-export default FullPageLoader;
+// export default FullPageLoader;

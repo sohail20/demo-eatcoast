@@ -41,7 +41,7 @@ function a11yProps(index) {
   };
 }
 
-export default function AllDishesTabs({onHandleClick, setOpenEditDishscreen}) {
+export default function AllDishesTabs({ onHandleClick, setOpenEditDishscreen }) {
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
@@ -50,7 +50,7 @@ export default function AllDishesTabs({onHandleClick, setOpenEditDishscreen}) {
 
   return (
     <Box sx={{ width: "100%" }}>
-      <Box sx={{borderBottom: "1px solid #E1E1E6", borderBottom: 1, borderColor: "divider" }}>
+      <Box sx={{ borderBottom: "1px solid #E1E1E6", borderBottom: 1, borderColor: "divider" }}>
         <Tabs
           value={value}
           onChange={handleChange}
@@ -63,9 +63,11 @@ export default function AllDishesTabs({onHandleClick, setOpenEditDishscreen}) {
           //     backgroundColor: "#2B817B",
           //   },
           // }}
-          sx={{'& .MuiTabs-indicator': { backgroundColor: "#2B817B" },
-          '& .MuiTab-root': { color: "#9EA3AE" },
-          '& .Mui-selected': { color: "#1A1824" },}}
+          sx={{
+            '& .MuiTabs-indicator': { backgroundColor: "#2B817B" },
+            '& .MuiTab-root': { color: "#9EA3AE" },
+            '& .Mui-selected': { color: "#1A1824" },
+          }}
         >
           <Tab
             label="Active"
@@ -115,22 +117,22 @@ export default function AllDishesTabs({onHandleClick, setOpenEditDishscreen}) {
       </Box>
       <TabPanel value={value} index={0}>
         {
-          false? (<NoDishesAdded />)
-          : 
-          (
-            <AllDishesCard AllDishesData={AllDishesData2} />
-          )
+          true ? (<NoDishesAdded />)
+            :
+            (
+              <AllDishesCard AllDishesData={AllDishesData2} />
+            )
         }
-        
+
       </TabPanel>
       <TabPanel value={value} index={1}>
-      <AllDishesCard AllDishesData={AllDishesData2} onHandleClick={onHandleClick}/>
+        <AllDishesCard AllDishesData={AllDishesData2} onHandleClick={onHandleClick} />
       </TabPanel>
       <TabPanel value={value} index={2}>
-      <AllDishesCard AllDishesData={AllDishesData} setOpenEditDishscreen={setOpenEditDishscreen} />
+        <AllDishesCard AllDishesData={AllDishesData} setOpenEditDishscreen={setOpenEditDishscreen} />
       </TabPanel>
       <TabPanel value={value} index={3}>
-      <AllDishesCard AllDishesData={AllDishesData2} />
+        <AllDishesCard AllDishesData={AllDishesData2} />
       </TabPanel>
     </Box>
   );

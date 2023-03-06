@@ -5,6 +5,83 @@ import { Typography } from "@mui/material";
 import { styled, alpha } from "@mui/material/styles";
 import Button from "@mui/material/Button";
 
+const MainTypo = styled("div")(({ theme }) => ({
+  fontFamily: "outfit",
+  fontSize: "16px",
+  fontWeight: "600",
+  lineHeight: "24px",
+  color: "#9EA3AE",
+  paddingBottom: "12px",
+}));
+
+const Typo1 = styled("div")(({ theme }) => ({
+  fontFamily: "outfit",
+  fontSize: "16px",
+  fontWeight: "600",
+  lineHeight: "24px",
+  display: "flex",
+  alignItems: "center",
+}));
+
+const Typo2 = styled("div")(({ theme }) => ({
+  fontFamily: "outfit",
+  fontSize: "16px",
+  fontWeight: "400",
+  lineHeight: "24px",
+  color: "#9EA3AE",
+  // display: "flex",
+  // alignItems: "center",
+}));
+
+const SubBox = styled("div")(({ theme }) => ({
+  // padding: theme.spacing(0, 2),
+
+  marginBottom: "24px",
+}));
+
+const Typo3 = styled("div")(({ theme }) => ({
+  // padding: theme.spacing(0, 2),
+  fontFamily: "outfit",
+  fontSize: "16px",
+  fontWeight: "400",
+  lineHeight: "24px",
+  color: "#2B817B",
+  textDecoration: "underline",
+  textTransform: "capitalize",
+}));
+
+const Button1 = styled(Button)(({ theme }) => ({
+  // padding: theme.spacing(0, 2),
+  fontFamily: "outfit",
+  fontSize: "14px",
+  fontWeight: "600",
+  lineHeight: "24px",
+  backgroundColor: "#2B817B",
+  display: "flex",
+  alignItems: "center",
+  textTransform: "capitalize",
+  [theme.breakpoints.down("lg")]: {
+    fontSize: "12px",
+  },
+  [theme.breakpoints.down("sm")]: {
+    fontSize: "10px",
+    lineHeight: "10px",
+  },
+}));
+
+const Button2 = styled(Button)(({ theme }) => ({
+  // padding: theme.spacing(0, 2),
+  fontFamily: "outfit",
+  fontSize: "16px",
+  fontWeight: "400",
+  lineHeight: "24px",
+  color: "#2B817B",
+  display: "flex",
+  alignItems: "center",
+  textTransform: "capitalize",
+  textDecoration: "underline",
+}));
+
 export default function AllDishesMainCard({
   title,
   image,
@@ -15,91 +92,7 @@ export default function AllDishesMainCard({
   setOpenEditDish,
   openEditDishscreen
 }) {
-  // const Data = [
-  //   {
-  //     title: "Main Course",
-  //     subTitle: "No dishes added",
-  //     image: "./images/MainCourse.svg",
-  //   },
-  // ];
-
-  const MainTypo = styled("div")(({ theme }) => ({
-    fontFamily: "outfit",
-    fontSize: "16px",
-    fontWeight: "600",
-    lineHeight: "24px",
-    color: "#9EA3AE",
-    paddingBottom: "12px",
-  }));
-
-  const Typo1 = styled("div")(({ theme }) => ({
-    fontFamily: "outfit",
-    fontSize: "16px",
-    fontWeight: "600",
-    lineHeight: "24px",
-    display: "flex",
-    alignItems: "center",
-  }));
-
-  const Typo2 = styled("div")(({ theme }) => ({
-    fontFamily: "outfit",
-    fontSize: "16px",
-    fontWeight: "400",
-    lineHeight: "24px",
-    color: "#9EA3AE",
-    // display: "flex",
-    // alignItems: "center",
-  }));
-
-  const SubBox = styled("div")(({ theme }) => ({
-    // padding: theme.spacing(0, 2),
-
-    marginBottom: "24px",
-  }));
-
-  const Typo3 = styled("div")(({ theme }) => ({
-    // padding: theme.spacing(0, 2),
-    fontFamily: "outfit",
-    fontSize: "16px",
-    fontWeight: "400",
-    lineHeight: "24px",
-    color: "#2B817B",
-    textDecoration: "underline",
-    textTransform: "capitalize",
-  }));
-
-  const Button1 = styled(Button)(({ theme }) => ({
-    // padding: theme.spacing(0, 2),
-    fontFamily: "outfit",
-    fontSize: "14px",
-    fontWeight: "600",
-    lineHeight: "24px",
-    backgroundColor: "#2B817B",
-    display: "flex",
-    alignItems: "center",
-    textTransform: "capitalize",
-    [theme.breakpoints.down("lg")]: {
-      fontSize: "12px",
-    },
-    [theme.breakpoints.down("sm")]: {
-      fontSize: "10px",
-      lineHeight: "10px",
-    },
-  }));
-
-  const Button2 = styled(Button)(({ theme }) => ({
-    // padding: theme.spacing(0, 2),
-    fontFamily: "outfit",
-    fontSize: "16px",
-    fontWeight: "400",
-    lineHeight: "24px",
-    color: "#2B817B",
-    display: "flex",
-    alignItems: "center",
-    textTransform: "capitalize",
-    textDecoration: "underline",
-  }));
-
+  
   return (
     <>
       <Box>

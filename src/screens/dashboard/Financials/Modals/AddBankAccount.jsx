@@ -5,8 +5,12 @@ import CustomSelectInput from "components/Inputs/CustomSelectInput";
 import CustomizedModal from "components/Modal/CustomModal";
 import { useFormik } from "formik";
 import CustomIconButton from "components/Button/CustomIconButton";
+import { useAddBankMutation } from "api/bank";
 
 const AddBankAccount = ({ isOpened, handleOnClose }) => {
+
+  const [addBank,{isLoading}] = useAddBankMutation()
+
   const [bank, setBank] = useState({
     label: "Scotiabank",
     img: "https://1000logos.net/wp-content/uploads/2021/05/Scotiabank-Logo-1974.png",
@@ -21,7 +25,8 @@ const AddBankAccount = ({ isOpened, handleOnClose }) => {
       reaccountNumber: "",
     },
     onSubmit: (values) => {
-      console.log("values", values);
+      delete values.reaccountNumber
+      addBank(values)
     },
   });
   return (
@@ -58,6 +63,7 @@ const AddBankAccount = ({ isOpened, handleOnClose }) => {
               },
             ]}
             handleSelectMenu={(e) => {
+              formik.setFieldValue("bankName",e.id)
               setBank(e);
             }}
           />
@@ -81,7 +87,7 @@ const AddBankAccount = ({ isOpened, handleOnClose }) => {
           />
 
           <Box style={{ marginTop: 10 }}>
-            <CustomIconButton label="Submit" variant={"contained"} type="submit"/>
+            <CustomIconButton disabled={isLoading} label="Submit" variant={"contained"} type="submit"/>
           </Box>
         </form>
       </Stack>

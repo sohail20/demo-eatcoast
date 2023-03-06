@@ -192,20 +192,20 @@ export default function DishesStepper3({ formik }) {
                     </Box>
                 </Box>
                 {/* //addIngredient */}
-                <DishMenuSlider 
-                 selectedModal={selectedModal} 
-                 addIngredient={selectedModal === "nutrition" ? addNutrition : addIngredient} 
-                 formik={formik} 
-                 setIsDrawerOpenStaff={setSelectedModal} 
-                 handleUpdateValue={(type, value) => {
-                    if (type == "nutrition") setNutritionValue(value)
-                    else setIngridientsValue(value)
-                 }} 
-                 isDrawerOpenStaff={selectedModal !== null} 
+                <DishMenuSlider
+                    selectedModal={selectedModal}
+                    addIngredient={selectedModal === "nutrition" ? addNutrition : addIngredient}
+                    formik={formik}
+                    setIsDrawerOpenStaff={setSelectedModal}
+                    handleUpdateValue={(type, value) => {
+                        if (type == "nutrition") setNutritionValue(value)
+                        else setIngridientsValue(value)
+                    }}
+                    isDrawerOpenStaff={selectedModal !== null}
                 />
 
-                <DishesCalander handleUpdateValue={(e)=>{
-                  setScheduled(e)
+                <DishesCalander handleUpdateValue={(e) => {
+                    setScheduled(e)
                 }} setIsDrawerOpenStaff2={setIsDrawerOpenStaff2} isDrawerOpenStaff2={isDrawerOpenStaff2} />
             </Container>
 

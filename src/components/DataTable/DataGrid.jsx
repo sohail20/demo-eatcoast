@@ -70,6 +70,7 @@ const CustomDataGrid = ({
   handleOnAddClick,
   handleAction,
   handleMenuAction,
+  handleSearch,
   tableColumns,
 }) => {
   const [value, setValue] = React.useState(0);
@@ -124,7 +125,10 @@ const CustomDataGrid = ({
                   size="small"
                   placeholder="Search Employees"
                   value={searchVal}
-                  onChange={(e) => setSearchVal(e.target.value)}
+                  onChange={(e) => {
+                    handleSearch(e.target.value);
+                    setSearchVal(e.target.value);
+                  }}
                   InputProps={{
                     endAdornment: (
                       <InputAdornment position="end">

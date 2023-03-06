@@ -34,12 +34,16 @@ function CustomCalendar({ hasTopInput, handleOnSelect }) {
   return (
     <div>
       {hasTopInput && (
-        <Box style={{marginBottom:20}}>
-          <CustomInput label="Date" value="Tuesday 22/22/22"/>
+        <Box style={{ marginBottom: 20 }}>
+          <CustomInput label="Date" value={value} />
         </Box>
       )}
       <Calendar
-        onChange={handleOnSelect}
+        onChange={(e) => {
+          const currentValue = new Date(e);
+          onChange(currentValue);
+          handleOnSelect(currentValue.toDateString());
+        }}
         nextLabel={
           <i class="fa fa-chevron-right" style={{ color: "#2B817B" }}></i>
         }

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Grid, Box, styled, Stack } from "@mui/material";
 import EastIcon from "@mui/icons-material/East";
 
@@ -16,6 +16,8 @@ import CustomizedDrop from "../../../components/Inputs/DropDown";
 import CustomBarChart from "../../../components/Charts/CustomBarChart";
 import AddBankAccount from "./Modals/AddBankAccount";
 import CashCard from "../../../components/Cards/CashCard";
+import { useGetActiveBankQuery } from "api/bank";
+import FullPageLoader from "components/Loader/FullPageLoader";
 
 const ColoredBox = styled(Box)(({ theme }) => ({
   display: "flex",
@@ -31,8 +33,22 @@ const ColoredBox = styled(Box)(({ theme }) => ({
 }));
 
 const FinancialDashBoard = () => {
+  const { data: activeCard, isLoading } = useGetActiveBankQuery("active");
+  const [activeCardDetail, setActiveCardDetail] = useState({
+    accountNumber: "",
+    accountHolder: "",
+  });
   const [addBankAccountModal, setAddBankAccountModal] = useState(false);
-  return (
+
+  useEffect(() => {
+    if (activeCard && activeCard.data) {
+      setActiveCardDetail(activeCard.data);
+    }
+  }, [activeCard]);
+
+  return isLoading ? (
+    <FullPageLoader />
+  ) : (
     <>
       <Grid container spacing={2}>
         <Grid item xs={12} md={3} lg={3}>
@@ -58,9 +74,9 @@ const FinancialDashBoard = () => {
                       marginRight: "10px",
                     }}
                   />
-                  <H3Typo>1234 - 1234 - 1234</H3Typo>
+                  <H3Typo>{activeCardDetail.accountNumber}</H3Typo>
                 </FlexBoxContainer>
-                <LightTitle>Muhammad ali wibawa</LightTitle>
+                <LightTitle>{activeCardDetail.accountHolder}</LightTitle>
               </Box>
             </BorderContainer>
             <BorderContainer
