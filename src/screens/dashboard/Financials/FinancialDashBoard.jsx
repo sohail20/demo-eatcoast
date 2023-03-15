@@ -32,7 +32,7 @@ const ColoredBox = styled(Box)(({ theme }) => ({
   borderRadius: "8px",
 }));
 
-const FinancialDashBoard = () => {
+const FinancialDashBoard = ({ handleStep }) => {
   const { data: activeCard, isLoading } = useGetActiveBankQuery("active");
   const [activeCardDetail, setActiveCardDetail] = useState({
     accountNumber: "",
@@ -96,7 +96,9 @@ const FinancialDashBoard = () => {
                   <H1Typo>Revenue</H1Typo>
                   <LightTitle>From 1 - 30 August 2022</LightTitle>
                 </Box>
-                <UnderlineButton>Transaction details</UnderlineButton>
+                <UnderlineButton onClick={handleStep}>
+                  Transaction details
+                </UnderlineButton>
               </FlexBoxContainer>
               <CustomizedDrop
                 items={[
@@ -143,7 +145,7 @@ const FinancialDashBoard = () => {
 
       <FlexBoxContainer>
         <H1Typo>Withdraw History</H1Typo>
-        <UnderlineButton>See More</UnderlineButton>
+        <UnderlineButton onClick={handleStep}>See More</UnderlineButton>
       </FlexBoxContainer>
       <Grid container spacing={2} style={{ marginTop: 2 }}>
         {[...Array(6)].map(() => (

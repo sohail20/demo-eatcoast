@@ -4,14 +4,22 @@ import FinancialDashBoard from "./FinancialDashBoard";
 import TransactionDetails from "./TransactionDetails/TransactionDetails";
 
 const Financials = () => {
-  const [step, setStep] = useState("dashboard");
+  const [step, setStep] = useState("transactionDetails");
   return (
     <>
       <DashboardLayout>
         {step === "dashboard" ? (
-          <FinancialDashBoard />
+          <FinancialDashBoard
+            handleStep={() => {
+              setStep("transactionDetails");
+            }}
+          />
         ) : step === "transactionDetails" ? (
-          <TransactionDetails />
+          <TransactionDetails
+            handleBack={() => {
+              setStep("dashboard");
+            }}
+          />
         ) : null}
       </DashboardLayout>
     </>

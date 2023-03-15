@@ -11,9 +11,9 @@ const CustomButton = styled(Button)(({ theme }) => ({
   textTransform:"none"
 }));
 
-const UnderlineButton = ({ children }) => {
+const UnderlineButton = ({ children, ...rest }) => {
   return (
-    <CustomButton variant="text">
+    <CustomButton variant="text" {...rest}>
       {children}
     </CustomButton>
   );

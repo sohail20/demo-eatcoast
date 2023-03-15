@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
@@ -8,6 +8,9 @@ import NoDishesAdded from "./NoDishesAdded";
 import { AllDishesCard } from "./AllDishesCard";
 import { AllDishesData } from "./Config";
 import { AllDishesData2 } from "./Config";
+import { useGetDishesByStatusQuery } from "api/dishes";
+import FullPageLoader from "components/Loader/FullPageLoader";
+import { generateImageURL } from "helper";
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -41,7 +44,7 @@ function a11yProps(index) {
   };
 }
 
-export default function AllDishesTabs({ onHandleClick, setOpenEditDishscreen }) {
+export default function AllDishesTabs({ onHandleClick, handleEditDish }) {
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
@@ -116,24 +119,48 @@ export default function AllDishesTabs({ onHandleClick, setOpenEditDishscreen }) 
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
-        {
-          true ? (<NoDishesAdded />)
-            :
-            (
-              <AllDishesCard AllDishesData={AllDishesData2} />
-            )
-        }
-
+        <Dishes status={"active"} handleEditDish={handleEditDish} />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <AllDishesCard AllDishesData={AllDishesData2} onHandleClick={onHandleClick} />
+        <Dishes status={"inactive"} />
       </TabPanel>
       <TabPanel value={value} index={2}>
-        <AllDishesCard AllDishesData={AllDishesData} setOpenEditDishscreen={setOpenEditDishscreen} />
+        <Dishes status={"request"} />
       </TabPanel>
       <TabPanel value={value} index={3}>
-        <AllDishesCard AllDishesData={AllDishesData2} />
+        <Dishes status={"draft"} />
       </TabPanel>
     </Box>
   );
+}
+
+
+
+const Dishes = ({ status, handleEditDish }) => {
+  const [dishesData, setDishesData] = useState([])
+  const { data: activeDishes, isLoading } = useGetDishesByStatusQuery(`page=1&size=2&orderBy=desc&sortBy=${status}`)
+  useEffect(() => {
+    if (activeDishes && activeDishes.data) {
+      const dishTmp = []
+      activeDishes.data.map((item) => {
+        dishTmp.push({ id: item._id, title: item.name, subTitle: item.description, image: generateImageURL("dishImages", item.image) })
+      })
+      setDishesData(dishTmp)
+    }
+  }, [activeDishes])
+  return isLoading ? <FullPageLoader /> : (
+    <>
+      {
+        dishesData.length === 0 ?
+          <NoDishesAdded />
+          :
+          <AllDishesCard
+            AllDishesData={dishesData}
+            handleEditDish={(e) => {
+              handleEditDish(e)
+            }}
+          />
+      }
+    </>
+  )
 }

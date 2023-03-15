@@ -40,12 +40,7 @@ export const addNutrition = [
   },
 ];
 
-export const AddDishesFieldBox = ({ formik }) => {
-  const [image, setImage] = useState("./images/image profile.svg");
-  const [placeholderSched, setPlaceholderSched] = useState(false);
-  const [placeholderIngri, setPlaceholderIngri] = useState(false);
-  const [placeholderNutri, setPlaceholderNutri] = useState(false);
-
+export const AddDishesFieldBox = ({ setImage, image, formik }) => {
   const weekday = [
     "Sunday",
     "Monday",
@@ -84,19 +79,16 @@ export const AddDishesFieldBox = ({ formik }) => {
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
     setOpenDrawer(true);
-    setPlaceholderIngri(true);
   };
 
   const handleClickNutritionDrawer = (event) => {
     setAnchorEl(event.currentTarget);
     setOpenDrawer2(true);
-    setPlaceholderNutri(true);
   };
 
   const handleClickScheduledDrawer = (event) => {
     setAnchorEl(event.currentTarget);
     setOpenDrawer3(true);
-    setPlaceholderSched(true);
   };
 
   useEffect(() => {
@@ -285,6 +277,7 @@ export const AddDishesFieldBox = ({ formik }) => {
               className={"mealInput mealCourses"}
               placeholder={"Select ingridients"}
               disabled={true}
+              value={formik.values.ingredient.join(",")}
               icon={arrowRight}
             />
           </Box>
@@ -296,7 +289,7 @@ export const AddDishesFieldBox = ({ formik }) => {
               subTitle={"( Optional )"}
               className={"mealInput mealCourses"}
               placeholder={"Select scheduled dishes"}
-              value={formik.values.ingredient.join(",")}
+              value={formik.values.nutritionInformation.join(",")}
               disabled={true}
               icon={arrowRight}
             />
@@ -308,7 +301,6 @@ export const AddDishesFieldBox = ({ formik }) => {
               subTitle={"( Optional )"}
               className={"mealInput mealCourses"}
               placeholder={"Select scheduled dishes"}
-              value={formik.values.nutritionInformation.join(",")}
               disabled={true}
               icon={arrowRight}
             />

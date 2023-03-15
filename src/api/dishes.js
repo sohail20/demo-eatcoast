@@ -16,6 +16,18 @@ const extendedApi = api.injectEndpoints({
         body,
       }),
     }),
+    updateDishStatus: build.mutation({
+      query: (body) => ({
+        url: `/dish/update/status/${body.id}?status=${body.status}`,
+        method: "POST",
+      }),
+    }),
+    getDishesByStatus: build.query({
+      query: (query) => ({
+        url: `/dish?${query}`,
+        method: "GET",
+      })
+    }),
     deleteDishes: build.mutation({
       query: (body) => ({
         url: `/dish/delete`,
@@ -23,18 +35,18 @@ const extendedApi = api.injectEndpoints({
         body,
       }),
     }),
-    getAllDishes:build.query({
-      query:(body)=>({
-        url:"/caterer/all/dish",
-        method:"POST",
-        body      
+    getAllDishes: build.query({
+      query: (body) => ({
+        url: "/caterer/all/dish",
+        method: "POST",
+        body
       })
     }),
-    getAllMealCourses:build.query({
-      query:(body)=>({
-        url:"/caterer/all/mealcourse",
-        method:"POST",
-        body      
+    getAllMealCourses: build.query({
+      query: (body) => ({
+        url: "/caterer/all/mealcourse",
+        method: "POST",
+        body
       })
     }),
     findDishesByRestaurant: build.query({
@@ -44,8 +56,22 @@ const extendedApi = api.injectEndpoints({
         body,
       }),
     }),
+    getSingleDish: build.query({
+      query: (id) => ({
+        url: `/dish/${id}`,
+        method: "GET",
+      }),
+    }),
   }),
   overrideExisting: false,
 });
 
-export const { useAddDishesMutation, useGetAllDishesQuery, useGetAllMealCoursesQuery } = extendedApi;
+export const {
+  useGetDishesByStatusQuery,
+  useAddDishesMutation,
+  useGetAllDishesQuery,
+  useGetSingleDishQuery,
+  useUpdateDishesMutation,
+  useUpdateDishStatusMutation,
+  useGetAllMealCoursesQuery
+} = extendedApi;

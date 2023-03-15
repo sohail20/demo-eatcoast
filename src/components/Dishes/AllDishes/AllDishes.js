@@ -9,18 +9,18 @@ import { DetailDishesDrawer } from "./DetailDishes/DetailDishesDrawer";
 import { useState, useRef } from "react";
 import { DetailDishesMainCard } from "./DetailDishes/DetailDishesMainCard";
 
-export default function AllDishes({ openEditDish, setOpenEditDish, setOpenEditDishscreen }) {
+const SubBox = styled("div")(() => ({
+  padding: "32px",
+  width: "100%",
+  border: "1px solid #E1E1E6",
+  borderRadius: "8px",
+}));
 
-  const SubBox = styled("div")(({ theme }) => ({
-    padding: "32px",
-    width: "100%",
-    border: "1px solid #E1E1E6",
-    borderRadius: "8px",
-  }));
+
+export default function AllDishes({ openEditDish, setOpenEditDish,handleEditDish }) {
+
 
   const [openDrawer, setOpenDrawer] = useState(false);
-  const [openDrawer2, setOpenDrawer2] = useState(false);
-  const [openDrawer3, setOpenDrawer3] = useState(false);
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -61,7 +61,7 @@ export default function AllDishes({ openEditDish, setOpenEditDish, setOpenEditDi
             setOpenEditDish={setOpenEditDish}
           />
           <Box>
-            <AllDishesTabs onHandleClick={handleClick} setOpenEditDishscreen={setOpenEditDishscreen} />
+            <AllDishesTabs onHandleClick={handleClick} handleEditDish={handleEditDish} />
           </Box>
           <Box>
             <DetailDishesDrawer

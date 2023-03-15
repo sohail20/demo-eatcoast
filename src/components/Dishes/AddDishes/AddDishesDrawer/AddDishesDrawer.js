@@ -130,7 +130,10 @@ export const AddDishesDrawer = ({ type, handleSubmit, setOpenDrawer, openDrawer,
                       backgroundColor: "#2B817B"
                     }
                   }}
-                  onClick={() => handleSubmit(date)}
+                  onClick={() => {
+                    handleSubmit(date)
+                    handleCloseDrawer()
+                  }}
                 >
                   Save
                 </Btn>

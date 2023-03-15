@@ -6,7 +6,7 @@ import { styled, alpha } from "@mui/material/styles";
 import Button from "@mui/material/Button";
 import { CustomChip } from "./CustomChip";
 
-export const AllDishesCustomCard = ({ chip, data, onHandleClick, setOpenEditDishscreen }) => {
+export const AllDishesCustomCard = ({ chip, data, onHandleClick, handleEditDish }) => {
   const MainBox = styled("div")(({ theme }) => ({
     marginBottom: "24px",
     // width: "476px",
@@ -19,9 +19,9 @@ export const AllDishesCustomCard = ({ chip, data, onHandleClick, setOpenEditDish
       width: "100%",
       height: "auto",
     },
-    [theme.breakpoints.up('xl')]:{
-        width: "100%",
-        height: "auto"
+    [theme.breakpoints.up('xl')]: {
+      width: "100%",
+      height: "auto"
     }
   }));
 
@@ -32,9 +32,9 @@ export const AllDishesCustomCard = ({ chip, data, onHandleClick, setOpenEditDish
     fontWeight: "600",
     lineHeight: "24px",
     textTransform: "capitalize",
-    [theme.breakpoints.up('xl')]:{
-        paddingBottom: "15px",
-        fontSize: "18px",
+    [theme.breakpoints.up('xl')]: {
+      paddingBottom: "15px",
+      fontSize: "18px",
     }
   }));
 
@@ -50,10 +50,10 @@ export const AllDishesCustomCard = ({ chip, data, onHandleClick, setOpenEditDish
     [theme.breakpoints.down("lg")]: {
       width: "100%",
     },
-    [theme.breakpoints.up('xl')]:{
-        fontSize: "14px",
-        width: "100%",
-        lineHeight: "24px"
+    [theme.breakpoints.up('xl')]: {
+      fontSize: "14px",
+      width: "100%",
+      lineHeight: "24px"
     }
   }));
 
@@ -78,7 +78,7 @@ export const AllDishesCustomCard = ({ chip, data, onHandleClick, setOpenEditDish
   return (
     <>
       <MainBox>
-        <Box sx={{ display: "flex", flexDirection: {xl: "row", lg:"row", md: "row", sm: "row", xs: "column"} }}>
+        <Box sx={{ display: "flex", flexDirection: { xl: "row", lg: "row", md: "row", sm: "row", xs: "column" } }}>
           <Box >
             <Box
               sx={{
@@ -96,14 +96,14 @@ export const AllDishesCustomCard = ({ chip, data, onHandleClick, setOpenEditDish
                   sm: "64px",
                   xs: "auto",
                 },
-                
+
               }}
             >
               <img src={data.image} alt="" width="100%" height="auto" />
             </Box>
           </Box>
 
-          <Box sx={{ paddingLeft: {xl: "16px", lg: "16px", md: "16px", sm: "16px", xs: "0px"}, width: "100%" }}>
+          <Box sx={{ paddingLeft: { xl: "16px", lg: "16px", md: "16px", sm: "16px", xs: "0px" }, width: "100%" }}>
             <Box sx={{ display: "flex", justifyContent: "space-between" }}>
               <Box>
                 <Typo1>{data.title}</Typo1>
@@ -117,8 +117,8 @@ export const AllDishesCustomCard = ({ chip, data, onHandleClick, setOpenEditDish
                       data.status === "Rejected"
                         ? "#E75C62"
                         : data.status === "Need to Submit"
-                        ? "#42C677"
-                        : "#FAA641"
+                          ? "#42C677"
+                          : "#FAA641"
                     }
                   />
                 )}
@@ -130,7 +130,7 @@ export const AllDishesCustomCard = ({ chip, data, onHandleClick, setOpenEditDish
                 <Typo2>{data.subTitle}</Typo2>
               </Box>
               <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
-                <Button1 variant="text" onClick={() => setOpenEditDishscreen(true)}>Edit</Button1>
+                <Button1 variant="text" onClick={() => handleEditDish(data.id)}>Edit</Button1>
               </Box>
             </Box>
           </Box>

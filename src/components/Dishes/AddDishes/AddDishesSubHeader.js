@@ -72,7 +72,7 @@ const Button3 = styled(Button)(({ theme }) => ({
   },
 }));
 
-export default function AddDishesSubHeader({ disabled, setOpenBackToDish }) {
+export default function AddDishesSubHeader({ disabled, handleAddToDraft, setOpenBackToDish }) {
 
   const { setOpenEditDish } = useContext(AllDishesContext)
   const [open, setOpen] = React.useState(false);
@@ -92,14 +92,7 @@ export default function AddDishesSubHeader({ disabled, setOpenBackToDish }) {
           sx={{ width: { lg: "50%", md: "50%", sm: "20%", xs: "0%" } }}
         >
           <IconButton onClick={() => setOpenEditDish(false)}>
-            <Box
-              sx={
-                {
-                  // display: "flex",
-                  //  alignItems: "center"
-                }
-              }
-            >
+            <Box>
               <CloseIcon sx={{ fill: "#E75C62" }} />
             </Box>
           </IconButton>
@@ -145,6 +138,7 @@ export default function AddDishesSubHeader({ disabled, setOpenBackToDish }) {
                 variant="outlined"
                 height="40px"
                 sx={{ color: "#80B3B0" }}
+                onClick={handleAddToDraft}
               >
                 Save as Draft
               </Button1>
@@ -161,7 +155,6 @@ export default function AddDishesSubHeader({ disabled, setOpenBackToDish }) {
             </Box>
             <Box ml="12px">
               <Button3
-                // onClick={() => { setOpenBackToDish(true) }}
                 variant="contained"
                 type="submit"
                 disabled={disabled}

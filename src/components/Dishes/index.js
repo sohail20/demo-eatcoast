@@ -13,10 +13,10 @@ import DashboardLayout from "screens/DashboardLayout/DashboardLayout";
 
 const Dishes = () => {
   const [openEditDish, setOpenEditDish] = useState(false);
+  const [editId, setEditId] = useState(null)
   const [openBackToDish, setOpenBackToDish] = useState(false);
-  const [openEditDishscreen, setOpenEditDishscreen] = useState(false);
+  const [openEditDishscreen, setOpenEditDishscreen] = useState(true);
   const [openAllDishes, setOpenAllDishes] = useState(true);
-  console.log("dishes", openEditDishscreen);
 
   return (
     <div>
@@ -29,37 +29,32 @@ const Dishes = () => {
           setOpenEditDishscreen,
         }}
       >
-        {openEditDish ? (
+        {openEditDish || editId !== null ? (
           <Box>
             {openBackToDish ? (
               <BackToDishes />
             ) : (
               <Box >
-                <AddDishes setOpenBackToDish={setOpenBackToDish} />
+                <AddDishes setOpenBackToDish={setOpenBackToDish} id={editId} />
               </Box>
             )}
           </Box>
         ) : (
-          <>
-            {openEditDishscreen ? (
-              <EditDishes />
+          <Box>
+            {openAllDishes ? (
+              <AllDishes
+                setOpenEditDish={setOpenEditDish}
+                openEditDish={openEditDish}
+                handleEditDish={(e) => {
+                  setEditId(e)
+                }}
+              />
             ) : (
               <Box>
-                {openAllDishes ? (
-                  <AllDishes
-                    setOpenEditDish={setOpenEditDish}
-                    openEditDish={openEditDish}
-                    setOpenEditDishscreen={setOpenEditDishscreen}
-                  />
-                ) : (
-                  <Box>
-                    {/* <DishesMealPlan setOpenAllDishes={setOpenAllDishes} /> */}
-                    <DishesMealPlan />
-                  </Box>
-                )}
+                <DishesMealPlan />
               </Box>
             )}
-          </>
+          </Box>
         )}
       </AllDishesContext.Provider>
     </div>
