@@ -1,3 +1,5 @@
+import { BASE_URL } from "config"
+
 export const getCurrentEmpoyee = () => {
   const user = localStorage.getItem("employee")
   const userCaterer = JSON.parse(localStorage.getItem("user"))
@@ -24,9 +26,8 @@ export const getCaterer = () => {
 }
 
 export const generateImageURL = (key, image) => {
-  const development = "http://localhost:5055/image"
-  const production = "https://backend.eatcoast.ca/v1/image"
-  return `${process.env.NODE_ENV === "development" ? development : production}/${key}/${image}`
+  const simpleURL = BASE_URL.replace("/api","/image")
+  return `${simpleURL}/${key}/${image}`
 }
 
 export const subscriptionType = [

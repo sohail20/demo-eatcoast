@@ -8,7 +8,7 @@ import UnderlineButton from "components/Button/UnderlineButton";
 import { useFormik } from "formik";
 import debounce from "lodash.debounce";
 import CustomIconButton from "components/Button/CustomIconButton";
-import { useGetRestaurantByUserIdQuery } from "api/restaurant";
+import { useAddRestaurantMutation, useGetRestaurantByUserIdQuery } from "api/restaurant";
 import FullPageLoader from "components/Loader/FullPageLoader";
 import { generateImageURL } from "helper";
 
@@ -36,6 +36,7 @@ const RestaurantSettings = ({ handleChangeAddress }) => {
   const [hasChanged, setHasChanged] = useState(false);
   const [hasRestaurant,setHasRestaurant] = useState(false)
   const [image, setImage] = useState("./images/image profile.svg");
+  const [addRestaurant,{isLoading:isAddingRestaurant}] = useAddRestaurantMutation()
   const { data: restaurant, isLoading } = useGetRestaurantByUserIdQuery();
   const formik = useFormik({
     initialValues: {
@@ -45,7 +46,14 @@ const RestaurantSettings = ({ handleChangeAddress }) => {
       note:""
     },
     onSubmit: (values) => {
-      console.log(values);
+      let formData = new FormData()
+
+      for (let key in values) {
+        formData.append(key, values[key]);
+      }
+      addRestaurant(formData).then((res)=>{
+        console.log(res)
+      })
     },
   });
 
@@ -86,7 +94,7 @@ const RestaurantSettings = ({ handleChangeAddress }) => {
     }
   }, [formik]);
 
-  return isLoading ? (
+  return isLoading || isAddingRestaurant? (
     <FullPageLoader />
   ) : (
     <form onSubmit={formik.handleSubmit} onChange={onChangeValue}>

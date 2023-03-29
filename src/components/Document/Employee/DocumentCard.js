@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   Box,
   styled,
@@ -117,7 +117,7 @@ export const DocumentCard = ({ Data }) => {
         </Box>
 
         <Box sx={{ display: "flex", alignItems: "center" }}>
-          {Data.hasTextBtn && (
+          {Data.hasTextBtn && !Data.image.includes("undefined") && (
             <Box>
               <Button1 variant="text" href={Data.image} target="_blank">{Data.textBtnTitle}</Button1>
             </Box>
