@@ -1,53 +1,25 @@
 import React, { useEffect, useState } from "react";
 import {
   Box,
-  Button,
   Grid,
-  ListItemIcon,
-  ListItemText,
-  Menu,
-  MenuItem,
-  Select,
   Typography,
 } from "@mui/material";
 import { BsArrowDown, BsArrowUp } from "react-icons/bs";
 import { DonutChart } from "./DonutChart";
 import { SalesChart } from "./SalesChart";
-import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { useGetManagerDashQuery } from "api/dashboard";
 import FullPageLoader from "components/Loader/FullPageLoader";
 import { getDays } from "helper";
+import CustomDropdown from "components/Inputs/CustomDropdown";
 
 export const Da_manager = ({ todayDate, info }) => {
   const { data: managerDash, isLoading } = useGetManagerDashQuery({
     catererId: info._id,
   });
-  const [anchorEl, setAnchorEl] = React.useState(null);
   const [cardInfo, setCardInfo] = useState(null);
   const [salesChartData, setSalesChartData] = useState([]);
-  const open = Boolean(anchorEl);
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-  const [menu, setMenu] = React.useState("Month");
-  const [checkbox, setCheckbox] = React.useState(false);
-  const [checkbox2, setCheckbox2] = React.useState(false);
-  const [checkbox3, setCheckbox3] = React.useState(false);
+  const [overAllFilter, setOverAllFilter] = React.useState("monthly");
 
-  const handleIcon = () => {
-    setCheckbox(true);
-    setCheckbox2(false);
-    setCheckbox3(false);
-  };
-  const handleIcon2 = () => {
-    setCheckbox(false);
-    setCheckbox2(true);
-    setCheckbox3(false);
-  };
 
   useEffect(() => {
     if (managerDash && managerDash.data) {
@@ -64,20 +36,20 @@ export const Da_manager = ({ todayDate, info }) => {
               key === "activeSubscription"
                 ? "Active Subscription"
                 : key === "pauseSubscription"
-                ? "Pause Subscription"
-                : key === "singleSubscription"
-                ? "Single Subscription"
-                : "Revenue",
+                  ? "Pause Subscription"
+                  : key === "singleSubscription"
+                    ? "Single Subscription"
+                    : "Revenue",
             price: managerDash.data[key],
             value: managerDash.data[`${key}Percent`],
             image:
               key === "activeSubscription"
                 ? "images/Play.svg"
                 : key === "pauseSubscription"
-                ? "images/Pause.svg"
-                : key === "singleSubscription"
-                ? "images/Single.svg"
-                : "images/Revenue.svg",
+                  ? "images/Pause.svg"
+                  : key === "singleSubscription"
+                    ? "images/Single.svg"
+                    : "images/Revenue.svg",
           });
         }
       });
@@ -134,129 +106,18 @@ export const Da_manager = ({ todayDate, info }) => {
               component={"div"}
               display={"flex"}
               justifyContent={"space-between"}
-              // sx={{ flexDirection: {xs: 'column', }}}
+            // sx={{ flexDirection: {xs: 'column', }}}
             >
-              <Box component={"div"}>
-                <span
-                  style={{
-                    fontFamily: "Outfit",
-                    fontSize: "14px",
-                    color: "#9EA3AE",
-                    lineHeight: "30px",
-                    fontWeight: "400",
-                  }}
-                >
-                  Showing:{" "}
-                </span>
-
-                <Button
-                  id="basic-button"
-                  aria-controls={open ? "basic-menu" : undefined}
-                  aria-haspopup="true"
-                  aria-expanded={open ? "true" : undefined}
-                  onClick={handleClick}
-                  endIcon={<KeyboardArrowDownIcon sx={{ fill: "#2B817B " }} />}
-                  sx={{
-                    color: "#545359",
-                    marginLeft: "10px",
-                    textTransform: "capitalize",
-                    border: "1px solid #E1E1E6",
-                    width: "76px",
-                    borderRadius: "6px",
-                    fontSize: {
-                      xl: "14px",
-                      lg: "14px",
-                      md: "13px",
-                      sm: "12px",
-                      xs: "12px",
-                    },
-                    fontWeight: "500",
-                    pl: "0px",
-                    width: "100px",
-                  }}
-                >
-                  {menu}
-                </Button>
-                <Menu
-                  id="basic-menu"
-                  anchorEl={anchorEl}
-                  onClose={handleClose}
-                  open={open}
-                  MenuListProps={{
-                    "aria-labelledby": "basic-button",
-                  }}
-                  sx={{
-                    border: "1px solid #E1E1E6",
-                    borderRadius: "6px",
-                  }}
-                >
-                  <MenuItem
-                    sx={{
-                      color: "#9EA3AE",
-                      width: "120px",
-                      pt: "0px",
-                      pb: "0px",
-                      fontSize: "12px",
-                      fontWeight: "400",
-                    }}
-                    onClick={(e) => {
-                      setMenu("Month");
-                      handleClose();
-                      handleIcon();
-                    }}
-                  >
-                    <ListItemText
-                      primary={"Month"}
-                      primaryTypographyProps={{
-                        fontSize: "14px",
-                        fontFamily: "outfit",
-                        fontWeight: true ? "600" : "400",
-                      }}
-                    />
-
-                    <ListItemIcon>
-                      {checkbox ? (
-                        <CheckCircleOutlineIcon sx={{ fill: "#42C677" }} />
-                      ) : (
-                        ""
-                      )}
-                    </ListItemIcon>
-                  </MenuItem>
-
-                  <MenuItem
-                    sx={{
-                      color: "#9EA3AE",
-                      width: "120px",
-                      pt: "0px",
-                      pb: "0px",
-                      fontSize: "12px",
-                      fontWeight: "400",
-                    }}
-                    onClick={(e) => {
-                      setMenu("Daily");
-                      handleClose();
-                      handleIcon2();
-                    }}
-                  >
-                    <ListItemText
-                      primary={"Daily"}
-                      primaryTypographyProps={{
-                        fontSize: "14px",
-                        fontFamily: "outfit",
-                        fontWeight: true ? "600" : "400",
-                      }}
-                    />
-
-                    <ListItemIcon>
-                      {checkbox2 ? (
-                        <CheckCircleOutlineIcon sx={{ fill: "#42C677" }} />
-                      ) : (
-                        ""
-                      )}
-                    </ListItemIcon>
-                  </MenuItem>
-                </Menu>
-              </Box>
+              <CustomDropdown
+                value={overAllFilter}
+                items={[
+                  { label: "Daily", value: "daily" },
+                  { label: "Monthly", value: "monthly" },
+                ]}
+                handleOnChange={(e) => {
+                  setOverAllFilter(e)
+                }}
+              />
             </Box>
 
             {/* section 3 */}

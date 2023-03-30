@@ -138,7 +138,7 @@ export default function DashboardLayout({
   const handleDrawerOpen = () => {
     setOpen(true);
     setIsTrue(false);
-  };  
+  };
 
   const handleDrawerClose = () => {
     setOpen(false);
@@ -203,13 +203,20 @@ export default function DashboardLayout({
                       minHeight: 48,
                       justifyContent: open ? "initial" : "center",
                       px: 2.5,
+                      background: "transparent !important",
                     }}
                   >
                     <ListItemIcon
-                      sx={{
+                      sx={item.link === window.location.pathname ? {
+                        justifyContent: "center",
+                        background: "#2B817B",
+                        padding: "10px",
+                        borderRadius: "8px",
+                        color: " #fff",
+                      } : {}}
+                      style={{
                         minWidth: 0,
                         mr: open ? 3 : "auto",
-                        justifyContent: "center",
                       }}
                     >
                       {item?.icon}
@@ -225,9 +232,12 @@ export default function DashboardLayout({
         </List>
       </Drawer>
 
-      <Box component="main" sx={{ flexGrow: 1, mt: showTopNav?"70px":undefined }}>
+      <Box
+        component="main"
+        sx={{ flexGrow: 1, mt: showTopNav ? "70px" : undefined }}
+      >
         <Box p={padding}>{children}</Box>
       </Box>
-    </Box>
+    </Box >
   );
 }
