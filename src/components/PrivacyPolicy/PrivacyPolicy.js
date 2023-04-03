@@ -1,63 +1,65 @@
-import React from 'react'
+import React from "react";
 import {
-    Box,
-    IconButton,
-    styled,
-    Typography,
-    Stack,
-    Checkbox,
-    Button,
-    TextField,
-  } from "@mui/material";
-  import Grid from "@mui/material/Grid";
-import { PrivacyPolicyContent } from './PrivacyPolicyContent';
+  Box,
+  IconButton,
+  styled,
+  Typography,
+  Stack,
+  Checkbox,
+  Button,
+  TextField,
+} from "@mui/material";
+import Grid from "@mui/material/Grid";
+import { PrivacyPolicyContent } from "./PrivacyPolicyContent";
 
-    const Title = styled(Typography)(({ theme }) => ({
-      fontFamily: theme.typography.fontFamily,
-      fontStyle: "normal",
-      fontWeight: 600,
-      fontSize: "20px",
-      letterSpacing: "0.015em",
-      color: "#1A1824",
-    }));
-  
-    const Typo1 = styled(Typography)(({ theme }) => ({
-      fontFamily: theme.typography.fontFamily,
-      fontStyle: "normal",
-      fontWeight: 400,
-      fontSize: "12px",
-      color: "#9EA3AE",
-      textAlign: "justify",
-      lineHeight: "16px",
-      width: "596px",
-    }));
+const Title = styled(Typography)(({ theme }) => ({
+  fontFamily: theme.typography.fontFamily,
+  fontStyle: "normal",
+  fontWeight: 600,
+  fontSize: "20px",
+  letterSpacing: "0.015em",
+  color: "#1A1824",
+}));
 
-    const Heading1 = styled("div")(({ theme }) => ({
-        // padding: theme.spacing(0, 2),
-        fontFamily: "outfit",
-        fontSize: "16px",
-        fontWeight: "600",
-        lineHeight: "24px",
-        color: "#2B817B",
-        textTransform: "capitalize",
+const Typo1 = styled(Typography)(({ theme }) => ({
+  fontFamily: theme.typography.fontFamily,
+  fontStyle: "normal",
+  fontWeight: 400,
+  fontSize: "12px",
+  color: "#9EA3AE",
+  textAlign: "justify",
+  lineHeight: "16px",
+  width: "596px",
+}));
 
-        [theme.breakpoints.down('sm')]:{
-            fontSize: "12px",
-        }
-      }));
+const Heading1 = styled("div")(({ theme }) => ({
+  // padding: theme.spacing(0, 2),
+  fontFamily: "outfit",
+  fontSize: "16px",
+  fontWeight: "600",
+  lineHeight: "24px",
+  color: "#2B817B",
+  textTransform: "capitalize",
 
+  [theme.breakpoints.down("sm")]: {
+    fontSize: "12px",
+  },
+}));
 
-
-export const PrivacyPolicy = () => {
+export const PrivacyPolicy = ({ handleBack }) => {
   return (
     <div>
-        <Box sx={{pt: {lg: "32px", md: "32px", sm: "100px", xs: "150px" },  pl:{lg: "32px", md: "32px", sm: "100px", xs: "0px" },  pr:{lg: "32px", md: "32px", sm: "100px", xs: "0px" }}}>
-
-
+      <Box
+        sx={{
+          pt: { lg: "32px", md: "32px", sm: "100px", xs: "150px" },
+          pl: { lg: "32px", md: "32px", sm: "100px", xs: "0px" },
+          pr: { lg: "32px", md: "32px", sm: "100px", xs: "0px" },
+        }}
+      >
         <Box display={"flex"} alignItems="center">
           <Box width="10%">
             <Box>
-              <Button width="20%">
+              <Button width="20%" onClick={handleBack}>
                 <Box
                   sx={{
                     display: "flex",
@@ -95,14 +97,10 @@ export const PrivacyPolicy = () => {
           </Box>
         </Box>
 
-
         <Box mt="32px">
-            <PrivacyPolicyContent/>
+          <PrivacyPolicyContent />
         </Box>
-
-
-
-        </Box>
+      </Box>
     </div>
-  )
-}
+  );
+};

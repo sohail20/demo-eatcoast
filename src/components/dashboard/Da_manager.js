@@ -18,7 +18,7 @@ export const Da_manager = ({ todayDate, info }) => {
   });
   const [cardInfo, setCardInfo] = useState(null);
   const [salesChartData, setSalesChartData] = useState([]);
-  const [overAllFilter, setOverAllFilter] = React.useState("monthly");
+  const [overAllFilter, setOverAllFilter] = React.useState("month");
 
 
   useEffect(() => {
@@ -112,7 +112,7 @@ export const Da_manager = ({ todayDate, info }) => {
                 value={overAllFilter}
                 items={[
                   { label: "Daily", value: "daily" },
-                  { label: "Monthly", value: "monthly" },
+                  { label: "This Month", value: "month" },
                 ]}
                 handleOnChange={(e) => {
                   setOverAllFilter(e)

@@ -5,8 +5,9 @@ import {
   Typography,
   Button,
   Divider,
-  Link,
+  Link as LinkMUI,
 } from "@mui/material";
+import { Link } from 'react-router-dom'
 import profile from "./Icons/profile.png";
 import dok from "./Icons/24.png";
 import help from "./Icons/help.png";
@@ -16,7 +17,7 @@ import policy from "./Icons/policy.png";
 import arrowRight from "./Icons/Vector.png";
 import "../../style.css";
 
-function ButtonsScreen({handleChangeScreen}) {
+function ButtonsScreen({ handleChangeScreen }) {
   const buttonData = [
     {
       title: "Profile",
@@ -64,7 +65,7 @@ function ButtonsScreen({handleChangeScreen}) {
         {buttonData.map((item, index) => {
           return (
             <>
-              <Link
+              <LinkMUI
                 sx={{
                   textDecoration: "none",
                   display: "flex",
@@ -72,7 +73,7 @@ function ButtonsScreen({handleChangeScreen}) {
                   justifyContent: "space-between",
                   width: { lg: "90%", md: "90%", sm: "80%", xs: "80%" },
                 }}
-                onClick={()=>handleChangeScreen(item.id)}
+                onClick={() => handleChangeScreen(item.id)}
               >
                 <Box sx={{ display: "flex", alignItems: "center" }}>
                   <img src={item.icon} alt="icon" />
@@ -88,7 +89,7 @@ function ButtonsScreen({handleChangeScreen}) {
                   </Typography>
                 </Box>
                 <img src={arrowRight} alt="arrow icon" />
-              </Link>
+              </LinkMUI>
               <Divider
                 sx={{
                   width: { lg: "95%", md: "95%", sm: "80%", xs: "80%" },
@@ -97,10 +98,10 @@ function ButtonsScreen({handleChangeScreen}) {
             </>
           );
         })}
-        <center>
+        <Link to="/login" style={{ textDecoration: 'none' }}>
           <Button
             sx={{
-              width: {xs:"290px",sm:"320px",md:"404px"},
+              width: { xs: "290px", sm: "320px", md: "404px" },
               height: "36px",
               border: "1px solid #FFF1F1",
               borderRadius: "4px",
@@ -115,7 +116,7 @@ function ButtonsScreen({handleChangeScreen}) {
           >
             Logout
           </Button>
-        </center>
+        </Link>
       </Container>
     </>
   );

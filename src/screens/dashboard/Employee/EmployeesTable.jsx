@@ -7,20 +7,20 @@ import { useNavigate } from "react-router-dom";
 import debounce from "lodash.debounce";
 
 const tableColumns = [
-  { field: "id", headerName: "#", width: 240 },
-  {
-    field: "photo",
-    headerName: "Photo",
-    width: 260,
-    renderCell: () => {
-      return (
-        <Avatar
-          alt="Remy Sharp"
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWXRsnR0QT7j2y_UF5kppM3OI-KkfwASC-EP7g6CYPAQ&s"
-        />
-      );
-    },
-  },
+  { field: "id", headerName: "ID", width: 240 },
+  // {
+  //   field: "photo",
+  //   headerName: "Photo",
+  //   width: 260,
+  //   renderCell: () => {
+  //     return (
+  //       <Avatar
+  //         alt="Remy Sharp"
+  //         src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWXRsnR0QT7j2y_UF5kppM3OI-KkfwASC-EP7g6CYPAQ&s"
+  //       />
+  //     );
+  //   },
+  // },
   {
     field: "name",
     headerName: "Name",
@@ -31,11 +31,16 @@ const tableColumns = [
     headerName: "Email",
     width: 230,
   },
+  {
+    field: "role",
+    headerName: "Type",
+    width: 230,
+  },
 ];
 
 const filterData = (data) => {
-  const { _id, email, name } = data;
-  return { id: _id, email, name, photo: "" };
+  const { _id, email, name, role } = data;
+  return { id: _id, email, name, photo: "", role };
 };
 
 const EmployeesTable = ({ handleOnAddClick, handleEditEmployee }) => {

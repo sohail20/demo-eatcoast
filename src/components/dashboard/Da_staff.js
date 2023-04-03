@@ -113,7 +113,7 @@ export const Da_staff = ({ info }) => {
         tmpData.push(chartData[i].count)
       } else tmpData.push(0)
     }
-    
+
     setSalesChartData(tmpData)
   }
 
@@ -291,9 +291,13 @@ export const Da_staff = ({ info }) => {
                 marginTop: "15px",
               }}
             >
-              Subscription list
+              All Order
             </Typography>
-            <SimpleDataTable />
+            <div style={{ height: 400, width: "100%" }}>
+              <DataGridTableView info={info} type={"allOrders"} handleQuery={(query) => {
+                console.log("query", query)
+              }} />
+            </div>
           </>
         ) : mealcourse ? (
           <>

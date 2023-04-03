@@ -1,12 +1,9 @@
 import { useState } from "react";
 import { Radio, Box, Grid, Stack } from "@mui/material";
-import {
-  BorderContainer,
-  FlexBoxContainer,
-} from "../../../components/Containers";
-import { H1Typo, LightTitle } from "../../../components/Typography";
-import CustomInput from "../../../components/Inputs/CustomInput";
-import CustomIconButton from "../../../components/Button/CustomIconButton";
+import { BorderContainer, FlexBoxContainer } from "components/Containers";
+import { H1Typo, LightTitle } from "components/Typography";
+import CustomInput from "components/Inputs/CustomInput";
+import CustomIconButton from "components/Button/CustomIconButton";
 import ClearRoundedIcon from "@mui/icons-material/ClearRounded";
 import { useFormik } from "formik";
 import {
@@ -33,11 +30,10 @@ const AddEmployees = ({ handleOnClose, employeeId }) => {
       pin: "",
     },
     onSubmit: (values, action) => {
-      if (fetchedEmployee !== undefined){
-        updateEmployee({ ...values, role: empoyeeType, id: employeeId});
-        handleOnClose()
-      }
-      else registerEmployee({ ...values, role: empoyeeType });
+      if (fetchedEmployee !== undefined) {
+        updateEmployee({ ...values, role: empoyeeType, id: employeeId });
+        handleOnClose();
+      } else registerEmployee({ ...values, role: empoyeeType });
       action.resetForm();
     },
   });

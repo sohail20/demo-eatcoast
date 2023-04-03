@@ -109,21 +109,15 @@ export const Login2 = () => {
               })}
           </Grid>
           <Box sx={{ padding: 7, display: "flex", justifyContent: "center" }}>
-            <Button
-              disableRipple={true}
-              style={{
-                background: "#FFFFFF",
-                border: "1px solid #FFF1F1",
-                borderRadius: 4,
-                width: 180,
-              }}
-            >
-              <span
+            <Link to="/login" style={{ textDecoration: 'none' }}>
+              <Button
+                disableRipple={true}
                 style={{
-                  color: "#E75C62",
-                  fontFamily: "Outfit",
-                  fontSize: 16,
-                  textTransform: "lowercase",
+                  background: "#FFFFFF",
+                  border: "1px solid #FFF1F1",
+                  borderRadius: 4,
+                  // textDecoration: "none ",
+                  width: 180,
                 }}
               >
                 <span
@@ -131,14 +125,23 @@ export const Login2 = () => {
                     color: "#E75C62",
                     fontFamily: "Outfit",
                     fontSize: 16,
-                    textTransform: "uppercase",
+                    textTransform: "lowercase",
                   }}
                 >
-                  L
+                  <span
+                    style={{
+                      color: "#E75C62",
+                      fontFamily: "Outfit",
+                      fontSize: 16,
+                      textTransform: "uppercase",
+                    }}
+                  >
+                    L
+                  </span>
+                  ogout
                 </span>
-                ogout
-              </span>
-            </Button>
+              </Button>
+            </Link>
           </Box>
         </Container>
       </Grid>

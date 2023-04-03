@@ -118,8 +118,8 @@ export const SalesChart = ({ salesChartData = [0] }) => {
                     value={menu}
                     items={[
                         { label: "Daily", value: "daily" },
-                        { label: "Monthly", value: "monthly" },
-                    ]}
+                        { label: "This Month", value: "month" },
+                      ]}
                     handleOnChange={(e) => {
                         setMenu(e)
                     }}

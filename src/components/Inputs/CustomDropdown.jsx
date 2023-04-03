@@ -23,6 +23,11 @@ function CustomDropdown({ value, items = [], handleOnChange }) {
     setAnchorEl(null);
   };
 
+  const getLabel = () => {
+    const label = items.find((item) => item.value === value);
+    return label.label;
+  };
+
   return (
     <div>
       <Box component={"div"}>
@@ -61,10 +66,10 @@ function CustomDropdown({ value, items = [], handleOnChange }) {
             },
             fontWeight: "500",
             pl: "0px",
-            width: "100px",
+            width: "120px",
           }}
         >
-          {value}
+          {getLabel()}
         </Button>
         <Menu
           id="basic-menu"
@@ -83,7 +88,7 @@ function CustomDropdown({ value, items = [], handleOnChange }) {
             <MenuItem
               sx={{
                 color: "#9EA3AE",
-                width: "120px",
+                // width: "120px",
                 pt: "0px",
                 pb: "0px",
                 fontSize: "12px",

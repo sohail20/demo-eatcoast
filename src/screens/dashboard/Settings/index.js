@@ -9,6 +9,7 @@ import Chat from "../Staff/Orders/Chat";
 import Profile from "./Profile";
 import ChangeLocation from "./Profile/ChangeLocation";
 import { useAddRestaurantMutation, useUpdateRestaurantMutation } from "api/restaurant";
+import { PrivacyPolicy } from "components/PrivacyPolicy/PrivacyPolicy";
 
 const Settings = () => {
   const [addRestaurantData, setAddRestaurantData] = useState([]);
@@ -57,6 +58,7 @@ const Settings = () => {
         handleBack={() => setCurrentTab("dashboard")}
       />
     ),
+    privacy: <PrivacyPolicy handleBack={() => setCurrentTab("dashboard")}/>
   };
   return (
     <>
