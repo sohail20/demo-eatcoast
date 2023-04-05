@@ -7,13 +7,16 @@ import { useGetAllOrderQuery } from "api/order";
 
 const columnsAddones = [
   { field: "#", hide: true },
-  { field: "addOnes", headerName: "Add Ones", flex: 1 },
-  { field: "MealPlane", headerName: "Meal Plane", flex: 1 },
-  { field: "quatity", headerName: "Quatity", flex: 1 },
+  { field: "_id", headerName: "#", flex: 1 },
+  { field: "addOnes", headerName: "Add ons", flex: 1 },
+  { field: "mealCourses", headerName: "Meal Courses", flex: 1 },
+  { field: "mealPlan", headerName: "Meal Plan", flex: 1 },
+  { field: "qty", headerName: "Qty", flex: 1 },
 ];
 
 const columnsMealCourses = [
   { field: "#", hide: true },
+  { field: "_id", headerName: "#", flex: 1 },
   { field: "mealCourse", headerName: "Meal Course", flex: 1 },
   { field: "MealPlane", headerName: "Meal Plane", flex: 1 },
   { field: "quatity", headerName: "Quatity", flex: 1 },
@@ -28,11 +31,11 @@ const columnsAllOrders = [
 
 const columnsDishes = [
   { field: "#", hide: true },
-  { field: "_id", headerName: "ID", flex: 1 },
-  { field: "name", headerName: "Name", flex: 1 },
+  { field: "_id", headerName: "#", flex: 1 },
+  { field: "name", headerName: "Dishes Name ", flex: 1 },
   { field: "mealCourse", headerName: "Meal Course", flex: 1 },
-  { field: "image", headerName: "Image", flex: 1 },
-  { field: "addOnes", headerName: "Add Ones", flex: 1 },
+  { field: "mealPlan", headerName: "Meal Plan", flex: 1 },
+  { field: "qty", headerName: "Qty", flex: 1 },
 ];
 
 const DataGridTableView = ({ info, type, handleQuery }) => {

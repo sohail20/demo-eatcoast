@@ -136,13 +136,8 @@ const Subscription = ({ caterer }) => {
       width: 160,
     },
     {
-      field: "deliveryTime",
-      headerName: "Delivery Time",
-      width: 160,
-    },
-    {
-      field: "quantity",
-      headerName: "Quantity",
+      field: "menu",
+      headerName: "Menu",
       width: 160,
     },
     {
@@ -177,6 +172,11 @@ const Subscription = ({ caterer }) => {
           </>
         );
       },
+    },
+    {
+      field: "period",
+      headerName: "Period",
+      width: 160,
     },
     {
       field: "action",

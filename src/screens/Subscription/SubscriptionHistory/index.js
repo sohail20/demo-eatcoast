@@ -155,13 +155,8 @@ const SubscriptionHistory = () => {
       width: 160,
     },
     {
-      field: "deliveryTime",
-      headerName: "Delivery Time",
-      width: 160,
-    },
-    {
-      field: "quantity",
-      headerName: "Quantity",
+      field: "menu",
+      headerName: "Menu",
       width: 160,
     },
     // {
@@ -211,6 +206,11 @@ const SubscriptionHistory = () => {
         );
       },
     },
+    {
+      field: "period",
+      headerName: "Period",
+      width: 160,
+    },
     // {
     //   field: "status",
     //   headerName: "Status",
@@ -249,7 +249,7 @@ const SubscriptionHistory = () => {
         return (
           <>
             <Box>
-              <Button sx={{ color: "#42C677", textTransform: "none" }} onClick={() =>{}} variant="text">Detail</Button>
+              <Button sx={{ color: "#42C677", textTransform: "none" }} onClick={() => { }} variant="text">Detail</Button>
             </Box>
           </>
         );
